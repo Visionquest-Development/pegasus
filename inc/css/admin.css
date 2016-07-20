@@ -4,3 +4,5 @@
 	.cmb-type-title h3 {color: white !important; }
 	
 	.cmb2-id-header-one-title, .cmb2-id-header-two-title, .cmb2-id-header-three-title, .cmb2-id-header-four-title, .cmb2-id-header-five-title { background: rgba(0,0,0,0.3) !important; }
+	
+	#header_type {     width: 110px; }

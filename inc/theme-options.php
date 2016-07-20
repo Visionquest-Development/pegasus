@@ -85,6 +85,12 @@ class Pegasus_Theme_Options {
 				)
 			),
 			array(
+				'name' => 'Left Align Sidebar',
+				'desc' => 'Check this box if you want the sidebar to show up on the left instead of the right.',
+				'id'   => 'sidebar_left_chk',
+				'type' => 'checkbox',
+			),
+			array(
 				'name' => 'Global fullwith pages',
 				'desc' => 'Check this box if you want the website to have a Full Width Container. Please make sure you enable Fullwidth Header in Header Options as well. ',
 				'id'   => 'full_container_chk',
@@ -121,6 +127,12 @@ class Pegasus_Theme_Options {
 				'name' => 'Disable Shop Link?',
 				'desc' => 'Check this box if you want to disable the shop link in the header',
 				'id'   => 'shop_link_chk',
+				'type' => 'checkbox',
+			),
+			array(
+				'name' => 'Keep User and Cart Menu in Top bar',
+				'desc' => 'Check this box if you want to keep the User Menu and Cart Menu in the top header',
+				'id'   => 'woo_menu_top_chk',
 				'type' => 'checkbox',
 			),
 			array(

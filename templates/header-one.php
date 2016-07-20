@@ -27,8 +27,8 @@
 								<?php 
 										$args = array(
 											'container'		=> false,
-											'menu' 			=> 'primary-menu',
-											//'theme_location'  => 'primary-menu',
+											//'menu' 			=> 'primary-menu',
+											'theme_location'  => 'primary',
 											'menu_class'	=> 'nav navbar-nav primary-navigation-bar ',
 											//'menu_id' => false
 											//'items_wrap'      => '<ul id="%1$s" class="%2$s nav navbar-nav">%3$s</ul>',

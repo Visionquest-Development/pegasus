@@ -46,7 +46,7 @@
 								<a class="mobile-menu-close"><i class="fa fa-times-circle"></i></a>
 								<?php 
 									$args = array(
-										'menu' 			=> 'header-menu',
+										'theme_location'  => 'primary',
 										'menu_class'	=> 'nav navbar-nav primary-navigation-bar',
 										'container'		=> 'false'
 									);
@@ -130,7 +130,7 @@
 					
 					
 					
-					$header_three_choice = get_post_meta( get_the_ID(), 'pegasus-header-three-select', true );
+					$header_three_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
 					switch ($header_three_choice) {
 						case "no-header":
 							?>
