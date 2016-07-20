@@ -65,6 +65,12 @@ class Pegasus_Theme_Options {
 				//'default' => '#404040'
 			),
 			array(
+				'name'    => __( 'Background Image', 'cmb2-example-theme' ),
+				'desc' => 'This needs to be customized by the developer for position and mobile rendering. ',
+				'id'      => 'bkg_img',
+				'type'    => 'file'
+			),	
+			array(
 				'name'    => __( 'Content Color (body,p)', 'cmb2-example-theme' ),
 				'id'      => 'content_color',
 				'type'    => 'colorpicker',
