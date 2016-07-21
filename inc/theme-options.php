@@ -71,6 +71,52 @@ class Pegasus_Theme_Options {
 				'type'    => 'file'
 			),	
 			array(
+				'name'             => 'Background Image Position',
+				'desc'             => '<strong>Choose between:<br>
+										   1.) Center Center
+										   2.) Top Left
+										   3.) Top Center
+										   3.) Top Right
+										   4.) Bottom Left
+										   5.) Bottom Center
+											6.) Bottom Right
+										</strong>',
+				'id'               => 'bkg_pos_img',
+				'type'             => 'select',
+				'show_option_none' => false,
+				'default'          => 'pos-one',
+				'options'          => array(
+					'pos-one' => __( 'center center', 'cmb2' ),
+					'pos-two'   => __( 'top left', 'cmb2' ),
+					'pos-three'     => __( 'top right', 'cmb2' ),
+					'pos-four'     => __( 'bottom left', 'cmb2' ),
+				),
+			),
+			array(
+				'name'             => 'Background Image Size',
+				'desc'             => '<strong>Choose between:<br>
+										   1.) None
+										   2.) Cover
+										   3.) 100% 100%
+										</strong>',
+				'id'               => 'bkg_size_img',
+				'type'             => 'select',
+				'show_option_none' => false,
+				'default'          => 'pos-one',
+				'options'          => array(
+					'pos-one' => __( 'None', 'cmb2' ),
+					'pos-two'   => __( 'Cover', 'cmb2' ),
+					'pos-three'     => __( '100% 100%', 'cmb2' ),
+					//'pos-four'     => __( 'bottom left', 'cmb2' ),
+				),
+			),
+			array(
+				'name' => 'Background Attachment Fixed',
+				'desc' => 'Check this box if you want the background image to be fixed / parallax effect.',
+				'id'   => 'bkg_fixed_chk',
+				'type' => 'checkbox',
+			),
+			array(
 				'name'    => __( 'Content Color (body,p)', 'cmb2-example-theme' ),
 				'id'      => 'content_color',
 				'type'    => 'colorpicker',
