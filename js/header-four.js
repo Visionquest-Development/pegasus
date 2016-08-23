@@ -32,8 +32,8 @@
 			Fixed Header
 			======================================*/
 				var  mn = $(".primary-menu");
-				mns = "main-nav-scrolled";
-				hdr = $('header').height() - 90;
+				var mns = "main-nav-scrolled";
+				var hdr = $('header').height() - 90;
 
 			$(window).scroll(function() {
 			  if( $(this).scrollTop() > hdr ) {

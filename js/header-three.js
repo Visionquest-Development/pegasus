@@ -1,16 +1,16 @@
  /*====================================
     Fixed Header
     ======================================*/
-    jQuery(window).bind('scroll', function() {
-        var navHeight = jQuery(window).height() - 480;
-		var width = jQuery(window).width();
+    jQuery(window).bind('scroll', function($) {
+        var navHeight = $(window).height() - 480;
+		var width = $(window).width();
 			
-        if (jQuery(window).scrollTop() > navHeight) {
-            jQuery('.header-sticky').addClass('on');
-			if ((width>=768)) { jQuery('#top-bar').addClass('hide'); }
+        if ($(window).scrollTop() > navHeight) {
+            $('.header-sticky').addClass('on');
+			if ((width>=768)) { $('#top-bar').addClass('hide'); }
         } else {
-            jQuery('.header-sticky').removeClass('on');
-			jQuery('#top-bar').removeClass('hide');
+            $('.header-sticky').removeClass('on');
+			$('#top-bar').removeClass('hide');
         }
     });
 	
@@ -49,9 +49,9 @@
 	
 	/* this makes the header have the on class if you refresh the page when scrolled down */
 	jQuery(document).scroll(function($) {
-		if (jQuery(window).scrollTop() >= 75) {
+		if ($(window).scrollTop() >= 75) {
 			
-			jQuery('#mega-menu').addClass('on');
-			//jQuery('#top-bar').addClass('hide');
+			$('#mega-menu').addClass('on');
+			//$('#top-bar').addClass('hide');
 		}
 	});
