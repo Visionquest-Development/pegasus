@@ -541,12 +541,12 @@ class Pegasus_Theme_Options {
 				<li>
 					2.) Page Builder by SiteOrigin - 
 					<a href="https://wordpress.org/plugins/siteorigin-panels/" target="_blank">More info</a> 
-					<a href="/wp-admin/plugin-install.php?tab=plugin-information&plugin=siteorigin-panels">Link to install</a>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>/wp-admin/plugin-install.php?tab=plugin-information&plugin=siteorigin-panels">Link to install</a>
 				</li>
 				<li>
 					3.) SiteOrigin Widgets Bundle - 
 					<a href="https://wordpress.org/plugins/so-widgets-bundle/" target="_blank">More info</a>
-					<a href="/wp-admin/plugin-install.php?tab=plugin-information&plugin=so-widgets-bundle">Link to install</a>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>/wp-admin/plugin-install.php?tab=plugin-information&plugin=so-widgets-bundle">Link to install</a>
 				</li>
 				<li>4.) Octane Booster - This can be provided by <a href="https://theoctaneagency.com" target="_blank">More info</a></li>
 			</ul>
