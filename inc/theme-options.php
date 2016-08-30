@@ -537,10 +537,18 @@ class Pegasus_Theme_Options {
 			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 			<strong>It is recommended you install these plugins:</strong>
 			<ul>
-				<li>1.) CMB2 RGBa Colorpicker - <a href="https://github.com/JayWood/CMB2_RGBa_Picker" target="_blank">Link</a></li>
-				<li>2.) Page Builder by SiteOrigin - <a href="https://wordpress.org/plugins/siteorigin-panels/" target="_blank">Link</a></li>
-				<li>3.) SiteOrigin Widgets Bundle - <a href="https://wordpress.org/plugins/so-widgets-bundle/" target="_blank">Link</a></li>
-				<li>4.) Octane Booster - This can be provided by <a href="https://theoctaneagency.com" target="_blank">Link</a></li>
+				<li>1.) CMB2 RGBa Colorpicker - <a href="https://github.com/JayWood/CMB2_RGBa_Picker" target="_blank">More info</a></li>
+				<li>
+					2.) Page Builder by SiteOrigin - 
+					<a href="https://wordpress.org/plugins/siteorigin-panels/" target="_blank">More info</a> 
+					<a href="/wp-admin/plugin-install.php?tab=plugin-information&plugin=siteorigin-panels">Link to install</a>
+				</li>
+				<li>
+					3.) SiteOrigin Widgets Bundle - 
+					<a href="https://wordpress.org/plugins/so-widgets-bundle/" target="_blank">More info</a>
+					<a href="/wp-admin/plugin-install.php?tab=plugin-information&plugin=so-widgets-bundle">Link to install</a>
+				</li>
+				<li>4.) Octane Booster - This can be provided by <a href="https://theoctaneagency.com" target="_blank">More info</a></li>
 			</ul>
 			<p><i><strong>NOTE:</strong> <b>If you cannot select a color</b> make sure you have the RGBa plugin installed. It is #1 above.</i></p>
 			<?php cmb2_metabox_form( $this->option_metabox(), $this->key ); ?>
