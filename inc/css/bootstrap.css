@@ -13,7 +13,7 @@
  * commented out page header border bottom (604)
  * commented out .navbar-default .navbar-nav > li > a color (3608)
  * commendted out !important on .navbar-collapse.collapse (3298)  - diy 1 auto fix
- 
+ * commented out color: inherit on h1, h2, h3, h4, h5s line 402 - our pals place fix 
  */
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -399,7 +399,7 @@ h6,
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
-  color: inherit;
+  /* color: inherit; */
 }
 h1 small,
 h2 small,
