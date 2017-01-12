@@ -535,6 +535,7 @@ class Pegasus_Theme_Options {
 		?>
 		<div class="wrap pegasus_theme_options_page <?php echo $this->key; ?>">
 			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
+			<?php /* 
 			<strong>It is recommended you install these plugins:</strong>
 			<ul>
 				<li>1.) CMB2 RGBa Colorpicker - <a href="https://github.com/JayWood/CMB2_RGBa_Picker" target="_blank">More info</a></li>
@@ -551,6 +552,7 @@ class Pegasus_Theme_Options {
 				<li>4.) Octane Booster - This can be provided by <a href="https://theoctaneagency.com" target="_blank">More info</a></li>
 			</ul>
 			<p><i><strong>NOTE:</strong> <b>If you cannot select a color</b> make sure you have the RGBa plugin installed. It is #1 above.</i></p>
+			*/ ?>
 			<?php cmb2_metabox_form( $this->option_metabox(), $this->key ); ?>
 		</div>
 		<?php
