@@ -1,6 +1,6 @@
 	<header id="header">
 		<div class="<?php $headerContainerCheck =  pegasus_theme_get_option( 'header_container' ); if(!$headerContainerCheck) { echo 'container'; }else{ echo 'container-fluid'; } ?> ">
-			<div class="row">
+			<div class="">
 				
 				<div class="site-branding <?php $centerLogo =  pegasus_theme_get_option( 'logo_centered' ); if($centerLogo) { echo 'center'; } ?>">
 					<?php
@@ -24,73 +24,78 @@
 							
 						</div>
 						<div id="navbar" class="navbar-collapse  collapse">
-								<?php 
-										$args = array(
-											'container'		=> false,
-											//'menu' 			=> 'primary-menu',
-											'theme_location'  => 'primary',
-											'menu_class'	=> 'nav navbar-nav primary-navigation-bar ',
-											//'menu_id' => false
-											//'items_wrap'      => '<ul id="%1$s" class="%2$s nav navbar-nav">%3$s</ul>',
-										);
-										wp_nav_menu( $args );
-									?>
-							<ul id="pegasus-mega-menu" class="nav navbar-nav sf-menu">
-								<li class="the-more-link">
-									<div class="sf-mega clearfix">
-										<div class="sf-mega-section">
+							<?php 
+								$args = array(
+									'container'		=> false,
+									//'menu' 			=> 'primary-menu',
+									'theme_location'  => 'primary',
+									'menu_class'	=> 'nav navbar-nav primary-navigation-bar ',
+									//'menu_id' => false
+									//'items_wrap'      => '<ul id="%1$s" class="%2$s nav navbar-nav">%3$s</ul>',
+								);
+								wp_nav_menu( $args );
+							?>
+							<?php 
+								$moremenuchk =  pegasus_theme_get_option( 'header_more_chk' ); 
+								if($moremenuchk === 'on') {
+							?>
+								<ul id="pegasus-mega-menu" class="nav navbar-nav sf-menu">
+									<li class="the-more-link">
+										<div class="sf-mega clearfix">
+											<div class="sf-mega-section">
 
-											<?php 
-												$args2 = array(
-													'theme_location'	=> 'mega-one',
-													'menu_class'	=> 'nav ',
-													'container'		=> 'false'
-												);
-												wp_nav_menu( $args2 );
-												
-											?>
-									
-										</div>
-										<div class="sf-mega-section">
+												<?php 
+													$args2 = array(
+														'theme_location'	=> 'mega-one',
+														'menu_class'	=> 'nav ',
+														'container'		=> 'false'
+													);
+													wp_nav_menu( $args2 );
+													
+												?>
+										
+											</div>
+											<div class="sf-mega-section">
 
-											<?php 
-												$args3 = array(
-													'theme_location'			=> 'mega-two',
-													'menu_class'	=> 'nav ',
-													'container'		=> 'false'
-												);
-												wp_nav_menu( $args3 );
-											?>												
-									
-										</div>
-										<div class="sf-mega-section">
+												<?php 
+													$args3 = array(
+														'theme_location'			=> 'mega-two',
+														'menu_class'	=> 'nav ',
+														'container'		=> 'false'
+													);
+													wp_nav_menu( $args3 );
+												?>												
+										
+											</div>
+											<div class="sf-mega-section">
 
-											<?php 
-												$args4 = array(
-													'theme_location'			=> 'mega-three' ,
-													'menu_class'	=> 'nav ',
-													'container'		=> 'false'
-												);
-												wp_nav_menu( $args4 );
-											?>												
-									
-										</div>
-										<div class="sf-mega-section">
+												<?php 
+													$args4 = array(
+														'theme_location'			=> 'mega-three' ,
+														'menu_class'	=> 'nav ',
+														'container'		=> 'false'
+													);
+													wp_nav_menu( $args4 );
+												?>												
+										
+											</div>
+											<div class="sf-mega-section">
 
-											<?php 
-												$args5 = array(
-													'theme_location'		=> 'mega-four' ,
-													'menu_class'	=> 'nav  ',
-													'container'		=> 'false'
-												);
-												wp_nav_menu( $args5 );
-											?>												
-									
+												<?php 
+													$args5 = array(
+														'theme_location'		=> 'mega-four' ,
+														'menu_class'	=> 'nav  ',
+														'container'		=> 'false'
+													);
+													wp_nav_menu( $args5 );
+												?>												
+										
+											</div>
 										</div>
-									</div>
-									<a class="trigger" href="#">More</a>
-								</li>
-							</ul>
+										<a class="trigger" href="#">More</a>
+									</li>
+								</ul>
+							<?php } ?>
 							<div class="navbar-right">
 							<?php 
 									

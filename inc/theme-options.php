@@ -59,7 +59,7 @@ class Pegasus_Theme_Options {
 				'type'    => 'file'
 			),		
 			array(
-				'name'    => __( 'Background Color', 'cmb2-example-theme' ),
+				'name'    => __( 'Background color', 'cmb2-example-theme' ),
 				'id'      => 'bg_color',
 				'type'    => 'rgba_colorpicker',
 				//'default' => '#404040'
@@ -70,7 +70,7 @@ class Pegasus_Theme_Options {
 				'id'      => 'bkg_img',
 				'type'    => 'file'
 			),	
-			array(
+			/*array(
 				'name'             => 'Background Image Position',
 				'desc'             => '<strong>Choose between:<br>
 										   1.) Center Center
@@ -115,9 +115,9 @@ class Pegasus_Theme_Options {
 				'desc' => 'Check this box if you want the background image to be fixed / parallax effect.',
 				'id'   => 'bkg_fixed_chk',
 				'type' => 'checkbox',
-			),
+			),*/
 			array(
-				'name'    => __( 'Content Color (body,p)', 'cmb2-example-theme' ),
+				'name'    => __( 'Content color (body,p)', 'cmb2-example-theme' ),
 				'id'      => 'content_color',
 				'type'    => 'colorpicker',
 				//'default' => '#ffffff'
@@ -143,6 +143,12 @@ class Pegasus_Theme_Options {
 				'type' => 'checkbox',
 			),
 			array(
+				'name' => 'Boxed Layout ',
+				'desc' => 'Check this box if you want the website to appear in a boxed layout.',
+				'id'   => 'boxed_layout_chk',
+				'type' => 'checkbox',
+			),
+			array(
 				'name' => 'Global fullwith pages',
 				'desc' => 'Check this box if you want the website to have a Full Width Container. Please make sure you enable Fullwidth Header in Header Options as well. ',
 				'id'   => 'full_container_chk',
@@ -160,6 +166,7 @@ class Pegasus_Theme_Options {
 				'id'   => 'page_header_chk',
 				'type' => 'checkbox',
 			),
+			
 			
 			
 			
@@ -221,7 +228,7 @@ class Pegasus_Theme_Options {
 				//'default' => 'rgba(0,0,0,0)'
 			),
 			array(
-				'name'    => __( 'Top Bar Font Color', 'cmb2-example-theme' ),
+				'name'    => __( 'Top Bar Font color', 'cmb2-example-theme' ),
 				'id'      => 'top_bar_font_color',
 				'type'    => 'rgba_colorpicker',
 				//'default' => 'rgba(0,0,0,0)'
@@ -265,6 +272,7 @@ class Pegasus_Theme_Options {
 					'header-two'   => __( 'Header Two', 'cmb2' ),
 					'header-three'     => __( 'Header Three', 'cmb2' ),
 					'header-four'     => __( 'Header Four', 'cmb2' ),
+					'header-five'     => __( 'Header Five', 'cmb2' ),
 				),
 			),
 			array(
@@ -280,16 +288,31 @@ class Pegasus_Theme_Options {
 				//'default' => 'rgba(0,0,0,0)'
 			),
 			array(
-				'name'    => __( 'Header Bkg Color', 'cmb2-example-theme' ),
+				'name'    => __( 'Header Bkg color', 'cmb2-example-theme' ),
 				'id'      => 'header_bkg_color',
 				'type'    => 'rgba_colorpicker',
 				'desc' => 'This is for the entire background of the header.',
 				//'default' => 'rgba(0,0,0,0)'
 			),
-		
-			// HEADER ONE
 			array(
-				'name' => 'Header One Options',
+				'name'    => __( 'More Menu', 'cmb2-example-theme' ),
+				'id'      => 'header_more_chk',
+				'type'    => 'checkbox',
+				'desc' => 'Check this if you need additional menu items in the navigation. Then make sure to add another menu in the Appearence->Menus section and assign it to more menu. ',
+				//'default' => 'rgba(0,0,0,0)'
+			),
+				array(
+				'name'    => __( 'Hover Background/Text Decision', 'cmb2-example-theme' ),
+				'id'      => 'hover_chk_decision',
+				'type'    => 'checkbox',
+				'desc'	=> 'This decides wether to use the default option of background color, or if you want the text to show up a different color on hover you would check this box.',
+				//'default' => '#dedede'
+			),	
+			
+		 
+			// HEADER ONE AND HEADER TWO OPTIONS
+			array(
+				'name' => 'Header One and Two Options',
 				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
 				'type' => 'title',
 				'id'   => 'header_one_title'
@@ -306,15 +329,15 @@ class Pegasus_Theme_Options {
 				'id'   => 'nav_social_chk',
 				'type' => 'checkbox',
 			),
-			array(
-				'name' => 'Fixed Nav Checkbox',
-				'desc' => 'Check this box to make the the header fixed. ',
+			/*array(
+				'name' => 'Fixed Navigation checkbox',
+				'desc' => 'Check this box to make the the header fixed. This also enables the absolute menu (menu that floats over the content on mobile) instead of movingthe content down to make room for the menu. ',
 				'id'   => 'header_one_fixed_checkbox',
 				'type' => 'checkbox',
-			),
+			), */
 			
 			// HEADER TWO
-			array(
+			/*array(
 				'name' => 'Header Two Options',
 				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
 				'type' => 'title',
@@ -325,42 +348,44 @@ class Pegasus_Theme_Options {
 				//'desc' => 'Check this box to make the logo centered',
 				'id'   => 'header_two_checkbox',
 				'type' => 'checkbox',
-			), 
+			), */
+			
+			
 			// HEADER THREE
 			array(
-				'name' => 'Header Three Options',
+				'name' => 'Header Three and Four Options',
 				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
 				'type' => 'title',
 				'id'   => 'header_three_title'
 			),
 			array(
-				'name' => 'Right align nav menu',
+				'name' => 'Right align nav menu items',
 				'desc' => 'Check this box to make the navigation items float right',
 				'id'   => 'header_three_right_checkbox',
 				'type' => 'checkbox',
 			),
 			array(
 				'name' => 'Disable fixed header',
-				'desc' => 'Check this box to make the navigation no longer remain fixed at the top.',
+				'desc' => 'By default this header has a fixed top navigation bar and sidebar menu for mobile. Check this box to make the navigation no longer remain fixed at the top.',
 				'id'   => 'header_three_disable_fixed_checkbox',
 				'type' => 'checkbox',
 			),
 			array(
-				'name'    => __( 'Spacer Background Color', 'cmb2-example-theme' ),
-				'desc' => 'This shows by dfault when short or large header is not selected.',
+				'name'    => __( 'Spacer Background color', 'cmb2-example-theme' ),
+				'desc' => 'This shows by default when no header option is selected on the backend of a page. You must select short or large header on the page options to disable this.',
 				'id'      => 'header_three_bg_color',
 				'type'    => 'rgba_colorpicker',
 				//'default' => 'rgba(0,0,0,0)'
 			),
 			array(
-				'name'    => __( 'Mobile Background Color', 'cmb2-example-theme' ),
+				'name'    => __( 'Mobile Background color', 'cmb2-example-theme' ),
 				'id'      => 'header_three_mobile_bg_color',
 				'type'    => 'rgba_colorpicker',
 				'desc' => 'This is the background of the sidebar nav on mobile.',
 				//'default' => 'rgba(0,0,0,0)'
 			),
 			array(
-				'name'    => __( 'Scroll Bkg Color', 'cmb2-example-theme' ),
+				'name'    => __( 'Scroll Bkg color', 'cmb2-example-theme' ),
 				'id'      => 'header_three_scroll_bg_color',
 				'type'    => 'rgba_colorpicker',
 				'desc' => 'The color of the background after the user has scrolled down 200 pixels.',
@@ -374,7 +399,7 @@ class Pegasus_Theme_Options {
 			),
 			
 			// HEADER FOUR
-			array(
+			/*array(
 				'name' => 'Header Four Options',
 				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
 				'type' => 'title',
@@ -385,7 +410,7 @@ class Pegasus_Theme_Options {
 				//'desc' => 'Check this box to make the logo centered',
 				'id'   => 'header_four_checkbox',
 				'type' => 'checkbox',
-			), 
+			), */
 			
 			
 			// NAVIGATION OPTIONS
@@ -396,7 +421,7 @@ class Pegasus_Theme_Options {
 				'id'   => 'nav_title'
 			),
 			array(
-				'name'    => __( 'Nav Background Color', 'cmb2-example-theme' ),
+				'name'    => __( 'Nav Background color', 'cmb2-example-theme' ),
 				'desc' => 'Make sure you have CMB2 RGBa Colorpicker plugin installed.',
 				'id'      => 'nav_bg_color',
 				'type'    => 'rgba_colorpicker',
@@ -409,7 +434,7 @@ class Pegasus_Theme_Options {
 				//'default' => '#dedede'
 			),
 			array(
-				'name'    => __( 'Sub-Menu Background Color', 'cmb2-example-theme' ),
+				'name'    => __( 'Sub-Menu Background color', 'cmb2-example-theme' ),
 				'id'      => 'sub_nav_bg_color',
 				'type'    => 'rgba_colorpicker',
 				//'default' => 'rgba(0,0,0,0)'
@@ -420,8 +445,9 @@ class Pegasus_Theme_Options {
 				'type'    => 'colorpicker',
 				//'default' => '#dedede'
 			),
+				
 			array(
-				'name'    => __( 'Hover Background color', 'cmb2-example-theme' ),
+				'name'    => __( 'Hover Background/Text color', 'cmb2-example-theme' ),
 				'id'      => 'hover_bg_color',
 				'type'    => 'colorpicker',
 				//'default' => '#dedede'
@@ -473,7 +499,6 @@ class Pegasus_Theme_Options {
 			),
 			
 			
-			
 			// ADDITIONAL
 			array(
 				'name' => 'Additional Options',
@@ -495,8 +520,6 @@ class Pegasus_Theme_Options {
 				'id' => 'custom_bottom_textareacode',
 				'type' => 'textarea_code'
 			)
-			
-			
 			
 			
 		) );
@@ -542,12 +565,12 @@ class Pegasus_Theme_Options {
 				<li>
 					2.) Page Builder by SiteOrigin - 
 					<a href="https://wordpress.org/plugins/siteorigin-panels/" target="_blank">More info</a> 
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>/wp-admin/plugin-install.php?tab=plugin-information&plugin=siteorigin-panels">Link to install</a>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>wp-admin/plugin-install.php?tab=plugin-information&plugin=siteorigin-panels">Link to install</a>
 				</li>
 				<li>
 					3.) SiteOrigin Widgets Bundle - 
 					<a href="https://wordpress.org/plugins/so-widgets-bundle/" target="_blank">More info</a>
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>/wp-admin/plugin-install.php?tab=plugin-information&plugin=so-widgets-bundle">Link to install</a>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>wp-admin/plugin-install.php?tab=plugin-information&plugin=so-widgets-bundle">Link to install</a>
 				</li>
 				<li>4.) Octane Booster - This can be provided by <a href="https://theoctaneagency.com" target="_blank">More info</a></li>
 			</ul>

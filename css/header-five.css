@@ -1,0 +1,154 @@
+
+	/* main body content css */
+
+	.mainbar {
+		margin: 0;
+		padding: 0;
+		margin-left: 280px;
+		background: #fff;
+	}
+	.mainbar .container { 
+		width: 97%; 
+		max-width: 1080px;
+	}
+
+	.main-content {
+		padding-top: 20px;
+	}
+	
+	#page-wrap { padding: 20px 0; }
+	
+	.sub-menu { background: inherit !important; list-style-type: none; }
+	
+	
+	.sidebar-nav .the-nav-cart { float: none !important; }
+	.sidebar-nav .the-nav-cart li { float: none !important; }
+	
+	.sidebar-nav .the-nav-cart .sub-menu { 
+		left: 0; 
+	}
+	
+	/*~~~~~~~~~~~~~~~~~~~~~ 
+	~~~~~~~~ HEADER ~~~~~~
+	~~~~~~~~~~~~~~~~~~~~~*/
+	.keegans-nav { display: none; border-color: #9a1f27 !important; background: #9a1f27; }
+	
+	
+	
+	
+	
+	/*~~~~~~~~~~~~~~~~~~~~~
+	~~~~~~ NAVIGATION ~~~~~
+	~~~~~~~~~~~~~~~~~~~~~*/
+	
+	
+	
+	.navbar-brand>img { height: 32px; }
+	
+	
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MY CSS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	.sidebar-nav .navi-btn a i {
+	  /* background: #f0cb38; */
+	}
+	
+	.fa-bars:before { color: black;  }
+	
+	.keegans-header-menu { list-style-type: none; }
+	
+	/*~~~~~~~~~~~~~~~~~~~~~~
+	~~~~~~~SIDEBAR NAV~~~~~~~
+	~~~~~~~~~~~~~~~~~~~~~~*/
+	
+	.keegans-logo {
+		margin-top: 30px;
+		padding-bottom: 15px;
+		text-align: center;
+	}
+
+
+	.keegans-logo h1 {
+		margin: 0;
+		font-size: 50px;
+		font-weight: 700;
+	}
+
+	.keegans-logo hr {
+		max-width: 180px;
+		margin: 5px auto;
+		border-top: 4px double #fff;
+	}
+
+	.keegans-logo span {
+		display: block;
+		margin-top: 5px;
+	}
+
+	#header {
+		position: fixed;
+		z-index: 1024;
+		/* background: #9A1F27; */
+		width: 280px;
+		min-height: 1000px;
+		left: 0; 
+		top:0;
+	}
+
+	#header .slimScrollBar {
+		border-radius: 0 !important;
+		opacity: 0.4 !important;
+	}
+
+	#header .navi-btn a i {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 999999;
+		display: block;
+		margin: 0;
+		padding: 0;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		font-size: 24px;
+		color: #fff;
+		box-shadow: 1px 1px 3px rgba(0,0,0,0.25);
+	}
+
+	#header .sidebar-inner { 
+		padding-bottom: 30px; 
+		overflow: hidden;
+	}	
+
+	.nav-sidebar-widget {
+		padding: 0 22px;
+		margin-top: 25px;
+	}
+
+
+	.nav-sidebar-widget ul li a {
+		display: block;
+		padding: 8px 0;
+		font-size: 15px;
+		line-height: 18px;
+		color: #fff;
+		text-align: right;
+	   -webkit-transition: all 0.5s ease;
+		  -moz-transition: all 0.5s ease;
+			-o-transition: all 0.5s ease;
+		   -ms-transition: all 0.5s ease;
+			   transition: all 0.5s ease;
+	}
+
+	
+
+	.nav-sidebar-widget ul li a:hover {
+		padding-right: 15px;
+	}
+
+
+
+	@media only screen and ( max-width: 1155px ) {
+		#top-bar { padding-left: 40px; }
+	}
+

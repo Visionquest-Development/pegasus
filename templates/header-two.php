@@ -5,7 +5,7 @@
 				
 				<!-- Static navbar -->
 				<nav class="navbar the-default-second-nav">
-					<div class="">
+					<div class="clearfix">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 							  <span class="sr-only">Toggle navigation</span>
@@ -32,6 +32,7 @@
 									'menu_class'	=> 'nav navbar-nav primary-navigation-bar',
 									//'menu_id' => false
 									//'items_wrap'      => '<ul id="%1$s" class="%2$s nav navbar-nav">%3$s</ul>',
+									//'walker' => new wp_bootstrap_navwalker()
 								);
 								wp_nav_menu( $args );
 							?>

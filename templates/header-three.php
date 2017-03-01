@@ -53,13 +53,16 @@
 									wp_nav_menu( $args );
 								?>
 								<?php 
-									$args = array(
-										'menu' 			=> 'more-menu',
-										'menu_class'	=> 'collapse nav navbar-nav nav-collapse primary-navigation-bar ',
-										'menu_id'	=> 'nav-collapse1',
-										'container'		=> 'false'
-									);
-									wp_nav_menu( $args );
+									$moremenuchk =  pegasus_theme_get_option( 'header_more_chk' ); 
+									if($moremenuchk === 'on') {
+										$args = array(
+											'menu' 			=> 'more-menu',
+											'menu_class'	=> 'collapse nav navbar-nav nav-collapse primary-navigation-bar ',
+											'menu_id'	=> 'nav-collapse1',
+											'container'		=> 'false'
+										);
+										wp_nav_menu( $args );
+									}
 								?>	
 									 
 									
