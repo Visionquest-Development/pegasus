@@ -9,6 +9,7 @@
  * commented out body font-family, color, and background-color (288, 291, 292)
  * commented out a tag link color (303)
  * commented out a tag hover and focus link color and underline (308)
+ * commented out h1, h2, h3, h4, h5, h6 extra margin and font weight (400-402)
  * commented out margin for headers and font size (426, 427, 449, 450, 468, 472, 476, 480, 484)
  * commented out page header border bottom (604)
  * commented out .navbar-default .navbar-nav > li > a color (3608)
@@ -397,9 +398,9 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: inherit;
+  /*font-family: inherit;
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1.1; */
   /* color: inherit; */
 }
 h1 small,
