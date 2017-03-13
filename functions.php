@@ -445,43 +445,23 @@
 	
 	
 	function pegasus_admin_scripts() {
-		wp_enqueue_style('admin-styles', get_template_directory_uri().'/inc/css/admin.css');
-		wp_enqueue_script( 'admin-js', get_template_directory_uri() . '/inc/js/admin.js', array( 'jquery', 'inline-edit-post' ), '', true );
+		wp_enqueue_style('admin-styles', get_template_directory_uri().'/admin/admin.css');
+		wp_enqueue_script( 'admin-js', get_template_directory_uri() . '/admin/admin.js', array( 'jquery', 'inline-edit-post' ), '', true );
 	}
 	add_action('admin_enqueue_scripts', 'pegasus_admin_scripts');
-	
-	
-	
-	
-	/**
-	* Proper way to enqueue scripts and styles as of Mar 2015
-	*/
-	function pegasus_bootstrap_scripts() {
-		//wp_enqueue_style( 'main-style', get_stylesheet_uri() );
-		wp_enqueue_style( 'bootstrap-style', get_template_directory_uri() . '/inc/css/bootstrap.css' );
-		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.css' );
-		//wp_enqueue_style( 'header_custom_css', get_template_directory_uri() . '/css/header.css' );
-		
-	} //end function
-	add_action( 'wp_enqueue_scripts', 'pegasus_bootstrap_scripts' );
 	
 		
 	/**
 	* Proper way to enqueue JS and IE fixes as of Mar 2015
 	*/
-	function pegasus_bootstrap_js() {
+	function pegasus_scripts() {
 	
-		
+		wp_enqueue_style( 'bootstrap-style', get_template_directory_uri() . '/inc/css/bootstrap.css' );
+		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.css' );
+
 		/* get this ready to actually be added */
 		wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/inc/js/bootstrap.min.js', array('jquery'), '', true );
 		wp_enqueue_script( 'pegasus_custom_js', get_template_directory_uri() . '/js/pegasus-custom.js', array(), '', true );
-		
-		//wp_enqueue_script( 'js_plugins_custom_js', get_template_directory_uri() . '/js/plugins.js', array(), '', true );
-		
-		//$woo_chk =  pegasus_theme_get_option( 'woo_chk' );
-		//if($woo_chk === 'on') {
-			//wp_enqueue_script( 'cart_cookie_js', get_template_directory_uri() .'/js/cart-cookie.js', array('jquery'), false, true);
-		//}
 		
 		$header_choice =  pegasus_theme_get_option( 'header_select' );
 		//echo $header_choice; 
@@ -532,7 +512,7 @@
 		
 		
 	} //end function
-	add_action( 'wp_enqueue_scripts', 'pegasus_bootstrap_js' );
+	add_action( 'wp_enqueue_scripts', 'pegasus_scripts' );
 	
 	
 	$moremenuchk =  pegasus_theme_get_option( 'header_more_chk' ); 
@@ -674,59 +654,18 @@
 		// Start with an underscore to hide fields from custom fields list
 		$prefix = 'pegasus';
 		
-		/*$cmb_demo->add_field( array(
-			'name' => __( 'Test Text Area for Code', 'cmb2' ),
-			'desc' => __( 'field description (optional)', 'cmb2' ),
-			'id'   => $prefix . 'textarea_code',
-			'type' => 'textarea_code',
-		) ); */
-		
-		
-		/* $cmb_demo->add_field( array(
-			'name'       => __( 'Test Text', 'cmb2' ),
-			'desc'       => __( 'field description (optional)', 'cmb2' ),
-			'id'         => $prefix . 'text',
-			'type'       => 'text',
-			//'show_on_cb' => 'yourprefix_hide_if_no_cats', // function should return a bool value
-			// 'sanitization_cb' => 'my_custom_sanitization', // custom sanitization callback parameter
-			// 'escape_cb'       => 'my_custom_escaping',  // custom escaping callback parameter
-			// 'on_front'        => false, // Optionally designate a field to wp-admin only
-			// 'repeatable'      => true,
-		) ); */
-		
-		
-		/* $cmb_demo->add_field( array(
-			'name' => __( 'Test Title Weeeee', 'cmb2' ),
-			'desc' => __( 'This is a title description', 'cmb2' ),
-			'id'   => $prefix . 'title',
-			'type' => 'title',
-		) ); */
-		
-	
-		/* $cmb_demo->add_field( array(
-			'name' => __( 'Test Image', 'cmb2' ),
-			'desc' => __( 'Upload an image or enter a URL.', 'cmb2' ),
-			'id'   => $prefix . 'image',
-			'type' => 'file',
-		) ); */
 		$cmb_demo2 = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox2',
 			'title'         => __( 'Pegsus Page Options', 'cmb2' ),
 			'object_types'  => array( 'page', 'post', 'course_unit' ), // Post type
-			// 'show_on_cb' => 'yourprefix_show_if_front_page', // function should return a bool value
-			// 'context'    => 'normal',
-			// 'priority'   => 'high',
-			// 'show_names' => true, // Show field names on the left
-			// 'cmb_styles' => false, // false to disable the CMB stylesheet
-			// 'closed'     => true, // true to keep the metabox closed by default
 		) );
+
 		$cmb_demo2->add_field( array(
 			'name' => __( 'Fullwidth Container Checkbox', 'cmb2' ),
 			'desc' => __( 'Check this box to make the page fullwidth', 'cmb2' ),
 			'id'   => $prefix . '-page-container-checkbox',
 			'type' => 'checkbox',
 		) ); 	
-		
 		
 		
 		/**
@@ -736,13 +675,9 @@
 			'id'            => $prefix . 'metabox',
 			'title'         => __( 'Pegsus Header Three & Header Four Options', 'cmb2' ),
 			'object_types'  => array( 'page',  'course_unit' ), // Post type
-			// 'show_on_cb' => 'yourprefix_show_if_front_page', // function should return a bool value
-			// 'context'    => 'normal',
-			// 'priority'   => 'high',
-			// 'show_names' => true, // Show field names on the left
-			// 'cmb_styles' => false, // false to disable the CMB stylesheet
-			// 'closed'     => true, // true to keep the metabox closed by default
+			
 		) );
+
 		$cmb_demo->add_field( array(
 			'name'             => __( 'Header Select', 'cmb2' ),
 			'desc'             => __( 'This option only works when you have Header Three or Header Four select in the Theme Options. Select Header Type (no hdr, sml hdr, lrg hdr)', 'cmb2' ),
@@ -756,6 +691,7 @@
 				'lrg-header'     => __( 'Large Header - Full Width and Height', 'cmb2' ),
 			),
 		) );
+
 		$cmb_demo->add_field( array(
 			'name'    => __( 'Header Content wysiwyg', 'cmb2' ),
 			'desc'    => __( 'This option only works when you have Header Three or Header Four select in the Theme Options.', 'cmb2' ),
@@ -763,7 +699,6 @@
 			'type'    => 'wysiwyg',
 			'options' => array( 'textarea_rows' => 5, ),
 		) );
-		
 		
 	}
 		
