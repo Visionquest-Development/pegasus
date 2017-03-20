@@ -1,3 +1,11 @@
+	<?php 
+		$top_header_choice = pegasus_theme_get_option( 'top_header_chk' );
+		
+		//echo $top_header_choice;
+		if($top_header_choice === 'on' ) { 
+			get_template_part( 'templates/top-bar', 'header' );
+		}
+	?>
 	<header id="header">
 		<div class="<?php $headerContainerCheck =  pegasus_theme_get_option( 'header_container' ); if(!$headerContainerCheck) { echo 'container'; }else{ echo 'container-fluid'; } ?> ">
 			<div class="row">

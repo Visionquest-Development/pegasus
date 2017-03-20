@@ -1,3 +1,11 @@
+	<?php 
+		$top_header_choice = pegasus_theme_get_option( 'top_header_chk' );
+		
+		//echo $top_header_choice;
+		if($top_header_choice === 'on' ) { 
+			get_template_part( 'templates/top-bar', 'header' );
+		}
+	?>
 	<header id="header">
 		<div class="<?php $headerContainerCheck =  pegasus_theme_get_option( 'header_container' ); if(!$headerContainerCheck) { echo 'container'; }else{ echo 'container-fluid'; } ?> ">
 			<div class="">
@@ -13,7 +21,7 @@
 				</div><!-- .site-branding -->
 				<!-- Static navbar -->
 				<nav class="navbar the-default-nav">
-					<div class="">
+					<div class="row">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 							  <span class="sr-only">Toggle navigation</span>
@@ -38,64 +46,9 @@
 							<?php 
 								$moremenuchk =  pegasus_theme_get_option( 'header_more_chk' ); 
 								if($moremenuchk === 'on') {
+									get_template_part( 'tenplates/more_menu_one.php');
+								} 
 							?>
-								<ul id="pegasus-mega-menu" class="nav navbar-nav sf-menu">
-									<li class="the-more-link">
-										<div class="sf-mega clearfix">
-											<div class="sf-mega-section">
-
-												<?php 
-													$args2 = array(
-														'theme_location'	=> 'mega-one',
-														'menu_class'	=> 'nav ',
-														'container'		=> 'false'
-													);
-													wp_nav_menu( $args2 );
-													
-												?>
-										
-											</div>
-											<div class="sf-mega-section">
-
-												<?php 
-													$args3 = array(
-														'theme_location'			=> 'mega-two',
-														'menu_class'	=> 'nav ',
-														'container'		=> 'false'
-													);
-													wp_nav_menu( $args3 );
-												?>												
-										
-											</div>
-											<div class="sf-mega-section">
-
-												<?php 
-													$args4 = array(
-														'theme_location'			=> 'mega-three' ,
-														'menu_class'	=> 'nav ',
-														'container'		=> 'false'
-													);
-													wp_nav_menu( $args4 );
-												?>												
-										
-											</div>
-											<div class="sf-mega-section">
-
-												<?php 
-													$args5 = array(
-														'theme_location'		=> 'mega-four' ,
-														'menu_class'	=> 'nav  ',
-														'container'		=> 'false'
-													);
-													wp_nav_menu( $args5 );
-												?>												
-										
-											</div>
-										</div>
-										<a class="trigger" href="#">More</a>
-									</li>
-								</ul>
-							<?php } ?>
 							<div class="navbar-right">
 							<?php 
 									

@@ -4,7 +4,14 @@
 	
 	</div>
 -->
-
+<?php 
+		$top_header_choice = pegasus_theme_get_option( 'top_header_chk' );
+		
+		//echo $top_header_choice;
+		if($top_header_choice === 'on' ) { 
+			get_template_part( 'templates/top-bar', 'header' );
+		}
+	?>
 	<nav class="navbar navbar-inverse navbar-fixed-top keegans-nav">
 		<div class="container">
 			<div class="navbar-header">

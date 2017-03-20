@@ -166,9 +166,20 @@ class Pegasus_Theme_Options {
 				'id'   => 'page_header_chk',
 				'type' => 'checkbox',
 			),
-			
-			
-			
+			array(
+				'name' => 'Enable Page Loader?',
+				'desc' => 'Check this box if you would like to remove the Page Loader from the webpage.',
+				'id'   => 'page_loader_chk',
+				'type' => 'checkbox',
+			),
+			array(
+				'name' => 'Disable WPADMIN Bar',
+				'desc' => 'Check this box if you would like to remove the WP Admin bar from the frontend.',
+				'id'   => 'wp_admin_bar_chk',
+				'type' => 'checkbox',
+			),
+		
+
 			
 			array(
 				'name' => 'E-Commerce Options',
@@ -262,6 +273,7 @@ class Pegasus_Theme_Options {
 										   2.) Header two - Logo Inside (left) Navbar, transparent navigation, and with social media menu (good for small logos and simple design)<br>
 										   3.) Header three - Fixed Fullwidth Fancy Header, transparent navigation, sidebar mobile nav (not good for a lot of menu items), special page options for small or large header.<br>
 										   4.) Header four - Bottom Sticky Fullwidth Fancy Header, transparent navigation, sidebar mobile nav (not good for a lot of menu items)<br>
+										   5.) Header five.
 										</strong>',
 				'id'               => 'header_select',
 				'type'             => 'select',
@@ -301,13 +313,26 @@ class Pegasus_Theme_Options {
 				'desc' => 'Check this if you need additional menu items in the navigation. Then make sure to add another menu in the Appearence->Menus section and assign it to more menu. ',
 				//'default' => 'rgba(0,0,0,0)'
 			),
-				array(
+			array(
 				'name'    => __( 'Hover Background/Text Decision', 'cmb2-example-theme' ),
 				'id'      => 'hover_chk_decision',
 				'type'    => 'checkbox',
 				'desc'	=> 'This decides wether to use the default option of background color, or if you want the text to show up a different color on hover you would check this box.',
 				//'default' => '#dedede'
-			),	
+			),
+			array(
+				'name'    => __( 'More Menu Widget Areas', 'cmb2-example-theme' ),
+				'id'      => 'more_menu_widget_areas',
+				'type'    => 'radio',
+				'default' => 'two',
+				'options' => array(
+					0 => __( 'None', 'cmb2-example-theme' ),
+					1 => __( 'One', 'cmb2-example-theme' ),
+					2 => __( 'Two', 'cmb2-example-theme' ),
+					3 => __( 'Three', 'cmb2-example-theme' ),
+					4 => __( 'Four', 'cmb2-example-theme' ),
+				)
+			),
 			
 		 
 			// HEADER ONE AND HEADER TWO OPTIONS
@@ -315,11 +340,16 @@ class Pegasus_Theme_Options {
 				'name' => 'Header One and Two Options',
 				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
 				'type' => 'title',
-				'id'   => 'header_one_title'
+				'id'   => 'header_one_title',
+				/*'attributes' => array(
+					//'required'            => true, // Will be required only if visible.
+					'data-conditional-id' => 'header_select',
+					'data-conditional-value' => 'header-one',
+				), */
 			),
 			array(
 				'name' => 'Center Logo',
-				'desc' => 'Check this box to make the logo centered',
+				'desc' => 'Check this box to make the logo centered. This only works on Header One.',
 				'id'   => 'logo_centered',
 				'type' => 'checkbox',
 			),
@@ -329,12 +359,12 @@ class Pegasus_Theme_Options {
 				'id'   => 'nav_social_chk',
 				'type' => 'checkbox',
 			),
-			/*array(
+			array(
 				'name' => 'Fixed Navigation checkbox',
 				'desc' => 'Check this box to make the the header fixed. This also enables the absolute menu (menu that floats over the content on mobile) instead of movingthe content down to make room for the menu. ',
 				'id'   => 'header_one_fixed_checkbox',
 				'type' => 'checkbox',
-			), */
+			), 
 			
 			// HEADER TWO
 			/*array(
@@ -514,12 +544,19 @@ class Pegasus_Theme_Options {
 				'type' => 'textarea_code'
 			),
 			array(
+				'name' => 'Header Custom Code',
+				'desc' => 'This will show up right after the logo before the menu.',
+				//'default' => '.selector { property: attribute; }',
+				'id' => 'custom_top_textareacode',
+				'type' => 'textarea_code'
+			),
+			array(
 				'name' => 'Bottom Custom Code',
 				'desc' => 'This will show up right before the footer widgets under the content.',
 				//'default' => '.selector { property: attribute; }',
 				'id' => 'custom_bottom_textareacode',
 				'type' => 'textarea_code'
-			)
+			),
 			
 			
 		) );

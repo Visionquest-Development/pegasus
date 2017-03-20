@@ -14,6 +14,8 @@
  * commented out page header border bottom (604)
  * commented out .navbar-default .navbar-nav > li > a color (3608)
  * commendted out !important on .navbar-collapse.collapse (3298)  - diy 1 auto fix
+ * commendted out margin-bottom .navbar (3279) 
+ * commendted out padding on .navbar-collapse (3293) 
  * commented out color: inherit on h1, h2, h3, h4, h5s line (402) - our pals place fix 
  *  removed nav li hover color (3097)
  */
@@ -3276,7 +3278,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   border: 1px solid transparent;
 }
 @media (min-width: 768px) {
@@ -3290,8 +3292,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-collapse {
-  padding-right: 15px;
-  padding-left: 15px;
+  /*padding-right: 15px;
+  padding-left: 15px; */
   overflow-x: visible;
   -webkit-overflow-scrolling: touch;
   border-top: 1px solid transparent;

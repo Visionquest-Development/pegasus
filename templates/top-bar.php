@@ -11,11 +11,7 @@
 			<div class="col-xs-6 right">
 				<div class="navbar-right">	
 					<?php 
-						$top_social_check = pegasus_theme_get_option( 'top_social_chk' );
-						if($top_social_check === 'on'){
-							get_template_part( 'templates/social_icons', 'header' );
-						}
-						
+										
 						$woo_check = pegasus_theme_get_option( 'woo_chk' );
 						if ( $woo_check === 'on' ) {
 							if ( class_exists( 'WooCommerce' ) ) {
@@ -26,6 +22,11 @@
 							  echo '<div class="woo-error navbar-right">Enable WooCommerce</div>';
 							}
 						} 
+
+						$top_social_check = pegasus_theme_get_option( 'top_social_chk' );
+						if($top_social_check === 'on'){
+							get_template_part( 'templates/social_icons', 'header' );
+						}
 						
 					?>
 				</div>

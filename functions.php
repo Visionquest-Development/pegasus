@@ -47,14 +47,38 @@
 			 * Register our primary menu
 			 */
 			register_nav_menu( 'primary', __( 'Primary Menu', 'pegasus-bootstrap' ) );
-			//register_nav_menu( 'primary', __( 'Primary Menu', 'pegasus-bootstrap' ) );
-			register_nav_menu( 'mega-one', __( 'Mega Menu One', 'pegasus-bootstrap' ) );
-			register_nav_menu( 'mega-two', __( 'Mega Menu Two', 'pegasus-bootstrap' ) );
-			register_nav_menu( 'mega-three', __( 'Mega Menu Three', 'pegasus-bootstrap' ) );
-			register_nav_menu( 'mega-four', __( 'Mega Menu Four', 'pegasus-bootstrap' ) );
 			register_nav_menu( 'social-icons', __( 'Social Icon Menu', 'pegasus-bootstrap' ) );
 			register_nav_menu( 'user-menu', __( 'User Account Menu', 'pegasus-bootstrap' ) );
-			register_nav_menu( 'more-menu', __( 'Header Three/Four More Menu', 'pegasus-bootstrap' ) );
+			$more_menu_widgets = absint(pegasus_theme_get_option( 'more_menu_widget_areas' ));
+		    switch($more_menu_widgets) {
+		    	case "1":
+					register_nav_menu( 'mega-one', __( 'Mega Menu One', 'pegasus-bootstrap' ) );
+					break;
+				case "2":
+					register_nav_menus( array(
+						'mega-one' => __( 'Mega Menu One' ),
+						'mega-two' => __( 'Mega Menu Two' )
+					));
+					break;
+				case "3":
+					register_nav_menus( array(
+						'mega-one' => __( 'Mega Menu One' ),
+						'mega-two' => __( 'Mega Menu Two' ),
+						'mega-three' => __( 'Mega Menu Three' ),
+					));
+					break;
+				case "4":
+					register_nav_menus( array(
+						'mega-one' => __( 'Mega Menu One' ),
+						'mega-two' => __( 'Mega Menu Two' ),
+						'mega-three' => __( 'Mega Menu Three' ),
+						'mega-four' => __( 'Mega Menu Four' ),
+					));
+					break;
+				default:
+					register_nav_menu( 'mega-one', __( 'Mega Menu One', 'pegasus-bootstrap' ) );
+		    }
+			    
 			/**
 			 * Register sidebar widget area
 			 */
@@ -77,10 +101,9 @@
 				'before_title'  => '<h3 class="widgettitle">',
 				'after_title'   => '</h3>',
 			));
-			
 			/* Shop Cart widget */
 			register_sidebar( array(
-				'name' => __( 'Shop Cart Widget', 'pegasus-bootstrap' ),
+				'name' => __( 'Cart Widget', 'pegasus-bootstrap' ),
 				'id' => 'shop-cart',
 				'description' => __( 'Displays on sub menu of cart in header.', 'pegasus-bootstrap' ),
 				'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -88,7 +111,6 @@
 				'before_title'  => '<h3 class="widgettitle">',
 				'after_title'   => '</h3>',
 			));
-			
 			/* FOOTER SOCIAL widget */
 			register_sidebar( array(
 				'name' => __( 'Footer Social Widget', 'pegasus-bootstrap' ),
@@ -99,7 +121,7 @@
 				'before_title'  => '<h3 class="widgettitle">',
 				'after_title'   => '</h3>',
 			));
-			
+
 			/**
 			 * Register however many footer widgets our options say to
 			 */
@@ -326,6 +348,8 @@
 					box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 					background: white;
 				}
+
+
 				
 				@media only screen and ( min-width: 981px ) {
 					#wrapper { max-width: 1200px; margin: 0 auto; }
@@ -334,16 +358,20 @@
 				@media only screen and ( max-width: 1200px ) {
 					#wrapper { margin: 0 20px; }
 				}
+
 			<?php } ?>
 			
-			
+			<?php /*===== Top bar =====*/ ?>
 			#top-bar {	background-color: <?php echo $top_bar_bkg_color; ?>; }
 			#top-bar a { color: <?php echo $top_bar_content_color; ?>; }
 			
+			<?php /*===== Header =====*/ ?>
 			#header { background: <?php echo $header_bkg_color; ?>; }
 			
+			<?php /*===== the navs =====*/ ?>
 			.the-default-nav, .the-default-second-nav, .the-default-third-nav, .the-default-fourth-nav { background-color: <?php echo $nav_bg_color; ?>; }
-			
+			.the-default-fourth-nav { border-bottom: 5px solid <?php echo $mobile_color; ?> !important; }
+
 			<?php 
 				/* ==================
 					second header
@@ -356,10 +384,12 @@
 				}
 			<?php } ?>
 			
-			.the-default-fourth-nav { border-bottom: 5px solid <?php echo $mobile_color; ?> !important; }
 			
+			
+			<?php /*===== 
+				Nav Item Color Bkg/Txt color 
+			=====*/ ?>
 			header .nav ul li a, header .nav > li > a, #menu-social-icons li:before, .the-nav-cart .sub-menu { color: <?php echo $nav_item_color; ?>; }
-			
 			.navbar-default .navbar-nav > li > a {  color: <?php echo $nav_item_color; ?>; }
 			
 			<?php 
@@ -374,18 +404,21 @@
 				header .nav > li > a:hover, header .nav > li > a:focus, header .sub-menu a:hover, header .nav ul li a:hover, #top-bar .sub-menu li a:hover { background-color: <?php echo $hover_bg_color; ?> !important; }
 			<?php } ?>
 			
-			
+
+			<?php /*===== MegaFish =====*/ ?>
 			@media only screen and ( min-width: 981px ) {
 				.sf-mega, .sub-menu { background: <?php echo $sub_nav_bg_color; ?>; }
 				.sub-menu li a { color: <?php echo $sub_nav_item_color; ?> !important; }
 				.sf-mega .sub-menu li a { color: <?php echo $nav_item_color; ?> !important; }
 			}
-			
+
+			<?php /*===== submenu nav bkg color  =====*/ ?>
 			.the-nav-cart .sub-menu { background: <?php echo $sub_nav_bg_color; ?>; }
 			
-			
+			<?php /*===== current menu item color =====*/ ?>
 			.current-menu-item > a, .current-menu-parent > a {  color: <?php echo $current_item_color; ?> !important; }
 			
+			<?php /*===== MOBILE COLORING =====*/ ?>
 			.navbar-toggle .icon-bar, .default-skin .navbar-default .navbar-toggle .icon-bar, .default-skin .nav .open>a,.default-skin .nav .open>a:focus,.default-skin .nav .open>a:hover, #header .navi-btn a i { background: <?php echo $mobile_color; ?>; } 
 			.mobile-menu-close .fa-times-circle:before { color: <?php echo $mobile_color; ?>; } 
 			.navbar-toggle { border: 1px solid <?php echo $mobile_color; ?> !important; }
@@ -415,18 +448,18 @@
 				*/
 			?>
 			
-			<?php if($header_three_disable_fixed_checkbox === 'on') { ?>
-				.header { position: absolute !important; }
-			<?php } ?>
 			
+			<?php /*===== additional header stuff =====*/ ?>
 			.noheader-spacer { background: <?php echo $header_three_color; ?>; }
+			<?php /*===== header three mobile color =====*/ ?>
 			#mobile-menu-wrap { background: <?php echo $header_three_mobile_color; ?>; }
 			
+			<?php /*===== header three and four stuff =====*/ ?>
 			.align-right .navbar-nav { text-align: <?php if($header_three_menu_position == "on") { echo 'right'; }else{ echo 'left'; } ?> !important; }
-			
 			.default-skin.header.on { background: <?php echo $header_three_scroll_bg_color; ?>; }
 			.default-skin.header.on .navbar-default .navbar-nav>.open>a, .default-skin.header.on .navbar-default .navbar-nav>.open>a:hover, .default-skin.header.on .navbar-default .navbar-nav>li>a, .default-skin.header.on li.dropdown.open a span, .navbar-default .navbar-nav>.open>a:focus { color: <?php echo $header_three_scroll_item_color; ?>; }
 			
+			<?php /*===== footer =====*/ ?>
 			footer { background: <?php echo $footer_bkg_color; ?>; }
 			#colophon { background: <?php echo $bottom_footer_bkg_color; ?>; }
 			
@@ -464,33 +497,38 @@
 		wp_enqueue_script( 'pegasus_custom_js', get_template_directory_uri() . '/js/pegasus-custom.js', array(), '', true );
 		
 		$header_choice =  pegasus_theme_get_option( 'header_select' );
-		//echo $header_choice; 
 		switch ($header_choice) {
 			case "header-one":
-				$moremenuchk =  pegasus_theme_get_option( 'header_more_chk' ); 
+				$page_header_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
+				if($page_header_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
+				if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
+				/* $moremenuchk =  pegasus_theme_get_option( 'header_more_chk' ); 
 				if($moremenuchk === 'on') {
 					wp_enqueue_style( 'megafish', get_template_directory_uri() . '/css/megafish.css' );	
 					wp_enqueue_script('superfish_js', get_template_directory_uri() .'/js/superfish.js', array('jquery'), false, true);
 					wp_enqueue_script('hover_intent_js', get_template_directory_uri() .'/js/hoverIntent.js', array('jquery'), false, true);
-				}
+				} */
 				break;
 			case "header-two":
-				
+				$page_header_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
+				if($page_header_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
+				if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }
+
 				break;
 			case "header-three":
 				
-				$header_three_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
-				if($header_three_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
-				if($header_three_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
+				$page_header_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
+				if($page_header_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
+				if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
 				wp_enqueue_script( 'header_three_js', get_template_directory_uri() . '/js/header-three.js', array(), '', true );
 				wp_enqueue_style( 'header_three_style', get_template_directory_uri() . '/css/header-three.css' );	
 				
 				break;
 			case "header-four":
 				
-				$header_three_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
-				if($header_three_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
-				if($header_three_choice === 'lrg-header') { wp_enqueue_script( 'animheader_four_custom_js', get_template_directory_uri() . '/js/animheader-four.js', array(), '', true ); }	
+				$page_header_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
+				if($page_header_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
+				if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_four_custom_js', get_template_directory_uri() . '/js/animheader-four.js', array(), '', true ); }	
 				//wp_enqueue_script( 'header_three_js', get_template_directory_uri() . '/js/header-three.js', array(), '', true );
 				wp_enqueue_script( 'header_four_js', get_template_directory_uri() . '/js/header-four.js', array(), '', true );
 				wp_enqueue_style( 'header_three_style', get_template_directory_uri() . '/css/header-four.css' );	
@@ -498,9 +536,9 @@
 				break;
 			case "header-five":
 				
-				$header_three_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
-				if($header_three_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
-				if($header_three_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
+				$page_header_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
+				if($page_header_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
+				if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
 				//wp_enqueue_script( 'header_three_js', get_template_directory_uri() . '/js/header-three.js', array(), '', true );
 				wp_enqueue_script( 'header_five_js', get_template_directory_uri() . '/js/header-five.js', array(), '', true );
 				wp_enqueue_style( 'header_five_style', get_template_directory_uri() . '/css/header-five.css' );	
@@ -514,6 +552,102 @@
 	} //end function
 	add_action( 'wp_enqueue_scripts', 'pegasus_scripts' );
 	
+
+	$header_choice =  pegasus_theme_get_option( 'header_select' );
+	if( $header_choice == 'header-one' || $header_choice == 'header-two' ) {
+		$fixed_header_choice = pegasus_theme_get_option( 'header_one_fixed_checkbox' );
+		if($fixed_header_choice == 'on') { 
+			add_filter( 'body_class', function( $classes ) {
+			    return array_merge( $classes, array( 'navbar-fixed-top-is-active' ) );
+			} );
+
+			add_action('wp_enqueue_scripts', 'fixed_header_js_in_footer');
+			function fixed_header_js_in_footer() {
+				add_action( 'print_footer_scripts', 'fixed_header_js' );
+			}
+			 
+			//* Add JavaScript before </body>
+			function fixed_header_js() { ?>
+				<script type="text/javascript">
+					
+					//set adminbarheight
+					var adminbarheight;
+					var fixedheaderheight;
+
+					function calc_page_init() {
+						
+						if (jQuery("body").hasClass("admin-bar")) {
+							console.log( "Admin Bar: " + "yes" );
+						}
+
+						if (jQuery("body").hasClass("navbar-fixed-top-is-active")) {
+							console.log( "Fixed Header checkbox: " + "yes" );
+						}
+
+					}
+
+					calc_page_init();
+
+					function check_header_height() {
+						//get header height
+						var fixedheaderheight = jQuery(".header-container").height();
+						//log it
+						console.log( "Fixed Header height: " + fixedheaderheight);
+						return fixedheaderheight;
+					}
+
+					function check_admin_height() {
+						var adminbarheight = jQuery("#wpadminbar").height();
+						console.log( "Admin Bar height: " + adminbarheight);
+						return adminbarheight;
+					}
+
+					function update_page_wrap_height() {
+						
+						calculatedheight = check_header_height() + check_admin_height();
+						console.log( "Calculated height: " + calculatedheight );
+						var cssoutput = calculatedheight + 'px';
+						console.log( "CSS output: " + cssoutput);
+
+						jQuery("#page-wrap").css( "margin-top", cssoutput );
+					}
+
+					function update_body_height() {
+						
+						calculatedheight = check_admin_height();
+						//console.log( "Calculated height: " + calculatedheight );
+						var cssoutput = calculatedheight + 'px';
+						console.log( "CSS output: " + cssoutput);
+
+						jQuery("body").css( "margin-top", cssoutput );
+					}
+
+					jQuery( window ).load(function() {
+						
+						check_admin_height();
+						check_header_height();
+						update_page_wrap_height();
+						update_body_height();
+
+					});
+					
+					
+
+					jQuery( window ).resize(function() {
+			
+						check_admin_height();
+						check_header_height();
+						update_page_wrap_height();
+						update_body_height();
+						
+					});
+
+				</script>
+			<?php }
+		} //end fixed chk
+	} //end header one and two chk
+
+
 	
 	$moremenuchk =  pegasus_theme_get_option( 'header_more_chk' ); 
 	if($moremenuchk === 'on') {
@@ -555,15 +689,11 @@
 		}
 	endif;
 	
-	
-	
-	
-	
-	
-	
-	/* remove admin bar for all users when logged in */
-	add_filter( 'show_admin_bar', '__return_false' );
-	
+	$adminbarchk =  pegasus_theme_get_option( 'wp_admin_bar_chk' ); 
+	if($adminbarchk === 'on') {
+		/* remove admin bar for all users when logged in */
+		add_filter( 'show_admin_bar', '__return_false' );
+	}
 	
 	
 	/* ========================================================================
@@ -662,7 +792,7 @@
 
 		$cmb_demo2->add_field( array(
 			'name' => __( 'Fullwidth Container Checkbox', 'cmb2' ),
-			'desc' => __( 'Check this box to make the page fullwidth', 'cmb2' ),
+			'desc' => __( 'Check this box to make the page fullwidth, this shuold override the theme option for global fullwidth.', 'cmb2' ),
 			'id'   => $prefix . '-page-container-checkbox',
 			'type' => 'checkbox',
 		) ); 	
@@ -673,14 +803,14 @@
 		 */
 		$cmb_demo = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox',
-			'title'         => __( 'Pegsus Header Three & Header Four Options', 'cmb2' ),
+			'title'         => __( 'Additional Page Header Options', 'cmb2' ),
 			'object_types'  => array( 'page',  'course_unit' ), // Post type
 			
 		) );
 
 		$cmb_demo->add_field( array(
-			'name'             => __( 'Header Select', 'cmb2' ),
-			'desc'             => __( 'This option only works when you have Header Three or Header Four select in the Theme Options. Select Header Type (no hdr, sml hdr, lrg hdr)', 'cmb2' ),
+			'name'             => __( 'Additional Header Select', 'cmb2' ),
+			'desc'             => __( 'This is used if you need additional header spacing. Select Header Type (no hdr, sml hdr, lrg hdr)', 'cmb2' ),
 			'id'               => $prefix . '_header_three_select',
 			'type'             => 'select',
 			//'show_option_none' => false,
@@ -694,18 +824,13 @@
 
 		$cmb_demo->add_field( array(
 			'name'    => __( 'Header Content wysiwyg', 'cmb2' ),
-			'desc'    => __( 'This option only works when you have Header Three or Header Four select in the Theme Options.', 'cmb2' ),
+			'desc'    => __( 'This will show up in the Additional Header select area.', 'cmb2' ),
 			'id'      => $prefix . '-header-three-wysiwyg',
 			'type'    => 'wysiwyg',
 			'options' => array( 'textarea_rows' => 5, ),
 		) );
 		
 	}
-		
-		
-		
-		
-		
 		
 		
 	

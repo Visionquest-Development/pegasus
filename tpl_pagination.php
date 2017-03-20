@@ -27,6 +27,12 @@
 									}?>">
 			<!-- Example row of columns -->
 			<div class="row">
+				<?php 
+					$left_sidebar_chk =  pegasus_theme_get_option('sidebar_left_chk' ); 
+					if( $left_sidebar_chk == 'on' ) {
+						get_sidebar(); 
+					} 
+				?>
 				<div class="col-md-9">
 					<div class="inner-content">	
 						<div class="blog-article-container">
@@ -126,8 +132,14 @@
 						</div>
 					</div><!--end inner content-->
 				</div>
-				<?php get_sidebar(); ?>
-				
+				<?php 
+					//get_sidebar(); 
+					if( $left_sidebar_chk == 'on' ) {
+						//do nothing
+					} else{
+						get_sidebar(); 
+					}
+				?>
 
 		
 			</div><!--end row -->

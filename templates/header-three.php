@@ -137,7 +137,7 @@
 					switch ($header_three_choice) {
 						case "no-header":
 							?>
-							<div class="noheader-spacer"></div>
+							
 							<?php 
 							break;
 							
@@ -190,7 +190,7 @@
 							break;
 							
 						default:
-							?><div class="noheader-spacer"></div><?php
+							?><?php
 							
 					}
 					
