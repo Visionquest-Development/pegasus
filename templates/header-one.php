@@ -1,13 +1,14 @@
-	<?php 
-		$top_header_choice = pegasus_theme_get_option( 'top_header_chk' );
-		
-		//echo $top_header_choice;
-		if($top_header_choice === 'on' ) { 
-			get_template_part( 'templates/top-bar', 'header' );
-		}
-	?>
-	<header id="header">
-		<div class="<?php $headerContainerCheck =  pegasus_theme_get_option( 'header_container' ); if(!$headerContainerCheck) { echo 'container'; }else{ echo 'container-fluid'; } ?> ">
+	<?php $fixed_header_choice = pegasus_theme_get_option( 'header_one_fixed_checkbox' ); ?>
+	<div id="header" class="header-container <?php if($fixed_header_choice == 'on') { echo 'navbar-fixed-top'; } ?>">
+		<?php 
+			$top_header_choice = pegasus_theme_get_option( 'top_header_chk' );
+			$headerContainerCheck =  pegasus_theme_get_option( 'header_container' );
+
+			if($top_header_choice === 'on' ) { 
+				get_template_part( 'templates/top-bar', 'header' );
+			}
+		?>
+		<div class="<?php if(!$headerContainerCheck) { echo 'container'; }else{ echo 'container-fluid'; } ?> ">
 			<div class="">
 				
 				<div class="site-branding <?php $centerLogo =  pegasus_theme_get_option( 'logo_centered' ); if($centerLogo) { echo 'center'; } ?>">
@@ -75,4 +76,8 @@
 
 		</div> <!-- /container -->
 		<!-- end .container -->
-	</header>
+		<?php get_template_part( 'templates/additional-header' ); ?>
+	</div>
+
+	
+	<div id="page-wrap">

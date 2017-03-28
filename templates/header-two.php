@@ -1,19 +1,20 @@
 	<?php 
 		$top_header_choice = pegasus_theme_get_option( 'top_header_chk' );
-		
+		$fixed_header_choice = pegasus_theme_get_option( 'header_one_fixed_checkbox' );
+		$headerContainerCheck =  pegasus_theme_get_option( 'header_container' );
 		//echo $top_header_choice;
 		if($top_header_choice === 'on' ) { 
 			get_template_part( 'templates/top-bar', 'header' );
 		}
 	?>
-	<header id="header">
-		<div class="<?php $headerContainerCheck =  pegasus_theme_get_option( 'header_container' ); if(!$headerContainerCheck) { echo 'container'; }else{ echo 'container-fluid'; } ?> ">
-			<div class="row">
+	<div id="header" class="header-container <?php if($fixed_header_choice == 'on') { echo 'navbar-fixed-top'; } ?>">
+		<div class="<?php if(!$headerContainerCheck) { echo 'container'; }else{ echo 'container-fluid'; } ?> ">
+			<div class="">
 				
 				
 				<!-- Static navbar -->
 				<nav class="navbar the-default-second-nav">
-					<div class="clearfix">
+					
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 							  <span class="sr-only">Toggle navigation</span>
@@ -46,32 +47,35 @@
 							?>
 						
 							<div class="navbar-right">
-						<?php 
-								
-							$woo_check =  pegasus_theme_get_option( 'woo_chk' );
-							if ( $woo_check === 'on' ) {
-								if ( class_exists( 'WooCommerce' ) ) {
-								  // code that requires WooCommerce
-								  get_template_part( 'templates/header-cart', 'header' );
-								} else {
-								  // you don't appear to have WooCommerce activated
-								  echo '<div class="nav navbar-nav woo-error navbar-right">Enable WooCommerce</div>';
-								}
-							} 
-							//$nav_social_check =  pegasus_theme_get_option( 'nav_social_chk' );
-							//if($nav_social_check === 'on'){
-								//get_template_part( 'templates/social_icons', 'header' );
-							//}
-						?>
-						</div>
+								<?php 
+										
+									$woo_check =  pegasus_theme_get_option( 'woo_chk' );
+									if ( $woo_check === 'on' ) {
+										if ( class_exists( 'WooCommerce' ) ) {
+										  // code that requires WooCommerce
+										  get_template_part( 'templates/header-cart', 'header' );
+										} else {
+										  // you don't appear to have WooCommerce activated
+										  echo '<div class="nav navbar-nav woo-error navbar-right">Enable WooCommerce</div>';
+										}
+									} 
+									//$nav_social_check =  pegasus_theme_get_option( 'nav_social_chk' );
+									//if($nav_social_check === 'on'){
+										//get_template_part( 'templates/social_icons', 'header' );
+									//}
+								?>
+							</div>
 							
 							
 						</div><!--/.nav-collapse -->
 						
-					</div><!--/.container-fluid -->
+					
 				</nav>
 			</div><!-- end div holding stuff-->
 
 		</div> <!-- /container -->
 		<!-- end .container -->
-	</header>
+		<?php get_template_part( 'templates/additional-header' ); ?>
+	</div>
+
+	

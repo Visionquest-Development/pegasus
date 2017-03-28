@@ -1,5 +1,5 @@
 
-	
+	body.admin-bar a.mobile-menu-close { top: 46px !important; }
 	.redq .the-nav-cart { padding: 20px 0 10px; }
 	
 
@@ -48,7 +48,7 @@
 	/* ~~~~~~~~~~~~~~~~~~~~
 	~~~~LARGE HEADER ~~~~
 	~~~~~~~~~~~~~~~~~~~~~*/
-	#menu-main-nav {	padding: 20px 0 10px; }
+	#menu-main-nav {	padding: 10px 0 10px; }
 	
 	#mobile-menu-wrap .navbar-nav { margin: 109px auto 0; }
 	

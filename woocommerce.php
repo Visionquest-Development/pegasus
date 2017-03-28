@@ -2,7 +2,7 @@
 	
  
 
-    <div id="page-wrap">
+    
       <!-- Example row of columns -->
 		<div class="container">
 			<div class="row">
@@ -15,6 +15,6 @@
 		   
 			</div><!--end row -->
 		</div><!-- end container -->
-	</div><!-- end page wrap -->
+	
 
     <?php get_footer(); ?>
