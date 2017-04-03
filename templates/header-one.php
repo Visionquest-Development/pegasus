@@ -21,7 +21,7 @@
 				</div><!-- .site-branding -->
 				<!-- Static navbar -->
 				<nav class="navbar the-default-nav">
-					<div class="row">
+					<div class="">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 							  <span class="sr-only">Toggle navigation</span>
