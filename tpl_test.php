@@ -26,7 +26,7 @@
 										echo 'container';
 									}?>">
 		<!-- Example row of columns -->
-		<div class="row">
+		<div class="">
 			<div id="dot-nav-container">
 					  <nav id="dotnav" class="">
 						<ul class="dotnav dotnav-vertical dotnav-right nav">
