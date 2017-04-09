@@ -328,7 +328,6 @@
 		ob_start();
 		?>
 			
-			
 			body {
 				background-color: <?php echo $bg_color; ?>;
 				color: <?php echo $content_color; ?>;
@@ -341,7 +340,6 @@
 				$boxedornot =  pegasus_theme_get_option( 'boxed_layout_chk' ); 
 				if($boxedornot === 'on') {
 			?>
-			
 				#wrapper {
 					-webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 					-moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -382,11 +380,9 @@
 				@media only screen and (max-width: 1050px) {
 					#header {padding: 0 20px; }
 				}
-			<?php } ?>
-			
-			
-			
-			<?php /*===== 
+			<?php } 
+
+			/*===== 
 				Nav Item Color Bkg/Txt color 
 			=====*/ ?>
 			header .nav ul li a, header .nav > li > a, #menu-social-icons li:before, .the-nav-cart .sub-menu { color: <?php echo $nav_item_color; ?>; }
@@ -422,31 +418,6 @@
 			.navbar-toggle .icon-bar, .default-skin .navbar-default .navbar-toggle .icon-bar, .default-skin .nav .open>a,.default-skin .nav .open>a:focus,.default-skin .nav .open>a:hover, #header .navi-btn a i { background: <?php echo $mobile_color; ?>; } 
 			.mobile-menu-close .fa-times-circle:before { color: <?php echo $mobile_color; ?>; } 
 			.navbar-toggle { border: 1px solid <?php echo $mobile_color; ?> !important; }
-			
-			
-			<?php 
-				/*
-					THIS IS FOR THE WPADMIN BAR ALSO THE PADDING ON HTML, BODY WHEN TOP BAR ENABLED OR DSIABLED
-				
-				if($header_fixed_checkbox === 'on' && $top_header_checkbox === 'on' ) { 
-					if($header_choice === 'header-one' ||  $header_choice === 'header-two' ) {
-			?>
-					@media only screen and (min-width: 785px) {
-						body { padding-top: 175px; } 
-					}
-			<?php 
-					} //endif
-				}elseif ($header_fixed_checkbox === 'on' ) { 
-			?>
-					@media only screen and ( min-width: 785px ) {
-						body { padding-top: 140px; }
-					}
-			<?php 
-				}else{ 
-				//nothing
-				} 
-				*/
-			?>
 			
 			
 			<?php /*===== additional header stuff =====*/ ?>
@@ -501,7 +472,7 @@
 			case "header-one":
 				$page_header_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
 				if($page_header_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
-				if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
+				//if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
 				/* $moremenuchk =  pegasus_theme_get_option( 'header_more_chk' ); 
 				if($moremenuchk === 'on') {
 					wp_enqueue_style( 'megafish', get_template_directory_uri() . '/css/megafish.css' );	
@@ -512,14 +483,14 @@
 			case "header-two":
 				$page_header_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
 				if($page_header_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
-				if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }
+				//if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }
 
 				break;
 			case "header-three":
 				
 				$page_header_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
 				if($page_header_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
-				if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
+				//if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
 				wp_enqueue_script( 'header_three_js', get_template_directory_uri() . '/js/header-three.js', array(), '', true );
 				wp_enqueue_style( 'header_three_style', get_template_directory_uri() . '/css/header-three.css' );	
 				
@@ -528,7 +499,7 @@
 				
 				$page_header_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
 				if($page_header_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
-				if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_four_custom_js', get_template_directory_uri() . '/js/animheader-four.js', array(), '', true ); }	
+				//if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_four_custom_js', get_template_directory_uri() . '/js/animheader-four.js', array(), '', true ); }	
 				//wp_enqueue_script( 'header_three_js', get_template_directory_uri() . '/js/header-three.js', array(), '', true );
 				wp_enqueue_script( 'header_four_js', get_template_directory_uri() . '/js/header-four.js', array(), '', true );
 				wp_enqueue_style( 'header_three_style', get_template_directory_uri() . '/css/header-four.css' );	
@@ -538,7 +509,7 @@
 				
 				$page_header_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
 				if($page_header_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
-				if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
+				//if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
 				//wp_enqueue_script( 'header_three_js', get_template_directory_uri() . '/js/header-three.js', array(), '', true );
 				wp_enqueue_script( 'header_five_js', get_template_directory_uri() . '/js/header-five.js', array(), '', true );
 				wp_enqueue_style( 'header_five_style', get_template_directory_uri() . '/css/header-five.css' );	
@@ -553,100 +524,28 @@
 	add_action( 'wp_enqueue_scripts', 'pegasus_scripts' );
 	
 
-	$header_choice =  pegasus_theme_get_option( 'header_select' );
-	if( $header_choice == 'header-one' || $header_choice == 'header-two' ) {
-		$fixed_header_choice = pegasus_theme_get_option( 'header_one_fixed_checkbox' );
-		if($fixed_header_choice == 'on') { 
-			add_filter( 'body_class', function( $classes ) {
-			    return array_merge( $classes, array( 'navbar-fixed-top-is-active' ) );
-			} );
 
-			add_action('wp_enqueue_scripts', 'fixed_header_js_in_footer');
-			function fixed_header_js_in_footer() {
-				add_action( 'print_footer_scripts', 'fixed_header_js' );
-			}
-			 
-			//* Add JavaScript before </body>
-			function fixed_header_js() { ?>
-				<script type="text/javascript">
-					
-					//set adminbarheight
-					var adminbarheight;
-					var fixedheaderheight;
+	$fixed_header_choice = pegasus_theme_get_option( 'header_one_fixed_checkbox' );
+	if($fixed_header_choice == 'on') { 
+		add_filter( 'body_class', function( $classes ) {
+		    return array_merge( $classes, array( 'navbar-fixed-top-is-active' ) );
+		} );
+	} //end fixed chk
 
-					function calc_page_init() {
-						
-						if (jQuery("body").hasClass("admin-bar")) {
-							console.log( "Admin Bar: " + "yes" );
-						}
 
-						if (jQuery("body").hasClass("navbar-fixed-top-is-active")) {
-							console.log( "Fixed Header checkbox: " + "yes" );
-						}
-
-					}
-
-					calc_page_init();
-
-					function check_header_height() {
-						//get header height
-						var fixedheaderheight = jQuery(".header-container").height();
-						//log it
-						console.log( "Fixed Header height: " + fixedheaderheight);
-						return fixedheaderheight;
-					}
-
-					function check_admin_height() {
-						var adminbarheight = jQuery("#wpadminbar").height();
-						console.log( "Admin Bar height: " + adminbarheight);
-						return adminbarheight;
-					}
-
-					function update_page_wrap_height() {
-						
-						calculatedheight = check_header_height() + check_admin_height();
-						console.log( "Calculated height: " + calculatedheight );
-						var cssoutput = calculatedheight + 'px';
-						console.log( "CSS output: " + cssoutput);
-
-						jQuery("#page-wrap").css( "margin-top", cssoutput );
-					}
-
-					function update_body_height() {
-						
-						calculatedheight = check_admin_height();
-						//console.log( "Calculated height: " + calculatedheight );
-						var cssoutput = calculatedheight + 'px';
-						console.log( "CSS output: " + cssoutput);
-
-						jQuery("body").css( "margin-top", cssoutput );
-					}
-
-					jQuery( window ).load(function() {
-						
-						check_admin_height();
-						check_header_height();
-						update_page_wrap_height();
-						update_body_height();
-
-					});
-					
-					
-
-					jQuery( window ).resize(function() {
+	/*add_action('wp_enqueue_scripts', 'fixed_header_js_in_footer');
+	function fixed_header_js_in_footer() {
+		add_action( 'print_footer_scripts', 'fixed_header_js' );
+	}
+	 
+	//* Add JavaScript before </body>
+	function fixed_header_js() { ?>
+		<script type="text/javascript">
 			
-						check_admin_height();
-						check_header_height();
-						update_page_wrap_height();
-						update_body_height();
-						
-					});
 
-				</script>
-			<?php }
-		} //end fixed chk
-	} //end header one and two chk
 
+		</script>
+	<?php } */
 
 	
 	$moremenuchk =  pegasus_theme_get_option( 'header_more_chk' ); 
@@ -816,7 +715,8 @@
 			//'show_option_none' => false,
 			'default'          => 'no-header',
 			'options'          => array(
-				'no-header' => __( 'No Header - Just Spacing', 'cmb2' ),
+				'no-header' => __( 'No Header - No Spacing', 'cmb2' ),
+				'space' => __( 'No Header - Just Spacing', 'cmb2' ),
 				'sml-header'   => __( 'Small Header - With Parallax', 'cmb2' ),
 				'lrg-header'     => __( 'Large Header - Full Width and Height', 'cmb2' ),
 			),
@@ -978,4 +878,3 @@
 	
 		
 ?>
-

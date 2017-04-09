@@ -1,4 +1,11 @@
 
+	body.admin-bar #header .navi-btn a i { top: 32px; }
+ 
+ 	@media screen and ( max-width: 782px ) {
+ 		body.admin-bar #header .navi-btn a i { top: 46px; }
+ 	}
+
+
 	/* main body content css */
 
 	.mainbar {
