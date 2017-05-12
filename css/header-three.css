@@ -48,6 +48,8 @@
 	/* ~~~~~~~~~~~~~~~~~~~~
 	~~~~LARGE HEADER ~~~~
 	~~~~~~~~~~~~~~~~~~~~~*/
+	#large-header { overflow: hidden; }
+
 	#menu-main-nav {	padding: 10px 0; }
 	
 	#mobile-menu-wrap .navbar-nav { margin: 109px auto 0; }

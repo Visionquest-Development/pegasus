@@ -76,8 +76,9 @@
 
 		</div> <!-- /container -->
 		<!-- end .container -->
-		<?php get_template_part( 'templates/additional-header' ); ?>
+		
 	</div>
+	<?php get_template_part( 'templates/additional-header' ); ?>
 
 	
 	

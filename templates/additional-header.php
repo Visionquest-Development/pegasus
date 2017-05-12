@@ -54,7 +54,7 @@
 			============ LARGE HEADER ==========
 			===================================*/
 			?>
-			<section id="large-header" class="large-header" style="background:url(<?php echo $src[0]; ?>) center center no-repeat;">
+			<section id="large-header" class="large-header" style="background:url(<?php echo $featured_img_src[0]; ?>) center center no-repeat;">
 				
 				
 				<canvas id="demo-canvas"></canvas>

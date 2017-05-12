@@ -472,7 +472,7 @@
 			case "header-one":
 				$page_header_choice = get_post_meta( get_the_ID(), 'pegasus_header_three_select', true );
 				if($page_header_choice === 'sml-header') { wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true ); }
-				//if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
+				if($page_header_choice === 'lrg-header') { wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true ); }	
 				/* $moremenuchk =  pegasus_theme_get_option( 'header_more_chk' ); 
 				if($moremenuchk === 'on') {
 					wp_enqueue_style( 'megafish', get_template_directory_uri() . '/css/megafish.css' );	
