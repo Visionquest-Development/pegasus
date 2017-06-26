@@ -374,7 +374,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	/*~~~~~~~~~~~~~~~~~~~~~
 	~~~~~~~~ FOOTER ~~~~~~~
 	~~~~~~~~~~~~~~~~~~~~~*/
-	.pegasus-footer { /* padding-bottom: 10px; */ }
+	.pegasus-footer footer { padding-bottom: 10px; }
 	#footer-widgets { text-align: center; padding: 10px 0; }
 	.footer-widget-area { float: left; padding: 0 10px; }
 	.copyright { margin-bottom: 0; }
