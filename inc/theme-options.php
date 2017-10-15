@@ -1,675 +1,220 @@
-<?php
+<?php 
+
 /**
- * Silence is golden; exit if accessed directly
+ * CMB2 Metatabs Options (CMO) Example
+ * -----------------------------------
+ * This file creates an options page located in under the WordPress "Settings" menu.
+ *
+ * Do not run this file directly; instead uncomment
+ *   include(example.php);
+ * in the main plugin file to see the results of the code in this file.
+ *
+ * More information is available at this CMB2 Metatabs Option's wiki:
+ * https://github.com/rogerlos/cmb2-metatabs-options/wiki
+ *
+ * @since 1.0.1 Revised comments
+ * @since 1.0.0
  */
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+// add action to hook option page creation to
+add_action( 'cmb2_admin_init', 'cmb2_metatabs_options_go' );
+/**
+ * Callback for 'cmb2_admin_init'.
+ *
+ * In this example, 'boxes' and 'tabs' call functions simply to separate "normal" CMB2 configuration
+ * from unique CMO configuration.
+ */
+function cmb2_metatabs_options_go() {
+	
+	$options_key = 'cmb2metatabs';
+	
+	// use CMO filter to add an intro at the top of the options page
+	add_filter( 'cmb2metatabs_before_form', 'cmb2_metatabs_options_add_intro_via_filter' );
+	
+	// configuration array
+	$args = array(
+		'key'      => $options_key,
+		'title'    => 'Example Options Page',
+		'topmenu'  => 'options-general.php',
+		'cols'     => 2,
+		'boxes'    => cmb2_metatabs_options_add_boxes( $options_key ),
+		'tabs'     => cmb2_metatabs_options_add_tabs(),
+		'menuargs' => array(
+			'menu_title' => 'CMO Sample',
+		),
+	);
+	
+	// create the options page
+	new Cmb2_Metatabs_Options( $args );
 }
-
 /**
- * Example theme options page powered by CMB2
+ * Callback for CMO filter.
+ *
+ * The two filters in CMO do not send any content; simply return your HTML.
+ *
+ * @return string
  */
-class Pegasus_Theme_Options {
-
-	/**
-	 * Option key, and option page slug
-	 * @var string
-	 */
-	private $key = 'pegasus_theme_options';
-
-	/**
-	 * Array of metaboxes/fields
-	 * @var array
-	 */
-	protected $option_metabox = array();
-
-	/**
-	 * Options Page title
-	 * @var string
-	 */
-	protected $title = 'Pegasus Theme Options';
-
-	/**
-	 * Options Page hook
-	 * @var string
-	 */
-	protected $options_page = 'pegasus_theme_options_page';
-
-	/**
-	 * Constructor
-	 * @since 0.1.0
-	 */
-	public function __construct() {
-		// Set our title
-		$this->title = __( 'Pegasus Options', 'cmb2-example-theme' );
-
-		// Set our CMB2 fields, wrap them in a filter so others can easily tap in and add their own as well.
-		$this->fields = apply_filters( 'pegasus_theme_options', array(
-			// GENERAL THEME OPTIONS
-			array(
-				'name' => 'Theme Options',
-				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
-				'type' => 'title',
-				'id'   => 'theme_options'
-			),
-			array(
-				'name'    => __( 'Logo', 'cmb2-example-theme' ),
-				'desc' => 'Defaults to Site Title under Settings',
-				'id'      => 'logo',
-				'type'    => 'file'
-			),		
-			array(
-				'name'    => __( 'Background color', 'cmb2-example-theme' ),
-				'id'      => 'bg_color',
-				'type'    => 'rgba_colorpicker',
-				//'default' => '#404040'
-			),
-			array(
-				'name'    => __( 'Background Image', 'cmb2-example-theme' ),
-				'desc' => 'This needs to be customized by the developer for position and mobile rendering. ',
-				'id'      => 'bkg_img',
-				'type'    => 'file'
-			),	
-			/*array(
-				'name'             => 'Background Image Position',
-				'desc'             => '<strong>Choose between:<br>
-										   1.) Center Center
-										   2.) Top Left
-										   3.) Top Center
-										   3.) Top Right
-										   4.) Bottom Left
-										   5.) Bottom Center
-											6.) Bottom Right
-										</strong>',
-				'id'               => 'bkg_pos_img',
-				'type'             => 'select',
-				'show_option_none' => false,
-				'default'          => 'pos-one',
-				'options'          => array(
-					'pos-one' => __( 'center center', 'cmb2' ),
-					'pos-two'   => __( 'top left', 'cmb2' ),
-					'pos-three'     => __( 'top right', 'cmb2' ),
-					'pos-four'     => __( 'bottom left', 'cmb2' ),
-				),
-			),
-			array(
-				'name'             => 'Background Image Size',
-				'desc'             => '<strong>Choose between:<br>
-										   1.) None
-										   2.) Cover
-										   3.) 100% 100%
-										</strong>',
-				'id'               => 'bkg_size_img',
-				'type'             => 'select',
-				'show_option_none' => false,
-				'default'          => 'pos-one',
-				'options'          => array(
-					'pos-one' => __( 'None', 'cmb2' ),
-					'pos-two'   => __( 'Cover', 'cmb2' ),
-					'pos-three'     => __( '100% 100%', 'cmb2' ),
-					//'pos-four'     => __( 'bottom left', 'cmb2' ),
-				),
-			),
-			array(
-				'name' => 'Background Attachment Fixed',
-				'desc' => 'Check this box if you want the background image to be fixed / parallax effect.',
-				'id'   => 'bkg_fixed_chk',
-				'type' => 'checkbox',
-			),*/
-			array(
-				'name'    => __( 'Content color (body,p)', 'cmb2-example-theme' ),
-				'id'      => 'content_color',
-				'type'    => 'colorpicker',
-				//'default' => '#ffffff'
-			),
-			
-			array(
-				'name'    => __( 'Footer Widget Areas', 'cmb2-example-theme' ),
-				'id'      => 'footer_widget_areas',
-				'type'    => 'radio',
-				'default' => 'two',
-				'options' => array(
-					0 => __( 'None', 'cmb2-example-theme' ),
-					1 => __( 'One', 'cmb2-example-theme' ),
-					2 => __( 'Two', 'cmb2-example-theme' ),
-					3 => __( 'Three', 'cmb2-example-theme' ),
-					4 => __( 'Four', 'cmb2-example-theme' ),
-				)
-			),
-			array(
-				'name' => 'Left Align Sidebar',
-				'desc' => 'Check this box if you want the sidebar to show up on the left instead of the right.',
-				'id'   => 'sidebar_left_chk',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Boxed Layout ',
-				'desc' => 'Check this box if you want the website to appear in a boxed layout.',
-				'id'   => 'boxed_layout_chk',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Global fullwith pages',
-				'desc' => 'Check this box if you want the website to have a Full Width Container. Please make sure you enable Fullwidth Header in Header Options as well. ',
-				'id'   => 'full_container_chk',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Enable Breadcrumbs',
-				'desc' => 'Check this box if you want breadcrumbs to appear',
-				'id'   => 'bread_chk',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Disable Page Header?',
-				'desc' => 'Check this box if you would like to remove the Page Title from the top of each page.',
-				'id'   => 'page_header_chk',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Enable Page Loader?',
-				'desc' => 'Check this box if you would like to remove the Page Loader from the webpage.',
-				'id'   => 'page_loader_chk',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Disable WPADMIN Bar',
-				'desc' => 'Check this box if you would like to remove the WP Admin bar from the frontend.',
-				'id'   => 'wp_admin_bar_chk',
-				'type' => 'checkbox',
-			),
-		
-
-			
-			array(
-				'name' => 'E-Commerce Options',
-				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
-				'type' => 'title',
-				'id'   => 'ecommerce_options'
-			),
-			array(
-				'name' => 'WooCommerce Theme?',
-				'desc' => 'Check this box if you will be selling products using woocommerce',
-				'id'   => 'woo_chk',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Disable Shop Link?',
-				'desc' => 'Check this box if you want to disable the shop link in the header',
-				'id'   => 'shop_link_chk',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Keep User and Cart Menu in Top bar',
-				'desc' => 'Check this box if you want to keep the User Menu and Cart Menu in the top header',
-				'id'   => 'woo_menu_top_chk',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Disable User Menu?',
-				'desc' => 'Check this box if you want to disable the user menu',
-				'id'   => 'user_menu_chk',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Disable Cart Menu?',
-				'desc' => 'Check this box if you want to disable cart menu',
-				'id'   => 'cart_menu_chk',
-				'type' => 'checkbox',
-			),
-			
-			
-			// TOP HEADER OPTIONS
-			array(
-				'name' => 'Top Bar Options',
-				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
-				'type' => 'title',
-				'id'   => 'top_header_title'
-			),
-			array(
-				'name' => 'Top Bar Checkbox',
-				'desc' => 'Check this box to enable Top Bar',
-				'id'   => 'top_header_chk',
-				'type' => 'checkbox',
-			),
-			array(
-				'name'    => __( 'Top Bar Background Color', 'cmb2-example-theme' ),
-				'id'      => 'top_bar_bkg_color',
-				'type'    => 'rgba_colorpicker',
-				//'default' => 'rgba(0,0,0,0)'
-			),
-			array(
-				'name'    => __( 'Top Bar Font color', 'cmb2-example-theme' ),
-				'id'      => 'top_bar_font_color',
-				'type'    => 'rgba_colorpicker',
-				//'default' => 'rgba(0,0,0,0)'
-			),
-			array(
-				'name' => __( 'Left Area Content', 'cmb2' ),
-				'desc' => __( 'Phone number or email in top bar on left.', 'cmb2' ),
-				'default' => '<a href="tel:555-555-5555" class="phone">(555) 555-5555</a> <a href="mailto:user@domain.com" class="mail">user@domain.com</a>',
-				'id'   => 'toparea_code',
-				'type' => 'textarea_code',
-			),
-			array(
-				'name' => 'Social Icons enable',
-				'desc' => 'Check this box if you want social menu to show up on right hand side of Top bar',
-				'id'   => 'top_social_chk',
-				'type' => 'checkbox',
-			),
-			
-		
-			// GENERAL HEADER OPTIONS
-			array(
-				'name' => 'General Header Options',
-				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
-				'type' => 'title',
-				'id'   => 'header_title'
-			),
-			array(
-				'name'             => 'Header Select',
-				'desc'             => '<strong>Choose between:<br>
-										   1.) Header one - Logo Above Navbar, Navbar opaque, MegaMenu, and social media menu.(IDEAL for large menu systems because of its MEGAMENU)<br>
-										   2.) Header two - Logo Inside (left) Navbar, transparent navigation, and with social media menu (good for small logos and simple design)<br>
-										   3.) Header three - Fixed Fullwidth Fancy Header, transparent navigation, sidebar mobile nav (not good for a lot of menu items), special page options for small or large header.<br>
-										   4.) Header four - Bottom Sticky Fullwidth Fancy Header, transparent navigation, sidebar mobile nav (not good for a lot of menu items)<br>
-										   5.) Header five.
-										</strong>',
-				'id'               => 'header_select',
-				'type'             => 'select',
-				'show_option_none' => false,
-				'default'          => 'header-one',
-				'options'          => array(
-					'header-one' => __( 'Header One', 'cmb2' ),
-					'header-two'   => __( 'Header Two', 'cmb2' ),
-					'header-three'     => __( 'Header Three', 'cmb2' ),
-					'header-four'     => __( 'Header Four', 'cmb2' ),
-					'header-five'     => __( 'Header Five', 'cmb2' ),
-				),
-			),
-			array(
-				'name' => 'Header Fullwidth',
-				'desc' => 'Check this box to make the header fullwidth',
-				'id'   => 'header_container',
-				'type' => 'checkbox',
-			),
-			array(
-				'name'    => __( 'Mobile Hamberger Menu Color', 'cmb2-example-theme' ),
-				'id'      => 'mobile_toggle_color',
-				'type'    => 'colorpicker',
-				//'default' => 'rgba(0,0,0,0)'
-			),
-			array(
-				'name'    => __( 'Header Bkg color', 'cmb2-example-theme' ),
-				'id'      => 'header_bkg_color',
-				'type'    => 'rgba_colorpicker',
-				'desc' => 'This is for the entire background of the header.',
-				//'default' => 'rgba(0,0,0,0)'
-			),
-			array(
-				'name'    => __( 'More Menu', 'cmb2-example-theme' ),
-				'id'      => 'header_more_chk',
-				'type'    => 'checkbox',
-				'desc' => 'Check this if you need additional menu items in the navigation. Then make sure to add another menu in the Appearence->Menus section and assign it to more menu. ',
-				//'default' => 'rgba(0,0,0,0)'
-			),
-			array(
-				'name'    => __( 'Hover Background/Text Decision', 'cmb2-example-theme' ),
-				'id'      => 'hover_chk_decision',
-				'type'    => 'checkbox',
-				'desc'	=> 'This decides wether to use the default option of background color, or if you want the text to show up a different color on hover you would check this box.',
-				//'default' => '#dedede'
-			),
-			array(
-				'name'    => __( 'More Menu Widget Areas', 'cmb2-example-theme' ),
-				'id'      => 'more_menu_widget_areas',
-				'type'    => 'radio',
-				'default' => 'two',
-				'options' => array(
-					0 => __( 'None', 'cmb2-example-theme' ),
-					1 => __( 'One', 'cmb2-example-theme' ),
-					2 => __( 'Two', 'cmb2-example-theme' ),
-					3 => __( 'Three', 'cmb2-example-theme' ),
-					4 => __( 'Four', 'cmb2-example-theme' ),
-				)
-			),
-			
-		 
-			// HEADER ONE AND HEADER TWO OPTIONS
-			array(
-				'name' => 'Header One and Two Options',
-				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
-				'type' => 'title',
-				'id'   => 'header_one_title',
-				/*'attributes' => array(
-					//'required'            => true, // Will be required only if visible.
-					'data-conditional-id' => 'header_select',
-					'data-conditional-value' => 'header-one',
-				), */
-			),
-			array(
-				'name' => 'Center Logo',
-				'desc' => 'Check this box to make the logo centered. This only works on Header One.',
-				'id'   => 'logo_centered',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Social Icons enable',
-				'desc' => 'Check this if you want the social icons to appear in the regular menu navbar.',
-				'id'   => 'nav_social_chk',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Fixed Navigation checkbox',
-				'desc' => 'Check this box to make the the header fixed. This also enables the absolute menu (menu that floats over the content on mobile) instead of movingthe content down to make room for the menu. ',
-				'id'   => 'header_one_fixed_checkbox',
-				'type' => 'checkbox',
-			), 
-			
-			// HEADER TWO
-			/*array(
-				'name' => 'Header Two Options',
-				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
-				'type' => 'title',
-				'id'   => 'header_two_title'
-			),
-			array(
-				'name' => 'Checkbox 2',
-				//'desc' => 'Check this box to make the logo centered',
-				'id'   => 'header_two_checkbox',
-				'type' => 'checkbox',
-			), */
-			
-			
-			// HEADER THREE
-			array(
-				'name' => 'Header Three and Four Options',
-				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
-				'type' => 'title',
-				'id'   => 'header_three_title'
-			),
-			array(
-				'name' => 'Right align nav menu items',
-				'desc' => 'Check this box to make the navigation items float right',
-				'id'   => 'header_three_right_checkbox',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Disable fixed header',
-				'desc' => 'By default this header has a fixed top navigation bar and sidebar menu for mobile. Check this box to make the navigation no longer remain fixed at the top.',
-				'id'   => 'header_three_disable_fixed_checkbox',
-				'type' => 'checkbox',
-			),
-			array(
-				'name'    => __( 'Spacer Background color', 'cmb2-example-theme' ),
-				'desc' => 'This shows by default when no header option is selected on the backend of a page. You must select short or large header on the page options to disable this.',
-				'id'      => 'header_three_bg_color',
-				'type'    => 'rgba_colorpicker',
-				//'default' => 'rgba(0,0,0,0)'
-			),
-			array(
-				'name'    => __( 'Mobile Background color', 'cmb2-example-theme' ),
-				'id'      => 'header_three_mobile_bg_color',
-				'type'    => 'rgba_colorpicker',
-				'desc' => 'This is the background of the sidebar nav on mobile.',
-				//'default' => 'rgba(0,0,0,0)'
-			),
-			array(
-				'name'    => __( 'Scroll Bkg color', 'cmb2-example-theme' ),
-				'id'      => 'header_three_scroll_bg_color',
-				'type'    => 'rgba_colorpicker',
-				'desc' => 'The color of the background after the user has scrolled down 200 pixels.',
-				//'default' => 'rgba(0,0,0,0)'
-			),
-			array(
-				'name'    => __( 'Scroll Nav Item Color', 'cmb2-example-theme' ),
-				'id'      => 'header_three_scroll_item_color',
-				'type'    => 'rgba_colorpicker',
-				//'default' => 'rgba(0,0,0,0)'
-			),
-			
-			// HEADER FOUR
-			/*array(
-				'name' => 'Header Four Options',
-				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
-				'type' => 'title',
-				'id'   => 'header_four_title'
-			),
-			array(
-				'name' => 'Checkbox 4',
-				//'desc' => 'Check this box to make the logo centered',
-				'id'   => 'header_four_checkbox',
-				'type' => 'checkbox',
-			), */
-			
-			
-			// NAVIGATION OPTIONS
-			array(
-				'name' => 'Navigation Options',
-				//'desc' => 'Make sure you have CMB2 RGBa Colorpicker plugin installed.',
-				'type' => 'title',
-				'id'   => 'nav_title'
-			),
-			array(
-				'name'    => __( 'Nav Background color', 'cmb2-example-theme' ),
-				'desc' => 'Make sure you have CMB2 RGBa Colorpicker plugin installed.',
-				'id'      => 'nav_bg_color',
-				'type'    => 'rgba_colorpicker',
-				//'default' => 'rgba(0,0,0,0)'
-			),
-			array(
-				'name'    => __( 'Nav Item color', 'cmb2-example-theme' ),
-				'id'      => 'nav_item_color',
-				'type'    => 'colorpicker',
-				//'default' => '#dedede'
-			),
-			array(
-				'name'    => __( 'Sub-Menu Background color', 'cmb2-example-theme' ),
-				'id'      => 'sub_nav_bg_color',
-				'type'    => 'rgba_colorpicker',
-				//'default' => 'rgba(0,0,0,0)'
-			),
-			array(
-				'name'    => __( 'Sub-Menu Item color', 'cmb2-example-theme' ),
-				'id'      => 'sub_nav_item_color',
-				'type'    => 'colorpicker',
-				//'default' => '#dedede'
-			),
-				
-			array(
-				'name'    => __( 'Hover Background/Text color', 'cmb2-example-theme' ),
-				'id'      => 'hover_bg_color',
-				'type'    => 'colorpicker',
-				//'default' => '#dedede'
-			),
-			array(
-				'name'    => __( 'Current Menu Item color', 'cmb2-example-theme' ),
-				'id'      => 'current_item_color',
-				'type'    => 'colorpicker',
-				//'default' => 'blue'
-			),
-			
-			// FOOTER
-			array(
-				'name' => 'Footer Options',
-				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
-				'type' => 'title',
-				'id'   => 'footer_title'
-			),
-			array(
-				'name' => 'Remove top border',
-				//'desc' => 'Check this box to make the logo centered',
-				'id'   => 'footer_hr_checkbox',
-				'type' => 'checkbox',
-			),
-			array(
-				'name'    => __( 'Footer Bkg color', 'cmb2-example-theme' ),
-				'id'      => 'footer_bkg_color',
-				'type'    => 'rgba_colorpicker',
-				//'default' => 'blue'
-			),
-			array(
-				'name'    => __( 'Bottom Footer Background color', 'cmb2-example-theme' ),
-				'id'      => 'bottom_footer_bg_color',
-				'type'    => 'rgba_colorpicker',
-				//'default' => 'blue'
-			),
-			array(
-				'name' => 'Fullwidth Bottom Bar',
-				//'desc' => 'Check this box to make the logo centered',
-				'id'   => 'footer_fullwidth_checkbox',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => 'Custom Footer Copywrite',
-				//'desc' => 'field description (optional)',
-				//'default' => '.selector { property: attribute; }',
-				'id' => 'footer_copy_textareacode',
-				'type' => 'textarea_code'
-			),
-			
-			
-			// ADDITIONAL
-			array(
-				'name' => 'Additional Options',
-				//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
-				'type' => 'title',
-				'id'   => 'additional_title'
-			),
-			array(
-				'name' => 'Custom CSS Code',
-				//'desc' => 'field description (optional)',
-				'default' => '.selector { property: attribute; }',
-				'id' => 'custom_css_textareacode',
-				'type' => 'textarea_code'
-			),
-			array(
-				'name' => 'Header Custom Code',
-				'desc' => 'This will show up right after the logo before the menu.',
-				//'default' => '.selector { property: attribute; }',
-				'id' => 'custom_top_textareacode',
-				'type' => 'textarea_code'
-			),
-			array(
-				'name' => 'Bottom Custom Code',
-				'desc' => 'This will show up right before the footer widgets under the content.',
-				//'default' => '.selector { property: attribute; }',
-				'id' => 'custom_bottom_textareacode',
-				'type' => 'textarea_code'
-			),
-			
-			
-		) );
-	}
-
-	/**
-	 * Initiate our hooks
-	 * @since 0.1.0
-	 */
-	public function hooks() {
-		add_action( 'admin_init', array( $this, 'init' ) );
-		add_action( 'admin_menu', array( $this, 'add_options_page' ) );
-	}
-
-	/**
-	 * Register our setting to WP
-	 * @since  1.0
-	 */
-	public function init() {
-		register_setting( $this->key, $this->key );
-	}
-
-	/**
-	 * Add menu options page
-	 * @since 0.1.0
-	 */
-	public function add_options_page() {
-		$this->options_page = add_theme_page( $this->title, $this->title, 'manage_options', $this->key, array( $this, 'admin_page_display' ) );
-	}
-
-	/**
-	 * Admin page markup. Mostly handled by CMB2
-	 * @since  1.0
-	 */
-	public function admin_page_display() {
-		?>
-		<div class="wrap pegasus_theme_options_page <?php echo $this->key; ?>">
-			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
-			<?php /* 
-			<strong>It is recommended you install these plugins:</strong>
-			<ul>
-				<li>1.) CMB2 RGBa Colorpicker - <a href="https://github.com/JayWood/CMB2_RGBa_Picker" target="_blank">More info</a></li>
-				<li>
-					2.) Page Builder by SiteOrigin - 
-					<a href="https://wordpress.org/plugins/siteorigin-panels/" target="_blank">More info</a> 
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>wp-admin/plugin-install.php?tab=plugin-information&plugin=siteorigin-panels">Link to install</a>
-				</li>
-				<li>
-					3.) SiteOrigin Widgets Bundle - 
-					<a href="https://wordpress.org/plugins/so-widgets-bundle/" target="_blank">More info</a>
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>wp-admin/plugin-install.php?tab=plugin-information&plugin=so-widgets-bundle">Link to install</a>
-				</li>
-				<li>4.) Octane Booster - This can be provided by <a href="https://theoctaneagency.com" target="_blank">More info</a></li>
-			</ul>
-			<p><i><strong>NOTE:</strong> <b>If you cannot select a color</b> make sure you have the RGBa plugin installed. It is #1 above.</i></p>
-			*/ ?>
-			<?php cmb2_metabox_form( $this->option_metabox(), $this->key ); ?>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Defines the theme option metabox and field configuration
-	 * @since  1.0
-	 * @return array
-	 */
-	public function option_metabox() {
-		return array(
-			'id'         => 'option_metabox',
-			'show_on'    => array( 'key' => 'options-page', 'value' => array( $this->key, ), ),
-			'show_names' => true,
-			'fields'     => $this->fields,
-		);
-	}
-
-	/**
-	 * Public getter method for retrieving protected/private variables
-	 * @since  1.0
-	 * @param  string  $field Field to retrieve
-	 * @return mixed          Field value or exception is thrown
-	 */
-	public function __get( $field ) {
-		// Allowed fields to retrieve
-		if ( in_array( $field, array( 'key', 'fields', 'title', 'options_page' ), true ) ) {
-			return $this->{$field};
-		}
-
-		if ( 'option_metabox' === $field ) {
-			return $this->option_metabox();
-		}
-
-		throw new Exception( 'Invalid property: ' . $field );
-	}
-
+function cmb2_metatabs_options_add_intro_via_filter() {
+	return '<p>This is an options page created with CMB2 Metatabs Options. Learn more at '
+	       . '<a href="https://github.com/rogerlos/cmb2-metatabs-options/" target="_blank">github</a>.</p>';
 }
-
-$pegasus_theme_options = new Pegasus_Theme_Options();
-$pegasus_theme_options->hooks();
-
 /**
- * Wrapper function around cmb2_get_option
- * @since  1.0
- * @param  string  $key Options array key
- * @return mixed        Option value
+ * Add some boxes the normal CMB2 way. (Five boxes and their fields, in this example.)
+ *
+ * This is typical CMB2, but note two crucial extra items:
+ *
+ * - the ['show_on'] property is configured
+ * - a call to object_type method
+ *
+ * See the wiki for more detail on why these are important and what their values are.
+ *
+ * @param string $options_key
+ *
+ * @return array
  */
-function pegasus_theme_get_option( $key = '' ) {
-	global $pegasus_theme_options;
-
-	if( function_exists( 'cmb2_get_option' ) ) {
-		return cmb2_get_option( $pegasus_theme_options->key, $key );
-	} else {
-		$options = get_option( $pegasus_theme_options->key );
-		return isset( $options[ $key ] ) ? $options[ $key ] : false;
-	}
-
+function cmb2_metatabs_options_add_boxes( $options_key ) {
+	
+	// holds all CMB2 box objects
+	$boxes = array();
+	
+	// we will be adding this to all boxes
+	$show_on = array(
+		'key'   => 'options-page',
+		'value' => array( $options_key ),
+	);
+	
+	// first box
+	$cmb = new_cmb2_box( array(
+		'id'      => 'ex_dogs',
+		'title'   => __( 'Internet Doggies', 'cmb2' ),
+		'show_on' => $show_on, // critical, see wiki for why
+	) );
+	$cmb->add_field( array(
+		'name' => __( 'That\'s a Good Dog!', 'cmb2' ),
+		'desc' => __( 'What do you say when you see a dog on the internet?', 'cmb2' ),
+		'id'   => 'ex_dogs_say',
+		'type' => 'text',
+	) );
+	$cmb->add_field( array(
+		'name' => __( 'Repeated How Many Times?', 'cmb2' ),
+		'desc' => __( 'To the nearest multiple 3, how many times do you say it?', 'cmb2' ),
+		'id'   => 'ex_dogs_repeat',
+		'type' => 'text_small',
+	) );
+	$cmb->object_type( 'options-page' );  // critical, see wiki for why
+	$boxes[] = $cmb;
+	
+	// second box
+	$cmb = new_cmb2_box( array(
+		'id'      => 'ex_cats',
+		'title'   => __( 'Internet Kitties', 'cmb2' ),
+		'show_on' => $show_on,
+	) );
+	$cmb->add_field( array(
+		'name' => __( 'Nice kitty!', 'cmb2' ),
+		'desc' => __( 'What do you say when you see a cat on the internet?', 'cmb2' ),
+		'id'   => 'ex_cats_say',
+		'type' => 'text',
+	) );
+	$cmb->add_field( array(
+		'name' => __( 'Repeated How Many Times?', 'cmb2' ),
+		'desc' => __( 'To the nearest multiple 3, how many times do you say it?', 'cmb2' ),
+		'id'   => 'ex_cats_repeat',
+		'type' => 'text_small',
+	) );
+	$cmb->object_type( 'options-page' );
+	$boxes[] = $cmb;
+	
+	// third box
+	$cmb = new_cmb2_box( array(
+		'id'      => 'ex_healthy',
+		'title'   => __( 'Eating for Good Health', 'cmb2' ),
+		'show_on' => $show_on,
+	) );
+	$cmb->add_field( array(
+		'name' => __( 'What is a healthy food?', 'cmb2' ),
+		'desc' => __( 'Examples: Apple, Ding Dong', 'cmb2' ),
+		'id'   => 'ex_healthy_food',
+		'type' => 'text',
+	) );
+	$cmb->add_field( array(
+		'name' => __( 'How Many Servings?', 'cmb2' ),
+		'desc' => __( 'How many times per day should you eat this?', 'cmb2' ),
+		'id'   => 'ex_healthy_servings',
+		'type' => 'text_small',
+	) );
+	$cmb->object_type( 'options-page' );
+	$boxes[] = $cmb;
+	
+	// fourth box
+	$cmb = new_cmb2_box( array(
+		'id'      => 'ex_bad',
+		'title'   => __( 'Foods to Avoid', 'cmb2' ),
+		'show_on' => $show_on,
+	) );
+	$cmb->add_field( array(
+		'name' => __( 'What is an unhealthy food?', 'cmb2' ),
+		'desc' => __( 'Examples: Apple, not Ding Dong', 'cmb2' ),
+		'id'   => 'ex_bad_food',
+		'type' => 'text',
+	) );
+	$cmb->add_field( array(
+		'name' => __( 'How Many Pushups?', 'cmb2' ),
+		'desc' => __( 'To the nearest 1, how many pushups do you need to counter your bad decision?', 'cmb2' ),
+		'id'   => 'ex_bad_servings',
+		'type' => 'text_small',
+	) );
+	$cmb->object_type( 'options-page' );
+	$boxes[] = $cmb;
+	
+	// fifth box
+	$cmb = new_cmb2_box( array(
+		'id'      => 'ex_side',
+		'title'   => __( 'Judging', 'cmb2' ),
+		'show_on' => $show_on,
+		'context' => 'side',
+	) );
+	$cmb->add_field( array(
+		'name' => '',
+		'desc' => __( 'This example page offers no judgment on your choices.', 'cmb2' ),
+		'id'   => 'ex_judge',
+		'type' => 'title',
+	) );
+	$cmb->object_type( 'options-page' );
+	$boxes[] = $cmb;
+	
+	return $boxes;
+}
+/**
+ * Add some tabs (in this case, two).
+ *
+ * Tabs are completely optional and removing them would result in the option metaboxes displaying sequentially.
+ *
+ * If you do configure tabs, all boxes whose context is "normal" or "advanced" must be in a tab to display.
+ *
+ * @return array
+ */
+function cmb2_metatabs_options_add_tabs() {
+	
+	$tabs = array();
+	
+	$tabs[] = array(
+		'id'    => 'ex_tab1',
+		'title' => 'Critters',
+		'desc'  => '<p>Everyone likes dogs and/or cats, right?</p>',
+		'boxes' => array(
+			'ex_cats',
+			'ex_dogs',
+		),
+	);
+	$tabs[] = array(
+		'id'    => 'ex_tab2',
+		'title' => 'Eats',
+		'desc'  => '',
+		'boxes' => array(
+			'ex_healthy',
+			'ex_bad',
+		),
+	);
+	
+	return $tabs;
 }
