@@ -1,0 +1,23 @@
+# Eclipse
+.settings
+.project
+
+# GFM Preview
+.README.md.html
+
+# Mac OS
+.DS_Store
+
+# Composer
+composer.phar
+composer.lock
+
+# Build
+tmp
+dist
+
+# Test
+test
+
+# Vendor
+vendor
