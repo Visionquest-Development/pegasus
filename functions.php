@@ -991,7 +991,7 @@
 		
 		$cmb_demo2 = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox2',
-			'title'         => __( 'Pegsus Page Options', 'cmb2' ),
+			'title'         => __( 'Pegasus Page Options', 'cmb2' ),
 			'object_types'  => array( 'page', 'post', 'course_unit' ), // Post type
 		) );
 

@@ -1,22 +1,21 @@
-
 <?php
+global $post;
 $terms = get_the_terms( $post->ID, 'category' );
 
 if ( $terms && ! is_wp_error( $terms ) ) :
 	$links = array();
 
-	foreach ( $terms as $term )
-	{
+	foreach ( $terms as $term ) {
 		$links[] = $term->name;
 	}
-	$links = str_replace(' ', '-', $links);
+	$links = str_replace( ' ', '-', $links );
 	$tax = join( " ", $links );
 else :
 	$tax = '';
 endif;
 ?>
 
-<div class="content-item-container <?php echo strtolower($tax); ?>">
+<div class="content-item-container <?php echo strtolower( $tax ); ?>">
 	<article class="article-<?php the_ID(); ?> block-inner ">
 
 		<div class="content-item-image">
@@ -29,7 +28,7 @@ endif;
 				<h3 class="content-item-title"><?php the_title(); ?></h3>
 			</a>
 			<?php
-				$the_time = the_time('l, F, jS, Y') ? the_time('l, F, jS, Y') : '';
+				$the_time = the_time( 'l, F, jS, Y' ) ? the_time( 'l, F, jS, Y' ) : '';
 				if ( '' !== $the_time ) :
 			?>
 				<em>
