@@ -433,9 +433,9 @@ class Pegasus_Admin {
 			'options'          => array(
 				'header-one' => __( 'Header One', 'cmb2' ),
 				'header-two'   => __( 'Header Two', 'cmb2' ),
-				'header-three'     => __( 'Header Three', 'cmb2' ),
-				'header-four'     => __( 'Header Four', 'cmb2' ),
-				'header-five'     => __( 'Header Five', 'cmb2' ),
+				//'header-three'     => __( 'Header Three', 'cmb2' ),
+				//'header-four'     => __( 'Header Four', 'cmb2' ),
+				//'header-five'     => __( 'Header Five', 'cmb2' ),
 			),
 		) );
 		$cmb->add_field( array(

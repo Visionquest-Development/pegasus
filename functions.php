@@ -613,9 +613,22 @@
 
 
 			<?php /*===== MOBILE COLORING =====*/ ?>
-			.navbar-toggle .icon-bar, .default-skin .navbar-default .navbar-toggle .icon-bar, .default-skin .nav .open>a,.default-skin .nav .open>a:focus,.default-skin .nav .open>a:hover, #header .navi-btn a i { background: <?php echo $mobile_color; ?>; } 
+			.navbar-toggle .icon-bar,
+			.default-skin .navbar-default .navbar-toggle .icon-bar,
+			.default-skin .nav .open>a,
+			.default-skin .nav .open>a:focus,
+			.default-skin .nav .open>a:hover,
+			#header .navi-btn a i,
+			{ background: <?php echo $mobile_color; ?>; }
 			.mobile-menu-close .fa-times-circle:before { color: <?php echo $mobile_color; ?>; } 
 			.navbar-toggle { border: 1px solid <?php echo $mobile_color; ?> !important; }
+
+			.navbar-toggler-icon {
+				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='<?php echo $mobile_color; ?>' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+			}
+			.navbar-toggler {
+				border-color: <?php echo $mobile_color; ?> !important;
+			}
 
 
 			<?php /*===== additional header stuff =====*/ ?>

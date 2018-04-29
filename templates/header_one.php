@@ -1,44 +1,58 @@
 <?php
+	/*=================
+		NAV OPTIONS
+	==================*/
+	$fixed_header_choice = ( 'on' === pegasus_get_option( 'header_fixed_checkbox' ) ) ? 'fixed-top' : '';
+	//$sticky_header_choice = ( 'on' === pegasus_get_option( 'header_sticky_checkbox' ) ) ? 'sticky-top' : '';
 
-	$header_choice = pegasus_get_option( 'header_select' );
-	$page_loader_choice = pegasus_get_option( 'page_loader_chk' ) ? pegasus_get_option( 'page_loader_chk' ) : 'off';
-
-	$sticky_header_choice = ( 'on' === pegasus_get_option( 'header_sticky_checkbox' ) ) ? 'sticky-top' : '';
-	//$bootstrap_navbar_expand_class = pegasus_get_option('global_nav_viewport_break') ? pegasus_get_option('global_nav_viewport_break') : 'navbar-expand-md';
-
-	$top_header_choice = ( 'on' === pegasus_get_option( 'top_header_chk' ) ) ? pegasus_get_option( 'top_header_chk' ) : 'off';
-
-	$bootstrap_color_scheme = pegasus_get_option('nav_color_scheme') ? pegasus_get_option('nav_color_scheme') : 'navbar-light';
-	$bootstrap_color_utility = pegasus_get_option('nav_color_utility') ? pegasus_get_option('nav_color_utility') : 'bg-light';
+	$bootstrap_color_scheme = pegasus_get_option('nav_color_scheme') ? pegasus_get_option('nav_color_scheme') : '';
+	$bootstrap_color_utility = pegasus_get_option('nav_color_utility') ? pegasus_get_option('nav_color_utility') : '';
 
 	$bootstrap_navbar_expand_class = pegasus_get_option('global_nav_viewport_break') ? pegasus_get_option('global_nav_viewport_break') : 'navbar-expand-md';
 
+	$top_header_choice = ( 'on' === pegasus_get_option( 'top_header_chk' ) ) ? pegasus_get_option( 'top_header_chk' ) : 'off';
+
+	/*=================
+		MENU OPTIONS
+	==================*/
 	$header_container_check = ( 'on' === pegasus_get_option( 'header_container' ) ) ? 'container' : '';
 	$global_full_container_option =  ( 'on' === pegasus_get_option( 'full_container_chk' ) ) ? 'container-fluid' : 'container';
 	$header_inner_container_option = ( 'on' === pegasus_get_option( 'nav_inner_container_checkbox' ) ) ? 'container-fluid' : 'container';
 
-	$header_one_top_logo_container = ( 'on' === pegasus_get_option( 'full_container_chk' ) ) ? $global_full_container_option : 'container';
-	$final_inner_container_class = ( 'container-fluid' === $global_full_container_option ) ? $global_full_container_option : $header_inner_container_option;
+	$logo = pegasus_get_option( 'logo' );
+	$centerLogo = ( 'on' === pegasus_get_option( 'logo_centered' ) ) ? 'center' : '';
+	$moremenuchk = pegasus_get_option( 'header_more_chk' );
+	$woo_check =  pegasus_get_option( 'woo_chk' );
+	$nav_social_check =  pegasus_get_option( 'nav_social_chk' );
 
-	$header_one_top_logo_centered = ( 'on' === pegasus_get_option( 'logo_centered' ) ) ? 'center' : '';
+	if ( 'on' === $woo_check || 'on' === $nav_social_check ) {
+		$bootstrap_navbar_expand_class = 'navbar-expand-md';
+	}
 
 	$home_url = esc_url( home_url( '/' ) ) ? esc_url( home_url( '/' ) ) : '#';
 	$fallback_menu = '<ul id="" class="navbar-nav"><li class="nav-item active current-menu-item"><a class="nav-link" href="' . $home_url . '">Home <span class="sr-only">(current)</span></a></li></ul>';
 	$final_menu = pegasus_get_menu( 'primary', 'navbar-nav primary-navigation-bar', 3, $fallback_menu );
-	$moremenuchk = pegasus_get_option( 'header_more_chk' );
-	$woo_check =  pegasus_get_option( 'woo_chk' );
+	//$final_menu = $fallback_menu;
+
+	$final_inner_container_class = ( 'container-fluid' === $global_full_container_option ) ? $global_full_container_option : $header_inner_container_option;
+	$final_container_class = ( 'container-fluid' === $global_full_container_option ) ? $global_full_container_option : 'container';
+
+	//justify-content-md-center
+	$woo_check = pegasus_get_option( 'woo_chk' );
 	$top_social_check = pegasus_get_option( 'top_social_chk' );
+
+	$header_one_top_logo_container = ( 'on' === pegasus_get_option( 'full_container_chk' ) ) ? $global_full_container_option : 'container';
 
 ?>
 
-<div id="header" class="header-container  ">
+<div id="header" class="header-container <?php echo $fixed_header_choice; ?> ">
 	<?php
 		if( 'on' === $top_header_choice ) {
 			get_template_part( 'templates/top_bar', 'header' );
 		}
 	?>
 		<div class="<?php echo $header_one_top_logo_container; ?>">
-			<div class="site-branding <?php echo $header_one_top_logo_centered; ?>">
+			<div class="site-branding <?php echo $centerLogo; ?>">
 				<?php if( ! empty( $logo ) ) : ?>
 					<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" /></a>
 				<?php else: ?>
