@@ -48,7 +48,7 @@
 
 	#header_type { width: 110px; }
 
-    .wp-picker-container .wp-color-result { position: relative; }
+    .wp-picker-container .wp-color-result { position: relative !important; }
 
     #pegasus_option_metabox .pegasus-save-btn-container {
         padding: 20px;
