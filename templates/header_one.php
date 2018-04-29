@@ -4,7 +4,7 @@
 	$page_loader_choice = pegasus_get_option( 'page_loader_chk' ) ? pegasus_get_option( 'page_loader_chk' ) : 'off';
 
 	$sticky_header_choice = ( 'on' === pegasus_get_option( 'header_sticky_checkbox' ) ) ? 'sticky-top' : '';
-	$bootstrap_navbar_expand_class = pegasus_get_option('global_nav_viewport_break') ? pegasus_get_option('global_nav_viewport_break') : 'navbar-expand-md';
+	//$bootstrap_navbar_expand_class = pegasus_get_option('global_nav_viewport_break') ? pegasus_get_option('global_nav_viewport_break') : 'navbar-expand-md';
 
 	$top_header_choice = ( 'on' === pegasus_get_option( 'top_header_chk' ) ) ? pegasus_get_option( 'top_header_chk' ) : 'off';
 
@@ -17,7 +17,10 @@
 	$global_full_container_option =  ( 'on' === pegasus_get_option( 'full_container_chk' ) ) ? 'container-fluid' : 'container';
 	$header_inner_container_option = ( 'on' === pegasus_get_option( 'nav_inner_container_checkbox' ) ) ? 'container-fluid' : 'container';
 
+	$header_one_top_logo_container = ( 'on' === pegasus_get_option( 'full_container_chk' ) ) ? $global_full_container_option : 'container';
 	$final_inner_container_class = ( 'container-fluid' === $global_full_container_option ) ? $global_full_container_option : $header_inner_container_option;
+
+	$header_one_top_logo_centered = ( 'on' === pegasus_get_option( 'logo_centered' ) ) ? 'center' : '';
 
 	$home_url = esc_url( home_url( '/' ) ) ? esc_url( home_url( '/' ) ) : '#';
 	$fallback_menu = '<ul id="" class="navbar-nav"><li class="nav-item active current-menu-item"><a class="nav-link" href="' . $home_url . '">Home <span class="sr-only">(current)</span></a></li></ul>';
@@ -28,14 +31,14 @@
 
 ?>
 
-<div id="header" class="header-container <?php echo $fixed_header_choice; ?> ">
+<div id="header" class="header-container  ">
 	<?php
 		if( 'on' === $top_header_choice ) {
 			get_template_part( 'templates/top_bar', 'header' );
 		}
 	?>
-		<div class="<?php echo $final_container_class; ?>">
-			<div class="site-branding <?php echo $centerLogo; ?>">
+		<div class="<?php echo $header_one_top_logo_container; ?>">
+			<div class="site-branding <?php echo $header_one_top_logo_centered; ?>">
 				<?php if( ! empty( $logo ) ) : ?>
 					<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" /></a>
 				<?php else: ?>
