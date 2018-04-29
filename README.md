@@ -7,12 +7,12 @@
 
 ### How do I get set up? ###
 
-######If you are uploading your theme via the WordPress admin: 
+#####If you are uploading your theme via the WordPress admin: 
 * Simply click the "Clone or download" button and click "Download ZIP" 
 * Then in your WordPress admin go to Appearance -> Themes -> Add New -> Upload Theme -> Choose File
 * Then upload the theme you downloaded from github.
 
-######If you are installing a theme from your terminal:
+#####If you are installing a theme from your terminal:
 `cd path/to/wp-content/themes`
 
 `git clone https://github.com/Visionquest-Development/pegasus.git`
