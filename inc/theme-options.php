@@ -451,13 +451,6 @@ class Pegasus_Admin {
 			'desc' => 'This is for the entire background of the header.',
 			//'default' => 'rgba(0,0,0,0)'
 		) );
-		$cmb->add_field( array(
-			'name'    => __( 'Hover Background/Text Decision', 'cmb2-example-theme' ),
-			'id'      => 'hover_chk_decision',
-			'type'    => 'checkbox',
-			'desc'	=> 'This decides wether to use the default option of background color, or if you want the text to show up a different color on hover you would check this box.',
-			//'default' => '#dedede'
-		) );
 
 		/*============================
 			HEADER ONE AND TWO
@@ -602,9 +595,9 @@ class Pegasus_Admin {
 			'id'               => 'nav_color_scheme',
 			'type'             => 'select',
 			'show_option_none' => false,
-			'default'          => 'navbar-light',
+			'default'          => 'none',
 			'options'          => array(
-				//'none' => __( 'None', 'cmb2' ),
+				'none' => __( 'None', 'cmb2' ),
 				'navbar-light'   => __( 'Navbar Light', 'cmb2' ),
 				'navbar-dark'     => __( 'Navbar Dark', 'cmb2' ),
 			),
@@ -667,14 +660,20 @@ class Pegasus_Admin {
 			'id'      => 'sub_nav_item_color',
 			'type'    => 'colorpicker',
 			//'default' => '#dedede'
-		) ); 
-			
+		) );
+		$cmb->add_field( array(
+			'name'    => __( 'Hover Background/Text Decision', 'cmb2-example-theme' ),
+			'id'      => 'hover_chk_decision',
+			'type'    => 'checkbox',
+			'desc'	=> 'This decides whether to use the default option of background color, or if you want the text to show up a different color on hover you would check this box.',
+			//'default' => '#dedede'
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Hover Background/Text color', 'cmb2-example-theme' ),
 			'id'      => 'hover_bg_color',
 			'type'    => 'colorpicker',
 			//'default' => '#dedede'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Active/Current Menu Item color', 'cmb2-example-theme' ),
 			'id'      => 'current_item_color',

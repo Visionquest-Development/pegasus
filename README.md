@@ -15,7 +15,7 @@
 ##If you are installing a theme from your terminal:
 `cd path/to/wp-content/themes`
 
-`git clone https://github.com/Visionquest-Development/pegasus.git`
+`git clone https://github.com/Visionquest-Development/pegasus.git pegasus`
 
 
 ### Contribution guidelines ###

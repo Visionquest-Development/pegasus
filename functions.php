@@ -554,9 +554,9 @@
 			.the-nav-cart li a,
 			.the-default-nav .pegasus-social li a i:before,
 			.dropdown a,
-
+			.nav-link,
 			.active > a
-			{ color: <?php echo $nav_item_color; ?>; }
+			{ color: <?php echo $nav_item_color; ?> !important; }
 
 
 			<?php
