@@ -37,7 +37,7 @@ jQuery(document).ready( function($) {
 	});
 
 
-	
+
 	jQuery('.pegasus-parent-1 .pegasus-toggle').on("click", function(event){
 		//first open the container with the social stuff 
 		$('.pegasus-options-toggle-content-1' ).slideToggle();
@@ -229,7 +229,31 @@ jQuery(document).ready( function($) {
     /* fixes for save button */
     $('#pegasus_option_metabox input[type="submit"]').wrap('<div class="pegasus-save-btn-container"></div>');
 
-});
+
+    $('#pegasus_option_metabox input[type="submit"]').on("click", function () {
+        console.log( "save init" );
+
+        $('.cmb-type-title').each( function ( index, value ) {
+            if ( $( this ).hasClass('active') ) {
+                jQuery.cookie( 'option_' + index + '_is_active', 'true', { expires: 7, path: '/' });
+            } else {
+                jQuery.cookie( 'option_' + index + '_is_active', 'false', { expires: 7, path: '/' });
+            }
+
+        });
+
+    });
+
+    $('.cmb-type-title').each( function( index, value ) {
+        if ( 'true' === jQuery.cookie( 'option_' + index + '_is_active' ) ) {
+            $('.pegasus-parent-' + parseInt( index + 1 ) + ' .pegasus-toggle' ).addClass('active');
+            $('.pegasus-options-toggle-content-' + parseInt( index + 1 ) ).show();
+        }
+    });
+
+
+
+}); //END DOC READY FUNCT
 
 /*
 (function($) {

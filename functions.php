@@ -710,6 +710,7 @@
 	function pegasus_admin_scripts() {
 		wp_enqueue_style('admin-styles', get_template_directory_uri().'/admin/admin.css');
 		wp_enqueue_script( 'admin-js', get_template_directory_uri() . '/admin/admin.js', array( 'jquery', 'inline-edit-post' ), '', true );
+		wp_enqueue_script( 'cookie-js', get_template_directory_uri() . '/admin/cookie.js', array( 'jquery' ), '', true );
 
 		//wp_enqueue_script('cmb2-conditionals-for-admin', plugins_url('/cmb2-conditionals.js', '/cmb2-conditionals/cmb2-conditionals.js'), array('jquery'), '', true);
 
