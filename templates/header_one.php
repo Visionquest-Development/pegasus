@@ -1,5 +1,5 @@
 <?php
-	/*=================
+	/**=================
 		NAV OPTIONS
 	==================*/
 	$fixed_header_choice = ( 'on' === pegasus_get_option( 'header_fixed_checkbox' ) ) ? 'fixed-top' : '';
