@@ -26,7 +26,7 @@
 	 * https://github.com/benignware/wp-bootstrap-hooks
 	 */
 
-	//comments
+	//comments - THIS HAS BEEN MODIFIED as of 2018
 	require_once 'inc/wp-bootstrap-hooks-master/bootstrap-comments.php';
 	//content
 	require_once 'inc/wp-bootstrap-hooks-master/bootstrap-content.php';
@@ -837,7 +837,15 @@
 	}
 	add_action('init', 'my_custom_init');
 	
-	
+	function mytheme_enqueue_comment_reply() {
+		// on single blog post pages with comments open and threaded comments
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) { 
+			// enqueue the javascript that performs in-link comment reply fanciness
+			wp_enqueue_script( 'comment-reply' ); 
+		}
+	}
+	// Hook into wp_enqueue_scripts
+	add_action( 'wp_enqueue_scripts', 'mytheme_enqueue_comment_reply' );	
 	
 	/* PAGINATION */
 	/*if ( ! function_exists( 'my_pagination' ) ) :

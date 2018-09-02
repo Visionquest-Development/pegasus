@@ -166,40 +166,42 @@ class wp_bootstrap_commentwalker extends Walker_Comment {
          
         <li <?php comment_class( $parent_class . " media" ); ?> id="comment-<?php comment_ID() ?>">
           
-            <div class="media-left">
-                <a>
-                  <?php echo ( $args['avatar_size'] != 0 ? str_replace("class='avatar", "class='media-object ", get_avatar( $comment, $args['avatar_size'] ) ) : '' ); ?>
-                </a>
-            </div><!-- /.comment-author -->
-          
             <div id="comment-body-<?php comment_ID() ?>" class="comment-body media-body">
-                
-                <div class="comment-author vcard author media-left">
-                    <h3 class="media-heading fn n author-name"><?php echo get_comment_author_link(); ?>
-                    </h3>
-                    <small class="comment-meta comment-meta-data">
-                      <a href="<?php echo htmlspecialchars( get_comment_link( get_comment_ID() ) ) ?>"><?php comment_date(); ?> at <?php comment_time(); ?></a> <?php edit_comment_link( '(Edit)' ); ?>
-                    </small><!-- /.comment-meta -->
-                </div><!-- /.comment-author -->
-                
-                <div id="comment-content-<?php comment_ID(); ?>" class="comment-content">
-                    <?php if( !$comment->comment_approved ) : ?>
-                    <p><em class="comment-awaiting-moderation">Your comment is awaiting moderation.</em></p>
-                     
-                    <?php else: comment_text(); ?>
-                    <?php endif; ?>
-                </div><!-- /.comment-content -->
- 
-                
- 
-                <div class="reply">
-                    <?php $reply_args = array(
-                        //'add_below' => $add_below, 
-                        'depth' => $depth,
-                        'max_depth' => $args['max_depth'] );
-     
-                    comment_reply_link( array_merge( $args, $reply_args ) );  ?>
-                </div><!-- /.reply -->
+
+				<div class="comment-container">
+					<div class="media-left">
+						<a>
+							<?php echo ( $args['avatar_size'] != 0 ? str_replace("class='avatar", "class='media-object ", get_avatar( $comment, $args['avatar_size'] ) ) : '' ); ?>
+						</a>
+					</div><!-- /.comment-author -->
+
+					<div class="comment-author vcard author ">
+						<h3 class="media-heading fn n author-name"><?php echo get_comment_author_link(); ?>
+						</h3>
+						<small class="comment-meta comment-meta-data">
+						  <a href="<?php echo htmlspecialchars( get_comment_link( get_comment_ID() ) ) ?>"><?php comment_date(); ?> at <?php comment_time(); ?></a> <?php edit_comment_link( '(Edit)' ); ?>
+						</small><!-- /.comment-meta -->
+					</div><!-- /.comment-author -->
+
+					<div id="comment-content-<?php comment_ID(); ?>" class="comment-content">
+						<?php if( !$comment->comment_approved ) : ?>
+						<p><em class="comment-awaiting-moderation">Your comment is awaiting moderation.</em></p>
+
+						<?php else: comment_text(); ?>
+						<?php endif; ?>
+					</div><!-- /.comment-content -->
+
+
+
+					<div class="reply">
+						<?php $reply_args = array(
+							//'add_below' => $add_below,
+							'depth' => $depth,
+							'max_depth' => $args['max_depth'] );
+
+						comment_reply_link( array_merge( $args, $reply_args ) );  ?>
+					</div><!-- /.reply -->
+				</div>
             <!--</div> /.comment-body -->
  
     <?php }

@@ -112,11 +112,6 @@ Use it to make something cool, have fun, and share what you've learned with othe
     .widget-title {
         padding: 10px 0 0 10px;
     }
-	#respond {
-		border-radius: 7px; 
-		padding: 20px; 
-		margin-bottom: 20px; 
-	}
 	
 	.widget { }
 	.sidebar h3 { color: #888; }
@@ -131,7 +126,64 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	.alignright {  }
 	.alignleft {  }
 	.aligncenter { display: block; margin: 0 auto; text-align: center; }
-	
+
+
+    .reply .form-group { margin-bottom: 0; }
+	.commentlist, .media-list { padding-left: 0;  }
+
+    .media-list {
+        border-left: none;
+        margin: 0;
+    }
+
+    .media-list .media-list {
+        border-left: 1px dotted black;
+        margin-left: 1rem;
+    }
+
+    .comment-container {
+        margin-bottom: 1rem;
+    }
+
+    .comment-body {
+        margin-left: 0;
+    }
+
+    .comment-body .comment-body {
+        margin-left: 1rem;
+    }
+
+    .media-list li {
+        margin-bottom: 1rem;
+    }
+
+    .media-list li:last-child {
+        margin-bottom: 0;
+    }
+
+    .media-heading { margin-bottom: 0; }
+    .comment-content p { margin-bottom: 0; }
+
+    .depth-1 {
+        background: #f0f0f0;
+        padding-top: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-top: 4px solid #212529;
+    }
+
+    .media-left { float: left; }
+
+    .media-left .media-object {  }
+
+    #respond {
+        background: #f5f5f7;
+        padding: 1rem;
+    }
+
+
 	#searchform { margin: 0 auto; }
 	
 	input, textarea { width: 90%; }
