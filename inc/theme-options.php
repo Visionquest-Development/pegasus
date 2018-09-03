@@ -913,6 +913,34 @@ class Pegasus_Admin {
 			'id' => 'custom_bottom_textareacode',
 			'type' => 'textarea_code'
 		) ); 
+		
+		$cmb->add_field( array(
+			'name' => 'Enable Portfolio Custom Post Type',
+			//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
+			'id'   => 'cpt_portfolio_checkbox',
+			'type' => 'checkbox',
+		) ); 
+		
+		$cmb->add_field( array(
+			'name' => 'Enable Staff Custom Post Type',
+			//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
+			'id'   => 'cpt_staff_checkbox',
+			'type' => 'checkbox',
+		) ); 
+		
+		$cmb->add_field( array(
+			'name' => 'Enable Testimonial Custom Post Type',
+			//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
+			'id'   => 'cpt_testimonial_checkbox',
+			'type' => 'checkbox',
+		) ); 
+		
+		$cmb->add_field( array(
+			'name' => 'Enable Logo Slider Custom Post Type',
+			//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
+			'id'   => 'cpt_logo_slider_checkbox',
+			'type' => 'checkbox',
+		) ); 
 
 	}  
 

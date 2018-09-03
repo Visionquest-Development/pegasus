@@ -1013,20 +1013,20 @@
 		
 		$cmb_demo2 = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox2',
-			'title'         => __( 'Pegasus Page Options', 'cmb2' ),
+			'title'         => __( 'Pegasus Page Options', 'pegasus-bootstrap' ),
 			'object_types'  => array( 'page', 'post', 'course_unit' ), // Post type
 		) );
 
 		$cmb_demo2->add_field( array(
-			'name' => __( 'Fullwidth Container Checkbox', 'cmb2' ),
-			'desc' => __( 'Check this box to make the page fullwidth, this shuold override the global fullwidth theme option.', 'cmb2' ),
+			'name' => __( 'Fullwidth Container Checkbox', 'pegasus-bootstrap' ),
+			'desc' => __( 'Check this box to make the page fullwidth, this shuold override the global fullwidth theme option.', 'pegasus-bootstrap' ),
 			'id'   => $prefix . '-page-container-checkbox',
 			'type' => 'checkbox',
 		) ); 	
 		
 		$cmb_demo2->add_field( array(
-			'name' => __( 'Disable Page Header', 'cmb2' ),
-			'desc' => __( 'Check this box to disable the Page Header.', 'cmb2' ),
+			'name' => __( 'Disable Page Header', 'pegasus-bootstrap' ),
+			'desc' => __( 'Check this box to disable the Page Header.', 'pegasus-bootstrap' ),
 			'id'   => $prefix . '-page-header-checkbox',
 			'type' => 'checkbox',
 		) ); 	
@@ -1037,28 +1037,28 @@
 		 */
 		$cmb_demo = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox',
-			'title'         => __( 'Additional Header Options', 'cmb2' ),
-			'object_types'  => array( 'page',  'course_unit', 'staff', 'reviews' ), // Post type
+			'title'         => __( 'Additional Header Options', 'pegasus-bootstrap' ),
+			'object_types'  => array( 'page',  'course_unit', 'staff', 'reviews' ), // Post type, might need to add more cpt's to this
 			
 		) );
 
 		$cmb_demo->add_field( array(
-			'name'             => __( 'Additional Header', 'cmb2' ),
-			'desc'             => __( 'This is used if you need additional header spacing. Select Header Type (no hdr, sml hdr, lrg hdr)', 'cmb2' ),
+			'name'             => __( 'Additional Header', 'pegasus-bootstrap' ),
+			'desc'             => __( 'This is used if you need additional header spacing. Select Header Type (no hdr, sml hdr, lrg hdr)', 'pegasus-bootstrap' ),
 			'id'               => $prefix . '_page_header_select',
 			'type'             => 'select',
 			'show_option_none' => false,
 			'default'          => 'no-header',
 			'options'          => array(
-				'no-header' => __( 'No Header - No Spacing', 'cmb2' ),
-				'space' => __( 'No Header - Just Spacing', 'cmb2' ),
-				'sml-header'   => __( 'Small Header - With Parallax', 'cmb2' ),
-				'lrg-header'     => __( 'Large Header - Full Width and Height', 'cmb2' ),
+				'no-header' => __( 'No Header - No Spacing', 'pegasus-bootstrap' ),
+				'space' => __( 'No Header - Just Spacing', 'pegasus-bootstrap' ),
+				'sml-header'   => __( 'Small Header - With Parallax', 'pegasus-bootstrap' ),
+				'lrg-header'     => __( 'Large Header - Full Width and Height', 'pegasus-bootstrap' ),
 			),
 		) );
 
 		$cmb_demo->add_field( array(
-			'name'    => __( 'Overlay color', 'cmb2-example-theme' ),
+			'name'    => __( 'Overlay color', 'pegasus-bootstrap' ),
 			//'desc' => '',
 			'id'      => $prefix . '_add_header_overlay_color',
 			'type'    => 'colorpicker',
@@ -1080,14 +1080,14 @@
 		) );
 
 		$cmb_demo->add_field( array(
-			'name' => __( 'Disable Parallax', 'cmb2-example-theme' ),
+			'name' => __( 'Disable Parallax', 'pegasus-bootstrap' ),
 			'desc' => 'Check this box if you want to disable parallax effect.',
 			'id'   => $prefix . '_add_header_disable_parralax_chk',
 			'type' => 'checkbox',
 		) );
 
 		$cmb_demo->add_field( array(
-			'name'             => __( 'Image Repeat', 'cmb2-example-theme' ),
+			'name'             => __( 'Image Repeat', 'pegasus-bootstrap' ),
 			'desc'             => '<strong>Choose between:
 										   1.) No Repeat
 										   2.) Repeat
@@ -1110,7 +1110,7 @@
 			),
 		) );
 		$cmb_demo->add_field( array(
-			'name'             => __( 'Image Position', 'cmb2-example-theme' ),
+			'name'             => __( 'Image Position', 'pegasus-bootstrap' ),
 			'desc'             => '<strong>Choose between:
 										   1.) Center Center
 										   2.) Top Left
@@ -1137,7 +1137,7 @@
 			),
 		) );
 		$cmb_demo->add_field( array(
-			'name'             => __( 'Image Size', 'cmb2-example-theme' ),
+			'name'             => __( 'Image Size', 'pegasus-bootstrap' ),
 			'desc'             => '<strong>Choose between:
 									   1.) None
 									   2.) Cover
@@ -1156,7 +1156,7 @@
 		) );
 
 		$cmb_demo->add_field( array(
-			'name' => __( 'Background Attachment Fixed', 'cmb2-example-theme' ),
+			'name' => __( 'Background Attachment Fixed', 'pegasus-bootstrap' ),
 			'desc' => 'Check this box if you want the background image to be fixed / parallax effect.',
 			'id'   => $prefix . '_add_header_bkg_img_fixed_chk',
 			'type' => 'checkbox',
@@ -1172,7 +1172,7 @@
 		) );
 
 		$cmb_demo->add_field( array(
-			'name'    => __( 'Header Content color', 'cmb2-example-theme' ),
+			'name'    => __( 'Header Content color', 'pegasus-bootstrap' ),
 			//'desc' => '',
 			'id'      => $prefix . '_page_header_wysiwyg_color',
 			'type'    => 'rgba_colorpicker',
@@ -1180,6 +1180,355 @@
 		) );
 	}
 
+	
+	
+
+	/* ===============================================================================================
+	============================ CUSTOM POST TYPE  ==================================================
+	================================================================================================*/
+	add_action( 'init', 'octane_cpt_init' );
+	function octane_cpt_init() {
+		
+		$cpt_portfolio = ( 'on' === pegasus_get_option( 'cpt_portfolio_checkbox' ) ) ? true : false;
+		if ( true === $cpt_portfolio ) {
+			/*============================
+			======= Portfolio Post Type ========
+			============================*/
+			
+			$portfolio_labels = array(
+				'name' => _x('Portfolios', 'post type general name', 'pegasus-bootstrap'),
+				'singular_name' => _x('Portfolio', 'post type singular name', 'pegasus-bootstrap'),
+				'add_new' => _x('Add New', 'portfolio', 'pegasus-bootstrap'),
+				'add_new_item' => __('Add New Portfolio', 'pegasus-bootstrap'),
+				'edit_item' => __('Edit Portfolio', 'pegasus-bootstrap'),
+				'new_item' => __('New Portfolio', 'pegasus-bootstrap'),
+				'view_item' => __('View Portfolio', 'pegasus-bootstrap'),
+				'search_items' => __('Search Portfolio', 'pegasus-bootstrap'),
+				'not_found' =>  __('No portfolio found', 'pegasus-bootstrap'),
+				'not_found_in_trash' => __('No portfolio found in Trash', 'pegasus-bootstrap'),
+				'parent_item_colon' => '',
+				'menu_name' => 'Portfolio'
+			);
+			   
+			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
+			$portfolio_args = array(
+				'labels' => $portfolio_labels,
+				'public' => true,
+				'publicly_queryable' => true,
+				'show_ui' => true,
+				'show_in_menu' => true,
+				'query_var' => true,
+				'rewrite' => true,
+				/* this is important to make it so that page-portfolio.php will show when used */
+				'capability_type' => 'post',
+				'can_export' => true,
+				 /* make sure has_archive is turned off if you plan on using page-portfolio.php */
+				'has_archive' => false,
+				'hierarchical' => true,
+				'menu_position' => null,
+				/* include this line to use global categories */
+				//'taxonomies' => array('category'),
+				'supports' => array('title','editor','author','thumbnail','excerpt','comments','custom-fields','page-attributes')
+			);
+
+			// We call this function to register the custom post type
+			register_post_type( 'portfolio', $portfolio_args);
+			
+			/*============================
+			======= Portfolio Taxonomy ========
+			============================*/
+			
+			
+			// Initialize Taxonomy Labels
+			$tags_labels = array(
+				'name' => _x( 'Tags', 'taxonomy general name', 'pegasus-bootstrap' ),
+				'singular_name' => _x( 'Tag', 'taxonomy singular name' , 'pegasus-bootstrap'),
+				'search_items' =>  __( 'Search Types' , 'pegasus-bootstrap'),
+				'all_items' => __( 'All Tags' , 'pegasus-bootstrap'),
+				'parent_item' => __( 'Parent Tags', 'pegasus-bootstrap' ),
+				'parent_item_colon' => __( 'Parent Tags:' , 'pegasus-bootstrap'),
+				'edit_item' => __( 'Edit Tags', 'pegasus-bootstrap' ),
+				'update_item' => __( 'Update Tags' , 'pegasus-bootstrap'),
+				'add_new_item' => __( 'Add New Tags', 'pegasus-bootstrap' ),
+				'new_item_name' => __( 'New Tags Name' , 'pegasus-bootstrap'),
+			);
+			
+			$cats_labels = array(
+				'name' => _x( 'Categories', 'taxonomy general name', 'pegasus-bootstrap' ),
+				'singular_name' => _x( 'Cat', 'taxonomy singular name' , 'pegasus-bootstrap'),
+				'search_items' =>  __( 'Search Types' , 'pegasus-bootstrap'),
+				'all_items' => __( 'All Cats' , 'pegasus-bootstrap'),
+				'parent_item' => __( 'Parent Cats', 'pegasus-bootstrap' ),
+				'parent_item_colon' => __( 'Parent Cats:' , 'pegasus-bootstrap'),
+				'edit_item' => __( 'Edit Cats', 'pegasus-bootstrap' ),
+				'update_item' => __( 'Update Cats' , 'pegasus-bootstrap'),
+				'add_new_item' => __( 'Add New Cats', 'pegasus-bootstrap' ),
+				'new_item_name' => __( 'New Cats Name' , 'pegasus-bootstrap'),
+			);
+			
+			// Register Custom Taxonomy - Tags
+			register_taxonomy('tagportfolio',array('portfolio'), array(
+				'hierarchical' => false, // define whether to use a system like tags or categories
+				'labels' => $tags_labels,
+				'show_ui' => true,
+				'show_admin_column'     => true,
+				'query_var' => true,
+				'rewrite' => array( 'slug' => 'tag-portfolio' ),
+			));
+			
+			// Register Custom Taxonomy - Category
+			register_taxonomy('catportfolio',array('portfolio'), array(
+				'hierarchical' => true, // define whether to use a system like tags or categories
+				'labels' => $cats_labels,
+				'show_ui' => true,
+				'show_admin_column'     => true,
+				'query_var' => true,
+				'rewrite' => array( 'slug' => 'cat-portfolio' ),
+			));
+		}
+		
+		$cpt_staff = ( 'on' === pegasus_get_option( 'cpt_staff_checkbox' ) ) ? true : false;
+		if ( true === $cpt_staff ) {
+			/*============================
+			========= Staff Post Type ========
+			============================*/
+			
+			$staff_labels = array(
+				'name' => _x('Staff', 'post type general name', 'pegasus-bootstrap'),
+				'singular_name' => _x('Staff', 'post type singular name', 'pegasus-bootstrap'),
+				'add_new' => _x('Add New', 'staff', 'pegasus-bootstrap'),
+				'add_new_item' => __('Add New Staff', 'pegasus-bootstrap'),
+				'edit_item' => __('Edit Staff', 'pegasus-bootstrap'),
+				'new_item' => __('New Staff', 'pegasus-bootstrap'),
+				'view_item' => __('View Staff', 'pegasus-bootstrap'),
+				'search_items' => __('Search Staff', 'pegasus-bootstrap'),
+				'not_found' =>  __('No staff found', 'pegasus-bootstrap'),
+				'not_found_in_trash' => __('No staff found in Trash', 'pegasus-bootstrap'),
+				'parent_item_colon' => '',
+				'menu_name' => 'Staff'
+			);
+			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
+			$staff_args = array(
+				'labels' => $staff_labels,
+				'public' => true,
+				'publicly_queryable' => true,
+				'show_ui' => true,
+				'show_in_menu' => true,
+				'query_var' => true,
+				'rewrite' => true,
+				/* this is important to make it so that page-portfolio.php will show when used */
+				'capability_type' => 'post',
+				'can_export' => true,
+				 /* make sure has_archive is turned off if you plan on using page-portfolio.php */
+				'has_archive' => false,
+				'hierarchical' => false,
+				'menu_position' => null,
+				/* include this line to use global categories */
+				//'taxonomies' => array('category'),
+				'supports' => array('title','editor','author','thumbnail','excerpt','comments','custom-fields','page-attributes')
+			);
+
+			// We call this function to register the custom post type
+			register_post_type( 'staff', $staff_args);
+			
+			// Register Custom Taxonomy - Categories
+			register_taxonomy('department',array('staff'), array(
+				'hierarchical' => true, // define whether to use a system like tags or categories
+				'labels' => $cats_labels,
+				'show_ui' => true,
+				'show_admin_column'     => true,
+				'query_var' => true,
+				'rewrite' => array( 'slug' => 'department' ),
+			));
+		}
+		
+		$cpt_testimonial = ( 'on' === pegasus_get_option( 'cpt_testimonial_checkbox' ) ) ? true : false;
+		if ( true === $cpt_testimonial ) {
+			/*================================
+			========Testimonial Post Type ========
+			================================*/
+
+			$review_labels = array(
+				'name' => _x('Testimonials', 'post type general name', 'pegasus-bootstrap'),
+				'singular_name' => _x('Testimonials', 'post type singular name', 'pegasus-bootstrap'),
+				'add_new' => _x('Add New', 'testimonial', 'pegasus-bootstrap'),
+				'add_new_item' => __('Add New Testimonials', 'pegasus-bootstrap'),
+				'edit_item' => __('Edit Testimonial', 'pegasus-bootstrap'),
+				'new_item' => __('New Testimonial', 'pegasus-bootstrap'),
+				'view_item' => __('View Testimonials', 'pegasus-bootstrap'),
+				'search_items' => __('Search Testimonials', 'pegasus-bootstrap'),
+				'not_found' =>  __('No testimonial found', 'pegasus-bootstrap'),
+				'not_found_in_trash' => __('No testimonial found in Trash', 'pegasus-bootstrap'),
+				'parent_item_colon' => '',
+				'menu_name' => 'Testimonial'
+			);
+			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
+			$review_args = array(
+				'labels' => $review_labels,
+				'public' => true,
+				'publicly_queryable' => true,
+				'show_ui' => true,
+				'show_in_menu' => true,
+				'query_var' => true,
+				'rewrite' => true,
+				/* this is important to make it so that page-portfolio.php will show when used */
+				'capability_type' => 'post',
+				'can_export' => true,
+				 /* make sure has_archive is turned off if you plan on using page-portfolio.php */
+				'has_archive' => false,
+				'hierarchical' => false,
+				'menu_position' => null,
+				/* include this line to use global categories */
+				//'taxonomies' => array('category'),
+				'supports' => array('title','editor','author','thumbnail','excerpt','comments','custom-fields','page-attributes')
+			);
+
+			// We call this function to register the custom post type
+			register_post_type( 'testimonial', $review_args);
+		}
+		
+		$cpt_logo_slider = ( 'on' === pegasus_get_option( 'cpt_logo_slider_checkbox' ) ) ? true : false;
+		if ( true === $cpt_logo_slider ) {
+			/*============================
+			======= Logo Slider Post Type ========
+			============================*/
+			
+			$logo_slider_labels = array(
+				'name' => _x('Logos', 'logo slider general name', 'pegasus-bootstrap'),
+				'singular_name' => _x('Logo', 'logo slider singular name', 'pegasus-bootstrap'),
+				'add_new' => _x('Add New', 'logo', 'pegasus-bootstrap'),
+				'add_new_item' => __('Add New Logo', 'pegasus-bootstrap'),
+				'edit_item' => __('Edit Logo', 'pegasus-bootstrap'),
+				'new_item' => __('New Logo', 'pegasus-bootstrap'),
+				'view_item' => __('View Logo', 'pegasus-bootstrap'),
+				'search_items' => __('Search Logo', 'pegasus-bootstrap'),
+				'not_found' =>  __('No logo found', 'pegasus-bootstrap'),
+				'not_found_in_trash' => __('No logo found in Trash', 'pegasus-bootstrap'),
+				'parent_item_colon' => '',
+				'menu_name' => 'Logo Slider'
+			);
+			   
+			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
+			$logo_slider_args = array(
+				'labels' => $logo_slider_labels,
+				'public' => true,
+				'publicly_queryable' => true,
+				'show_ui' => true,
+				'show_in_menu' => true,
+				'query_var' => true,
+				'rewrite' => true,
+				/* this is important to make it so that page-portfolio.php will show when used */
+				'capability_type' => 'post',
+				'can_export' => true,
+				 /* make sure has_archive is turned off if you plan on using page-portfolio.php */
+				'has_archive' => false,
+				'hierarchical' => true,
+				'menu_position' => null,
+				/* include this line to use global categories */
+				//'taxonomies' => array('category'),
+				'supports' => array('title','editor','author','thumbnail','excerpt','comments','custom-fields','page-attributes')
+			);
+
+			// We call this function to register the custom post type
+			register_post_type( 'logo_slider', $logo_slider_args);
+			
+			remove_post_type_support( 'logo_slider', 'editor');
+			
+			add_action( 'cmb2_admin_init', 'pegasus_logo_slider_metabox' );
+			
+			function pegasus_logo_slider_metabox() {
+				$logo_slider_metabox = new_cmb2_box(
+					array(
+						'id'           => 'pegasus_logo_slider_content',
+						'title'        => __( 'Logo Slider Content', 'pegasus-bootstrap' ),
+						'object_types' => array( 'logo_slider' ),
+						'priority'     => 'high',
+					)
+				);
+
+				
+
+				$group_field_id = $logo_slider_metabox->add_field(
+					array(
+						'id'         => 'links',
+						'type'       => 'group',
+						'repeatable' => true,
+						'options'    => array(
+							'group_title'   => 'Link #{#}',
+							'add_button'    => 'Add Another Link',
+							'remove_button' => 'Remove Link',
+							'sortable'      => true,
+							'closed'        => true, // true to have the groups closed by default
+						),
+						
+					)
+				);
+
+				$link_field_id = $logo_slider_metabox->add_group_field(
+					$group_field_id, array(
+						'name'             => 'Link',
+						'id'               => 'link',
+						'type'             => 'text',
+						'allowed_types'    => array( 'any' ),
+						'allow_custom_url' => true,
+						'attributes'       => array(
+							
+						),
+					)
+				);
+				
+
+				$link_title_field_id = $logo_slider_metabox->add_group_field(
+					$group_field_id, array(
+						'name'              => 'Link Title',
+						'id'                => 'link_title',
+						'type'              => 'text',
+						
+					)
+				);
+
+				$link_description_field_id = $logo_slider_metabox->add_group_field(
+					$group_field_id, array(
+						'name'       => 'Link Descriptor Text',
+						'id'         => 'link_description',
+						'type'       => 'text',
+						'attributes' => array(
+							'data-tooltip' => 'LinkDescHelp',
+						),
+					)
+				);
+
+
+				$link_file_details_id = $logo_slider_metabox->add_group_field(
+					$group_field_id, array(
+						'name' => 'File Details',
+						'id'   => 'file_details',
+						'type' => 'text',
+					)
+				);
+			
+			} //end logo slider cmb2 function
+		}
+		
+
+	}
+
+	function pegasus_rewrite_flush() {
+		flush_rewrite_rules();
+	}
+	add_action( 'after_switch_theme', 'pegasus_rewrite_flush' );
+
+	/* fixes permalinks for custom post types */
+	add_action('init', 'pegasus_rewrite');
+	function pegasus_rewrite() {
+		global $wp_rewrite;
+		$wp_rewrite->add_permastruct('typename', 'typename/%year%/%postname%/', true, 1);
+		add_rewrite_rule('typename/([0-9]{4})/(.+)/?$', 'index.php?typename=$matches[2]', 'top');
+		$wp_rewrite->flush_rules(); // !!!
+	}
+
+
+	
 
 	// Bootstrap 4 Content Options
 	function bootstrap4_content_options($options) {
