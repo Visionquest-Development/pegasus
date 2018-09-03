@@ -58,38 +58,41 @@ if ( post_password_required() ) {
 			<p>You must be <a href="<?php echo wp_login_url( get_permalink() ); ?>">logged in</a> to post a comment.</p>
 		<?php else : ?>
 			<form action="<?php echo get_option( 'siteurl' ); ?>/wp-comments-post.php" method="post" id="commentform">
+				<?php
+					$commenter = wp_get_current_commenter();
+					$user = wp_get_current_user();
+					$user_identity = $user->exists() ? $user->display_name : '';
+				?>
 				<?php if ( is_user_logged_in() ) : ?>
 					<p>Logged in as <a href="<?php echo get_option( 'siteurl' ); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>.
 						<a href="<?php echo wp_logout_url( get_permalink() ); ?>" title="Log out of this account">Log out &raquo;</a></p>
 				<?php else : ?>
 					<?php
-					if ( $req ) {
-						$req_final = "aria-required='true'";
-					} else {
-						$req_final = '';
-					}
+						if ( $req ) {
+							$req_final = "aria-required='true'";
+						} else {
+							$req_final = '';
+						}
 					?>
 
 					<p>
-						<input type="text" name="author" id="author" value="<?php echo esc_attr( $comment_author ); ?>" size="22" tabindex="1" <?php echo $req_final; ?> />
+						<input type="text" name="author" id="author" value="<?php echo esc_attr( $commenter['comment_author'] ); ?>" size="22" tabindex="1" <?php echo $req_final; ?> />
 						<label for="author">
 							<small>Name <?php echo $req_final; ?></small>
 						</label>
 					</p>
 					<p>
-						<input type="text" name="email" id="email" value="<?php echo esc_attr( $comment_author_email ); ?>" size="22" tabindex="2" <?php echo $req_final; ?> />
+						<input type="text" name="email" id="email" value="<?php echo esc_attr( $commenter['comment_author_email'] ); ?>" size="22" tabindex="2" <?php echo $req_final; ?> />
 						<label for="email">
 							<small>Mail (will not be published) <?php echo $req_final; ?></small>
 						</label>
 					</p>
 					<p>
-						<input type="text" name="url" id="url" value="<?php echo esc_attr( $comment_author_url ); ?>" size="22" tabindex="3"/>
+						<input type="text" name="url" id="url" value="<?php echo esc_attr( $commenter['comment_author_url'] ); ?>" size="22" tabindex="3"/>
 						<label for="url">
 							<small>Website</small>
 						</label>
 					</p>
-
-					<?php //comment_form(); ?>
 
 				<?php endif; ?>
 				<!--<p><small><strong>XHTML:</strong> You can use these tags: <code><?php //echo allowed_tags(); ?></code></small></p>-->
@@ -99,6 +102,8 @@ if ( post_password_required() ) {
 				</p>
 				<?php do_action( 'comment_form', $post->ID ); ?>
 			</form>
+
+			<?php //comment_form(); ?>
 		<?php endif; // If registration required and not logged in ?>
 	</div>
 <?php endif; // if you delete this the sky will fall on your head ?>

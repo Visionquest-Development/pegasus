@@ -46,15 +46,40 @@
 		<a class="user-menu " href="#" ><?php echo $user_menu_logged_in_out; ?></a>
 		<ul class="sub-menu">
 			<li class="menu-item">
-				<?php if ( true === $logged_in_check ) : ?>
-					<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>"><?php _e('My Account','woothemes'); ?></a>
-				<?php elseif( false === $logged_in_check ) : ?>
-					<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','woothemes'); ?>"><?php _e('Login / Register','woothemes'); ?></a>
-				<?php endif; ?>
+				<?php
+					if ( is_user_logged_in() ) {
+						$current_user = wp_get_current_user();
+
+						if ( $current_user->user_firstname || $current_user->user_lastname || $current_user->user_nicename || $current_user->display_name ) {
+							if ( '' !== $current_user->user_firstname || '' !== $current_user->user_lastname ) {
+								$final_name = $current_user->user_firstname;
+							} else if ( '' !== $current_user->display_name ) {
+								$final_name = $current_user->display_name;
+							} else {
+								$final_name = $current_user->user_nicename;
+							}
+							$first_and_last_name = $current_user->user_firstname . ' ' . $current_user->user_lastname;
+							$final_last_name = ( '' !== $current_user->user_lastname ) ? ' ' . $current_user->user_lastname : '';
+						}
+
+						$temporary_name = substr( $final_name, 0, 25 );
+						if( '' != $temporary_name ) {
+							?>
+							<a class="nav-link" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>">Hi, <?php echo $temporary_name . $final_last_name; ?>!</a>
+							<?php
+						}
+					}else{ ?>
+						<a class="nav-link" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','woothemes'); ?>"><?php _e('Login / Register','woothemes'); ?></a>
+
+					<?php }
+				?>
 			</li>
 			<?php
 				echo $user_fallback_menu;
 			?>
+			<li class="menu-item">
+				<a class="nav-link" href="<?php echo esc_url( home_url( '/' ) ); ?>wp-login.php?action=logout">Log Out <i class="fa fa-sign-out"></i></a>
+			</li>
 		</ul>
 	 </li><?php endif; ?>
 
