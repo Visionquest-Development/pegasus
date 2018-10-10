@@ -50,9 +50,15 @@
 		$home_url = esc_url( home_url( '/' ) ) ? esc_url( home_url( '/' ) ) : '#';
 		$fallback_menu = '<ul id="" class="navbar-nav"><li class="nav-item active current-menu-item"><a class="nav-link" href="' . $home_url . '">Home <span class="sr-only">(current)</span></a></li></ul>';
 		$final_menu = pegasus_get_menu( 'primary', 'navbar-nav primary-navigation-bar', 3, $fallback_menu );
+
+		$logo = pegasus_get_option( 'logo' );
+		$centerLogo = ( 'on' === pegasus_get_option( 'logo_centered' ) ) ? 'center' : '';
+		$nav_menu_justify_check = ( 'on' === pegasus_get_option( 'nav_justify' ) ) ? 'justify-content-md-center' : '';
 		$moremenuchk = pegasus_get_option( 'header_more_chk' );
 		$woo_check =  pegasus_get_option( 'woo_chk' );
+		$nav_social_check =  pegasus_get_option( 'nav_social_chk' );
 		$top_social_check = pegasus_get_option( 'top_social_chk' );
+
 	?>
 	<body <?php body_class(); ?>>
 
@@ -104,14 +110,14 @@
 						<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) & 'container' !== $header_container_check ) : ?>
 						<div class="<?php echo $final_inner_container_class; ?>">
 							<?php endif; ?>
-							<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+							<a class="navbar-brand <?php echo $centerLogo; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 								<?php bloginfo( 'name' ); ?>
 							</a>
 							<!-- Brand and toggle get grouped for better mobile display -->
 							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1"  aria-label="Toggle navigation">
 								<span class="navbar-toggler-icon"></span>
 							</button>
-							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="bs-example-navbar-collapse-1">
 								<?php
 								echo $final_menu;
 

@@ -471,6 +471,12 @@ class Pegasus_Admin {
 			'type' => 'checkbox',
 		) );
 		$cmb->add_field( array(
+			'name' => 'Justify Nav Menu',
+			'desc' => 'Check this box to make the links in the navigation centered.',
+			'id'   => 'nav_justify',
+			'type' => 'checkbox',
+		) );
+		$cmb->add_field( array(
 			'name' => 'Header Outer Container',
 			'desc' => 'Check this box to make the header wrapped with a container.',
 			'id'   => 'header_container',
