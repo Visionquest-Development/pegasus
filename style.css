@@ -104,6 +104,10 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	.sidebar{ padding: 20px 0; }
     .sidebar .widget { margin-bottom: 10px; }
 	.sidebar .inner-sidebar-container { padding: 20px 0; }
+    .sidebar .widget .card,
+    .sidebar .widget .card .list-group-item {
+        background: transparent;
+    }
 	@media only screen and (max-width: 991px) {
 		.sidebar{ padding: 20px 0 0; }
 		.sidebar .inner-sidebar-container { padding: 20px 0; }
@@ -557,6 +561,12 @@ Use it to make something cool, have fun, and share what you've learned with othe
     ~~~~~~~~ FOOTER ~~~~~~~
     ~~~~~~~~~~~~~~~~~~~~~*/
     .pegasus-footer { position: relative; clear: both; overflow: hidden; }
+    .pegasus-footer #footer-widgets .footer-widget-area .card { margin-bottom: 1rem; }
+    .pegasus-footer #footer-widgets .footer-widget-area .card,
+    .pegasus-footer #footer-widgets .footer-widget-area .card .list-group-item {
+        background: transparent;
+    }
+
     .pegasus-footer hr { margin: 0; }
     #footer-widgets { padding: 20px 0; }
 	/*.footer-widget-area { float: left; padding: 0 10px; }*/
