@@ -5,17 +5,17 @@
 	if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 	}
-	
+
 	/**
 	 * Plugin requirements (TGMPA) & Bootstrap CMB2
 	 */
 	require_once 'inc/class-tgm-plugin-activation.php';
-	
+
 	/**
 	 * Bootstrap CMB2
 	 */
 	require_once 'inc/cmb2/init.php';
-	
+
 	/**
 	 * Load the CMB2 powered theme options page
 	 */
@@ -112,7 +112,7 @@
 				'required'  => false,
 			),
 
-			// This is an example of how to include a plugin from an arbitrary external source in your theme. THIS WILL BE USED FOR OCTANE BOOSTER
+			// This is an example of how to include a plugin from an arbitrary external source in your theme. THIS WILL BE USED FOR BOOSTER PLUGIN
 			/*array(
 				'name'         => 'TGM New Media Plugin', // The plugin name.
 				'slug'         => 'tgm-new-media-plugin', // The plugin slug (typically the folder name).
@@ -120,11 +120,11 @@
 				'required'     => true, // If false, the plugin is only 'recommended' instead of required.
 				'external_url' => 'https://github.com/thomasgriffin/New-Media-Image-Uploader', // If set, overrides default API URL and points to an external URL.
 			),*/
-			
+
 
 		);
 
-		
+
 		$config = array(
 			'id'           => 'pegasus-bootstrap',                 // Unique ID for hashing notices for multiple instances of TGMPA.
 			'default_path' => '',                      // Default absolute path to bundled plugins.
@@ -199,8 +199,8 @@
 							'name'          => __( 'Mega Menu %d', 'pegasus-bootstrap' ),
 							'id'            => 'mega-menu',
 							'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
-							'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-							'after_widget'  => '</aside>',
+							'before_widget' => '<div id="%1$s" class="widget %2$s">',
+							'after_widget'  => '</div>',
 							'before_title'  => '<h2 class="widget-title">',
 							'after_title'   => '</h2>',
 						) );
@@ -218,8 +218,8 @@
 							'name'          => __( 'Mega Menu %d', 'pegasus-bootstrap' ),
 							'id'            => 'mega-menu',
 							'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
-							'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-							'after_widget'  => '</aside>',
+							'before_widget' => '<div id="%1$s" class="widget %2$s">',
+							'after_widget'  => '</div>',
 							'before_title'  => '<h2 class="widget-title">',
 							'after_title'   => '</h2>',
 						) );
@@ -238,8 +238,8 @@
 							'name'          => __( 'Mega Menu %d', 'pegasus-bootstrap' ),
 							'id'            => 'mega-menu',
 							'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
-							'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-							'after_widget'  => '</aside>',
+							'before_widget' => '<div id="%1$s" class="widget %2$s">',
+							'after_widget'  => '</div>',
 							'before_title'  => '<h2 class="widget-title">',
 							'after_title'   => '</h2>',
 						) );
@@ -256,8 +256,8 @@
 				'name'          => __( 'Sidebar', 'pegasus-theme' ),
 				'id'            => 'sidebar-right',
 				'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
-				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</aside>',
+				'before_widget' => '<div id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</div>',
 				'before_title'  => '<h3 class="widget-title">',
 				'after_title'   => '</h3>',
 			) );
@@ -268,8 +268,8 @@
 					'name'          => __( 'Sidebar Left', 'pegasus-theme' ),
 					'id'            => 'sidebar-left',
 					'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
-					'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-					'after_widget'  => '</aside>',
+					'before_widget' => '<div id="%1$s" class="widget %2$s">',
+					'after_widget'  => '</div>',
 					'before_title'  => '<h3 class="widget-title">',
 					'after_title'   => '</h3>',
 				) );
@@ -325,17 +325,17 @@
 					'name'          => __( 'Footer %d', 'pegasus-bootstrap' ),
 					'id'            => 'footer',
 					'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
-					'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-					'after_widget'  => '</aside>',
+					'before_widget' => '<div id="%1$s" class="widget %2$s">',
+					'after_widget'  => '</div>',
 					'before_title'  => '<h2 class="widget-title">',
 					'after_title'   => '</h2>',
 				) );
 			}
-		
+
 		}
 	endif;
 	add_action( 'after_setup_theme', 'pegasus_theme_setup' );
-	
+
 
 
 	/* remove admin bar for all users when logged in */
@@ -488,11 +488,11 @@
 			/* color within body */
 			#page-wrap { color: <?php echo $content_color; ?>; }
 
-			
-			<?php 
+
+			<?php
 				/* ==================
 					boxed layout
-				===================*/ 
+				===================*/
 
 				if($boxedornot === 'on') {
 			?>
@@ -504,11 +504,11 @@
 				}
 
 
-				
+
 				@media only screen and ( min-width: 981px ) {
 					#wrapper { max-width: 1200px; margin: 0 auto; }
 				}
-				
+
 				@media only screen and ( max-width: 1200px ) {
 					#wrapper { margin: 0 20px; }
 				}
@@ -516,14 +516,14 @@
 			<?php
 				}
 			?>
-			
+
 			<?php /*===== Top bar =====*/ ?>
 			#top-bar {	background-color: <?php echo $top_bar_bkg_color; ?>; }
 			#top-bar a, #top-bar .text { color: <?php echo $top_bar_content_color; ?>; }
-			
+
 			<?php /*===== Header =====*/ ?>
 			#header { background: <?php echo $header_bkg_color; ?>; }
-			
+
 			<?php /*===== the navs =====*/ ?>
 			.the-default-nav,
 			.the-default-second-nav,
@@ -533,10 +533,10 @@
 
 			.the-default-fourth-nav { border-bottom: 5px solid <?php echo $mobile_color; ?> !important; }
 
-			<?php 
+			<?php
 				/* ==================
 					second header
-				===================*/ 
+				===================*/
 
 				if( $header_choice === 'header-two' ) {
 			?>
@@ -544,8 +544,8 @@
 			<?php
 				}
 
-			/*===== 
-				Nav Item Color Bkg/Txt color 
+			/*=====
+				Nav Item Color Bkg/Txt color
 			=====*/ ?>
 			.navbar-light .dropdown-menu li a,
 			.navbar-light .dropdown-menu a,
@@ -606,7 +606,7 @@
 
 			<?php /*===== submenu nav bkg color  =====*/ ?>
 			.the-nav-cart .sub-menu { background: <?php echo $sub_nav_bg_color; ?>; }
-			
+
 			<?php /*===== current menu item color =====*/ ?>
 			.current-menu-item > a
 			{  color: <?php echo $current_item_color; ?> !important; }
@@ -620,7 +620,7 @@
 			.default-skin .nav .open>a:hover,
 			#header .navi-btn a i,
 			{ background: <?php echo $mobile_color; ?>; }
-			.mobile-menu-close .fa-times-circle:before { color: <?php echo $mobile_color; ?>; } 
+			.mobile-menu-close .fa-times-circle:before { color: <?php echo $mobile_color; ?>; }
 			.navbar-toggle { border: 1px solid <?php echo $mobile_color; ?> !important; }
 
 			.navbar-toggler-icon {
@@ -667,18 +667,18 @@
 
 			<?php /*===== header three mobile color =====*/ ?>
 			#mobile-menu-wrap { background: <?php echo $header_three_mobile_color; ?>; }
-			
+
 			<?php /*===== header three and four stuff =====*/ ?>
 			.align-right .navbar-nav { text-align: <?php if($header_three_menu_position == "on") { echo 'right'; }else{ echo 'left'; } ?> !important; }
 			.default-skin.header.on { background: <?php echo $header_three_scroll_bg_color; ?>; }
 			.default-skin.header.on .navbar-default .navbar-nav>.open>a, .default-skin.header.on .navbar-default .navbar-nav>.open>a:hover, .default-skin.header.on .navbar-default .navbar-nav>li>a, .default-skin.header.on li.dropdown.open a span, .navbar-default .navbar-nav>.open>a:focus { color: <?php echo $header_three_scroll_item_color; ?>; }
-			
+
 			<?php /*===== footer =====*/ ?>
 			footer { background: <?php echo $footer_bkg_color; ?>; }
 			.colophon-container { background: <?php echo $bottom_footer_bkg_color; ?>; }
-			
+
 			<?php echo $custom_css; ?>
-			
+
 		<?php
 		wp_add_inline_style( 'pegasus', ob_get_clean() );
 	}
@@ -696,17 +696,17 @@
 		echo '</ol>';
 	}
 	*/
-	
+
 	//add_filter( 'show_admin_bar', '__return_false' );
-	
-	
+
+
 	//REMOVE WPADMIN BAR CSS FROM INLIINE CSS
 	add_action('get_header', 'remove_admin_login_header');
 	function remove_admin_login_header() {
 		remove_action('wp_head', '_admin_bar_bump_cb');
 	}
-	
-	
+
+
 	function pegasus_admin_scripts() {
 		wp_enqueue_style('admin-styles', get_template_directory_uri().'/admin/admin.css');
 		wp_enqueue_script( 'admin-js', get_template_directory_uri() . '/admin/admin.js', array( 'jquery', 'inline-edit-post' ), '', true );
@@ -715,11 +715,11 @@
 		//wp_enqueue_script('cmb2-conditionals-for-admin', plugins_url('/cmb2-conditionals.js', '/cmb2-conditionals/cmb2-conditionals.js'), array('jquery'), '', true);
 
 		//wp_enqueue_style('pegasus-styles', get_template_directory_uri() . 'style.css');
-		
+
 	}
 	add_action('admin_enqueue_scripts', 'pegasus_admin_scripts');
-	
-		
+
+
 	/**
 	* Proper way to enqueue JS and IE fixes as of Mar 2015
 	*/
@@ -737,7 +737,7 @@
 		/* get this ready to actually be added */
 
 		wp_enqueue_script( 'pegasus_custom_js', get_template_directory_uri() . '/js/pegasus-custom.js', array(), '', true );
-		
+
 		$header_choice = pegasus_get_option( 'header_select' );
 		$moremenuchk = pegasus_get_option( 'header_more_chk' );
 
@@ -770,26 +770,26 @@
 				break;
 			case "header-three":
 				wp_enqueue_script( 'header_three_js', get_template_directory_uri() . '/js/header-three.js', array(), '', true );
-				wp_enqueue_style( 'header_three_style', get_template_directory_uri() . '/css/header-three.css' );	
-				
+				wp_enqueue_style( 'header_three_style', get_template_directory_uri() . '/css/header-three.css' );
+
 				break;
 			case "header-four":
 				wp_enqueue_script( 'header_four_js', get_template_directory_uri() . '/js/header-four.js', array(), '', true );
-				wp_enqueue_style( 'header_four_style', get_template_directory_uri() . '/css/header-four.css' );	
-				
+				wp_enqueue_style( 'header_four_style', get_template_directory_uri() . '/css/header-four.css' );
+
 				break;
 			case "header-five":
 				wp_enqueue_script( 'header_five_js', get_template_directory_uri() . '/js/header-five.js', array(), '', true );
-				wp_enqueue_style( 'header_five_style', get_template_directory_uri() . '/css/header-five.css' );	
-				
+				wp_enqueue_style( 'header_five_style', get_template_directory_uri() . '/css/header-five.css' );
+
 				break;
 			default:
-				
+
 		}
-		
+
 	} //end function
 	add_action( 'wp_enqueue_scripts', 'pegasus_scripts' );
-	
+
 	$fixed_header_choice = pegasus_get_option( 'header_fixed_checkbox' );
 	if( 'on' === $fixed_header_choice ) {
 		add_filter( 'body_class', function( $classes ) {
@@ -802,20 +802,20 @@
 	function fixed_header_js_in_footer() {
 		add_action( 'print_footer_scripts', 'fixed_header_js' );
 	}
-	 
+
 	//* Add JavaScript before </body>
 	function fixed_header_js() { ?>
 		<script type="text/javascript">
-			
+
 
 
 		</script>
 	<?php } */
 
-	
-	$moremenuchk =  pegasus_get_option( 'header_more_chk' ); 
+
+	$moremenuchk =  pegasus_get_option( 'header_more_chk' );
 	if($moremenuchk === 'on') {
-		
+
 		$header_choice =  pegasus_get_option( 'header_select' );
 		if( $header_choice === 'header-three' || $header_choice === 'header-four' ){
 			add_filter('wp_nav_menu_items','add_header_three_link_to_menu', 10, 2);
@@ -828,25 +828,25 @@
 			}
 		}
 	}
-	
+
 	/*=======================
-	 SHOW THE EXCERPT 
+	 SHOW THE EXCERPT
 	 ========================*/
 	function my_custom_init() {
 		add_post_type_support( 'page', 'excerpt' );
 	}
 	add_action('init', 'my_custom_init');
-	
+
 	function mytheme_enqueue_comment_reply() {
 		// on single blog post pages with comments open and threaded comments
-		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) { 
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			// enqueue the javascript that performs in-link comment reply fanciness
-			wp_enqueue_script( 'comment-reply' ); 
+			wp_enqueue_script( 'comment-reply' );
 		}
 	}
 	// Hook into wp_enqueue_scripts
-	add_action( 'wp_enqueue_scripts', 'mytheme_enqueue_comment_reply' );	
-	
+	add_action( 'wp_enqueue_scripts', 'mytheme_enqueue_comment_reply' );
+
 	/* PAGINATION */
 	/*if ( ! function_exists( 'my_pagination' ) ) :
 		function my_pagination() {
@@ -860,6 +860,32 @@
 			) );
 		}
 	endif;*/
+
+	/* page laguage attributes function for header */
+	function pegasus_language_attributes() {
+		$output = '';
+
+		$chk_for_lang = get_language_attributes();
+		$lang_attr = language_attributes();
+		$default_output = 'lang="en-US"';
+
+		if ( $chk_for_lang ) {
+			$output = $chk_for_lang;
+		}
+
+		if ( $lang_attr ) {
+			$output = $lang_attr;
+		}
+
+		if ( '' === $output || null === $output ) {
+			$output = $default_output;
+		}
+
+		echo $output;
+	}
+
+
+
 
 	/*
 	 * Display Image from the_post_thumbnail or the first image of a post else display a default Image
@@ -882,8 +908,9 @@
 			$image_url = '';
 			ob_start();
 			ob_end_clean();
-			$output = preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches );
-
+			if ( $post ) {
+				$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+			}
 			if( true === $skip_default ) {
 				return '';
 			} else {
@@ -932,11 +959,11 @@
 
 
 
-	
+
 	/* ========================================================================
 	=========== WOOCOMMERCE INTEGRATION WITH HOOKS AND FUNCTIONS ===========
 	=========================================================================*/
-	
+
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
 	remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
 	/* hook in your own functions to display the wrappers your theme requires */
@@ -949,13 +976,13 @@
 	  echo '</section>';
 	}
 	/* Make sure that the markup matches that of your theme. If you?re unsure of which classes or IDs to use, take a look at your theme?s page.php for a guide */
-	
+
 	/* Declare WooCommerce support */
 	add_action( 'after_setup_theme', 'woocommerce_support' );
 	function woocommerce_support() {
 		add_theme_support( 'woocommerce' );
 	}
-	
+
 	if ( class_exists( 'WooCommerce' ) ) {
 		$woo_check =  pegasus_get_option( 'woo_chk' );
 		if ( $woo_check === 'on' ) {
@@ -978,11 +1005,11 @@
 		}
 	}
 	/*=============== END WOOCOMMERCE =================*/
-	
-	
-	
-	
-	
+
+
+
+
+
 	/**
 	 * Include and setup custom metaboxes and fields. (make sure you copy this file to outside the CMB2 directory)
 	 *
@@ -1002,7 +1029,7 @@
 	} elseif ( file_exists( dirname( __FILE__ ) . '/CMB2/init.php' ) ) {
 		require_once dirname( __FILE__ ) . '/CMB2/init.php';
 	}
-	
+
 	add_action( 'cmb2_admin_init', 'pegasus_register_metabox' );
 	/**
 	 * Hook in and add a demo metabox. Can only happen on the 'cmb2_admin_init' or 'cmb2_init' hook.
@@ -1010,7 +1037,7 @@
 	function pegasus_register_metabox() {
 		// Start with an underscore to hide fields from custom fields list
 		$prefix = 'pegasus';
-		
+
 		$cmb_demo2 = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox2',
 			'title'         => __( 'Pegasus Page Options', 'pegasus-bootstrap' ),
@@ -1022,16 +1049,16 @@
 			'desc' => __( 'Check this box to make the page fullwidth, this shuold override the global fullwidth theme option.', 'pegasus-bootstrap' ),
 			'id'   => $prefix . '-page-container-checkbox',
 			'type' => 'checkbox',
-		) ); 	
-		
+		) );
+
 		$cmb_demo2->add_field( array(
 			'name' => __( 'Disable Page Header', 'pegasus-bootstrap' ),
 			'desc' => __( 'Check this box to disable the Page Header.', 'pegasus-bootstrap' ),
 			'id'   => $prefix . '-page-header-checkbox',
 			'type' => 'checkbox',
-		) ); 	
-		
-		
+		) );
+
+
 		/**
 		 * Sample metabox to demonstrate each field type included
 		 */
@@ -1039,7 +1066,7 @@
 			'id'            => $prefix . 'metabox',
 			'title'         => __( 'Additional Header Options', 'pegasus-bootstrap' ),
 			'object_types'  => array( 'page',  'course_unit', 'staff', 'reviews' ), // Post type, might need to add more cpt's to this
-			
+
 		) );
 
 		$cmb_demo->add_field( array(
@@ -1180,21 +1207,21 @@
 		) );
 	}
 
-	
-	
+
+
 
 	/* ===============================================================================================
 	============================ CUSTOM POST TYPE  ==================================================
 	================================================================================================*/
-	add_action( 'init', 'octane_cpt_init' );
-	function octane_cpt_init() {
-		
+	add_action( 'init', 'pegasus_cpt_init' );
+	function pegasus_cpt_init() {
+
 		$cpt_portfolio = ( 'on' === pegasus_get_option( 'cpt_portfolio_checkbox' ) ) ? true : false;
 		if ( true === $cpt_portfolio ) {
 			/*============================
 			======= Portfolio Post Type ========
 			============================*/
-			
+
 			$portfolio_labels = array(
 				'name' => _x('Portfolios', 'post type general name', 'pegasus-bootstrap'),
 				'singular_name' => _x('Portfolio', 'post type singular name', 'pegasus-bootstrap'),
@@ -1209,7 +1236,7 @@
 				'parent_item_colon' => '',
 				'menu_name' => 'Portfolio'
 			);
-			   
+
 			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
 			$portfolio_args = array(
 				'labels' => $portfolio_labels,
@@ -1233,12 +1260,12 @@
 
 			// We call this function to register the custom post type
 			register_post_type( 'portfolio', $portfolio_args);
-			
+
 			/*============================
 			======= Portfolio Taxonomy ========
 			============================*/
-			
-			
+
+
 			// Initialize Taxonomy Labels
 			$tags_labels = array(
 				'name' => _x( 'Tags', 'taxonomy general name', 'pegasus-bootstrap' ),
@@ -1252,7 +1279,7 @@
 				'add_new_item' => __( 'Add New Tags', 'pegasus-bootstrap' ),
 				'new_item_name' => __( 'New Tags Name' , 'pegasus-bootstrap'),
 			);
-			
+
 			$cats_labels = array(
 				'name' => _x( 'Categories', 'taxonomy general name', 'pegasus-bootstrap' ),
 				'singular_name' => _x( 'Cat', 'taxonomy singular name' , 'pegasus-bootstrap'),
@@ -1265,7 +1292,7 @@
 				'add_new_item' => __( 'Add New Cats', 'pegasus-bootstrap' ),
 				'new_item_name' => __( 'New Cats Name' , 'pegasus-bootstrap'),
 			);
-			
+
 			// Register Custom Taxonomy - Tags
 			register_taxonomy('tagportfolio',array('portfolio'), array(
 				'hierarchical' => false, // define whether to use a system like tags or categories
@@ -1275,7 +1302,7 @@
 				'query_var' => true,
 				'rewrite' => array( 'slug' => 'tag-portfolio' ),
 			));
-			
+
 			// Register Custom Taxonomy - Category
 			register_taxonomy('catportfolio',array('portfolio'), array(
 				'hierarchical' => true, // define whether to use a system like tags or categories
@@ -1286,13 +1313,13 @@
 				'rewrite' => array( 'slug' => 'cat-portfolio' ),
 			));
 		}
-		
+
 		$cpt_staff = ( 'on' === pegasus_get_option( 'cpt_staff_checkbox' ) ) ? true : false;
 		if ( true === $cpt_staff ) {
 			/*============================
 			========= Staff Post Type ========
 			============================*/
-			
+
 			$staff_labels = array(
 				'name' => _x('Staff', 'post type general name', 'pegasus-bootstrap'),
 				'singular_name' => _x('Staff', 'post type singular name', 'pegasus-bootstrap'),
@@ -1330,7 +1357,7 @@
 
 			// We call this function to register the custom post type
 			register_post_type( 'staff', $staff_args);
-			
+
 			// Register Custom Taxonomy - Categories
 			register_taxonomy('department',array('staff'), array(
 				'hierarchical' => true, // define whether to use a system like tags or categories
@@ -1341,7 +1368,7 @@
 				'rewrite' => array( 'slug' => 'department' ),
 			));
 		}
-		
+
 		$cpt_testimonial = ( 'on' === pegasus_get_option( 'cpt_testimonial_checkbox' ) ) ? true : false;
 		if ( true === $cpt_testimonial ) {
 			/*================================
@@ -1386,13 +1413,13 @@
 			// We call this function to register the custom post type
 			register_post_type( 'testimonial', $review_args);
 		}
-		
+
 		$cpt_logo_slider = ( 'on' === pegasus_get_option( 'cpt_logo_slider_checkbox' ) ) ? true : false;
 		if ( true === $cpt_logo_slider ) {
 			/*============================
 			======= Logo Slider Post Type ========
 			============================*/
-			
+
 			$logo_slider_labels = array(
 				'name' => _x('Logos', 'logo slider general name', 'pegasus-bootstrap'),
 				'singular_name' => _x('Logo', 'logo slider singular name', 'pegasus-bootstrap'),
@@ -1407,7 +1434,7 @@
 				'parent_item_colon' => '',
 				'menu_name' => 'Logo Slider'
 			);
-			   
+
 			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
 			$logo_slider_args = array(
 				'labels' => $logo_slider_labels,
@@ -1431,89 +1458,246 @@
 
 			// We call this function to register the custom post type
 			register_post_type( 'logo_slider', $logo_slider_args);
-			
-			remove_post_type_support( 'logo_slider', 'editor');
-			
+
+			remove_post_type_support( 'logo_slider', 'editor', 'permalink');
+
 			add_action( 'cmb2_admin_init', 'pegasus_logo_slider_metabox' );
-			
+
 			function pegasus_logo_slider_metabox() {
+				$prefix = 'pegasus_logo_slider_';
 				$logo_slider_metabox = new_cmb2_box(
 					array(
-						'id'           => 'pegasus_logo_slider_content',
-						'title'        => __( 'Logo Slider Content', 'pegasus-bootstrap' ),
+						'id'           => $prefix . 'content',
+						'title'        => __( 'Logo Slider Slides', 'pegasus-bootstrap' ),
 						'object_types' => array( 'logo_slider' ),
 						'priority'     => 'high',
 					)
 				);
 
-				
-
-				$group_field_id = $logo_slider_metabox->add_field(
+				$logo_slider_group_fields = $logo_slider_metabox->add_field(
 					array(
-						'id'         => 'links',
+						'id'         => $prefix . 'slides',
 						'type'       => 'group',
 						'repeatable' => true,
 						'options'    => array(
-							'group_title'   => 'Link #{#}',
-							'add_button'    => 'Add Another Link',
-							'remove_button' => 'Remove Link',
+							'group_title'   => 'Slide #{#}',
+							'add_button'    => 'Add Another Slide',
+							'remove_button' => 'Remove Slide',
 							'sortable'      => true,
 							'closed'        => true, // true to have the groups closed by default
 						),
-						
+
 					)
 				);
 
-				$link_field_id = $logo_slider_metabox->add_group_field(
-					$group_field_id, array(
-						'name'             => 'Link',
-						'id'               => 'link',
+				$logo_slider_metabox->add_group_field(
+					$logo_slider_group_fields, array(
+						'name'             => 'Title',
+						'id'               => $prefix . 'title',
 						'type'             => 'text',
-						'allowed_types'    => array( 'any' ),
 						'allow_custom_url' => true,
-						'attributes'       => array(
-							
-						),
 					)
 				);
-				
 
-				$link_title_field_id = $logo_slider_metabox->add_group_field(
-					$group_field_id, array(
-						'name'              => 'Link Title',
-						'id'                => 'link_title',
+				$logo_slider_metabox->add_group_field(
+					$logo_slider_group_fields, array(
+						'name'             => 'Link',
+						'id'               => $prefix . 'link',
+						'type'             => 'text',
+						'allow_custom_url' => true,
+					)
+				);
+
+				$logo_slider_metabox->add_group_field(
+					$logo_slider_group_fields, array(
+						'name' => 'Slide Image',
+						'id'   => $prefix . 'slide_image',
+						'type' => 'file',
+					)
+				);
+
+				$logo_slider_metabox->add_group_field(
+					$logo_slider_group_fields, array(
+						'name'              => 'Alt Text',
+						'id'                => $prefix . 'alt_text',
 						'type'              => 'text',
-						
 					)
 				);
 
-				$link_description_field_id = $logo_slider_metabox->add_group_field(
-					$group_field_id, array(
-						'name'       => 'Link Descriptor Text',
-						'id'         => 'link_description',
-						'type'       => 'text',
-						'attributes' => array(
-							'data-tooltip' => 'LinkDescHelp',
-						),
+				$logo_slider_metabox->add_group_field(
+					$logo_slider_group_fields, array(
+						'name'              => 'Caption',
+						'id'                => $prefix . 'caption',
+						'type'              => 'text',
 					)
 				);
 
-
-				$link_file_details_id = $logo_slider_metabox->add_group_field(
-					$group_field_id, array(
-						'name' => 'File Details',
-						'id'   => 'file_details',
-						'type' => 'text',
-					)
-				);
-			
 			} //end logo slider cmb2 function
-		}
-		
+
+			//Make new custom column
+			add_filter('manage_logo_slider_posts_columns', 'posts_columns_id', 5);
+			function posts_columns_id( $defaults ){
+				$defaults['pegasus_shortcode_id'] = __('Shortcode');
+				return $defaults;
+			}
+
+			//add content to new custom column
+			add_action('manage_logo_slider_posts_custom_column', 'posts_custom_id_columns', 5, 2);
+			function posts_custom_id_columns( $column, $post_id ){
+				switch ( $column ) {
+					case 'pegasus_shortcode_id' :
+						echo '<pre><code>[pegasus_logo_slider id="' . $post_id . '" ]</code></pre>'; // the data that is displayed in the column
+						break;
+				}
+			}
+
+			//make custom column sortable
+			add_filter( 'manage_edit-logo_slider_sortable_columns', 'itsg_add_custom_column_make_sortable' );
+			function itsg_add_custom_column_make_sortable( $columns ) {
+				$columns['usefulness'] = 'usefulness';
+
+				return $columns;
+			}
+
+			// Add custom column sort request to post list page
+			add_action( 'load-edit.php', 'itsg_add_custom_column_sort_request' );
+			function itsg_add_custom_column_sort_request() {
+				add_filter( 'request', 'itsg_add_custom_column_do_sortable' );
+			}
+
+			// Handle the custom column sorting
+			function itsg_add_custom_column_do_sortable( $vars ) {
+
+				// check if post type is being viewed -- replace ht_kb with your CPT slug
+				if ( isset( $vars['post_type'] ) && 'ht_kb' == $vars['post_type'] ) {
+
+					// check if sorting has been applied
+					if ( isset( $vars['orderby'] ) && 'usefulness' == $vars['orderby'] ) {
+
+						// apply the sorting to the post list
+						$vars = array_merge(
+							$vars,
+							array(
+								'meta_key' => '_ht_kb_usefulness',
+								'orderby' => 'meta_value_num'
+							)
+						);
+					}
+				}
+
+				return $vars;
+			}
+
+		} //end logo slider
+
+
+	} //cpt init
+
+	/*~~~~~~~~~~~~~~~~~~~~
+		LOGO SLIDER
+	~~~~~~~~~~~~~~~~~~~~~*/
+	// [pegasus_logo_slider id="5" ]
+	function pegasus_logo_slider_query_shortcode( $atts ) {
+
+		$a = shortcode_atts( array(
+			//"id" => ''
+		), $atts );
+
+		// Defaults
+		extract(shortcode_atts(array(
+			//"the_query" => '',
+			"id" => ''
+		), $atts));
+
+		// de-funkify query
+		//$the_query = preg_replace('~&#x0*([0-9a-f]+);~ei', 'chr(hexdec("\\1"))', $the_query);
+		//$the_query = preg_replace('~&#0*([0-9]+);~e', 'chr(\\1)', $the_query);
+
+		//$the_query = preg_replace_callback('~&#x0*([0-9a-f]+);~', function($matches){
+			//return chr( dechex( $matches[1] ) );
+		//}, $the_query);
+
+		//$the_query = preg_replace_callback('~&#0*([0-9]+);~', function($matches){
+			//return chr( $matches[1] );
+		//}, $the_query);
+
+		//if ( '' === $the_query || null === $the_query || empty( $the_query ) ) {
+			$the_query = 'post_type=logo_slider&p=' . $atts['id'];
+		//}
+
+		// query is made
+		query_posts( $the_query );
+
+		// Reset and setup variables
+		global $post;
+		$output = '';
+		$temp_title = '';
+		$temp_link = '';
+		$temp_date = '';
+		$temp_pic = '';
+		$temp_content = '';
+		$the_id = '';
+
+		// the loop
+		if (have_posts()) : while (have_posts()) : the_post();
+
+			$temp_title = get_the_title($post->ID);
+			$temp_link = get_permalink($post->ID);
+			$temp_date = get_the_date($post->ID);
+			$temp_pic = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
+			$temp_excerpt = wp_trim_words( get_the_excerpt(), 150 );
+			$temp_content = wp_trim_words( get_the_content(), 300 );
+			$the_id = get_the_ID();
+
+			$slides = get_post_meta( $the_id, 'pegasus_logo_slider_slides', true );
+
+			if ( ! empty( $slides ) ) {
+				foreach ( (array) $slides as $key => $slide ) {
+					$prefix = 'pegasus_logo_slider_';
+
+					$slide_title = isset( $slide[$prefix . 'title'] ) ? sanitize_title( $slide[$prefix . 'title'] ) : '';
+					$slide_link = isset( $slide[$prefix . 'link'] ) ? esc_url( $slide[$prefix . 'link'] ) : '';
+					$slide_img_id = isset( $slide[$prefix . 'slide_image_id'] ) ? absint ( $slide[$prefix . 'slide_image_id'] ) : '';
+					$slide_slide_img = isset( $slide[$prefix . 'slide_image'] ) ? esc_url( $slide[$prefix . 'slide_image'] ) : '';
+					$slide_alt_text = isset( $slide[$prefix . 'alt_text'] ) ? $slide[$prefix . 'alt_text'] : '';
+					$slide_caption = isset( $slide[$prefix . 'caption'] ) ? $slide[$prefix . 'caption'] : '';
+
+
+					$output .= "<article class='post-$the_id' >";
+					$output .= '<div class="slick-slider-item">';
+					if ( $slide_link ) {
+						$output .= '<a href="' . $slide_link  . '" >';
+					}
+						if( $slide_slide_img ) {
+							$output .= '<img class="post-img-feat" src="' . $slide_slide_img . '" alt="' . $slide_alt_text . '">';
+						}
+						if( $slide_title ) {
+							$output .= '<p class="slick-p">' . $slide_title . '</p>';
+						}
+						if( $slide_caption ) {
+							$output .= '<p class="slick-p">' . $slide_caption . '</p>';
+						}
+					if ( $slide_link ) {
+						$output .= '</a>';
+					}
+					$output .= '</div>';
+					$output .= "</article>";
+
+				} // End foreach().
+			}
+
+		endwhile; else:
+			$output .= "nothing found.";
+		endif;
+
+		wp_reset_query();
+		return '<section class="center logo-slider slider">' . $output . '</section>';
 
 	}
+	add_shortcode("pegasus_logo_slider", "pegasus_logo_slider_query_shortcode");
 
-	function pegasus_rewrite_flush() {
+
+function pegasus_rewrite_flush() {
 		flush_rewrite_rules();
 	}
 	add_action( 'after_switch_theme', 'pegasus_rewrite_flush' );
@@ -1528,7 +1712,7 @@
 	}
 
 
-	
+
 
 	// Bootstrap 4 Content Options
 	function bootstrap4_content_options($options) {
