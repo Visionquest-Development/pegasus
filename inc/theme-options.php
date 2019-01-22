@@ -900,8 +900,8 @@ class Pegasus_Admin {
 		) ); 
 		$cmb->add_field( array(
 			'name' => 'Custom CSS Code',
-			//'desc' => 'field description (optional)',
-			'default' => '.selector { property: attribute; }',
+			'desc' => '.selector { property: attribute; }',
+			//'default' => '.selector { property: attribute; }',
 			'id' => 'custom_css_textareacode',
 			'type' => 'textarea_code'
 		) ); 

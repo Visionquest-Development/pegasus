@@ -25,7 +25,16 @@
 			//page header theme option
 			$global_disable_page_header_option =  pegasus_get_option('page_header_chk' ) ? pegasus_get_option('page_header_chk' ) : 'off';
 			//check theme option for page header before page option
-			$final_page_header_option = ( 'on' === $global_disable_page_header_option ) ? $global_disable_page_header_option : $post_disable_page_header_choice;
+			$page_title = $post->post_title;
+			$is_this_home = is_home();
+			if ( 'on' === $global_disable_page_header_option ) {
+				$final_page_header_option = 'on';
+			} elseif ( 'on' === $post_disable_page_header_choice ) {
+				$final_page_header_option = 'on';
+			} else {
+				$final_page_header_option = 'off';
+			}
+
 		?>
 
 		<div class="<?php echo $final_container_class; ?>">

@@ -25,7 +25,20 @@
 			//page header theme option
 			$global_disable_page_header_option =  pegasus_get_option('page_header_chk' ) ? pegasus_get_option('page_header_chk' ) : 'off';
 			//check theme option for page header before page option
-			$final_page_header_option = ( 'on' === $global_disable_page_header_option ) ? $global_disable_page_header_option : $post_disable_page_header_choice;
+			$page_title = $post->post_title;
+			$is_this_home = is_home();
+			if ( 'on' === $global_disable_page_header_option ) {
+				$final_page_header_option = 'on';
+			} elseif ( 'on' === $post_disable_page_header_choice ) {
+				$final_page_header_option = 'on';
+			} else {
+				$final_page_header_option = 'off';
+			}
+
+			if ( true === $is_this_home ) {
+				$final_page_header_option = 'off';
+			}
+
 		?>
 		
 		<div class="<?php echo $final_container_class; ?>">
@@ -42,11 +55,17 @@
 				<div class="<?php echo $page_body_content_class; ?>">
 					<div class="inner-content">
 						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-							<?php
-								if( 'on' !== $final_page_header_option ) {
-							?>
+							<?php if( 'off' === $final_page_header_option ) { ?>
 								<div class="page-header">
-									<h1><?php the_title(); ?></h1>
+									<?php
+									if( '' === $page_title ) {
+										echo '';
+									} elseif ( $page_title ) {
+										echo '<h1>';
+										echo the_title();
+										echo '</h1>';
+									}
+									?>
 								</div>
 							<?php }else{ ?>
 								<div class="page-header-spacer"></div>

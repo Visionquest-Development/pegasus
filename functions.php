@@ -618,7 +618,7 @@
 			.default-skin .nav .open>a,
 			.default-skin .nav .open>a:focus,
 			.default-skin .nav .open>a:hover,
-			#header .navi-btn a i,
+			#header .navi-btn a i
 			{ background: <?php echo $mobile_color; ?>; }
 			.mobile-menu-close .fa-times-circle:before { color: <?php echo $mobile_color; ?>; }
 			.navbar-toggle { border: 1px solid <?php echo $mobile_color; ?> !important; }
@@ -677,7 +677,15 @@
 			footer { background: <?php echo $footer_bkg_color; ?>; }
 			.colophon-container { background: <?php echo $bottom_footer_bkg_color; ?>; }
 
-			<?php echo $custom_css; ?>
+			<?php //echo $custom_css; ?>
+
+			<?php
+			//if ( '' === $custom_css || null === $custom_css ) {
+			//echo '';
+			//} else {
+			//echo $custom_css;
+			//}
+			?>
 
 		<?php
 		wp_add_inline_style( 'pegasus', ob_get_clean() );
@@ -867,7 +875,8 @@
 
 		$chk_for_lang = get_language_attributes();
 		$lang_attr = language_attributes();
-		$default_output = 'lang="en-US"';
+		//$default_output = 'lang="en-US"';
+		$default_output = '';
 
 		if ( $chk_for_lang ) {
 			$output = $chk_for_lang;
@@ -881,7 +890,7 @@
 			$output = $default_output;
 		}
 
-		echo $output;
+		echo ' ' . $output . ' ';
 	}
 
 
@@ -1697,7 +1706,7 @@
 	add_shortcode("pegasus_logo_slider", "pegasus_logo_slider_query_shortcode");
 
 
-function pegasus_rewrite_flush() {
+	function pegasus_rewrite_flush() {
 		flush_rewrite_rules();
 	}
 	add_action( 'after_switch_theme', 'pegasus_rewrite_flush' );
