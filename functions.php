@@ -1700,6 +1700,13 @@
 		endif;
 
 		wp_reset_query();
+
+		wp_enqueue_style( 'slick-css' );
+		wp_enqueue_style( 'slick-theme-css' );
+		wp_enqueue_script( 'slick-js' );
+		wp_enqueue_script( 'match-height-js' );
+		wp_enqueue_script( 'pegasus-carousel-plugin-js' );
+
 		return '<section class="center logo-slider slider">' . $output . '</section>';
 
 	}
