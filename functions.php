@@ -1707,7 +1707,7 @@
 		wp_enqueue_script( 'match-height-js' );
 		wp_enqueue_script( 'pegasus-carousel-plugin-js' );
 
-		return '<section class="center logo-slider slider">' . $output . '</section>';
+		return '<div class="center logo-slider slider">' . $output . '</div>';
 
 	}
 	add_shortcode("pegasus_logo_slider", "pegasus_logo_slider_query_shortcode");
