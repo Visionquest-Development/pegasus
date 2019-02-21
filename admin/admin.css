@@ -50,6 +50,14 @@
 
     .wp-picker-container .wp-color-result { position: relative !important; }
 
+	.cmb-th + .cmb-td {
+		float: none !important;
+	}
+
+	.CodeMirror-sizer {
+		padding-left: 1rem;
+	}
+
     #pegasus_option_metabox .pegasus-save-btn-container {
         padding: 20px;
         background: #777;

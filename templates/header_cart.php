@@ -34,7 +34,7 @@
 	$shop_page_url = get_permalink( get_option( 'woocommerce_shop_page_id' ) );
 ?>
 
-<ul class="the-nav-cart ml-auto">
+<ul class="the-nav-cart pl-md-3 ml-auto">
 	<?php if( 'on' !== $shop_link_choice ) : ?>
 		<li class="menu-item">
 			<a class="shop-link" href="<?php echo $shop_page_url; ?>">Shop</a>

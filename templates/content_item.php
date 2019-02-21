@@ -28,7 +28,7 @@ endif;
 				<h3 class="content-item-title"><?php the_title(); ?></h3>
 			</a>
 			<?php
-				$the_time = the_time( 'l, F, jS, Y' ) ? the_time( 'l, F, jS, Y' ) : '';
+				$the_time = the_time( 'l, F jS, Y' ) ? the_time( 'l, F jS, Y' ) : '';
 				if ( '' !== $the_time ) :
 			?>
 				<em>
@@ -58,11 +58,11 @@ endif;
 				<?php } else {
 					$more = 0;
 					$pegasus_content = get_the_content();
-					$temporary_content = substr( strip_tags( $pegasus_excerpt ), 0, 300 );
+					$temporary_content = substr( strip_tags( $pegasus_content ), 0, 300 );
 					$final_content = ( $pegasus_content !== $temporary_content ) ? ( $temporary_content . '...' ) : $pegasus_content;
 				?>
 					<p>
-						<?php echo $final_content; ?>
+						<?php echo do_shortcode( $final_content ); ?>
 					</p>
 				<?php }	?>
 			</div>

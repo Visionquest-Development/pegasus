@@ -451,49 +451,18 @@ class Pegasus_Admin {
 			'desc' => 'This is for the entire background of the header.',
 			//'default' => 'rgba(0,0,0,0)'
 		) );
-
-		/*============================
-			HEADER ONE AND TWO
-		=============================*/
-		
-	 
-		// HEADER ONE AND HEADER TWO OPTIONS
-		$cmb->add_field( array(
-			'name' => 'Header One and Two Options',
-			//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
-			'type' => 'title',
-			'id'   => 'header_one_title',
-		) ); 
-		$cmb->add_field( array(
-			'name' => 'Center Logo',
-			'desc' => 'Check this box to make the logo centered. This only works on Header One.',
-			'id'   => 'logo_centered',
-			'type' => 'checkbox',
-		) );
-		$cmb->add_field( array(
-			'name' => 'Justify Nav Menu',
-			'desc' => 'Check this box to make the links in the navigation centered.',
-			'id'   => 'nav_justify',
-			'type' => 'checkbox',
-		) );
-		$cmb->add_field( array(
-			'name' => 'Header Outer Container',
-			'desc' => 'Check this box to make the header wrapped with a container.',
-			'id'   => 'header_container',
-			'type' => 'checkbox',
-		) );
-		$cmb->add_field( array(
-			'name' => 'Enable Nav Inner Fullwidth Container',
-			'desc' => 'Enable the Fullwidth container inside the header. This overrides the Global Setting.',
-			'id'   => 'nav_inner_container_checkbox',
-			'type' => 'checkbox',
-		) );
 		$cmb->add_field( array(
 			'name' => 'Social Icons enable',
-			'desc' => 'Check this if you want the social icons to appear in the regular menu navbar.',
+			'desc' => 'Check this if you want the social icons to appear in the header.',
 			'id'   => 'nav_social_chk',
 			'type' => 'checkbox',
-		) ); 
+		) );
+		$cmb->add_field( array(
+			'name' => 'Search Box enable',
+			'desc' => 'Check this if you want the search to appear in the header.',
+			'id'   => 'search_box_chk',
+			'type' => 'checkbox',
+		) );
 		$cmb->add_field( array(
 			'name' => 'Fixed Navigation',
 			'desc' => 'Check this box to make the the header fixed. This also enables the absolute menu.',
@@ -537,6 +506,43 @@ class Pegasus_Admin {
 				'navs' => __( 'Navigation Menus', 'cmb2' ),
 				'widgets'   => __( 'Widgets', 'cmb2' ),
 			),
+		) );
+
+		/*============================
+			HEADER ONE AND TWO
+		=============================*/
+		
+	 
+		// HEADER ONE AND HEADER TWO OPTIONS
+		$cmb->add_field( array(
+			'name' => 'Header One and Two Options',
+			//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
+			'type' => 'title',
+			'id'   => 'header_one_title',
+		) ); 
+		$cmb->add_field( array(
+			'name' => 'Center Logo',
+			'desc' => 'Check this box to make the logo centered. This only works on Header One.',
+			'id'   => 'logo_centered',
+			'type' => 'checkbox',
+		) );
+		$cmb->add_field( array(
+			'name' => 'Justify Nav Menu',
+			'desc' => 'Check this box to make the links in the navigation centered.',
+			'id'   => 'nav_justify',
+			'type' => 'checkbox',
+		) );
+		$cmb->add_field( array(
+			'name' => 'Header Outer Container',
+			'desc' => 'Check this box to make the header wrapped with a container.',
+			'id'   => 'header_container',
+			'type' => 'checkbox',
+		) );
+		$cmb->add_field( array(
+			'name' => 'Enable Nav Inner Fullwidth Container',
+			'desc' => 'Enable the Fullwidth container inside the header. This overrides the Global Setting.',
+			'id'   => 'nav_inner_container_checkbox',
+			'type' => 'checkbox',
 		) );
 
 

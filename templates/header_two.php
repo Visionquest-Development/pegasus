@@ -32,7 +32,7 @@
 
 	$home_url = esc_url( home_url( '/' ) ) ? esc_url( home_url( '/' ) ) : '#';
 	$fallback_menu = '<ul id="" class="navbar-nav"><li class="nav-item active current-menu-item"><a class="nav-link" href="' . $home_url . '">Home <span class="sr-only">(current)</span></a></li></ul>';
-	$final_menu = pegasus_get_menu( 'primary', 'navbar-nav primary-navigation-bar', 3, $fallback_menu );
+	$final_menu = pegasus_get_menu( 'primary', 'navbar-nav primary-navigation-bar mr-auto', 3, $fallback_menu );
 	//$final_menu = $fallback_menu;
 
 	$final_inner_container_class = ( 'container-fluid' === $global_full_container_option ) ? $global_full_container_option : $header_inner_container_option;
@@ -41,6 +41,7 @@
 	//justify-content-md-center
 	$woo_check = pegasus_get_option( 'woo_chk' );
 	$top_social_check = pegasus_get_option( 'top_social_chk' );
+	$searchmenuchk = pegasus_get_option( 'search_box_chk' );
 
 	?>
 
@@ -67,16 +68,17 @@
 							<a class="navbar-brand logo-container <?php echo $centerLogo; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" /></a>
 						<?php else: ?>
 							<h1 class="site-title <?php echo $centerLogo; ?>"><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-						<?php endif; ?>
-						<?php
+						<?php endif;
 						echo $final_menu;
-						?>
-						<?php
 						if( 'on' === $moremenuchk ) {
 							get_template_part( 'templates/more_menu', 'header' );
 						}
-						?>
-						<?php
+						if( 'on' === $searchmenuchk ) {
+							//echo '<form role="search" method="get" id="searchform" class="searchform search-form form-inilne ml-auto mr-0" action="' . home_url( '/' ) . '">';
+							//get_search_form();
+							get_template_part( 'templates/header_search', 'header' );
+							//echo '</form>';
+						}
 						if ( 'on' === $woo_check ) {
 							if ( class_exists( 'WooCommerce' ) ) {
 								// code that requires WooCommerce
@@ -90,6 +92,8 @@
 							get_template_part( 'templates/social_icons', 'header' );
 						}
 						?>
+						
+
 					</div>
 					<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) ) : ?>
 				</div ><!-- container-->
@@ -97,5 +101,7 @@
 			</nav>
 		</div><!-- container -->
 	</div><!-- #header -->
+
+<?php get_search_form(); ?>
 
 

@@ -100,7 +100,10 @@ Use it to make something cool, have fun, and share what you've learned with othe
     .center { text-align: center; }
 	
 	.hide { display: none; }
-	
+
+    /*=========================*/
+    /* Sidebar */
+    /*=========================*/
 	.sidebar{ padding: 20px 0; }
     .sidebar .widget { margin-bottom: 10px; }
 	.sidebar .inner-sidebar-container { padding: 20px 0; }
@@ -113,6 +116,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 		.sidebar .inner-sidebar-container { padding: 20px 0; }
 	}
 	.sidebar ul { list-style-type: none; margin: 0; padding: 0; }
+
     .widget-title {
         padding: 10px 0 0 10px;
     }
@@ -131,7 +135,9 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	.alignleft {  }
 	.aligncenter { display: block; margin: 0 auto; text-align: center; }
 
-
+    /*=========================*/
+    /* Comments */
+    /*=========================*/
     .reply .form-group { margin-bottom: 0; }
 	.commentlist, .media-list { padding-left: 0;  }
 
@@ -187,8 +193,39 @@ Use it to make something cool, have fun, and share what you've learned with othe
         padding: 1rem;
     }
 
+    /*=========================*/
+    /* Search Form */
+    /*=========================*/
+
 
 	#searchform { margin: 0 auto; }
+
+    .search-results-container {
+        box-shadow: 2px 2px 5px #777;
+        border-radius: 10px;
+        padding: 1rem;
+        background: #eee;
+    }
+
+    .search-results-container .block-inner {
+        position: relative;
+        overflow: auto;
+    }
+
+    .search-results-container .content-item-image { }
+
+    .search-results-container .edit-link {
+        padding: 0 1rem;
+    }
+    .search-results-container .content-item-wrapper {
+        padding: 0 1rem;
+    }
+
+
+    /*=========================*/
+    /* inputs / breadcrumbs */
+    /*=========================*/
+
 	
 	input, textarea { width: 90%; }
 	input[type=submit] { }
@@ -286,7 +323,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
         margin: 0;
         list-style-type: none;
         display: inline-block;
-
+        padding-left: 0;
     }
 
     @media only screen and (max-width: 980px) {

@@ -31,7 +31,7 @@
 	//content
 	require_once 'inc/wp-bootstrap-hooks-master/bootstrap-content.php';
 	//forms
-	require_once 'inc/wp-bootstrap-hooks-master/bootstrap-forms.php';
+	//require_once 'inc/wp-bootstrap-hooks-master/bootstrap-forms.php';
 	//gallery
 	require_once 'inc/wp-bootstrap-hooks-master/bootstrap-gallery.php';
 
@@ -903,7 +903,7 @@
 	 */
 
 	function pegasus_image_display( $size = 'full', $override_default_image = '', $skip_default = false ) {
-		$base_default_image = get_stylesheet_directory_uri() . '/images/not-available.jpg';
+		$base_default_image = get_template_directory_uri() . '/images/not-available.jpg';
 
 		$default_image = ( '' !== $override_default_image ) ? $override_default_image : $base_default_image;
 

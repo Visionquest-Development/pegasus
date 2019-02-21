@@ -58,13 +58,13 @@
 							<?php if( 'off' === $final_page_header_option ) { ?>
 								<div class="page-header">
 									<?php
-									if( '' === $page_title ) {
-										echo '';
-									} elseif ( $page_title ) {
-										echo '<h1>';
-										echo the_title();
-										echo '</h1>';
-									}
+										if( '' === $page_title ) {
+											echo '';
+										} elseif ( $page_title ) {
+											echo '<h1>';
+											echo the_title();
+											echo '</h1>';
+										}
 									?>
 								</div>
 							<?php }else{ ?>
@@ -91,12 +91,12 @@
 									get_the_title()
 								),
 								'<span class="edit-link">',
-								'</span>'
+  								'</span>'
 							);
 						?>
 					</div><!--end inner content-->
 				</div>
-				<?php 
+				<?php
 					if( 'on' === $pegasus_left_sidebar_option ) {
 						get_sidebar( 'right' );
 					}

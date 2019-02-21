@@ -15,7 +15,7 @@ if ( has_nav_menu( 'social-icons' ) ) :
 	$fallback_social_menu = '<ul><li><a href="#" class="fa fa-facebook">FB</a></li></ul>';
 	$final_social_menu = ( null !== $social_menu_check ) ? $social_menu_check : $fallback_social_menu;
 ?>
-<ul class="ml-3 pegasus-social">
+<ul class="ml-lg-3 pegasus-social">
 	<?php echo $final_social_menu; ?>
 </ul>
 
