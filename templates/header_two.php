@@ -101,7 +101,3 @@
 			</nav>
 		</div><!-- container -->
 	</div><!-- #header -->
-
-<?php get_search_form(); ?>
-
-
