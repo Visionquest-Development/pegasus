@@ -1,4 +1,12 @@
-	<?php get_header(); ?>
+	<?php
+		/**
+		 * Silence is golden; exit if accessed directly
+		 */
+		if ( ! defined( 'ABSPATH' ) ) {
+			exit;
+		}
+		get_header();
+	?>
 	<div id="page-wrap">
 		<?php
 			//full container page options
