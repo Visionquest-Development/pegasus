@@ -264,6 +264,32 @@ Use it to make something cool, have fun, and share what you've learned with othe
 		margin-left: -8px;
 	}
 
+    /* Back to Top*/
+    #toTop {
+        position: fixed;
+        display: block;
+        border-radius: 50%;
+        padding: .75rem;
+        background: white;
+        color: black;
+        box-shadow: 1px 1px 5px slategrey;
+        font-size: 1.25rem;
+        -webkit-transition: all 0.5s ease-out;
+        transition: all 0.5s ease-out;
+        vertical-align: middle;
+        bottom: 3rem;
+        right: 2rem;
+        cursor: pointer;
+        z-index: 2;
+        opacity: 0;
+    }
+
+    #toTop.scrolled {
+        opacity: 1;
+        -webkit-transition: all 0.5s ease-in;
+        transition: all 0.5s ease-in
+    }
+
     /*===============================================================================================================
         HEADER
     ===============================================================================================================*/
@@ -274,8 +300,9 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
     #top-bar { padding: 0; }
     #top-bar a:hover { opacity: .6; }
-    #top-bar .text { padding: 10px 0; }
+    #top-bar .text { padding: 10px 0; width: 100%; }
     #top-bar .right { text-align: right; }
+    #top-bar p { margin-bottom: 0; }
     #top-bar .phone, #top-bar .mail { display: inline-block; }
     #top-bar .phone { /*padding: 5px 0 0;*/ }
     #top-bar .mail { /*padding: 5px 0 0;*/ margin-left: 20px; }

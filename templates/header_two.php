@@ -8,6 +8,12 @@
 	$bootstrap_color_scheme = pegasus_get_option('nav_color_scheme') ? pegasus_get_option('nav_color_scheme') : '';
 	$bootstrap_color_utility = pegasus_get_option('nav_color_utility') ? pegasus_get_option('nav_color_utility') : 'bg-light';
 
+	$header_bkg_color = pegasus_get_option('header_bkg_color');
+	if( $header_bkg_color ) {
+		$bootstrap_color_scheme = '';
+		$bootstrap_color_utility = '';
+	}
+
 	$bootstrap_navbar_expand_class = pegasus_get_option('global_nav_viewport_break') ? pegasus_get_option('global_nav_viewport_break') : 'navbar-expand-md';
 
 	$top_header_choice = ( 'on' === pegasus_get_option( 'top_header_chk' ) ) ? pegasus_get_option( 'top_header_chk' ) : 'off';

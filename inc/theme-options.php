@@ -301,8 +301,14 @@ class Pegasus_Admin {
 			'desc' => 'Check this box to enable Top Bar',
 			'id'   => 'top_header_chk',
 			'type' => 'checkbox',
-		) ); 
-	
+		) );
+
+		$cmb->add_field( array(
+			'name' => 'Enable back to top button',
+			'desc' => 'Check this box to enable Back to top',
+			'id'   => 'back_to_top',
+			'type' => 'checkbox',
+		) );
 
 		/*============================
 			ECOMMERCE
@@ -398,6 +404,13 @@ class Pegasus_Admin {
 			'desc' => __( 'Middle content for top bar.', 'cmb2' ),
 			'default' => 'BUSINESS NAME HERE',
 			'id'   => 'toparea_center_code',
+			'type' => 'textarea_code',
+		) );
+		$cmb->add_field( array(
+			'name' => __( 'Right Area Content', 'cmb2' ),
+			'desc' => __( 'Right content for top bar.', 'cmb2' ),
+			'default' => 'Shortcode or Text here',
+			'id'   => 'toparea_right_code',
 			'type' => 'textarea_code',
 		) );
 		$cmb->add_field( array(

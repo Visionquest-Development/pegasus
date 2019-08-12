@@ -19,6 +19,7 @@
 
 	$top_header_left = pegasus_get_option( 'toparea_left_code' );
 	$top_header_center = pegasus_get_option( 'toparea_center_code' );
+	$top_header_right = pegasus_get_option( 'toparea_right_code' );
 	$woo_check = pegasus_get_option( 'woo_chk' );
 	$top_social_check = pegasus_get_option( 'top_social_chk' );
 
@@ -33,7 +34,7 @@
 				<div class="<?php echo $top_column_class; ?> left">
 					<div class="text">
 						<?php
-							echo $top_header_left;
+							echo do_shortcode( $top_header_left );
 						?>
 					</div>
 				</div>
@@ -41,7 +42,7 @@
 					<div class="<?php echo $top_column_class; ?> center">
 						<div class="text">
 							<?php
-								echo $top_header_center;
+								echo do_shortcode( $top_header_center );
 							?>
 						</div>
 					</div>
@@ -60,6 +61,9 @@
 							}
 							if( 'on' === $top_social_check ){
 								get_template_part( 'templates/social_icons', 'header' );
+							}
+							if( 'on' !== $woo_check && 'on' !== $top_social_check ) {
+								echo '<div class="text">' . do_shortcode( $top_header_right ) . '</div>';
 							}
 						?>
 					</nav>

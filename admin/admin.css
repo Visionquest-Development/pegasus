@@ -11,7 +11,6 @@
 	.cmb-type-title { 
 		background-color: #777 !important;
 		padding: 5px 10px 10px 10px;
-    	
     	/* border-top-right-radius: 10px; */
 	    /* border-top-left-radius: 10px; */
 	    border: 1px solid #777;
@@ -27,8 +26,8 @@
 	.cmb2-id-header-five-title { background: #ccc !important; } 
 
 	.pegasus-toggle.active {
-		border-bottom-right-radius: 0px; 
-	    border-bottom-left-radius: 0px; 
+		border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
 	}
 
 	div[class*="pegasus-parent-"] { margin-bottom: 10px; }
@@ -45,7 +44,6 @@
 	    border-bottom-right-radius: 7px;
 	}
 
-
 	#header_type { width: 110px; }
 
     .wp-picker-container .wp-color-result { position: relative !important; }
@@ -55,7 +53,7 @@
 	}
 
 	.CodeMirror-sizer {
-		padding-left: 1rem;
+		/*padding-left: 1rem;*/
 	}
 
     #pegasus_option_metabox .pegasus-save-btn-container {
@@ -75,7 +73,6 @@
 		display: block;
 		padding: 9.5px;
 		margin: 0 0 10px;
-		font-size: 13px;
 		line-height: 1.42857143;
 		color: #333;
 		word-break: break-all;

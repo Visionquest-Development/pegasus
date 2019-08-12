@@ -1,5 +1,5 @@
 <?php
-	/**=================
+	/*=================
 		NAV OPTIONS
 	==================*/
 	$fixed_header_choice = ( 'on' === pegasus_get_option( 'header_fixed_checkbox' ) ) ? 'fixed-top' : '';
@@ -7,6 +7,12 @@
 
 	$bootstrap_color_scheme = pegasus_get_option('nav_color_scheme') ? pegasus_get_option('nav_color_scheme') : '';
 	$bootstrap_color_utility = pegasus_get_option('nav_color_utility') ? pegasus_get_option('nav_color_utility') : '';
+
+	$header_bkg_color = pegasus_get_option('header_bkg_color');
+	if( $header_bkg_color ) {
+		$bootstrap_color_scheme = '';
+		$bootstrap_color_utility = '';
+	}
 
 	$bootstrap_navbar_expand_class = pegasus_get_option('global_nav_viewport_break') ? pegasus_get_option('global_nav_viewport_break') : 'navbar-expand-md';
 
@@ -32,7 +38,7 @@
 
 	$home_url = esc_url( home_url( '/' ) ) ? esc_url( home_url( '/' ) ) : '#';
 	$fallback_menu = '<ul id="" class="navbar-nav"><li class="nav-item active current-menu-item"><a class="nav-link" href="' . $home_url . '">Home <span class="sr-only">(current)</span></a></li></ul>';
-	$final_menu = pegasus_get_menu( 'primary', 'navbar-nav primary-navigation-bar', 3, $fallback_menu );
+	$final_menu = pegasus_get_menu( 'primary', 'navbar-nav primary-navigation-bar mr-auto', 3, $fallback_menu );
 	//$final_menu = $fallback_menu;
 
 	$final_inner_container_class = ( 'container-fluid' === $global_full_container_option ) ? $global_full_container_option : $header_inner_container_option;

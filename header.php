@@ -58,6 +58,7 @@
 		$woo_check =  pegasus_get_option( 'woo_chk' );
 		$nav_social_check =  pegasus_get_option( 'nav_social_chk' );
 		$top_social_check = pegasus_get_option( 'top_social_chk' );
+		$custom_top_textareacode = pegasus_get_option( 'custom_top_textareacode' );
 
 	?>
 	<body <?php body_class(); ?>>
@@ -144,6 +145,24 @@
 					<?php endif; ?>
 					</nav>
 				<?php endif; ?>
+
+				<?php
+
+
+				if ( "" === $custom_top_textareacode || null === $custom_top_textareacode ) {
+						echo '';
+					} else { ?>
+						<!-- Header custom code for banner, CTA, etc. -->
+						<section class="pegasus-custom-header">
+							<div class="<?php echo $global_full_container_option; ?>">
+								<div class="">
+									<?php echo do_shortcode( $custom_top_textareacode ); ?>
+								</div>
+							</div>
+						</section>
+						<!-- end custom header code -->
+					<?php }
+				?>
 
 				<?php get_template_part( 'templates/additional_header' ); ?>
 

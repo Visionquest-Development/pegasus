@@ -680,11 +680,11 @@
 			<?php //echo $custom_css; ?>
 
 			<?php
-			//if ( '' === $custom_css || null === $custom_css ) {
-			//echo '';
-			//} else {
-			//echo $custom_css;
-			//}
+			if ( '' === $custom_css || null === $custom_css ) {
+				echo '';
+			} else {
+				echo $custom_css;
+			}
 			?>
 
 		<?php
@@ -1074,7 +1074,7 @@
 		$cmb_demo = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox',
 			'title'         => __( 'Additional Header Options', 'pegasus-bootstrap' ),
-			'object_types'  => array( 'page',  'course_unit', 'staff', 'reviews' ), // Post type, might need to add more cpt's to this
+			'object_types'  => array( 'page',  'course_unit', 'staff', 'reviews', 'post' ), // Post type, might need to add more cpt's to this
 
 		) );
 
