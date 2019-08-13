@@ -112,9 +112,12 @@
 							//$search = new WP_Query( $search_query );
 							//global $wp_query;
 							//$total_results = $wp_query->found_posts;
-
+							$paged2 = (get_query_var('paged')) ? get_query_var('paged') : 1;
 							$args = array(
-								's' =>	$search_query
+								's' =>	$search_query,
+								//'paged'          => $paged2,
+								//'posts_per_page' => 5,
+
 							);
 
 							// the query
@@ -122,6 +125,8 @@
 
 							if ( $the_query->have_posts() ) :
 								_e( "<h2 style='font-weight:bold;color:#000'>Search Results for: " . get_query_var('s') . "</h2>" );
+								echo '<div class="search-list-container">';
+
 								while ( $the_query->have_posts() ) : $the_query->the_post();
 									global $post;
 
@@ -138,67 +143,12 @@
 									else :
 										$tax = '';
 									endif;
-									?>
 
-									<div class="content-item-container search-results-container <?php echo strtolower( $tax ); ?>">
-										<article class="article-<?php the_ID(); ?> block-inner ">
-
-											<div class="content-item-wrapper">
-												<!-- the permalink and title -->
-												<a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-													<h3 class="content-item-title"><?php the_title(); ?></h3>
-												</a>
-
-
-												<?php
-												$the_time = the_time( 'l, F jS, Y' ) ? the_time( 'l, F jS, Y' ) : '';
-												if ( '' !== $the_time ) :
-													?>
-													<em>
-														<p class="content-item-date-time">
-															<?php echo $the_time;?>
-														</p>
-													</em>
-												<?php
-												endif;
-												?>
-
-												<p><?php the_permalink(); ?></p>
-
-												<div class="content-item-cats"><i><?php the_category(); ?></i></div>
-
-												<!-- output the excerpt, and if no excerpt then output content-->
-												<!-- output is limited to the first 300 characters then an elipsis (...) is added and a read more link appears -->
-												<div class="content-item-paragraph-content">
-													<?php
-													$pegasus_excerpt = get_the_excerpt();
-													if( isset( $pegasus_excerpt ) ) { ?>
-														<p>
-															<?php
-															$temporary_excerpt = substr( strip_tags( $pegasus_excerpt ), 0, 300 );
-															$final_excerpt = ( $pegasus_excerpt !== $temporary_excerpt ) ? ( $temporary_excerpt . '...') : $pegasus_excerpt;
-															echo $final_excerpt;
-															?>
-														</p>
-													<?php } else {
-														$more = 0;
-														$pegasus_content = get_the_content();
-														$temporary_content = substr( strip_tags( $pegasus_content ), 0, 300 );
-														$final_content = ( $pegasus_content !== $temporary_content ) ? ( $temporary_content . '...' ) : $pegasus_content;
-														?>
-														<p>
-															<?php echo $final_content; ?>
-														</p>
-													<?php }	?>
-												</div>
-
-											</div>
-
-										</article>
-									</div>
-								<?php endwhile; ?>
-
-								<?php wp_reset_postdata(); ?>
+									get_template_part('content_item');
+								endwhile;
+								echo '</div><!-- End search-list-container -->';
+								wp_reset_postdata();
+								?>
 
 							<?php else : ?>
 								<h1><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></h1>
