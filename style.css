@@ -197,8 +197,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
     /* Search Form */
     /*=========================*/
 
-
-	#searchform { margin: 0 auto; }
+	.searchform { margin: 0 auto; }
 
     .search-results-container {
         box-shadow: 2px 2px 5px #777;
@@ -219,6 +218,15 @@ Use it to make something cool, have fun, and share what you've learned with othe
     }
     .search-results-container .content-item-wrapper {
         padding: 0 1rem;
+    }
+
+    .screen-reader-text, .search-label {
+        clip: rect(1px,1px,1px,1px);
+        height: 1px;
+        overflow: hidden;
+        position: absolute!important;
+        width: 1px;
+        word-wrap: normal!important;
     }
 
 
