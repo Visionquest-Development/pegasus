@@ -1,9 +1,9 @@
 <form role="search" method="get" class="searchform search-form form-inilne ml-auto mr-0" action="<?php echo home_url( '/' ); ?>">
-	<label class="screen-reader-text search-label" for="s"><?php echo _x('Search for:', 'label') ?></label>
+	<label class="screen-reader-text search-label" for="header_s"><?php echo _x('Search for:', 'label') ?></label>
 	<div class="form-group mb-0">
 		<div class="input-group">
 			<input type="search"
-
+				   id="header_s"
 				   class="search-field form-control"
 				   name="s"
 				   value="<?php echo get_search_query() ?>"
