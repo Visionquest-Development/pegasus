@@ -875,8 +875,8 @@
 
 		$chk_for_lang = get_language_attributes();
 		$lang_attr = language_attributes();
-		//$default_output = 'lang="en-US"';
-		$default_output = '';
+		$default_output = 'lang="en-US"';
+		//$default_output = '';
 
 		if ( $chk_for_lang ) {
 			$output = $chk_for_lang;
@@ -890,7 +890,7 @@
 			$output = $default_output;
 		}
 
-		echo ' ' . $output . ' ';
+		return ' ' . $output . ' ';
 	}
 
 
@@ -1274,7 +1274,6 @@
 			======= Portfolio Taxonomy ========
 			============================*/
 
-
 			// Initialize Taxonomy Labels
 			$tags_labels = array(
 				'name' => _x( 'Tags', 'taxonomy general name', 'pegasus-bootstrap' ),
@@ -1343,6 +1342,7 @@
 				'parent_item_colon' => '',
 				'menu_name' => 'Staff'
 			);
+
 			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
 			$staff_args = array(
 				'labels' => $staff_labels,
@@ -1398,6 +1398,7 @@
 				'parent_item_colon' => '',
 				'menu_name' => 'Testimonial'
 			);
+
 			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
 			$review_args = array(
 				'labels' => $review_labels,
@@ -1416,11 +1417,92 @@
 				'menu_position' => null,
 				/* include this line to use global categories */
 				//'taxonomies' => array('category'),
-				'supports' => array('title','editor','author','thumbnail','excerpt','comments','custom-fields','page-attributes')
+				'supports' => array( 'title' )
 			);
 
 			// We call this function to register the custom post type
 			register_post_type( 'testimonial', $review_args);
+
+			remove_post_type_support( 'testimonial', 'editor', 'permalink', 'comments', 'thumbnail', 'custom-fields', 'author', 'excerpt', 'trackbacks', 'page-attributes' );
+
+			function remove_yoast_metabox_testimonial(){
+				remove_meta_box( 'wpseo_meta', 'testimonial', 'normal' );
+			}
+			add_action( 'add_meta_boxes', 'remove_yoast_metabox_testimonial', 11 );
+
+			add_action( 'cmb2_admin_init', 'pegasus_testimonial_metabox' );
+
+			function pegasus_testimonial_metabox() {
+				$prefix = 'pegasus_testimonial_';
+
+				$testimonial_metabox = new_cmb2_box(
+					array(
+						'id'           => $prefix . 'content',
+						'title'        => __( 'Testimonial Slider Slides', 'pegasus-bootstrap' ),
+						'object_types' => array( 'testimonial' ),
+						'priority'     => 'high',
+					)
+				);
+
+				$testimonial_group_fields = $testimonial_metabox->add_field(
+					array(
+						'id'         => $prefix . 'slides',
+						'type'       => 'group',
+						'repeatable' => true,
+						'options'    => array(
+							'group_title'   => 'Slide #{#}',
+							'add_button'    => 'Add Another Slide',
+							'remove_button' => 'Remove Slide',
+							'sortable'      => true,
+							'closed'        => true, // true to have the groups closed by default
+						),
+
+					)
+				);
+
+				$testimonial_metabox->add_group_field(
+					$testimonial_group_fields, array(
+						'name'             => 'Title',
+						'id'               => $prefix . 'title',
+						'type'             => 'text',
+						'allow_custom_url' => true,
+					)
+				);
+
+				$testimonial_metabox->add_group_field(
+					$testimonial_group_fields, array(
+						'name'             => 'Link',
+						'id'               => $prefix . 'link',
+						'type'             => 'text',
+						'allow_custom_url' => true,
+					)
+				);
+
+				$testimonial_metabox->add_group_field(
+					$testimonial_group_fields, array(
+						'name' => 'Slide Image',
+						'id'   => $prefix . 'slide_image',
+						'type' => 'file',
+					)
+				);
+
+				$testimonial_metabox->add_group_field(
+					$testimonial_group_fields, array(
+						'name'              => 'Alt Text',
+						'id'                => $prefix . 'alt_text',
+						'type'              => 'text',
+					)
+				);
+
+				$testimonial_metabox->add_group_field(
+					$testimonial_group_fields, array(
+						'name'              => 'Caption',
+						'id'                => $prefix . 'caption',
+						'type'              => 'text',
+					)
+				);
+
+			} //end testimonial cmb2 function
 		}
 
 		$cpt_logo_slider = ( 'on' === pegasus_get_option( 'cpt_logo_slider_checkbox' ) ) ? true : false;
@@ -1462,18 +1544,24 @@
 				'menu_position' => null,
 				/* include this line to use global categories */
 				//'taxonomies' => array('category'),
-				'supports' => array('title','editor','author','thumbnail','excerpt','comments','custom-fields','page-attributes')
+				'supports' => array( 'title' )
 			);
 
 			// We call this function to register the custom post type
 			register_post_type( 'logo_slider', $logo_slider_args);
 
-			remove_post_type_support( 'logo_slider', 'editor', 'permalink');
+			remove_post_type_support( 'logo_slider', 'editor', 'permalink', 'comments', 'thumbnail', 'custom-fields', 'author', 'excerpt', 'trackbacks' );
+
+			function remove_yoast_metabox_logo_slider(){
+				remove_meta_box( 'wpseo_meta', 'logo_slider', 'normal' );
+			}
+			add_action( 'add_meta_boxes', 'remove_yoast_metabox_logo_slider', 11 );
 
 			add_action( 'cmb2_admin_init', 'pegasus_logo_slider_metabox' );
 
 			function pegasus_logo_slider_metabox() {
 				$prefix = 'pegasus_logo_slider_';
+
 				$logo_slider_metabox = new_cmb2_box(
 					array(
 						'id'           => $prefix . 'content',
