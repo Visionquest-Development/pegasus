@@ -28,7 +28,7 @@
 								<?php
 									$logo =  pegasus_get_option( 'logo' );
 									if( ! empty( $logo ) ) : ?>
-										<img id="logo" src="<?php echo $logo; ?>" />
+										<img id="logo" src="<?php echo $logo; ?>" alt=""/>
 									<?php else: ?>
 										<?php bloginfo( 'name' ); ?>
 									<?php endif; 
@@ -42,7 +42,7 @@
 								<?php
 									$logo =  pegasus_get_option( 'logo' );
 									if( ! empty( $logo ) ) : ?>
-										<img id="logo" src="<?php echo $logo; ?>" />
+										<img id="logo" src="<?php echo $logo; ?>" alt=""/>
 									<?php else: ?>
 										<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
 									<?php endif; 

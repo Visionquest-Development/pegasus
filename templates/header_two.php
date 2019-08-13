@@ -71,7 +71,7 @@
 					<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="bs-example-navbar-collapse-1">
 						<?php
 						if( ! empty( $logo ) ) : ?>
-							<a class="navbar-brand logo-container <?php echo $centerLogo; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" /></a>
+							<a class="navbar-brand logo-container <?php echo $centerLogo; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" alt=""/></a>
 						<?php else: ?>
 							<h1 class="site-title <?php echo $centerLogo; ?>"><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						<?php endif;

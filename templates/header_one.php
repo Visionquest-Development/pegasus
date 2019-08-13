@@ -62,7 +62,7 @@
 	<div class="<?php echo $header_one_top_logo_container; ?>">
 		<div class="site-branding <?php echo $centerLogo; ?>">
 			<?php if( ! empty( $logo ) ) : ?>
-				<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" /></a>
+				<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" alt=""/></a>
 			<?php else: ?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="" ><?php bloginfo( 'name' ); ?></a></h1>
 			<?php endif; ?>
