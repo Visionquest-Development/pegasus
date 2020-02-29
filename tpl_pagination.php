@@ -1,4 +1,4 @@
-<?phpphp
+<?php
 /* 
 	Template Name: Pagination Template
 */
