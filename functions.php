@@ -327,8 +327,8 @@
 					'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
 					'before_widget' => '<div id="%1$s" class="widget %2$s">',
 					'after_widget'  => '</div>',
-					'before_title'  => '<h2 class="widget-title">',
-					'after_title'   => '</h2>',
+					'before_title'  => '<h5 class="widget-title">',
+					'after_title'   => '</h5>',
 				) );
 			}
 
@@ -367,7 +367,7 @@
 
 		$nav_bg_color = ! empty( pegasus_get_option( 'nav_bg_color' ) ) ? pegasus_get_option( 'nav_bg_color' ) : 'rgba(0,0,0,0)';
 
-		$nav_item_color = ! empty( pegasus_get_option( 'nav_item_color' ) ) ? pegasus_get_option( 'nav_item_color' ) : 'rgba(0,0,0,.5)';
+		$nav_item_color = ! empty( pegasus_get_option( 'nav_item_color' ) ) ? pegasus_get_option( 'nav_item_color' ) : '';
 
 		$sub_nav_bg_color = ! empty( pegasus_get_option( 'sub_nav_bg_color' ) ) ? pegasus_get_option( 'sub_nav_bg_color' ) : '#dedede';
 
@@ -556,7 +556,7 @@
 			.dropdown a,
 			.nav-link,
 			.active > a
-			{ color: <?php echo $nav_item_color; ?> !important; }
+			{ <?php if( $nav_item_color ) { ?> color: <?php echo $nav_item_color; ?> !important; <?php } ?> }
 
 
 			<?php
@@ -856,7 +856,7 @@
 	add_action( 'wp_enqueue_scripts', 'mytheme_enqueue_comment_reply' );
 
 	/* PAGINATION */
-	/*if ( ! function_exists( 'my_pagination' ) ) :
+	if ( ! function_exists( 'my_pagination' ) ) :
 		function my_pagination() {
 			global $wp_query;
 			$big = 999999999; // need an unlikely integer
@@ -867,7 +867,7 @@
 				'total' => $wp_query->max_num_pages
 			) );
 		}
-	endif;*/
+	endif;
 
 	/* page laguage attributes function for header */
 	function pegasus_language_attributes() {

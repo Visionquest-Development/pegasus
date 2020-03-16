@@ -508,7 +508,9 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
         .navbar .primary-navigation-bar .dropdown-menu li {
             float: none;
-            width: 200px;
+            /* width: 200px; /*
+            not sure why this was here, maybe use min or max width instead
+             */
         }
 
         .navbar .primary-navigation-bar .dropdown-menu .dropdown-menu {
