@@ -66,72 +66,71 @@
 						<?php
 						 	if ( is_front_page() && is_home() ) {
 							  // Default homepage
-							  echo '<h1>Default Homepage</h1>';
+							  //echo '<h1>Default Homepage</h1>';
 							} elseif ( is_front_page() ) {
 							  // static homepage
-							  echo '<h1>Front Page</h1>';
+							  //echo '<h1>Front Page</h1>';
 							} elseif ( is_home() ) {
 							  	// blog page
-							  	echo '<h1>Jimbo Blog</h1>'; ?>
-									<?php /* ?>
-								  	<ul id="blog-categories">
-										<li class="cat-item ">
-											<a href="#self">All</a>
-										</li>
-										<?php
-											$args = array(
-											'show_option_all'    => '',
-											'orderby'            => 'name',
-											'order'              => 'ASC',
-											'style'              => 'list',
-											'show_count'         => 0,
-											'hide_empty'         => 1,
-											'use_desc_for_title' => 0,
-											'child_of'           => 0,
-											'feed'               => '',
-											'feed_type'          => '',
-											'feed_image'         => '',
-											'exclude'            => '',
-											'exclude_tree'       => '',
-											'include'            => '',
-											'hierarchical'       => 0,
-											'title_li'           => 0,
-											'show_option_none'   => __( '' ),
-											'number'             => null,
-											'echo'               => 1,
-											'depth'              => 0,
-											'current_category'   => 0,
-											'pad_counts'         => 0,
-											'taxonomy'           => 'category',
-											'walker'             => null
-											);
-											wp_list_categories( $args );
-										?>
-									</ul>
-									<?php */ ?>
+							  	?>
+								<?php /* ?>
+								<ul id="blog-categories">
+									<li class="cat-item ">
+										<a href="#self">All</a>
+									</li>
 									<?php
-										$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
-										$blog_query = new WP_Query(
-											array(
-												'post_type' => array( 'post' ),
-												'paged' => $paged,
-												'posts_per_page' => 10,
-												'order'                  => 'DESC',
-												'orderby'                => 'date'
-											)
+										$args = array(
+										'show_option_all'    => '',
+										'orderby'            => 'name',
+										'order'              => 'ASC',
+										'style'              => 'list',
+										'show_count'         => 0,
+										'hide_empty'         => 1,
+										'use_desc_for_title' => 0,
+										'child_of'           => 0,
+										'feed'               => '',
+										'feed_type'          => '',
+										'feed_image'         => '',
+										'exclude'            => '',
+										'exclude_tree'       => '',
+										'include'            => '',
+										'hierarchical'       => 0,
+										'title_li'           => 0,
+										'show_option_none'   => __( '' ),
+										'number'             => null,
+										'echo'               => 1,
+										'depth'              => 0,
+										'current_category'   => 0,
+										'pad_counts'         => 0,
+										'taxonomy'           => 'category',
+										'walker'             => null
 										);
-										while ( $blog_query->have_posts() ) : $blog_query->the_post();
+										wp_list_categories( $args );
 									?>
-										<?php get_template_part( 'templates/content_item', 'content-item' ); ?>
-									<?php
-										endwhile;
-										wp_reset_query();
-									?>
+								</ul>
+								<?php */ ?>
+								<?php
+									$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+									$blog_query = new WP_Query(
+										array(
+											'post_type' => array( 'post' ),
+											'paged' => $paged,
+											'posts_per_page' => 10,
+											'order'                  => 'DESC',
+											'orderby'                => 'date'
+										)
+									);
+									while ( $blog_query->have_posts() ) : $blog_query->the_post();
+								?>
+									<?php get_template_part( 'templates/content_item', 'content-item' ); ?>
+								<?php
+									endwhile;
+									wp_reset_query();
+								?>
 								<?php
 							} else {
 							  //everything else
 								?>
-							  	<h1>Everything else</h1>
 								<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 									<?php if( 'off' === $final_page_header_option ) { ?>
