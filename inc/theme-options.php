@@ -546,6 +546,12 @@ class Pegasus_Admin {
 			'type' => 'checkbox',
 		) );
 		$cmb->add_field( array(
+			'name' => 'Right Align Nav Items',
+			'desc' => 'Check this box to make the links in the navigation show up on the right while in desktop mode.',
+			'id'   => 'nav_right',
+			'type' => 'checkbox',
+		) );
+		$cmb->add_field( array(
 			'name' => 'Header Outer Container',
 			'desc' => 'Check this box to make the header wrapped with a container.',
 			'id'   => 'header_container',
