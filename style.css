@@ -87,8 +87,8 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	
 	@media only screen and (min-width: 992px) {
 		/*#page-wrap { padding: 0 0 20px; }*/
-        .inner-content { padding: 20px 0; }
-        .page-header { padding: 20px 0 0; }
+        /*.inner-content { padding: 20px 0; }*/
+        /*.page-header { padding: 20px 0 0; }*/
 	}
     @media only screen and (max-width: 991px) {
         #page-wrap { padding: 20px 0 0; }
@@ -508,7 +508,9 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
         .navbar .primary-navigation-bar .dropdown-menu li {
             float: none;
-            width: 200px;
+            /* width: 200px; /*
+            not sure why this was here, maybe use min or max width instead
+             */
         }
 
         .navbar .primary-navigation-bar .dropdown-menu .dropdown-menu {

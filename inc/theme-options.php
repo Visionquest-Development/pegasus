@@ -225,8 +225,7 @@ class Pegasus_Admin {
 			'id'      => 'content_color',
 			'type'    => 'colorpicker',
 			//'default' => '#ffffff'
-		) ); 
-		
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Footer Widget Areas', 'cmb2-example-theme' ),
 			'id'      => 'footer_widget_areas',
@@ -239,7 +238,19 @@ class Pegasus_Admin {
 				3 => __( 'Three', 'cmb2-example-theme' ),
 				4 => __( 'Four', 'cmb2-example-theme' ),
 			)
-		) ); 
+		) );
+		$cmb->add_field( array(
+			'name' => 'Global fullwith container',
+			'desc' => 'Check this box if you want the website to have a Full Width Container.',
+			'id'   => 'full_container_chk',
+			'type' => 'checkbox',
+		) );
+		$cmb->add_field( array(
+			'name' => 'Boxed Layout ',
+			'desc' => 'Check this box if you want the website to appear in a boxed layout.',
+			'id'   => 'boxed_layout_chk',
+			'type' => 'checkbox',
+		) );
 		$cmb->add_field( array(
 			'name' => 'Left Align Sidebar',
 			'desc' => 'Check this box if you want the sidebar to show up on the left instead of the right.',
@@ -253,30 +264,6 @@ class Pegasus_Admin {
 			'type' => 'checkbox',
 		) );
 		$cmb->add_field( array(
-			'name' => 'Boxed Layout ',
-			'desc' => 'Check this box if you want the website to appear in a boxed layout.',
-			'id'   => 'boxed_layout_chk',
-			'type' => 'checkbox',
-		) ); 
-		$cmb->add_field( array(
-			'name' => 'Global fullwith container',
-			'desc' => 'Check this box if you want the website to have a Full Width Container.',
-			'id'   => 'full_container_chk',
-			'type' => 'checkbox',
-		) ); 
-		$cmb->add_field( array(
-			'name' => 'Enable Breadcrumbs',
-			'desc' => 'Check this box if you want breadcrumbs to appear',
-			'id'   => 'bread_chk',
-			'type' => 'checkbox',
-		) ); 
-		$cmb->add_field( array(
-			'name' => 'Disable Page Header?',
-			'desc' => 'Check this box if you would like to remove the Page Title from the top of each page.',
-			'id'   => 'page_header_chk',
-			'type' => 'checkbox',
-		) ); 
-		$cmb->add_field( array(
 			'name' => 'Enable Page Loader?',
 			'desc' => 'Check this box if you would like to remove the Page Loader from the webpage.',
 			'id'   => 'page_loader_chk',
@@ -287,22 +274,37 @@ class Pegasus_Admin {
 			'desc' => 'Check this box if you would like to remove the WP Admin bar from the frontend.',
 			'id'   => 'wp_admin_bar_chk',
 			'type' => 'checkbox',
-		) ); 
-
-		$cmb->add_field( array(
-			'name' => 'WooCommerce Theme?',
-			'desc' => 'Check this box if you will be selling products using woocommerce',
-			'id'   => 'woo_chk',
-			'type' => 'checkbox',
-		) ); 
-
+		) );
 		$cmb->add_field( array(
 			'name' => 'Top Bar Checkbox',
 			'desc' => 'Check this box to enable Top Bar',
 			'id'   => 'top_header_chk',
 			'type' => 'checkbox',
 		) );
-
+		$cmb->add_field( array(
+			'name' => 'Enable Breadcrumbs',
+			'desc' => 'Check this box if you want breadcrumbs to appear',
+			'id'   => 'bread_chk',
+			'type' => 'checkbox',
+		) );
+		$cmb->add_field( array(
+			'name' => 'WooCommerce Theme?',
+			'desc' => 'Check this box if you will be selling products using woocommerce',
+			'id'   => 'woo_chk',
+			'type' => 'checkbox',
+		) );
+		$cmb->add_field( array(
+			'name' => 'Disable Page Header?',
+			'desc' => 'Check this box if you would like to remove the Page Title from the top of each page.',
+			'id'   => 'page_header_chk',
+			'type' => 'checkbox',
+		) );
+		$cmb->add_field( array(
+			'name' => 'Disable Comments Globally?',
+			'desc' => 'Check this box if you would like to remove comments on all pages.',
+			'id'   => 'disable_comment_chk',
+			'type' => 'checkbox',
+		) );
 		$cmb->add_field( array(
 			'name' => 'Enable back to top button',
 			'desc' => 'Check this box to enable Back to top',
@@ -321,8 +323,7 @@ class Pegasus_Admin {
 			'type' => 'title',
 			'id'   => 'ecommerce_options',
 			
-		) ); 
-		
+		) );
 		$cmb->add_field( array(
 			'name' => 'Disable Shop Link?',
 			'desc' => 'Check this box if you want to disable the shop link in the header',
