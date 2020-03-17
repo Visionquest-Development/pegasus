@@ -118,18 +118,6 @@
 									'next_text'          => __( 'Next page', 'textdomain' ),
 									'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'textdomain' ) . ' </span>'
 								) );
-
-								/*
-								// Previous/next post navigation.
-								wp_bootstrap_post_navigation( array(
-								  'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'textdomain' ) . '</span> ' .
-									'<span class="screen-reader-text">' . __( 'Next post:', 'textdomain' ) . '</span> ' .
-									'<span class="post-title">%title</span>',
-								  'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'textdomain' ) . '</span> ' .
-									'<span class="screen-reader-text">' . __( 'Previous post:', 'textdomain' ) . '</span> ' .
-									'<span class="post-title">%title</span>'
-								) );
-								*/
 							?>
 
 						<?php else : ?>

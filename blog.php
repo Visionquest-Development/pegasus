@@ -60,15 +60,6 @@ get_header();
 					<?php endif; ?>
 
 					<?php
-					// Previous/next post navigation.
-					wp_bootstrap_post_navigation( array(
-						'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'pegasus-bootstrap' ) . '</span> ' .
-									   '<span class="screen-reader-text">' . __( 'Next post:', 'pegasus-bootstrap' ) . '</span> ' .
-									   '<span class="post-title">%title</span>',
-						'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'pegasus-bootstrap' ) . '</span> ' .
-									   '<span class="screen-reader-text">' . __( 'Previous post:', 'pegasus-bootstrap' ) . '</span> ' .
-									   '<span class="post-title">%title</span>'
-					) );
 					wp_bootstrap_posts_pagination( array(
 						'prev_text'          => __( 'Previous page', 'pegasus-bootstrap' ),
 						'next_text'          => __( 'Next page', 'pegasus-bootstrap' ),
