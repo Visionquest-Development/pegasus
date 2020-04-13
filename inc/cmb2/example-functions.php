@@ -383,7 +383,7 @@ function yourprefix_register_demo_metabox() {
 		'name'     => esc_html__( 'Test Taxonomy Select', 'cmb2' ),
 		'desc'     => esc_html__( 'field description (optional)', 'cmb2' ),
 		'id'       => 'yourprefix_demo_taxonomy_select',
-		'type'     => 'taxonomy_select',
+		'type'     => 'taxonomy_select', // Or `taxonomy_select_hierarchical`
 		'taxonomy' => 'category', // Taxonomy Slug
 	) );
 
@@ -447,7 +447,7 @@ function yourprefix_register_demo_metabox() {
 		'desc' => sprintf(
 			/* translators: %s: link to codex.wordpress.org/Embeds */
 			esc_html__( 'Enter a youtube, twitter, or instagram URL. Supports services listed at %s.', 'cmb2' ),
-			'<a href="https://codex.wordpress.org/Embeds">codex.wordpress.org/Embeds</a>'
+			'<a href="https://wordpress.org/support/article/embeds/">codex.wordpress.org/Embeds</a>'
 		),
 		'id'   => 'yourprefix_demo_embed',
 		'type' => 'oembed',
