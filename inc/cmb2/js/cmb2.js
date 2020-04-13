@@ -19,6 +19,7 @@ window.CMB2 = window.CMB2 || {};
 	var $id = function( selector ) {
 		return $( document.getElementById( selector ) );
 	};
+	cmb.$id = $id;
 	var defaults = {
 		idNumber        : false,
 		repeatEls       : 'input:not([type="button"],[id^=filelist]),select,textarea,.cmb2-media-status',
@@ -1023,7 +1024,11 @@ window.CMB2 = window.CMB2 || {};
 		if ( $repeatables.length ) {
 			$repeatables.sortable({
 				items : '.cmb-repeat-row',
-				cursor: 'move'
+				cursor: 'move',
+				// The default "cancel" attributes are: "input,textarea,button,select,option".
+				// We are appending .CodeMirror.
+				// See https://api.jqueryui.com/sortable/#option-cancel
+				cancel: 'input,textarea,button,select,option,.CodeMirror'
 			});
 		}
 	};
