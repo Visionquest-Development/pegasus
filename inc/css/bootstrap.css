@@ -17,7 +17,8 @@
  * commendted out margin-bottom .navbar (3279) 
  * commendted out padding on .navbar-collapse (3293) 
  * commented out color: inherit on h1, h2, h3, h4, h5s line (402) - our pals place fix 
- *  removed nav li hover color (3097)
+ * removed nav li hover color (3097)
+ *  commented out pointer-events: none; for cursor not-allowed for disabled class
  */
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -2238,7 +2239,7 @@ select[multiple].form-group-lg .form-control {
 .btn.disabled,
 .btn[disabled],
 fieldset[disabled] .btn {
-  pointer-events: none;
+  /* pointer-events: none; */
   cursor: not-allowed;
   filter: alpha(opacity=65);
   -webkit-box-shadow: none;
