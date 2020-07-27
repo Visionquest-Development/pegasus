@@ -1,12 +1,98 @@
-	.cmb-file-field-image { width: 20%; height: auto !important; }
+
+    .cmb2-id-logo .cmb-file-field-image {
+        width: 50%;
+        height: auto !important;
+        max-width: 960px;
+        max-height: 550px;
+    }
+
+    .cmb2-id-favicon .cmb-file-field-image { width: 25px !important; height: 25px !important; }
 	
-	.cmb-type-title { background: black; padding: 5px 10px; }
-	.cmb-type-title h3 {color: white !important; }
+	.cmb-type-title { 
+		background-color: #777 !important;
+		padding: 5px 10px 10px 10px;
+    	/* border-top-right-radius: 10px; */
+	    /* border-top-left-radius: 10px; */
+	    border: 1px solid #777;
+	    border-radius: 7px;
+    }
+
+	.cmb-type-title h3 {color: white !important; margin: 0 !important; padding: 0 !important; }
 	
 	.cmb2-id-header-one-title, 
 	.cmb2-id-header-two-title, 
 	.cmb2-id-header-three-title, 
 	.cmb2-id-header-four-title, 
-	.cmb2-id-header-five-title { background: rgba(0,0,0,0.3) !important; padding: 2px 10px; }
+	.cmb2-id-header-five-title { background: #ccc !important; } 
+
+	.pegasus-toggle.active {
+		border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+	}
+
+	div[class*="pegasus-parent-"] { margin-bottom: 10px; }
+
+	div[class*="pegasus-options-toggle-content-"] { display: none; }
 	
-	#header_type {     width: 110px; }
+	div[class*="pegasus-options-toggle-content-"] {
+		margin-bottom: 10px;
+    	padding: 10px;
+    	border-left: 1px solid #777;
+	    border-right: 1px solid #777;
+	    border-bottom: 1px solid #777;
+	    border-bottom-left-radius: 7px;
+	    border-bottom-right-radius: 7px;
+	}
+
+	#header_type { width: 110px; }
+
+    .wp-picker-container .wp-color-result { position: relative !important; }
+
+	.cmb-th + .cmb-td {
+		float: none !important;
+	}
+
+	.CodeMirror-sizer {
+		/*padding-left: 1rem;*/
+	}
+
+    #pegasus_option_metabox .pegasus-save-btn-container {
+        padding: 20px;
+        background: #777;
+        border: 1px solid black;
+        position: fixed;
+        right: 0;
+        top: 50%;
+        margin-right: 10px;
+    }
+
+	.pegasus-wrap pre {
+		overflow: auto;
+		font-family: monospace, monospace;
+		font-size: 1em;
+		display: block;
+		padding: 9.5px;
+		margin: 0 0 10px;
+		line-height: 1.42857143;
+		color: #333;
+		word-break: break-all;
+		word-wrap: break-word;
+		background-color: #f5f5f5;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
+	
+	.pegasus-wrap pre,
+	.pegasus-wrap blockquote {
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
+
+	.pegasus-wrap pre code {
+		padding: 0;
+		font-size: inherit;
+		color: inherit;
+		white-space: pre-wrap;
+		background-color: transparent;
+		border-radius: 0;
+	}

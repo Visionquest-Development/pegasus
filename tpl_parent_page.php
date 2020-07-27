@@ -6,25 +6,21 @@
 	<?php get_header(); ?>
 	
 	<div id="page-wrap">
-		<?php 
-			
+		<?php
 			//this is the option on the page options
-			$pegasus_container_choice = get_post_meta( get_the_ID(), 'pegasus-page-container-checkbox', true ); 
+			$pegasus_container_choice = get_post_meta( get_the_ID(), 'pegasus-page-container-checkbox', true );
 			//this is the option from the theme options for global fullwidth
-			$full_container_chk_choice =  pegasus_theme_get_option('full_container_chk' ); 
+			$full_container_chk_choice =  pegasus_get_option('full_container_chk' );
+
+			$page_vs_global_check = $pegasus_container_choice ? $pegasus_container_choice : $full_container_chk_choice;
+			$final_container_class = $page_vs_global_check ? $page_vs_global_check : 'container';
 			
 			//$meta2 = get_post_meta($post->ID); 
 			//echo "<pre>";  var_dump($meta2); echo "</pre><hr>";  
 			//echo $pegasus_container_choice;
 		?>
 		
-		<div class="<?php if($full_container_chk_choice === 'on') { 
-										echo 'container-fluid'; 
-									}elseif ($pegasus_container_choice === 'on') { 
-										echo 'container-fluid'; 
-									}else{
-										echo 'container';
-									}?>">
+		<div class="<?php echo $final_container_class; ?>">
 		<!-- Example row of columns -->
 			<div class="">
 		
@@ -32,7 +28,7 @@
 					<div class="content-no-sidebar clearfix">
 						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 							<?php 
-								$page_header_choice =  pegasus_theme_get_option('page_header_chk' ); 
+								$page_header_choice =  pegasus_get_option('page_header_chk' );
 								if( $page_header_choice != 'on' ) {
 							?>
 								<div class="page-header">

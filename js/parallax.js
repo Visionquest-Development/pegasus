@@ -30,7 +30,8 @@ http://www.gnu.org/licenses/gpl.html
 			
 			$this.each(function(){
 								
-				firstTop = $this.offset().top;
+				//firstTop = $this.offset().top;
+                firstTop = 0;
 			});
 	
 			if (outerHeight) {
@@ -50,7 +51,7 @@ http://www.gnu.org/licenses/gpl.html
 			
 			// function to be called whenever the window is scrolled or resized
 			
-				var pos = $window.scrollTop();				
+				var pos = $(window).scrollTop();
 	
 				$this.each(function(){
 					var $element = $(this);

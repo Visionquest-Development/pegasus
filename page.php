@@ -1,1 +1,123 @@
-	<?php get_header(); ?>	<div id="page-wrap">		<?php 						//this is the option on the page options			$pegasus_container_choice = get_post_meta( get_the_ID(), 'pegasus-page-container-checkbox', true ); 			//this is the option from the theme options for global fullwidth			$full_container_chk_choice =  pegasus_theme_get_option('full_container_chk' ); 						//$meta2 = get_post_meta($post->ID); 			//echo "<pre>";  var_dump($meta2); echo "</pre><hr>";  			//echo $pegasus_container_choice;		?>				<div class="<?php if($full_container_chk_choice === 'on') { 										echo 'container-fluid'; 									}elseif ($pegasus_container_choice === 'on') { 										echo 'container-fluid'; 									}else{										echo 'container';									}?>">    			<!-- Example row of columns -->			<div class="row">				<?php 					$left_sidebar_chk =  pegasus_theme_get_option('sidebar_left_chk' ); 					if( $left_sidebar_chk == 'on' ) {						get_sidebar(); 					} 				?>				<div class="col-md-9">					<div class="inner-content">						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>							<?php 								$page_header_choice =  pegasus_theme_get_option('page_header_chk' ); 								if( $page_header_choice != 'on' ) {							?>								<div class="page-header">									<h1><?php the_title(); ?></h1>								</div>							<?php }else{ ?>								<div class="page-header-spacer"></div>							<?php } ?>														<?php the_content(); ?>														<?php comments_template(); ?>													<?php endwhile; else: ?>							<?php /* kinda a 404 of sorts when not working */ ?>							<div class="page-header">								<h1>Oh no!</h1>							</div>							<p>No content is appearing for this page!</p>						<?php endif; ?>					</div><!--end inner content-->				</div>				<?php 					//get_sidebar(); 					if( $left_sidebar_chk == 'on' ) {						//do nothing					} else{						get_sidebar(); 					}				?>		   			</div>		</div>	</div><!-- end page wrap -->	    <?php get_footer(); ?>
+	<?php
+		/**
+		 * Silence is golden; exit if accessed directly
+		 */
+		if ( ! defined( 'ABSPATH' ) ) {
+			exit;
+		}
+		get_header();
+	?>
+	<div id="page-wrap">
+		<?php
+			//full container page options
+			$post_full_container_choice = get_post_meta( get_the_ID(), 'pegasus-page-container-checkbox', true );
+			//full container theme option
+			$global_full_container_option = pegasus_get_option('full_container_chk' );
+
+			//assign post class
+			$pegasus_post_container_choice = ( 'on' === $post_full_container_choice ) ? 'container-fluid' : 'container';
+			//assign global class
+			$pegasus_global_container_choice = ( 'on' === $global_full_container_option ) ? 'container-fluid' : 'container' ;
+			//check global first then post
+			$final_container_class = ( 'container-fluid' === $pegasus_global_container_choice ) ? $pegasus_global_container_choice : $pegasus_post_container_choice;
+
+			//left align right sidebar?
+			$left_align_sidebar_chk =  pegasus_get_option( 'sidebar_left_chk' ) ? pegasus_get_option( 'sidebar_left_chk' ) : 'off';
+			//enable both sidebars?
+			$pegasus_left_sidebar_option = ( 'on' === pegasus_get_option( 'both_sidebar_chk' ) ) ? pegasus_get_option( 'both_sidebar_chk' ) : 'off';
+			//change content class if both sidebars
+			$page_body_content_class = ( 'on' === $pegasus_left_sidebar_option  ) ? 'col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xg-6' : 'col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xg-9';
+
+			//page header page options
+			$post_disable_page_header_choice = get_post_meta( get_the_ID(), 'pegasus-page-header-checkbox', true ) ? get_post_meta( get_the_ID(), 'pegasus-page-header-checkbox', true ) : 'off';
+			//page header theme option
+			$global_disable_page_header_option =  pegasus_get_option('page_header_chk' ) ? pegasus_get_option('page_header_chk' ) : 'off';
+			//check theme option for page header before page option
+			$page_title = $post->post_title;
+			$is_this_home = is_home();
+			if ( 'on' === $global_disable_page_header_option ) {
+				$final_page_header_option = 'on';
+			} elseif ( 'on' === $post_disable_page_header_choice ) {
+				$final_page_header_option = 'on';
+			} else {
+				$final_page_header_option = 'off';
+			}
+
+			if ( true === $is_this_home ) {
+				$final_page_header_option = 'off';
+			}
+
+		?>
+		
+		<div class="<?php echo $final_container_class; ?>">
+			<!-- Example row of columns -->
+			<div class="row">
+				<?php
+					if( 'on' === $pegasus_left_sidebar_option && 'on' === $left_align_sidebar_chk ) {
+						get_sidebar( 'left' );
+					} else if( 'on' === $left_align_sidebar_chk ) {
+						get_sidebar( 'right' );
+					}
+				?>
+
+				<div class="<?php echo $page_body_content_class; ?>">
+					<div class="inner-content">
+						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+							<?php if( 'off' === $final_page_header_option ) { ?>
+								<div class="page-header">
+									<?php
+										if( '' === $page_title ) {
+											echo '';
+										} elseif ( $page_title ) {
+											echo '<h1>';
+											echo the_title();
+											echo '</h1>';
+										}
+									?>
+								</div>
+							<?php }else{ ?>
+								<div class="page-header-spacer"></div>
+							<?php } ?>
+
+							<?php the_content(); ?>
+
+							<?php comments_template(); ?>
+
+						<?php endwhile; else: ?>
+							<?php /* kinda a 404 of sorts when not working */ ?>
+							<div class="page-header">
+								<h1>Oh no!</h1>
+							</div>
+							<p>No content is appearing for this page!</p>
+						<?php endif; ?>
+						<?php
+							// Edit post link
+							wp_bootstrap_edit_post_link(
+								sprintf(
+									/* translators: %s: Name of current post */
+									__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
+									get_the_title()
+								),
+								'<span class="edit-link">',
+  								'</span>'
+							);
+							wp_bootstrap_posts_pagination( array(
+								'prev_text'          => __( 'Previous page', 'pegasus-bootstrap' ),
+								'next_text'          => __( 'Next page', 'pegasus-bootstrap' ),
+								'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus-bootstrap' ) . ' </span>'
+							) );
+						?>
+					</div><!--end inner content-->
+				</div>
+				<?php
+					if( 'on' === $pegasus_left_sidebar_option ) {
+						get_sidebar( 'right' );
+					}
+					if( 'on' !== $left_align_sidebar_chk ) {
+						get_sidebar( 'right' );
+					}
+				?>
+			</div><!--end row -->
+		</div><!-- end container -->
+	</div><!-- end page wrap -->
+    <?php get_footer(); ?>
