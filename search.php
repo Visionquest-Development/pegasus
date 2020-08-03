@@ -144,7 +144,7 @@
 										$tax = '';
 									endif;
 
-									get_template_part('content_item');
+									get_template_part('templates/content_item');
 								endwhile;
 								echo '</div><!-- End search-list-container -->';
 								wp_reset_postdata();
