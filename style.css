@@ -117,7 +117,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	}
 	.sidebar ul { list-style-type: none; margin: 0; padding: 0; }
 
-    .widget-title {
+    .sidebar .widget-title {
         padding: 10px 0 0 10px;
     }
 	
