@@ -639,6 +639,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
     .pegasus-footer #footer-widgets .footer-widget-area .card,
     .pegasus-footer #footer-widgets .footer-widget-area .card .list-group-item {
         background: transparent;
+	border-color: transparent;
     }
 
     .pegasus-footer hr { margin: 0; }
