@@ -75,7 +75,7 @@
 				?>
 			</li>
 			<?php
-				echo $user_fallback_menu;
+				echo $final_user_menu; 
 			?>
 			<li class="menu-item">
 				<a class="nav-link" href="<?php echo esc_url( home_url( '/' ) ); ?>wp-login.php?action=logout">Log Out <i class="fa fa-sign-out"></i></a>
