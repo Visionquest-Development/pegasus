@@ -910,7 +910,7 @@
 		if ( has_post_thumbnail() ) {
 			$image_id = get_post_thumbnail_id();
 			$image_url = wp_get_attachment_image_src( $image_id, $size );
-			$image_url = $image_url[0];
+			$image_url = esc_url_raw( $image_url[0] );
 		} else {
 			//get first image in post content, if not then not-available.jpg
 			global $post, $posts;
