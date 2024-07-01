@@ -583,7 +583,6 @@
 				header .nav ul li a:hover,
 				#top-bar .sub-menu li a:hover,
 				.dropdown-menu .nav-link:hover,
-				.the-default-nav .the-nav-cart li a,
 				.the-default-nav .pegasus-social li a i:before
 				{ color: <?php echo $hover_bg_color; ?> !important; }
 			<?php
