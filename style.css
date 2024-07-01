@@ -674,7 +674,9 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	.shop_table .actions .coupon .button { float: left; max-width: 152px; }
 	.shop_table .actions input[type="submit"] { max-width: 400px;  }
 	
-	    
+	#customer_login .col-1, #customer_login .col-2 {
+		max-width: none !important;
+	}
 	
 	
 	
