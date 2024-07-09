@@ -18,8 +18,8 @@
 		'items_wrap'      => '%3$s',
 	) );
 
-	//$user_fallback_menu = '<li class="nav-item"><a class="nav-link" href="' . get_permalink( get_option('woocommerce_myaccount_page_id') ) . '">My Account</a></li>';
-	$user_fallback_menu = '';
+	$user_fallback_menu = '<li class="nav-item"><a class="nav-link" href="' . get_permalink( get_option('woocommerce_myaccount_page_id') ) . '">My Account</a></li>';
+	//$user_fallback_menu = '';
 	$final_user_menu = ( null !== $user_menu ) ? $user_menu : $user_fallback_menu;
 
 	$woo_cart_url 	= wc_get_cart_url();
@@ -65,21 +65,29 @@
 						$temporary_name = substr( $final_name, 0, 25 );
 						if( '' != $temporary_name ) {
 							?>
-							<a class="nav-link" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>">Hi, <?php echo $temporary_name . $final_last_name; ?>!</a>
+							<a class="nav-link" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>">
+								Hi, <?php echo $temporary_name . $final_last_name; ?>!
+							</a>
 							<?php
 						}
-					}else{ ?>
-						<a class="nav-link" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','woothemes'); ?>"><?php _e('Login / Register','woothemes'); ?></a>
-
-					<?php }
-				?>
+					} else{ ?>
+						<a class="nav-link" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','woothemes'); ?>">
+							<?php _e('Login / Register','woothemes'); ?>
+						</a>
+				<?php } ?>
 			</li>
 			<?php
-				echo $user_fallback_menu;
+				echo $final_user_menu;
 			?>
-			<li class="menu-item">
-				<a class="nav-link" href="<?php echo esc_url( home_url( '/' ) ); ?>wp-login.php?action=logout">Log Out <i class="fa fa-sign-out"></i></a>
-			</li>
+			<?php 
+				if ( is_user_logged_in() ) {
+				?>
+				<li class="menu-item">
+					<a class="nav-link" href="<?php echo esc_url( home_url( '/' ) ); ?>wp-login.php?action=logout">Log Out <i class="fa fa-sign-out"></i></a>
+				</li>
+				<?php 
+				}
+			?>
 		</ul>
 	 </li><?php endif; ?>
 
