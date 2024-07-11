@@ -50,19 +50,21 @@ endif;
 				if( isset( $pegasus_excerpt ) ) { ?>
 					<p>
 						<?php
-						$temporary_excerpt = substr( strip_tags( $pegasus_excerpt ), 0, 300 );
-						$final_excerpt = ( $pegasus_excerpt !== $temporary_excerpt ) ? ( $temporary_excerpt . '...') : $pegasus_excerpt;
-						echo $final_excerpt;
+						//$temporary_excerpt = substr( strip_tags( $pegasus_excerpt ), 0, 1900 );
+						//$final_excerpt = ( $pegasus_excerpt !== $temporary_excerpt ) ? ( $temporary_excerpt . '...') : $pegasus_excerpt;
+						//echo $final_excerpt;
+						echo $pegasus_excerpt;
 						?>
 					</p>
 				<?php } else {
 					$more = 0;
 					$pegasus_content = get_the_content();
-					$temporary_content = substr( strip_tags( $pegasus_content ), 0, 300 );
-					$final_content = ( $pegasus_content !== $temporary_content ) ? ( $temporary_content . '...' ) : $pegasus_content;
-				?>
+					//$temporary_content = substr( strip_tags( $pegasus_content ), 0, 1900 );
+					//$final_content = ( $pegasus_content !== $temporary_content ) ? ( $temporary_content . '...' ) : $pegasus_content;
+					?>
 					<p>
-						<?php echo do_shortcode( $final_content ); ?>
+						<?php //echo do_shortcode( $final_content ); ?>
+						<?php echo do_shortcode( $pegasus_content ); ?>
 					</p>
 				<?php }	?>
 			</div>

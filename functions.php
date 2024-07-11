@@ -583,6 +583,7 @@
 				header .nav ul li a:hover,
 				#top-bar .sub-menu li a:hover,
 				.dropdown-menu .nav-link:hover,
+				.the-default-nav .the-nav-cart li a,
 				.the-default-nav .pegasus-social li a i:before
 				{ color: <?php echo $hover_bg_color; ?> !important; }
 			<?php
@@ -623,8 +624,7 @@
 			.navbar-toggle { border: 1px solid <?php echo $mobile_color; ?> !important; }
 
 			.navbar-toggler-icon {
-				/* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important; */
-				background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+				background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 			}
 			.navbar-toggler {
 				border-color: <?php echo $mobile_color; ?> !important;
@@ -737,7 +737,7 @@
 		wp_enqueue_style( 'bootstrap-style', get_template_directory_uri() . '/inc/bootstrap/css/bootstrap.min.css' );
 		wp_enqueue_script( 'popper_js', get_template_directory_uri() . '/inc/bootstrap/js/popper.min.js', array('jquery'), '', true );
 		wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/inc/bootstrap/js/bootstrap.min.js', array('jquery'), '', true );
-		wp_enqueue_style( 'pegasus_font_awesome', get_template_directory_uri() . '/inc/css/font-awesome.min.css', null, null, null );
+		wp_enqueue_style( 'pegasus_font_awesome', get_template_directory_uri() . '/inc/font-awesome/css/all.min.css', null, null, null );
 		//wp_enqueue_script( 'modernizer_js', get_template_directory_uri() . '/inc/modernizer/modernizer.custom.js', array('jquery'), '', true );
 
 		//wp_enqueue_style( 'pegasus-style', get_template_directory_uri() . '/style.css' );
@@ -910,7 +910,7 @@
 		if ( has_post_thumbnail() ) {
 			$image_id = get_post_thumbnail_id();
 			$image_url = wp_get_attachment_image_src( $image_id, $size );
-			$image_url = $image_url[0];
+			$image_url = esc_url_raw( $image_url[0] );
 		} else {
 			//get first image in post content, if not then not-available.jpg
 			global $post, $posts;

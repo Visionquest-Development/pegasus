@@ -33,7 +33,7 @@
 			//page header theme option
 			$global_disable_page_header_option =  pegasus_get_option('page_header_chk' ) ? pegasus_get_option('page_header_chk' ) : 'off';
 			//check theme option for page header before page option
-			$page_title = $post->post_title;
+			//$page_title = $post->post_title;
 			$is_this_home = is_home();
 			if ( 'on' === $global_disable_page_header_option ) {
 				$final_page_header_option = 'on';
@@ -136,9 +136,9 @@
 									<?php if( 'off' === $final_page_header_option ) { ?>
 										<div class="page-header">
 											<?php
-											if( '' === $page_title ) {
+											if( '' === $post->post_title ) {
 												echo '';
-											} elseif ( $page_title ) {
+											} elseif ( $post->post_title ) {
 												echo '<h1>';
 												echo the_title();
 												echo '</h1>';
