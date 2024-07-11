@@ -235,7 +235,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
     /*=========================*/
 
 	
-	input, textarea {  }
+	input, textarea { width: 90%; }
 	input[type=submit] { }
 	
 	table { width: 100%; }
