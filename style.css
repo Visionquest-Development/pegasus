@@ -479,9 +479,9 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
 
 
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
+    /*@media only screen and (min-width: 768px) and (max-width: 992px) {
         .navbar-brand { font-size: 0 !important; }
-    }
+    }*/
 
 
 

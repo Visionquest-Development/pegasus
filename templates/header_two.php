@@ -63,49 +63,48 @@
 		<div class="<?php echo $header_container_check; ?>">
 			<nav class="navbar <?php echo $bootstrap_navbar_expand_class; ?> the-default-nav <?php echo $bootstrap_color_scheme; ?> <?php echo $bootstrap_color_utility; ?> <?php echo $sticky_header_choice; ?>" role="navigation">
 				<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) & 'container' !== $header_container_check ) : ?>
-				<div class="<?php echo $final_inner_container_class; ?>">
-					<?php endif; ?>
+					<div class="<?php echo $final_inner_container_class; ?>">
+				<?php endif; ?>
 
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1"  aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="bs-example-navbar-collapse-1">
-						<?php
-						if( ! empty( $logo ) ) : ?>
-							<a class="navbar-brand logo-container <?php echo $centerLogo; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" alt=""/></a>
-						<?php else: ?>
-							<h1 class="site-title <?php echo $centerLogo; ?>"><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-						<?php endif;
-						echo $final_menu;
-						if( 'on' === $moremenuchk ) {
-							get_template_part( 'templates/more_menu', 'header' );
-						}
-						if( 'on' === $searchmenuchk ) {
-							//echo '<form role="search" method="get" id="searchform" class="searchform search-form form-inilne ml-auto mr-0" action="' . home_url( '/' ) . '">';
-							//get_search_form();
-							get_template_part( 'templates/header_search', 'header' );
-							//echo '</form>';
-						}
-						if ( 'on' === $woo_check ) {
-							if ( class_exists( 'WooCommerce' ) ) {
-								// code that requires WooCommerce
-								get_template_part( 'templates/header_cart', 'header' );
-							} else {
-								// you don't appear to have WooCommerce activated
-								echo '<div class="woo-error navbar-right">Enable WooCommerce</div>';
-							}
-						}
-						if( 'on' === $top_social_check ){
-							get_template_part( 'templates/social_icons', 'header' );
-						}
-						?>
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1"  aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
 						
-
-					</div>
-					<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) ) : ?>
-				</div ><!-- container-->
-			<?php endif; ?>
+						<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="bs-example-navbar-collapse-1">
+							<?php
+							if( ! empty( $logo ) ) : ?>
+								<a class="navbar-brand logo-container <?php echo $centerLogo; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" alt=""/></a>
+							<?php else: ?>
+								<h1 class="site-title <?php echo $centerLogo; ?>"><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+							<?php endif;
+							echo $final_menu;
+							if( 'on' === $moremenuchk ) {
+								get_template_part( 'templates/more_menu', 'header' );
+							}
+							if( 'on' === $searchmenuchk ) {
+								//echo '<form role="search" method="get" id="searchform" class="searchform search-form form-inilne ml-auto mr-0" action="' . home_url( '/' ) . '">';
+								//get_search_form();
+								get_template_part( 'templates/header_search', 'header' );
+								//echo '</form>';
+							}
+							if ( 'on' === $woo_check ) {
+								if ( class_exists( 'WooCommerce' ) ) {
+									// code that requires WooCommerce
+									get_template_part( 'templates/header_cart', 'header' );
+								} else {
+									// you don't appear to have WooCommerce activated
+									echo '<div class="woo-error navbar-right">Enable WooCommerce</div>';
+								}
+							}
+							if( 'on' === $top_social_check ){
+								get_template_part( 'templates/social_icons', 'header' );
+							}
+							?>
+						</div>
+				<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) ) : ?>
+					</div ><!-- container-->
+				<?php endif; ?>
 			</nav>
 		</div><!-- container -->
 	</div><!-- #header -->
