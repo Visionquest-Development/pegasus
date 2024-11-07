@@ -1,0 +1,50 @@
+# Node modules and dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Gulp cache and temp files
+.gulp/
+.gulp-cache/
+
+# Sass/CSS cache
+.sass-cache/
+
+# Logs
+*.log
+
+# Build output and compiled assets
+dist/
+*.map
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+*.idea/
+*.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Composer dependencies (if using PHP packages)
+vendor/
+
+# WordPress core files
+wp-config.php
+wp-config-*.php
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+
+# Backup and temporary files
+*.bak
+*.swp
+*.tmp
+*~
+
+# Hidden files
+.env
+.env.local
+
+package-lock.json
