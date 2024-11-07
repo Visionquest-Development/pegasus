@@ -374,7 +374,8 @@ Use it to make something cool, have fun, and share what you've learned with othe
     .the-nav-cart li.header-cart-item .sub-menu .cart_list a:hover { background: transparent !important; }
 
     .header-cart-item .card.card-woocommerce-widget-cart {
-        background-color: inherit; align-content;
+        background-color: inherit; 
+		/* align-content: middle; */
         border: none;
     }
 

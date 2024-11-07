@@ -93,7 +93,9 @@
 
 	<?php if( 'on' !== $cart_menu_choice ) : ?>
 	<li class="header-cart-item woo-item menu-item">
-		<a class="cart-contents" href="<?php echo $final_woo_cart_url; ?>" title="<?php echo $woo_url_title; ?>"><?php echo $final_cart_count; ?></a>
+		<a class="cart-contents" href="<?php echo $final_woo_cart_url; ?>" title="<?php echo $woo_url_title; ?>">
+			<?php echo $final_cart_count; ?>
+		</a>
 		<ul class="sub-menu">
 			<?php if( !is_cart() ) : ?>
 				<li>
