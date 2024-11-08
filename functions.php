@@ -791,8 +791,8 @@
 
 				break;
 			case "header-three":
-				wp_enqueue_script( 'header_three_js', get_template_directory_uri() . '/js/header-three.js', array(), '', true );
-				wp_enqueue_style( 'header_three_style', get_template_directory_uri() . '/css/header-three.css' );
+				wp_enqueue_script( 'header_three_js', get_template_directory_uri() . '/js/header_three.js', array(), '', true );
+				wp_enqueue_style( 'header_three_style', get_template_directory_uri() . '/css/header_three.css' ); 
 
 				break;
 			case "header-four":
