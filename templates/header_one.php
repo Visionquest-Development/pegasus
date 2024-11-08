@@ -71,7 +71,7 @@
 		</div><!-- .site-branding -->
 	</div><!-- container -->
 	<div class="<?php echo $header_container_check; ?>">
-		<nav class="navbar <?php echo $bootstrap_navbar_expand_class; ?> the-default-nav <?php echo $bootstrap_color_scheme; ?> <?php echo $bootstrap_color_utility; ?>" role="navigation">
+		<nav class="navbar <?php echo $bootstrap_navbar_expand_class; ?> the-default-nav <?php echo $bootstrap_color_scheme; ?> <?php echo $bootstrap_color_utility; ?>" >
 			<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) & 'container' !== $header_container_check ) : ?>
 				<div class="<?php echo $final_inner_container_class; ?>">
 			<?php endif; ?>
@@ -79,10 +79,20 @@
 					<?php bloginfo( 'name' ); ?>
 				</a>
 				<!-- Brand and toggle get grouped for better mobile display -->
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1"  aria-label="Toggle navigation">
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#pegasus_header_one"
+					aria-controls="pegasus_header_one"
+					aria-label="Toggle navigation"
+				>
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="bs-example-navbar-collapse-1">
+				<div
+					class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>"
+					id="pegasus_header_one"
+				>
 					<?php
 						echo $final_menu;
 						if( 'on' === $moremenuchk ) {

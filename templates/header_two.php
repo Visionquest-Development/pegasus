@@ -67,11 +67,11 @@
 				<?php endif; ?>
 
 						<!-- Brand and toggle get grouped for better mobile display -->
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1"  aria-label="Toggle navigation">
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#pegasus_header_two" aria-controls="pegasus_header_two"  aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
-						
-						<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="bs-example-navbar-collapse-1">
+
+						<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="pegasus_header_two">
 							<?php
 							if( ! empty( $logo ) ) : ?>
 								<a class="navbar-brand logo-container <?php echo $centerLogo; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" alt=""/></a>

@@ -71,16 +71,18 @@ endif;
 		</div>
 
 		<?php
-		// Edit post link
-		wp_bootstrap_edit_post_link(
-			sprintf(
-			/* translators: %s: Name of current post */
-				__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
-				get_the_title()
-			),
-			'<span class="edit-link">',
-			'</span>'
-		);
+		if ( function_exists( 'wp_bootstrap_edit_post_link' ) ) {
+			// Edit post link
+			wp_bootstrap_edit_post_link(
+				sprintf(
+					/* translators: %s: Name of current post */
+					__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
+					get_the_title()
+				),
+				'<span class="edit-link">',
+				'</span>'
+			);
+		}
 		?>
 
 	</article>

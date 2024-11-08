@@ -164,21 +164,25 @@
 						?>
 
 						<?php
-							// Edit post link
-							wp_bootstrap_edit_post_link(
-								sprintf(
-									/* translators: %s: Name of current post */
-									__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
-									get_the_title()
-								),
-								'<span class="edit-link">',
-  								'</span>'
-							);
-							wp_bootstrap_posts_pagination( array(
-								'prev_text'          => __( 'Previous page', 'pegasus-bootstrap' ),
-								'next_text'          => __( 'Next page', 'pegasus-bootstrap' ),
-								'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus-bootstrap' ) . ' </span>'
-							) );
+							if ( function_exists( 'wp_bootstrap_edit_post_link' ) ) {
+								// Edit post link
+								wp_bootstrap_edit_post_link(
+									sprintf(
+										/* translators: %s: Name of current post */
+										__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
+										get_the_title()
+									),
+									'<span class="edit-link">',
+									'</span>'
+								);
+							}
+							if ( function_exists( 'wp_bootstrap_posts_pagination' ) ) {
+								wp_bootstrap_posts_pagination( array(
+									'prev_text'          => __( 'Previous page', 'pegasus-bootstrap' ),
+									'next_text'          => __( 'Next page', 'pegasus-bootstrap' ),
+									'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus-bootstrap' ) . ' </span>'
+								) );
+							}
 						?>
 					</div><!--end inner content-->
 				</div>
