@@ -48,3 +48,4 @@ wp-content/cache/
 .env.local
 
 package-lock.json
+pegasus.code-workspace

@@ -70,26 +70,26 @@ add_action( 'wp_enqueue_scripts', function() {
   (() => {
     const caretSelector = '$caret_class';
     const handler = (e) => {
-      console.log('HELLO CLICK');
+      //console.log('HELLO CLICK');
       const target = event.target.closest('a[href].dropdown-toggle');
-  
+
       if (!target) {
         return;
       }
-  
+
       if (target.href.startsWith('#') || target.href.startsWith('javascript:')) {
         return;
       }
-  
+
       const isOpen = !!target.classList.contains('show');
-  
+
       if (isOpen) {
         return;
       }
 
       const isCaret = caretSelector && !!event.target.closest(caretSelector) || (() => {
         const after = getComputedStyle(target, ":after");
-      
+
         if (after) {
           const w = Math.max(Number(after.getPropertyValue("width").slice(0, -2)), 16);
           const h = target.offsetHeight;
@@ -97,21 +97,21 @@ add_action( 'wp_enqueue_scripts', function() {
           const y = 0;
           const ex = e.layerX;
           const ey = e.layerY;
-          
+
           if (ex > x && ex < x + w && ey > y && ey < y + h) {
             return true;
           }
         }
-  
+
         return false;
       })();
-  
+
       if (isCaret) {
         return false;
       }
-  
+
       const hasText = [...target.childNodes].some(node => node.nodeType === 3);
-  
+
       if (!hasText && event.target !== target || hasText && event.target === target) {
         window.location.href = target.href;
       }
