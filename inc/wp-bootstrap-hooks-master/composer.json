@@ -1,7 +1,7 @@
 {
-  "name": "wp-bootstrap-hooks",
-  "version": "0.1.0-alpha.1",
-  "type": "wordpress-muplugin",
+  "name": "benignware/wp-bootstrap-hooks",
+  "version": "1.1.9",
+  "type": "wordpress-plugin",
   "license": "MIT",
   "description": "A collection of action and filters for bootstrap based themes",
   "homepage": "http://github.com/benignware/wp-bootstrap-hooks",
@@ -13,13 +13,66 @@
     }
   ],
   "keywords": [
-    "wordpress", "wordpress-muplugin"
+    "wordpress-mlugin"
   ],
   "support": {
     "issues": "https://github.com/benignware/wp-bootstrap-hooks/issues"
   },
+  "repositories": [{
+    "type": "composer",
+    "url": "https://wpackagist.org"
+  }, {
+    "type":"package",
+    "package": {
+      "name": "wptrt/theme-unit-test",
+      "version": "master",
+      "source": {
+        "url": "https://github.com/WPTRT/theme-unit-test.git",
+        "type": "git",
+        "reference": "master"
+      }
+    }
+  }, {
+    "type": "package",
+    "package": {
+      "name": "benignware/benignware-connect",
+      "version": "v1.0.6",
+      "type": "wordpress-plugin",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/benignware/wp-benignware-connect.git",
+        "reference": "v1.0.6"
+      }
+    }
+  }],
   "require": {
     "php": ">=5.3.0",
     "composer/installers": "~1.0"
+  },
+  "require-dev": {
+    "benignware/benignware-connect": ">=1.0.6",
+    "wpackagist-plugin/wordpress-importer": "^0.6.4",
+    "wpackagist-plugin/gutenberg": "^17.9.0",
+    "wptrt/theme-unit-test": "dev-master"
+  },
+  "extra": {
+    "webroot-dir": "wp-core",
+  	"webroot-package": "wordpress",
+    "installer-paths": {
+      "wp-content/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "wp-content/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "wp-content/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
   }
 }

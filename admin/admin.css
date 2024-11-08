@@ -7,8 +7,8 @@
     }
 
     .cmb2-id-favicon .cmb-file-field-image { width: 25px !important; height: 25px !important; }
-	
-	.cmb-type-title { 
+
+	.cmb-type-title {
 		background-color: #777 !important;
 		padding: 5px 10px 10px 10px;
     	/* border-top-right-radius: 10px; */
@@ -18,12 +18,12 @@
     }
 
 	.cmb-type-title h3 {color: white !important; margin: 0 !important; padding: 0 !important; }
-	
-	.cmb2-id-header-one-title, 
-	.cmb2-id-header-two-title, 
-	.cmb2-id-header-three-title, 
-	.cmb2-id-header-four-title, 
-	.cmb2-id-header-five-title { background: #ccc !important; } 
+
+	.cmb2-id-header-one-title,
+	.cmb2-id-header-two-title,
+	.cmb2-id-header-three-title,
+	.cmb2-id-header-four-title,
+	.cmb2-id-header-five-title { background: #ccc !important; }
 
 	.pegasus-toggle.active {
 		border-bottom-right-radius: 0;
@@ -33,7 +33,7 @@
 	div[class*="pegasus-parent-"] { margin-bottom: 10px; }
 
 	div[class*="pegasus-options-toggle-content-"] { display: none; }
-	
+
 	div[class*="pegasus-options-toggle-content-"] {
 		margin-bottom: 10px;
     	padding: 10px;
@@ -81,7 +81,7 @@
 		border: 1px solid #ccc;
 		border-radius: 4px;
 	}
-	
+
 	.pegasus-wrap pre,
 	.pegasus-wrap blockquote {
 		border: 1px solid #999;
@@ -96,3 +96,5 @@
 		background-color: transparent;
 		border-radius: 0;
 	}
+
+  .js .tmce-active .wp-editor-area { color: black; }

@@ -91,7 +91,7 @@ class Pegasus_Admin {
 		<div class="wrap cmb2-options-page <?php echo $this->key; ?>">
 			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 			<?php cmb2_metabox_form( $this->metabox_id, $this->key ); ?>
-			
+
 		</div>
 		<?php
 	}
@@ -113,7 +113,7 @@ class Pegasus_Admin {
 			),
 		) );
 
-			
+
 		/*============================
 			START GENERAL OPTIONS
 		=============================*/
@@ -122,7 +122,7 @@ class Pegasus_Admin {
 			//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
 			'type' => 'title',
 			'id'   => 'general_options',
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Logo', 'cmb2-example-theme' ),
 			'desc' => 'Defaults to Site Title under Settings',
@@ -140,7 +140,7 @@ class Pegasus_Admin {
 			'id'      => 'bg_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => '#404040'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Background Image', 'cmb2-example-theme' ),
 			'desc' => 'This needs to be customized by the developer for position and mobile rendering. ',
@@ -268,7 +268,7 @@ class Pegasus_Admin {
 			'desc' => 'Check this box if you would like to remove the Page Loader from the webpage.',
 			'id'   => 'page_loader_chk',
 			'type' => 'checkbox',
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name' => 'Disable WPADMIN Bar',
 			'desc' => 'Check this box if you would like to remove the WP Admin bar from the frontend.',
@@ -315,46 +315,46 @@ class Pegasus_Admin {
 		/*============================
 			ECOMMERCE
 		=============================*/
-			
-		
+
+
 		$cmb->add_field( array(
 			'name' => 'E-Commerce Options',
 			//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
 			'type' => 'title',
 			'id'   => 'ecommerce_options',
-			
+
 		) );
 		$cmb->add_field( array(
 			'name' => 'Disable Shop Link?',
 			'desc' => 'Check this box if you want to disable the shop link in the header',
 			'id'   => 'shop_link_chk',
 			'type' => 'checkbox',
-			
-		) ); 
+
+		) );
 		$cmb->add_field( array(
 			'name' => 'Keep User and Cart Menu in Top bar',
 			'desc' => 'Check this box if you want to keep the User Menu and Cart Menu in the top header',
 			'id'   => 'woo_menu_top_chk',
 			'type' => 'checkbox',
-			
-		) ); 
+
+		) );
 		$cmb->add_field( array(
 			'name' => 'Disable User Menu?',
 			'desc' => 'Check this box if you want to disable the user menu',
 			'id'   => 'user_menu_chk',
 			'type' => 'checkbox',
-			
-		) ); 
+
+		) );
 		$cmb->add_field( array(
 			'name' => 'Disable Cart Menu?',
 			'desc' => 'Check this box if you want to disable cart menu',
 			'id'   => 'cart_menu_chk',
 			'type' => 'checkbox',
-			
-		) ); 
-		
+
+		) );
+
 		/*============================
-			TOP HEADER 
+			TOP HEADER
 		=============================*/
 		// TOP HEADER OPTIONS
 		$cmb->add_field( array(
@@ -368,7 +368,7 @@ class Pegasus_Admin {
 			'id'      => 'top_bar_bkg_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'rgba(0,0,0,0)'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Top Bar Font color', 'cmb2-example-theme' ),
 			'id'      => 'top_bar_font_color',
@@ -419,8 +419,8 @@ class Pegasus_Admin {
 			'desc' => 'Check this box if you want social menu to show up on right hand side of Top bar. Make sure you assign the social media menu.',
 			'id'   => 'top_social_chk',
 			'type' => 'checkbox',
-		) ); 
-		
+		) );
+
 		/*============================
 			GENERAL HEADER OPTIONS
 		=============================*/
@@ -430,7 +430,7 @@ class Pegasus_Admin {
 			//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
 			'type' => 'title',
 			'id'   => 'header_title'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'             => 'Header Select',
 			'desc'             => '<strong>Choose between:<br>
@@ -447,9 +447,9 @@ class Pegasus_Admin {
 			'options'          => array(
 				'header-one' => __( 'Header One', 'cmb2' ),
 				'header-two'   => __( 'Header Two', 'cmb2' ),
-				//'header-three'     => __( 'Header Three', 'cmb2' ),
-				//'header-four'     => __( 'Header Four', 'cmb2' ),
-				//'header-five'     => __( 'Header Five', 'cmb2' ),
+				'header-three'     => __( 'Header Three', 'cmb2' ),
+				'header-four'     => __( 'Header Four', 'cmb2' ),
+				'header-five'     => __( 'Header Five', 'cmb2' ),
 			),
 		) );
 		$cmb->add_field( array(
@@ -457,7 +457,7 @@ class Pegasus_Admin {
 			'id'      => 'mobile_toggle_color',
 			'type'    => 'colorpicker',
 			//'default' => 'rgba(0,0,0,0)'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Header Bkg color', 'cmb2-example-theme' ),
 			'id'      => 'header_bkg_color',
@@ -525,15 +525,15 @@ class Pegasus_Admin {
 		/*============================
 			HEADER ONE AND TWO
 		=============================*/
-		
-	 
+
+
 		// HEADER ONE AND HEADER TWO OPTIONS
 		$cmb->add_field( array(
 			'name' => 'Header One and Two Options',
 			//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
 			'type' => 'title',
 			'id'   => 'header_one_title',
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name' => 'Center Logo',
 			'desc' => 'Check this box to make the logo centered. This only works on Header One.',
@@ -569,20 +569,20 @@ class Pegasus_Admin {
 		/*============================
 			HEADER THREE AND FOUR
 		=============================*/
-		
+
 		// HEADER THREE
 		$cmb->add_field( array(
 			'name' => 'Header Three and Four Options',
 			//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
 			'type' => 'title',
 			'id'   => 'header_three_title'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name' => 'Right align nav menu items',
 			'desc' => 'Check this box to make the navigation items float right',
 			'id'   => 'header_three_right_checkbox',
 			'type' => 'checkbox',
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name' => 'Disable fixed header',
 			'desc' => 'By default this header has a fixed top navigation bar and sidebar menu for mobile. Check this box to make the navigation no longer remain fixed at the top.',
@@ -595,23 +595,23 @@ class Pegasus_Admin {
 			'type'    => 'rgba_colorpicker',
 			'desc' => 'This is the background of the sidebar nav on mobile.',
 			//'default' => 'rgba(0,0,0,0)'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Scroll Bkg color', 'cmb2-example-theme' ),
 			'id'      => 'header_three_scroll_bg_color',
 			'type'    => 'rgba_colorpicker',
 			'desc' => 'The color of the background after the user has scrolled down 200 pixels.',
 			//'default' => 'rgba(0,0,0,0)'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Scroll Nav Item Color', 'cmb2-example-theme' ),
 			'id'      => 'header_three_scroll_item_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'rgba(0,0,0,0)'
-		) ); 
-		
+		) );
+
 		/*============================
-			NAVIGATION 
+			NAVIGATION
 		=============================*/
 		// NAVIGATION OPTIONS
 		$cmb->add_field( array(
@@ -674,19 +674,19 @@ class Pegasus_Admin {
 			'id'      => 'nav_bg_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'rgba(0,0,0,0)'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Nav Item color', 'cmb2-example-theme' ),
 			'id'      => 'nav_item_color',
 			'type'    => 'colorpicker',
 			//'default' => '#dedede'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Sub-Menu Background color', 'cmb2-example-theme' ),
 			'id'      => 'sub_nav_bg_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'rgba(0,0,0,0)'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Sub-Menu Item color', 'cmb2-example-theme' ),
 			'id'      => 'sub_nav_item_color',
@@ -880,40 +880,40 @@ class Pegasus_Admin {
 			//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
 			'type' => 'title',
 			'id'   => 'footer_title'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name' => 'Enable top border',
 			'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
 			'id'   => 'footer_hr_checkbox',
 			'type' => 'checkbox',
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Footer Bkg color', 'cmb2-example-theme' ),
 			'id'      => 'footer_bkg_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'blue'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Bottom Footer Background color', 'cmb2-example-theme' ),
 			'id'      => 'bottom_footer_bg_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'blue'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name' => 'Fullwidth Bottom Bar',
 			//'desc' => 'Check this box to make the logo centered',
 			'id'   => 'footer_fullwidth_checkbox',
 			'type' => 'checkbox',
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name' => 'Custom Footer Copywrite',
 			//'desc' => 'field description (optional)',
 			//'default' => '.selector { property: attribute; }',
 			'id' => 'footer_copy_textareacode',
 			'type' => 'textarea_code'
-		) ); 
-		
-		
+		) );
+
+
 		/*============================
 			ADDITIONAL OPTIONS
 		=============================*/
@@ -923,58 +923,58 @@ class Pegasus_Admin {
 			//'desc' => 'Please fill out the fields below to tell us how you want the header formatted.',
 			'type' => 'title',
 			'id'   => 'additional_title'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name' => 'Custom CSS Code',
 			'desc' => '.selector { property: attribute; }',
 			//'default' => '.selector { property: attribute; }',
 			'id' => 'custom_css_textareacode',
 			'type' => 'textarea_code'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name' => 'Header Custom Code',
 			'desc' => 'This will show up right after the logo before the menu.',
 			//'default' => '.selector { property: attribute; }',
 			'id' => 'custom_top_textareacode',
 			'type' => 'textarea_code'
-		) ); 
+		) );
 		$cmb->add_field( array(
 			'name' => 'Bottom Custom Code',
 			'desc' => 'This will show up right before the footer widgets under the content.',
 			//'default' => '.selector { property: attribute; }',
 			'id' => 'custom_bottom_textareacode',
 			'type' => 'textarea_code'
-		) ); 
-		
+		) );
+
 		$cmb->add_field( array(
 			'name' => 'Enable Portfolio Custom Post Type',
 			//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
 			'id'   => 'cpt_portfolio_checkbox',
 			'type' => 'checkbox',
-		) ); 
-		
+		) );
+
 		$cmb->add_field( array(
 			'name' => 'Enable Staff Custom Post Type',
 			//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
 			'id'   => 'cpt_staff_checkbox',
 			'type' => 'checkbox',
-		) ); 
-		
+		) );
+
 		$cmb->add_field( array(
 			'name' => 'Enable Testimonial Custom Post Type',
 			//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
 			'id'   => 'cpt_testimonial_checkbox',
 			'type' => 'checkbox',
-		) ); 
-		
+		) );
+
 		$cmb->add_field( array(
 			'name' => 'Enable Logo Slider Custom Post Type',
 			//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
 			'id'   => 'cpt_logo_slider_checkbox',
 			'type' => 'checkbox',
-		) ); 
+		) );
 
-	}  
+	}
 
 
 

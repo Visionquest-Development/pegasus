@@ -42,7 +42,7 @@
 				$final_page_header_option = 'off';
 			}
 		?>
-	
+
 		<div class="<?php echo $final_container_class; ?>">
 			<!-- Example row of columns -->
 			<div class="row">
@@ -55,7 +55,7 @@
 				?>
 
 				<div class="<?php echo $page_body_content_class; ?>">
-					<div class="inner-content">	
+					<div class="inner-content">
 						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 							<?php
 							if( 'off' === $final_page_header_option ) {
@@ -70,29 +70,29 @@
 										echo '</h1>';
 									}
 									?>
-									<p><em>						
-										By <?php the_author(); ?> 
+									<p><em>
+										By <?php the_author(); ?>
 										on <?php echo the_time('l, F, jS, Y');?>
 										in <?php the_category( ',' ); ?>.
-										<a href="<?php comments_link(); ?>"><?php comments_number(); ?></a>						
+										<a href="<?php comments_link(); ?>"><?php comments_number(); ?></a>
 									</em></p>
 								</div>
 							<?php }else{ ?>
 								<div class="page-header-spacer"></div>
 								<div class="">
-									<p><em>						
-										By <?php the_author(); ?> 
+									<p><em>
+										By <?php the_author(); ?>
 										on <?php echo the_time('l, F, jS, Y');?>
 										in <?php the_category( ',' ); ?>.
-										<a href="<?php comments_link(); ?>"><?php comments_number(); ?></a>						
+										<a href="<?php comments_link(); ?>"><?php comments_number(); ?></a>
 									</em></p>
 								</div>
 							<?php } ?>
-							
+
 							<?php the_content(); ?>
-							
+
 							<?php comments_template(); ?>
-						
+
 						<?php endwhile; else: ?>
 							<?php /* kinda a 404 of sorts when not working */ ?>
 							<div class="page-header">
@@ -101,25 +101,29 @@
 							<p>No content is appearing for this page!</p>
 						<?php endif; ?>
 						<?php
-						// Edit post link
-						wp_bootstrap_edit_post_link(
-							sprintf(
-							/* translators: %s: Name of current post */
-								__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
-								get_the_title()
-							),
-							'<span class="edit-link">',
-							'</span>'
-						);
-						// Previous/next post navigation.
-						wp_bootstrap_post_navigation( array(
-							'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next: ', 'pegasus-bootstrap' ) . '</span> ' .
-								'<span class="screen-reader-text">' . __( 'Next post:', 'pegasus-bootstrap' ) . '</span> ' .
-								'<span class="post-title">%title</span>',
-							'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous: ', 'pegasus-bootstrap' ) . '</span> ' .
-								'<span class="screen-reader-text">' . __( 'Previous post:', 'pegasus-bootstrap' ) . '</span> ' .
-								'<span class="post-title">%title</span>'
-						) );
+						if ( function_exists( 'wp_bootstrap_edit_post_link' ) ) {
+							// Edit post link
+							wp_bootstrap_edit_post_link(
+								sprintf(
+									/* translators: %s: Name of current post */
+									__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
+									get_the_title()
+								),
+								'<span class="edit-link">',
+								'</span>'
+							);
+						}
+						if ( function_exists( 'wp_bootstrap_post_navigation' ) ) {
+							// Previous/next post navigation.
+							wp_bootstrap_post_navigation( array(
+								'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next: ', 'pegasus-bootstrap' ) . '</span> ' .
+									'<span class="screen-reader-text">' . __( 'Next post:', 'pegasus-bootstrap' ) . '</span> ' .
+									'<span class="post-title">%title</span>',
+								'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous: ', 'pegasus-bootstrap' ) . '</span> ' .
+									'<span class="screen-reader-text">' . __( 'Previous post:', 'pegasus-bootstrap' ) . '</span> ' .
+									'<span class="post-title">%title</span>'
+							) );
+						}
 						?>
 					</div><!--end inner content-->
 				</div>
@@ -131,7 +135,7 @@
 					get_sidebar( 'right' );
 				}
 				?>
-       
+
 			</div><!--end row -->
 		</div><!-- end container -->
 	</div><!-- end page wrap -->
