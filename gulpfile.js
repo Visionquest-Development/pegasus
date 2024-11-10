@@ -12,6 +12,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const paths = {
   scss: './scss/**/*.scss',
   js: './js/pegasus-custom.js',
+
   dist: './dist',
 };
 

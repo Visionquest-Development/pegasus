@@ -51,7 +51,15 @@ Use it to make something cool, have fun, and share what you've learned with othe
 		#wpadminbar {
 		    position: fixed;
 		}
+
+    .admin-bar .the-default-third-nav #mega-menu.fixed-top {
+      top: 46px !important;
+    }
 	}
+
+  .admin-bar .the-default-third-nav #mega-menu.fixed-top {
+    top: 32px;
+  }
 	/*
 	body.admin-bar.navbar-fixed-top-is-active .header-container.navbar-fixed-top { margin-top: 32px; }
 
@@ -61,6 +69,8 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	/*~~~~~~~~~~~~~~~~~~~~~
 	~~~~~~~~ GLOBALS ~~~~~~
 	~~~~~~~~~~~~~~~~~~~~~*/
+
+
 
 	body {
 		position: relative;
@@ -85,6 +95,122 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
 	.js .tmce-active .wp-editor-area { color: black; }
 
+  /* body color */
+  #page-wrap { color: var(--pegasus-body-color); }
+
+  #top-bar {	background-color: var(--pegasus-top-header-bkg-color); }
+  #top-bar a, #top-bar .text { color: var(--pegasus-top-header-content-color); }
+
+  #header, #mega-menu {
+    background: var(--pegasus-header-bkg-color);
+  }
+
+  .navbar-toggler-icon {
+    background-image: var(--pegasus-navbar-toggler-icon-color) !important;
+  }
+
+  .navbar-toggler {
+    border-color: var(--pegasus-navbar-toggler-border-color) !important;
+  }
+
+  .the-default-nav,
+  .the-default-second-nav,
+  .the-default-third-nav,
+  .the-default-fourth-nav
+  {
+    background-color: var(--pegasus-nav-bg-color);
+  }
+
+  .the-default-fourth-nav { border-bottom: 5px solid var(--pegasus-navbar-toggler-border-color); }
+
+  /* ================================== */
+      /* NAVIGATION COLORS */
+  /* ================================== */
+  .nav-link
+  {
+    color: var(--pegasus-nav-item-color);
+  }
+
+  .nav-item {
+    background: var(--pegasus-nav-item-bkg-color);
+  }
+  .nav-item:hover {
+    background: var(--pegasus-nav-item-bkg-hover-color);
+  }
+
+
+
+  /* DESKTOP ONLY MEDIA QUERY */
+  @media only screen and (min-width : 768px) {
+
+    .sub-menu .dropdown-item {
+      color: var(--pegasus-sub-nav-item-color);
+      border-radius: 6px;
+    }
+    .sub-menu .dropdown-item:hover { color: var(--pegasus-sub-nav-item-hover-color); }
+
+    .sub-menu .dropdown-item {
+      background-color: var(--pegasus-sub-nav-bkg-color) !important;
+    }
+    .dropdown-item:hover {
+      background-color: var(--pegasus-sub-nav-bkg-hover-color) !important;
+    }
+
+  }
+
+  /* MOBILE  */
+  @media only screen and (max-width : 768px) {
+    .dropdown { display: block; }
+
+    .dropdown a,
+    .dropdown-item
+    {
+      color: var(--pegasus-nav-item-color) !important;
+    }
+    .dropdown-item:hover {
+      color: var(--pegasus-nav-item-hover-color) !important;
+    }
+
+  }
+
+  .nav-link:hover
+  {
+    color: var(--pegasus-nav-item-hover-color) !important;
+  }
+
+  .current-menu-item > a {
+    color: var(--pegasus-current-item-color) !important;
+  }
+
+  .pegasus-header-content {
+    color: var(--pegasus-page-header-wysiwyg-color);
+  }
+
+  .parallax-image .overlay, #large-header:before {
+    background: var(--pegasus-additional-header-overlay-color);
+  }
+
+
+  /* ================================== */
+  /*. DROPDOWN MENU */
+  /* ================================== */
+  /*.the-default-nav .pegasus-social li a i:before,
+  #menu-social-icons li:before,
+  .the-nav-cart li a,
+  .the-nav-cart .sub-menu,
+  .navbar-light .dropdown-menu li a,
+  .navbar-light .dropdown-menu a,
+  .dropdown a
+  {
+    color: var(--pegasus-nav-item-color);
+  }*/
+
+  /*--bs-navbar-toggler-icon-bg*/
+
+
+
+  /* ================================== */
+
 	/*@media only screen and (min-width: 992px) {
 		#page-wrap { padding: 0 0 20px; }
         .inner-content { padding: 20px 0; }
@@ -94,8 +220,14 @@ Use it to make something cool, have fun, and share what you've learned with othe
       #page-wrap { padding: 20px 0 0; }
   }*/
 
+
+/* ========================== */
+
+
+
 	.inner-content {
     /* padding: 0 20px;  */
+    padding: 20px 0 0;
   }
 	.page-header-spacer { padding: 20px 0; }
 
@@ -108,7 +240,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
   /*=========================*/
 	.sidebar{ padding: 20px 0; }
   .sidebar .widget { margin-bottom: 10px; }
-	.sidebar .inner-sidebar-container { padding: 20px 0; }
+	.sidebar .inner-sidebar-container {  }
   .sidebar .widget .card,
   .sidebar .widget .card .list-group-item {
       background: transparent;
@@ -116,7 +248,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
   }
 	@media only screen and (max-width: 991px) {
 		.sidebar{ padding: 20px 0 0; }
-		.sidebar .inner-sidebar-container { padding: 20px 0; }
+
 	}
 	.sidebar ul { list-style-type: none; margin: 0; padding: 0; }
 
@@ -200,7 +332,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
   /* Search Form */
   /*=========================*/
 
-	.searchform { margin: 0 auto; }
+	.searchform {  }
 
   .search-results-container {
       box-shadow: 2px 2px 5px #777;
@@ -238,7 +370,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
   /*=========================*/
 
 
-	input, textarea { width: 90%; }
+	input, textarea {  }
 	input[type=submit] { }
 
 	table { width: 100%; }

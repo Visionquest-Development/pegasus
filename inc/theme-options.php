@@ -124,31 +124,41 @@ class Pegasus_Admin {
 			'id'   => 'general_options',
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Logo', 'cmb2-example-theme' ),
+			'name'    => __( 'Logo', 'pegasus-theme' ),
 			'desc' => 'Defaults to Site Title under Settings',
 			'id'      => 'logo',
 			'type'    => 'file'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Favicon', 'cmb2-example-theme' ),
+			'name'    => __( 'Favicon', 'pegasus-theme' ),
 			//'desc' => 'Defaults to Site Title under Settings',
 			'id'      => 'favicon',
-			'type'    => 'file'
+			'type'    => 'file',
+			'query_args' => array(
+				//'type' => 'application/pdf', // Make library only display PDFs.
+				// Or only allow gif, jpg, or png images
+				'type' => array(
+				    'image/gif',
+				    'image/jpeg',
+				    'image/png',
+				    'image/ico',
+				),
+			),
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Background color', 'cmb2-example-theme' ),
+			'name'    => __( 'Background color', 'pegasus-theme' ),
 			'id'      => 'bg_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => '#404040'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Background Image', 'cmb2-example-theme' ),
+			'name'    => __( 'Background Image', 'pegasus-theme' ),
 			'desc' => 'This needs to be customized by the developer for position and mobile rendering. ',
 			'id'      => 'bkg_img',
 			'type'    => 'file'
 		) );
 		$cmb->add_field( array(
-			'name'             => __( 'Background Image Repeat', 'cmb2-example-theme' ),
+			'name'             => __( 'Background Image Repeat', 'pegasus-theme' ),
 			'desc'             => '<strong>Choose between:
 										   1.) No Repeat
 										   2.) Repeat
@@ -162,16 +172,16 @@ class Pegasus_Admin {
 			'show_option_none' => false,
 			'default'          => 'none',
 			'options'          => array(
-				'no-repeat' => __( 'No Repeat', 'cmb2' ),
-				'repeat' => __( 'Repeat', 'cmb2' ),
-				'repeat-x'   => __( 'Repeat X', 'cmb2' ),
-				'repeat-y'     => __( 'Repeat Y', 'cmb2' ),
-				'space'     => __( 'Space', 'cmb2' ),
-				'round'     => __( 'Round', 'cmb2' ),
+				'no-repeat' => __( 'No Repeat', 'pegasus-theme' ),
+				'repeat' => __( 'Repeat', 'pegasus-theme' ),
+				'repeat-x'   => __( 'Repeat X', 'pegasus-theme' ),
+				'repeat-y'     => __( 'Repeat Y', 'pegasus-theme' ),
+				'space'     => __( 'Space', 'pegasus-theme' ),
+				'round'     => __( 'Round', 'pegasus-theme' ),
 			),
 		) );
 		$cmb->add_field( array(
-			'name'             => __( 'Background Image Position', 'cmb2-example-theme' ),
+			'name'             => __( 'Background Image Position', 'pegasus-theme' ),
 			'desc'             => '<strong>Choose between:
 										   1.) Center Center
 										   2.) Top Left
@@ -186,18 +196,18 @@ class Pegasus_Admin {
 			'show_option_none' => false,
 			'default'          => '100-100',
 			'options'          => array(
-				'100-100' => __( '100% 100%', 'cmb2' ),
-				'center-center' => __( 'Center Center', 'cmb2' ),
-				'top-left'   => __( 'Top Left', 'cmb2' ),
-				'top-center'     => __( 'Top Center', 'cmb2' ),
-				'top-right'     => __( 'Top Right', 'cmb2' ),
-				'bottom-left'     => __( 'Bottom Left', 'cmb2' ),
-				'bottom-center'     => __( 'Bottom Center', 'cmb2' ),
-				'bottom-right'     => __( 'Bottom Right', 'cmb2' ),
+				'100-100' => __( '100% 100%', 'pegasus-theme' ),
+				'center-center' => __( 'Center Center', 'pegasus-theme' ),
+				'top-left'   => __( 'Top Left', 'pegasus-theme' ),
+				'top-center'     => __( 'Top Center', 'pegasus-theme' ),
+				'top-right'     => __( 'Top Right', 'pegasus-theme' ),
+				'bottom-left'     => __( 'Bottom Left', 'pegasus-theme' ),
+				'bottom-center'     => __( 'Bottom Center', 'pegasus-theme' ),
+				'bottom-right'     => __( 'Bottom Right', 'pegasus-theme' ),
 			),
 		) );
 		$cmb->add_field( array(
-			'name'             => __( 'Background Image Size', 'cmb2-example-theme' ),
+			'name'             => __( 'Background Image Size', 'pegasus-theme' ),
 			'desc'             => '<strong>Choose between:
 									   1.) None
 									   2.) Cover
@@ -208,35 +218,35 @@ class Pegasus_Admin {
 			'show_option_none' => false,
 			'default'          => 'cover',
 			'options'          => array(
-				'auto' => __( 'None', 'cmb2' ),
-				'cover'   => __( 'Cover', 'cmb2' ),
-				'100-100'     => __( '100% 100%', 'cmb2' ),
-				'contain'   => __( 'Contain', 'cmb2' ),
+				'auto' => __( 'None', 'pegasus-theme' ),
+				'cover'   => __( 'Cover', 'pegasus-theme' ),
+				'100-100'     => __( '100% 100%', 'pegasus-theme' ),
+				'contain'   => __( 'Contain', 'pegasus-theme' ),
 			),
 		) );
 		$cmb->add_field( array(
-			'name' => __( 'Background Attachment Fixed', 'cmb2-example-theme' ),
+			'name' => __( 'Background Attachment Fixed', 'pegasus-theme' ),
 			'desc' => 'Check this box if you want the background image to be fixed / parallax effect.',
 			'id'   => 'bkg_img_fixed_chk',
 			'type' => 'checkbox',
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Content color (body,p)', 'cmb2-example-theme' ),
+			'name'    => __( 'Content color (body,p)', 'pegasus-theme' ),
 			'id'      => 'content_color',
-			'type'    => 'colorpicker',
+			'type'    => 'rgba_colorpicker',
 			//'default' => '#ffffff'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Footer Widget Areas', 'cmb2-example-theme' ),
+			'name'    => __( 'Footer Widget Areas', 'pegasus-theme' ),
 			'id'      => 'footer_widget_areas',
 			'type'    => 'radio',
 			'default' => 0,
 			'options' => array(
-				0 => __( 'None', 'cmb2-example-theme' ),
-				1 => __( 'One', 'cmb2-example-theme' ),
-				2 => __( 'Two', 'cmb2-example-theme' ),
-				3 => __( 'Three', 'cmb2-example-theme' ),
-				4 => __( 'Four', 'cmb2-example-theme' ),
+				0 => __( 'None', 'pegasus-theme' ),
+				1 => __( 'One', 'pegasus-theme' ),
+				2 => __( 'Two', 'pegasus-theme' ),
+				3 => __( 'Three', 'pegasus-theme' ),
+				4 => __( 'Four', 'pegasus-theme' ),
 			)
 		) );
 		$cmb->add_field( array(
@@ -364,27 +374,27 @@ class Pegasus_Admin {
 			'id'   => 'top_header_title'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Top Bar Background Color', 'cmb2-example-theme' ),
+			'name'    => __( 'Top Bar Background Color', 'pegasus-theme' ),
 			'id'      => 'top_bar_bkg_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'rgba(0,0,0,0)'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Top Bar Font color', 'cmb2-example-theme' ),
+			'name'    => __( 'Top Bar Font color', 'pegasus-theme' ),
 			'id'      => 'top_bar_font_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'rgba(0,0,0,0)'
 		) );
 		$cmb->add_field( array(
-			'name'             => __( 'Top Column Count', 'cmb2-example-theme' ),
+			'name'             => __( 'Top Column Count', 'pegasus-theme' ),
 			//'desc'             => '',
 			'id'               => 'top_column_count',
 			'type'             => 'select',
 			'show_option_none' => false,
 			'default'          => 2,
 			'options'          => array(
-				2 => __( 'Two', 'cmb2' ),
-				3   => __( 'Three', 'cmb2' ),
+				2 => __( 'Two', 'pegasus-theme' ),
+				3   => __( 'Three', 'pegasus-theme' ),
 			),
 		) );
 		$cmb->add_field( array(
@@ -394,22 +404,22 @@ class Pegasus_Admin {
 			'type' => 'checkbox',
 		) );
 		$cmb->add_field( array(
-			'name' => __( 'Left Area Content', 'cmb2' ),
-			'desc' => __( 'Phone number or email in top bar on left.', 'cmb2' ),
+			'name' => __( 'Left Area Content', 'pegasus-theme' ),
+			'desc' => __( 'Phone number or email in top bar on left.', 'pegasus-theme' ),
 			'default' => '<a href="tel:555-555-5555" class="phone">(555) 555-5555</a> <a href="mailto:user@domain.com" class="mail">user@domain.com</a>',
 			'id'   => 'toparea_left_code',
 			'type' => 'textarea_code',
 		) );
 		$cmb->add_field( array(
-			'name' => __( 'Center Area Content', 'cmb2' ),
-			'desc' => __( 'Middle content for top bar.', 'cmb2' ),
+			'name' => __( 'Center Area Content', 'pegasus-theme' ),
+			'desc' => __( 'Middle content for top bar.', 'pegasus-theme' ),
 			'default' => 'BUSINESS NAME HERE',
 			'id'   => 'toparea_center_code',
 			'type' => 'textarea_code',
 		) );
 		$cmb->add_field( array(
-			'name' => __( 'Right Area Content', 'cmb2' ),
-			'desc' => __( 'Right content for top bar.', 'cmb2' ),
+			'name' => __( 'Right Area Content', 'pegasus-theme' ),
+			'desc' => __( 'Right content for top bar.', 'pegasus-theme' ),
 			'default' => 'Shortcode or Text here',
 			'id'   => 'toparea_right_code',
 			'type' => 'textarea_code',
@@ -445,21 +455,27 @@ class Pegasus_Admin {
 			'show_option_none' => false,
 			'default'          => 'header-one',
 			'options'          => array(
-				'header-one' => __( 'Header One', 'cmb2' ),
-				'header-two'   => __( 'Header Two', 'cmb2' ),
-				'header-three'     => __( 'Header Three', 'cmb2' ),
-				'header-four'     => __( 'Header Four', 'cmb2' ),
-				'header-five'     => __( 'Header Five', 'cmb2' ),
+				'header-one' => __( 'Header One', 'pegasus-theme' ),
+				'header-two'   => __( 'Header Two', 'pegasus-theme' ),
+				'header-three'     => __( 'Header Three', 'pegasus-theme' ),
+				'header-four'     => __( 'Header Four', 'pegasus-theme' ),
+				'header-five'     => __( 'Header Five', 'pegasus-theme' ),
 			),
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Mobile Hamberger Menu Color', 'cmb2-example-theme' ),
+			'name'    => __( 'Mobile Hamburger Menu Color', 'pegasus-theme' ),
 			'id'      => 'mobile_toggle_color',
-			'type'    => 'colorpicker',
+			'type'    => 'rgba_colorpicker',
 			//'default' => 'rgba(0,0,0,0)'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Header Bkg color', 'cmb2-example-theme' ),
+			'name'    => __( 'Mobile Hamburger Menu Border Color', 'pegasus-theme' ),
+			'id'      => 'mobile_toggle_border_color',
+			'type'    => 'rgba_colorpicker',
+			//'default' => 'rgba(0,0,0,0)'
+		) );
+		$cmb->add_field( array(
+			'name'    => __( 'Header Bkg color', 'pegasus-theme' ),
 			'id'      => 'header_bkg_color',
 			'type'    => 'rgba_colorpicker',
 			'desc' => 'This is for the entire background of the header.',
@@ -490,23 +506,23 @@ class Pegasus_Admin {
 			'type' => 'checkbox',
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'More Menu', 'cmb2-example-theme' ),
+			'name'    => __( 'More Menu', 'pegasus-theme' ),
 			'id'      => 'header_more_chk',
 			'type'    => 'checkbox',
 			'desc' => 'Check this if you need additional menu items in the navigation. Then make sure to add another menu in the Appearence->Menus section and assign it to more menu. ',
 			//'default' => 'rgba(0,0,0,0)'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'More Menu Widget Areas', 'cmb2-example-theme' ),
+			'name'    => __( 'More Menu Widget Areas', 'pegasus-theme' ),
 			'id'      => 'more_menu_widget_areas',
 			'type'    => 'radio',
 			'default' => 'two',
 			'options' => array(
-				0 => __( 'None', 'cmb2-example-theme' ),
-				1 => __( 'One', 'cmb2-example-theme' ),
-				2 => __( 'Two', 'cmb2-example-theme' ),
-				3 => __( 'Three', 'cmb2-example-theme' ),
-				4 => __( 'Four', 'cmb2-example-theme' ),
+				0 => __( 'None', 'pegasus-theme' ),
+				1 => __( 'One', 'pegasus-theme' ),
+				2 => __( 'Two', 'pegasus-theme' ),
+				3 => __( 'Three', 'pegasus-theme' ),
+				4 => __( 'Four', 'pegasus-theme' ),
 			)
 		) );
 		$cmb->add_field( array(
@@ -517,8 +533,8 @@ class Pegasus_Admin {
 			'show_option_none' => false,
 			'default'          => 'navs',
 			'options'          => array(
-				'navs' => __( 'Navigation Menus', 'cmb2' ),
-				'widgets'   => __( 'Widgets', 'cmb2' ),
+				'navs' => __( 'Navigation Menus', 'pegasus-theme' ),
+				'widgets'   => __( 'Widgets', 'pegasus-theme' ),
 			),
 		) );
 
@@ -590,21 +606,21 @@ class Pegasus_Admin {
 			'type' => 'checkbox',
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Mobile Background color', 'cmb2-example-theme' ),
+			'name'    => __( 'Mobile Background color', 'pegasus-theme' ),
 			'id'      => 'header_three_mobile_bg_color',
 			'type'    => 'rgba_colorpicker',
 			'desc' => 'This is the background of the sidebar nav on mobile.',
 			//'default' => 'rgba(0,0,0,0)'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Scroll Bkg color', 'cmb2-example-theme' ),
+			'name'    => __( 'Scroll Bkg color', 'pegasus-theme' ),
 			'id'      => 'header_three_scroll_bg_color',
 			'type'    => 'rgba_colorpicker',
 			'desc' => 'The color of the background after the user has scrolled down 200 pixels.',
 			//'default' => 'rgba(0,0,0,0)'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Scroll Nav Item Color', 'cmb2-example-theme' ),
+			'name'    => __( 'Scroll Nav Item Color', 'pegasus-theme' ),
 			'id'      => 'header_three_scroll_item_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'rgba(0,0,0,0)'
@@ -629,28 +645,28 @@ class Pegasus_Admin {
 			'show_option_none' => false,
 			'default'          => 'none',
 			'options'          => array(
-				'none' => __( 'None', 'cmb2' ),
-				'navbar-light'   => __( 'Navbar Light', 'cmb2' ),
-				'navbar-dark'     => __( 'Navbar Dark', 'cmb2' ),
+				'none' => __( 'None', 'pegasus-theme' ),
+				'navbar-light'   => __( 'Navbar Light', 'pegasus-theme' ),
+				'navbar-dark'     => __( 'Navbar Dark', 'pegasus-theme' ),
 			),
 		) );
 
-		$cmb->add_field( array(
-			'name'             => 'Global Bootstrap Nav Type',
-			'desc'             => 'This adjusts the breakpoint at which the menu changes to a mobile menu. navbar-expand, navbar-expand-sm, navbar-expand-md, navbar-expand-lg, navbar-expand-xl',
-			'id'               => 'global_nav_viewport_break',
-			'type'             => 'select',
-			'show_option_none' => false,
-			'default'          => 'navbar-expand-md',
-			'options'          => array(
-				'none' => __( 'None', 'cmb2' ),
-				'navbar-expand'   => __( 'Navbar Expand', 'cmb2' ),
-				'navbar-expand-sm'     => __( 'Expand Small', 'cmb2' ),
-				'navbar-expand-md'     => __( 'Expand Medium', 'cmb2' ),
-				'navbar-expand-lg'     => __( 'Expand Large', 'cmb2' ),
-				'navbar-expand-xl'     => __( 'Expand X-Large', 'cmb2' ),
-			),
-		) );
+		// $cmb->add_field( array(
+		// 	'name'             => 'Global Bootstrap Nav Type',
+		// 	'desc'             => 'This adjusts the breakpoint at which the menu changes to a mobile menu. navbar-expand, navbar-expand-sm, navbar-expand-md, navbar-expand-lg, navbar-expand-xl',
+		// 	'id'               => 'global_nav_viewport_break',
+		// 	'type'             => 'select',
+		// 	'show_option_none' => false,
+		// 	'default'          => 'navbar-expand-md',
+		// 	'options'          => array(
+		// 		'none' => __( 'None', 'pegasus-theme' ),
+		// 		'navbar-expand'   => __( 'Navbar Expand', 'pegasus-theme' ),
+		// 		'navbar-expand-sm'     => __( 'Expand Small', 'pegasus-theme' ),
+		// 		'navbar-expand-md'     => __( 'Expand Medium', 'pegasus-theme' ),
+		// 		'navbar-expand-lg'     => __( 'Expand Large', 'pegasus-theme' ),
+		// 		'navbar-expand-xl'     => __( 'Expand X-Large', 'pegasus-theme' ),
+		// 	),
+		// ) );
 
 		$cmb->add_field( array(
 			'name'             => 'Bootstrap Nav Utility Class',
@@ -658,59 +674,83 @@ class Pegasus_Admin {
 			'id'               => 'nav_color_utility',
 			'type'             => 'select',
 			'show_option_none' => false,
-			'default'          => 'bg-light',
+			'default'          => 'none',
 			'options'          => array(
-				'none' => __( 'None', 'cmb2' ),
-				'bg-light'   => __( 'Background Light', 'cmb2' ),
-				'bg-dark'     => __( 'Background Dark', 'cmb2' ),
-				'bg-faded'     => __( 'Background Faded', 'cmb2' ),
-				'bg-primary'     => __( 'Background Primary', 'cmb2' ),
+				'none' => __( 'None', 'pegasus-theme' ),
+				'bg-light'   => __( 'Background Light', 'pegasus-theme' ),
+				'bg-dark'     => __( 'Background Dark', 'pegasus-theme' ),
+				'bg-faded'     => __( 'Background Faded', 'pegasus-theme' ),
+				'bg-primary'     => __( 'Background Primary', 'pegasus-theme' ),
 			),
 		) );
 
 		$cmb->add_field( array(
-			'name'    => __( 'Nav Background color', 'cmb2-example-theme' ),
+			'name'    => __( 'Nav Background color', 'pegasus-theme' ),
 			'desc' => 'Make sure select "None" for the option above ( Boostrap Nav Utility Class ).',
 			'id'      => 'nav_bg_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'rgba(0,0,0,0)'
 		) );
+		// $cmb->add_field( array(
+		// 	'name'    => __( 'Nav Background Hover color', 'pegasus-theme' ),
+		// 	//'desc' => 'Make sure select "None" for the option above ( Boostrap Nav Utility Class ).',
+		// 	'id'      => 'nav_bg_hover_color',
+		// 	'type'    => 'rgba_colorpicker',
+		// 	//'default' => 'rgba(0,0,0,0)'
+		// ) );
 		$cmb->add_field( array(
-			'name'    => __( 'Nav Item color', 'cmb2-example-theme' ),
+			'name'    => __( 'Nav Item color', 'pegasus-theme' ),
 			'id'      => 'nav_item_color',
-			'type'    => 'colorpicker',
+			'type'    => 'rgba_colorpicker',
+			'default' => 'rgba(0,0,0,0.65)'
+		) );
+		$cmb->add_field( array(
+			'name'    => __( 'Nav Item Hover color', 'pegasus-theme' ),
+			'id'      => 'nav_item_hover_color',
+			'type'    => 'rgba_colorpicker',
+			'default' => 'rgba(0,0,0,0.45)'
+		) );
+		$cmb->add_field( array(
+			'name'    => __( 'Nav Item Background color', 'pegasus-theme' ),
+			'id'      => 'nav_item_bkg_color',
+			'type'    => 'rgba_colorpicker',
 			//'default' => '#dedede'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Sub-Menu Background color', 'cmb2-example-theme' ),
+			'name'    => __( 'Nav Item Background Hover color', 'pegasus-theme' ),
+			'id'      => 'nav_item_bkg_hover_color',
+			'type'    => 'rgba_colorpicker',
+			//'default' => '#dedede'
+		) );
+		$cmb->add_field( array(
+			'name'    => __( 'Sub-Menu Item color for Desktop', 'pegasus-theme' ),
+			'id'      => 'sub_nav_item_color',
+			'type'    => 'rgba_colorpicker',
+			'default' => 'rgba(0,0,0,0.65)'
+		) );
+		$cmb->add_field( array(
+			'name'    => __( 'Sub-Menu Item Hover color for Desktop', 'pegasus-theme' ),
+			'id'      => 'sub_nav_item_hover_color',
+			'type'    => 'rgba_colorpicker',
+			'default' => 'rgba(0,0,0,0.45)'
+		) );
+		$cmb->add_field( array(
+			'name'    => __( 'Sub-Menu Background color', 'pegasus-theme' ),
 			'id'      => 'sub_nav_bg_color',
 			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(0,0,0,0)'
+			'default' => 'rgba(222,222,222,0.8)'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Sub-Menu Item color', 'cmb2-example-theme' ),
-			'id'      => 'sub_nav_item_color',
-			'type'    => 'colorpicker',
-			//'default' => '#dedede'
+			'name'    => __( 'Sub-Menu Background Hover color', 'pegasus-theme' ),
+			'id'      => 'sub_nav_bg_hover_color',
+			'type'    => 'rgba_colorpicker',
+			'default' => 'rgba(222,222,222,0.6)'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Hover Background/Text Decision', 'cmb2-example-theme' ),
-			'id'      => 'hover_chk_decision',
-			'type'    => 'checkbox',
-			'desc'	=> 'This decides whether to use the default option of background color, or if you want the text to show up a different color on hover you would check this box.',
-			//'default' => '#dedede'
-		) );
-		$cmb->add_field( array(
-			'name'    => __( 'Hover Background/Text color', 'cmb2-example-theme' ),
-			'id'      => 'hover_bg_color',
-			'type'    => 'colorpicker',
-			//'default' => '#dedede'
-		) );
-		$cmb->add_field( array(
-			'name'    => __( 'Active/Current Menu Item color', 'cmb2-example-theme' ),
+			'name'    => __( 'Active/Current Menu Item color', 'pegasus-theme' ),
 			'id'      => 'current_item_color',
-			'type'    => 'colorpicker',
-			//'default' => 'blue'
+			'type'    => 'rgba_colorpicker',
+			'default' => 'rgba(0,0,0,0.80)'
 		) );
 
 		/*============================
@@ -730,33 +770,33 @@ class Pegasus_Admin {
 			'show_option_none' => false,
 			'default'          => 'none',
 			'options'          => array(
-				'no-header' => __( 'No Header - No Spacing', 'cmb2' ),
-				'space' => __( 'No Header - Just Spacing', 'cmb2' ),
-				'sml-header'   => __( 'Small Header - With Parallax', 'cmb2' ),
-				'lrg-header'     => __( 'Large Header - Full Width and Height', 'cmb2' ),
+				'no-header' => __( 'No Header - No Spacing', 'pegasus-theme' ),
+				'space' => __( 'No Header - Just Spacing', 'pegasus-theme' ),
+				'sml-header'   => __( 'Small Header - With Parallax', 'pegasus-theme' ),
+				'lrg-header'     => __( 'Large Header - Full Width and Height', 'pegasus-theme' ),
 			),
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Additional Header Background color', 'cmb2-example-theme' ),
+			'name'    => __( 'Additional Header Background color', 'pegasus-theme' ),
 			'desc' => 'This shows by default when no header option is selected on the backend of a page. You must select short or large header on the page options to disable this.',
 			'id'      => 'global_add_header_bg_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'rgba(0,0,0,0)'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Overlay color', 'cmb2-example-theme' ),
+			'name'    => __( 'Overlay color', 'pegasus-theme' ),
 			//'desc' => '',
 			'id'      => 'global_add_header_overlay_color',
-			'type'    => 'colorpicker',
-			'default' => '#303543'
+			'type'    => 'rgba_colorpicker',
+			'default' => 'rgba(48, 53, 67, 1)'
 		) );
-		$cmb->add_field( array(
-			'name' => 'Overlay Opacity',
-			//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
-			'id'   => 'global_add_header_overlay_opacity',
-			'type' => 'text',
-			'default' => '0.4'
-		) );
+		// $cmb->add_field( array(
+		// 	'name' => 'Overlay Opacity',
+		// 	//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
+		// 	'id'   => 'global_add_header_overlay_opacity',
+		// 	'type' => 'text',
+		// 	'default' => '0.4'
+		// ) );
 
 		$cmb->add_field( array(
 			'name' => 'NoSpacer Padding',
@@ -766,21 +806,21 @@ class Pegasus_Admin {
 			'default' => '55px 0'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Additional Header Image', 'cmb2-example-theme' ),
+			'name'    => __( 'Additional Header Image', 'pegasus-theme' ),
 			//'desc' => 'Defaults to Site Title under Settings',
 			'id'      => 'global_add_header_image',
 			'type'    => 'file'
 		) );
 
 		$cmb->add_field( array(
-			'name' => __( 'Disable Parallax', 'cmb2-example-theme' ),
+			'name' => __( 'Disable Parallax', 'pegasus-theme' ),
 			'desc' => 'Check this box if you want to disable parallax effect.',
 			'id'   => 'global_add_header_disable_parralax_chk',
 			'type' => 'checkbox',
 		) );
 
 		$cmb->add_field( array(
-			'name'             => __( 'Background Image Repeat', 'cmb2-example-theme' ),
+			'name'             => __( 'Background Image Repeat', 'pegasus-theme' ),
 			'desc'             => '<strong>Choose between:
 										   1.) No Repeat
 										   2.) Repeat
@@ -794,16 +834,16 @@ class Pegasus_Admin {
 			'show_option_none' => false,
 			'default'          => 'none',
 			'options'          => array(
-				'no-repeat' => __( 'No Repeat', 'cmb2' ),
-				'repeat' => __( 'Repeat', 'cmb2' ),
-				'repeat-x'   => __( 'Repeat X', 'cmb2' ),
-				'repeat-y'     => __( 'Repeat Y', 'cmb2' ),
-				'space'     => __( 'Space', 'cmb2' ),
-				'round'     => __( 'Round', 'cmb2' ),
+				'no-repeat' => __( 'No Repeat', 'pegasus-theme' ),
+				'repeat' => __( 'Repeat', 'pegasus-theme' ),
+				'repeat-x'   => __( 'Repeat X', 'pegasus-theme' ),
+				'repeat-y'     => __( 'Repeat Y', 'pegasus-theme' ),
+				'space'     => __( 'Space', 'pegasus-theme' ),
+				'round'     => __( 'Round', 'pegasus-theme' ),
 			),
 		) );
 		$cmb->add_field( array(
-			'name'             => __( 'Background Image Position', 'cmb2-example-theme' ),
+			'name'             => __( 'Background Image Position', 'pegasus-theme' ),
 			'desc'             => '<strong>Choose between:
 										   1.) Center Center
 										   2.) Top Left
@@ -818,19 +858,19 @@ class Pegasus_Admin {
 			'show_option_none' => false,
 			'default'          => '50-0',
 			'options'          => array(
-				'50-0' => __( '50% 0', 'cmb2' ),
-				'100-100' => __( '100% 100%', 'cmb2' ),
-				'center-center' => __( 'Center Center', 'cmb2' ),
-				'top-left'   => __( 'Top Left', 'cmb2' ),
-				'top-center'     => __( 'Top Center', 'cmb2' ),
-				'top-right'     => __( 'Top Right', 'cmb2' ),
-				'bottom-left'     => __( 'Bottom Left', 'cmb2' ),
-				'bottom-center'     => __( 'Bottom Center', 'cmb2' ),
-				'bottom-right'     => __( 'Bottom Right', 'cmb2' ),
+				'50-0' => __( '50% 0', 'pegasus-theme' ),
+				'100-100' => __( '100% 100%', 'pegasus-theme' ),
+				'center-center' => __( 'Center Center', 'pegasus-theme' ),
+				'top-left'   => __( 'Top Left', 'pegasus-theme' ),
+				'top-center'     => __( 'Top Center', 'pegasus-theme' ),
+				'top-right'     => __( 'Top Right', 'pegasus-theme' ),
+				'bottom-left'     => __( 'Bottom Left', 'pegasus-theme' ),
+				'bottom-center'     => __( 'Bottom Center', 'pegasus-theme' ),
+				'bottom-right'     => __( 'Bottom Right', 'pegasus-theme' ),
 			),
 		) );
 		$cmb->add_field( array(
-			'name'             => __( 'Background Image Size', 'cmb2-example-theme' ),
+			'name'             => __( 'Background Image Size', 'pegasus-theme' ),
 			'desc'             => '<strong>Choose between:
 									   1.) None
 									   2.) Cover
@@ -841,29 +881,29 @@ class Pegasus_Admin {
 			'show_option_none' => false,
 			'default'          => 'cover',
 			'options'          => array(
-				'auto' => __( 'None', 'cmb2' ),
-				'cover'   => __( 'Cover', 'cmb2' ),
-				'100-100'     => __( '100% 100%', 'cmb2' ),
-				'contain'   => __( 'Contain', 'cmb2' ),
+				'auto' => __( 'None', 'pegasus-theme' ),
+				'cover'   => __( 'Cover', 'pegasus-theme' ),
+				'100-100'     => __( '100% 100%', 'pegasus-theme' ),
+				'contain'   => __( 'Contain', 'pegasus-theme' ),
 			),
 		) );
 		$cmb->add_field( array(
-			'name' => __( 'Background Attachment Fixed', 'cmb2-example-theme' ),
+			'name' => __( 'Background Attachment Fixed', 'pegasus-theme' ),
 			'desc' => 'Check this box if you want the background image to be fixed / parallax effect.',
 			'id'   => 'global_add_header_bkg_img_fixed_chk',
 			'type' => 'checkbox',
 		) );
 
 		$cmb->add_field( array(
-			'name'    => __( 'Header Content wysiwyg', 'cmb2' ),
-			//'desc'    => __( 'This will show up in the Additional Header select area.', 'cmb2' ),
+			'name'    => __( 'Header Content wysiwyg', 'pegasus-theme' ),
+			//'desc'    => __( 'This will show up in the Additional Header select area.', 'pegasus-theme' ),
 			'id'      => 'global_page_header_wysiwyg',
 			'type'    => 'wysiwyg',
 			'options' => array( 'textarea_rows' => 5, ),
 		) );
 
 		$cmb->add_field( array(
-			'name'    => __( 'Header Content color', 'cmb2' ),
+			'name'    => __( 'Header Content color', 'pegasus-theme' ),
 			//'desc' => '',
 			'id'      => 'global_page_header_wysiwyg_color',
 			'type'    => 'rgba_colorpicker',
@@ -888,13 +928,19 @@ class Pegasus_Admin {
 			'type' => 'checkbox',
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Footer Bkg color', 'cmb2-example-theme' ),
+			'name'    => __( 'Footer Text color', 'pegasus-theme' ),
+			'id'      => 'footer_text_color',
+			'type'    => 'rgba_colorpicker',
+			//'default' => 'blue'
+		) );
+		$cmb->add_field( array(
+			'name'    => __( 'Footer Bkg color', 'pegasus-theme' ),
 			'id'      => 'footer_bkg_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'blue'
 		) );
 		$cmb->add_field( array(
-			'name'    => __( 'Bottom Footer Background color', 'cmb2-example-theme' ),
+			'name'    => __( 'Bottom Footer Background color', 'pegasus-theme' ),
 			'id'      => 'bottom_footer_bg_color',
 			'type'    => 'rgba_colorpicker',
 			//'default' => 'blue'

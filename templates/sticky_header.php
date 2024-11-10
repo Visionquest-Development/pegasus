@@ -29,9 +29,6 @@
 	$logo = pegasus_get_option( 'logo' );
 	$centerLogo = ( 'on' === pegasus_get_option( 'logo_centered' ) ) ? 'center' : '';
 	$nav_menu_justify_check = ( 'on' === pegasus_get_option( 'nav_justify' ) ) ? 'justify-content-md-center' : '';
-	if ( 'justify-content-md-center' === $nav_menu_justify_check ) {
-		$right_align_nav_items = 'ms-auto';
-	}
 	$moremenuchk = pegasus_get_option( 'header_more_chk' );
 	$woo_check =  pegasus_get_option( 'woo_chk' );
 	$nav_social_check =  pegasus_get_option( 'nav_social_chk' );
@@ -56,71 +53,74 @@
 
 	$header_one_top_logo_container = ( 'on' === pegasus_get_option( 'full_container_chk' ) ) ? $global_full_container_option : 'container';
 
-?>
+	$header_choice = pegasus_get_option( 'header_select' );
 
-<div id="header" class="header-container <?php echo $fixed_header_choice; ?> ">
+?>
+<div class="sticky-top">
 	<?php
-		if( 'on' === $top_header_choice ) {
-			get_template_part( 'templates/top_bar', 'header' );
+		if ( "header-one" === $header_choice ) {
+	?>
+		<div class="<?php echo $header_one_top_logo_container; ?>">
+			<div class="site-branding <?php echo $centerLogo; ?>">
+				<?php if( ! empty( $logo ) ) : ?>
+					<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" alt=""/></a>
+				<?php else: ?>
+					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="" ><?php bloginfo( 'name' ); ?></a></h1>
+				<?php endif; ?>
+			</div><!-- .site-branding -->
+		</div><!-- container -->
+	<?php
 		}
 	?>
-	<div class="<?php echo $header_one_top_logo_container; ?>">
-		<div class="site-branding <?php echo $centerLogo; ?>">
-			<?php if( ! empty( $logo ) ) : ?>
-				<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" alt=""/></a>
-			<?php else: ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="" ><?php bloginfo( 'name' ); ?></a></h1>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
-	</div><!-- container -->
 	<div class="<?php echo $header_container_check; ?>">
-		<nav class="navbar <?php echo $bootstrap_navbar_expand_class; ?> the-default-nav <?php echo $bootstrap_color_scheme; ?> <?php echo $bootstrap_color_utility; ?>" >
+		<nav class="navbar <?php echo $bootstrap_navbar_expand_class; ?> the-default-nav <?php echo $bootstrap_color_scheme; ?> <?php echo $bootstrap_color_utility; ?> " role="navigation">
 			<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) & 'container' !== $header_container_check ) : ?>
-				<div class="<?php echo $final_inner_container_class; ?>">
-			<?php endif; ?>
-				<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<?php bloginfo( 'name' ); ?>
+			<div class="<?php echo $final_inner_container_class; ?>">
+				<?php endif; ?>
+				<?php
+					$hide_logo = '';
+					if ( "header-one" === $header_choice ) {
+						$hide_logo = ( "header-one" === $header_choice ) ? 'invisible' : '';
+						$logo = null;
+					}
+				?>
+				<a class="navbar-brand <?php echo $centerLogo; ?> <?php echo $hide_logo; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<?php if( ! empty( $logo ) ) : ?>
+						<img id="logo" src="<?php echo $logo; ?>" alt=""/>
+					<?php else: ?>
+						<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+					<?php endif; ?>
 				</a>
+
 				<!-- Brand and toggle get grouped for better mobile display -->
-				<button
-					class="navbar-toggler"
-					type="button"
-					data-bs-toggle="collapse"
-					data-bs-target="#pegasus_header_one"
-					aria-controls="pegasus_header_one"
-					aria-label="Toggle navigation"
-				>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#pegasus_sticky_header" aria-controls="pegasus_sticky_header"  aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div
-					class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>"
-					id="pegasus_header_one"
-				>
+				<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="pegasus_sticky_header">
 					<?php
-						echo $final_menu;
-						if( 'on' === $moremenuchk ) {
-							get_template_part( 'templates/more_menu', 'header' );
+					echo $final_menu;
+
+					if( 'on' === $moremenuchk ) {
+						get_template_part( 'templates/more_menu', 'header' );
+					}
+
+					if ( 'on' === $woo_check ) {
+						if ( class_exists( 'WooCommerce' ) ) {
+							// code that requires WooCommerce
+							get_template_part( 'templates/header_cart', 'header' );
+						} else {
+							// you don't appear to have WooCommerce activated
+							echo '<div class="woo-error navbar-right">Enable WooCommerce</div>';
 						}
-						if( 'on' === $searchmenuchk ) {
-							get_template_part( 'templates/header_search', 'header' );
-						}
-						if ( 'on' === $woo_check ) {
-							if ( class_exists( 'WooCommerce' ) ) {
-								// code that requires WooCommerce
-								get_template_part( 'templates/header_cart', 'header' );
-							} else {
-								// you don't appear to have WooCommerce activated
-								echo '<div class="woo-error navbar-right">Enable WooCommerce</div>';
-							}
-						}
-						if( 'on' === $nav_social_check ){
-							get_template_part( 'templates/social_icons', 'header' );
-						}
+					}
+					if( 'on' === $top_social_check ){
+						get_template_part( 'templates/social_icons', 'header' );
+					}
 					?>
 				</div>
-			<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) ) : ?>
-				</div ><!-- container-->
-			<?php endif; ?>
+				<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) ) : ?>
+			</div ><!-- container-->
+		<?php endif; ?>
 		</nav>
 	</div>
-</div><!-- container -->
+</div>

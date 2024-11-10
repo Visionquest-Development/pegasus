@@ -356,7 +356,72 @@
 	// }
 
 
+	function hexToRgba($color, $alpha = 1.0) {
+		// Check if the input is a hex code
+		if (preg_match('/^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$/', $color)) {
+			// Remove the '#' if present
+			$hex = ltrim($color, '#');
 
+			// If the hex code is in shorthand (e.g., #abc), expand it to full length (e.g., #aabbcc)
+			if (strlen($hex) === 3) {
+				$hex = str_repeat($hex[0], 2) . str_repeat($hex[1], 2) . str_repeat($hex[2], 2);
+			}
+
+			// Convert hex to RGB values
+			$r = hexdec(substr($hex, 0, 2));
+			$g = hexdec(substr($hex, 2, 2));
+			$b = hexdec(substr($hex, 4, 2));
+
+			// Return the rgba() string
+			return "rgba($r, $g, $b, $alpha)";
+		}
+
+		// Check if the input is an rgba color
+		if (preg_match('/rgba\s*\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(0|1|0?\.\d+)\s*\)/', $color, $matches)) {
+			$r = $matches[1];
+			$g = $matches[2];
+			$b = $matches[3];
+			$alpha = $matches[4];
+
+			return "rgba($r, $g, $b, $alpha)";
+		}
+
+		return 'Invalid color format';
+	}
+
+	function hoverColorCalc($color) {
+		// Check if the input is a hex code
+		if (preg_match('/^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$/', $color)) {
+			// Convert hex to RGB
+			$hex = ltrim($color, '#');
+
+			if (strlen($hex) === 3) {
+				$hex = str_repeat($hex[0], 2) . str_repeat($hex[1], 2) . str_repeat($hex[2], 2);
+			}
+
+			$r = hexdec(substr($hex, 0, 2));
+			$g = hexdec(substr($hex, 2, 2));
+			$b = hexdec(substr($hex, 4, 2));
+
+			// Return rgba with reduced opacity (initial opacity assumed as 1.0)
+			return "rgba($r, $g, $b, 0.8)";
+		}
+
+		// Check if the input is an rgba color
+		if (preg_match('/rgba\s*\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(0|1|0?\.\d+)\s*\)/', $color, $matches)) {
+			$r = $matches[1];
+			$g = $matches[2];
+			$b = $matches[3];
+			$alpha = $matches[4];
+
+			// Reduce opacity by 0.2, ensuring it doesn't go below 0
+			$newAlpha = max(0, $alpha - 0.2);
+
+			return "rgba($r, $g, $b, $newAlpha)";
+		}
+
+		return 'Invalid color format';
+	}
 
 	/**
 	 * Enqueue scripts and styles.
@@ -380,19 +445,40 @@
 
 		$content_color = ! empty( pegasus_get_option( 'content_color' ) ) ? pegasus_get_option( 'content_color' ) : '#777';
 
+		$boxedOrNot = pegasus_get_option( 'boxed_layout_chk' );
+
+		$top_bar_bkg_color = ! empty( pegasus_get_option( 'top_bar_bkg_color' ) ) ? pegasus_get_option( 'top_bar_bkg_color' ) : '#fff';
+
+		$top_bar_content_color = ! empty( pegasus_get_option( 'top_bar_font_color' ) ) ? pegasus_get_option( 'top_bar_font_color' ) : '#777';
+
+
+
+		$header_bkg_color = ! empty( pegasus_get_option( 'header_bkg_color' ) ) ? pegasus_get_option( 'header_bkg_color' ) : 'rgba(0,0,0,0)';
+		//$header_bkg_color = hexToRgba($header_bkg_color);
+
+		$mobile_color = ! empty( pegasus_get_option( 'mobile_toggle_color' ) ) ? hexToRgba( pegasus_get_option( 'mobile_toggle_color' ) ) : '#000';
+		$mobile_border_color = ! empty( pegasus_get_option( 'mobile_toggle_border_color' ) ) ? pegasus_get_option( 'mobile_toggle_border_color' ) : '#000';
+
 		$nav_bg_color = ! empty( pegasus_get_option( 'nav_bg_color' ) ) ? pegasus_get_option( 'nav_bg_color' ) : 'rgba(0,0,0,0)';
+		//$nav_bg_hover_color = ! empty( pegasus_get_option( 'nav_bg_hover_color' ) ) ? pegasus_get_option( 'nav_bg_hover_color' ) : 'rgba(0,0,0,0.0)';
 
 		$nav_item_color = ! empty( pegasus_get_option( 'nav_item_color' ) ) ? pegasus_get_option( 'nav_item_color' ) : '';
+		$nav_item_hover_color = ! empty( pegasus_get_option( 'nav_item_hover_color' ) ) ? pegasus_get_option( 'nav_item_hover_color' ) : '';
 
-		$sub_nav_bg_color = ! empty( pegasus_get_option( 'sub_nav_bg_color' ) ) ? pegasus_get_option( 'sub_nav_bg_color' ) : '#dedede';
+		$nav_item_bkg_color = ! empty( pegasus_get_option( 'nav_item_bkg_color' ) ) ? pegasus_get_option( 'nav_item_bkg_color' ) : '';
+		$nav_item_bkg_hover_color = ! empty( pegasus_get_option( 'nav_item_bkg_hover_color' ) ) ? pegasus_get_option( 'nav_item_bkg_hover_color' ) : '';
+
+		$sub_nav_bg_color = ! empty( pegasus_get_option( 'sub_nav_bg_color' ) ) ? pegasus_get_option( 'sub_nav_bg_color' ) : 'rgba(222,222,222,0.8)';
+		$sub_nav_bg_hover_color = ! empty( pegasus_get_option( 'sub_nav_bg_hover_color' ) ) ? pegasus_get_option( 'sub_nav_bg_hover_color' ) : 'rgba(222,222,222,0.6)';
 
 		$sub_nav_item_color = ! empty( pegasus_get_option( 'sub_nav_item_color' ) ) ? pegasus_get_option( 'sub_nav_item_color' ) : '#777';
+		$sub_nav_item_hover_color = ! empty( pegasus_get_option( 'sub_nav_item_hover_color' ) ) ? pegasus_get_option( 'sub_nav_item_hover_color' ) : '#777';
 
+		$hoverBkgOrText =  pegasus_get_option( 'hover_chk_decision' );
 		$hover_bg_color = ! empty( pegasus_get_option( 'hover_bg_color' ) ) ? pegasus_get_option( 'hover_bg_color' ) : 'rgba(0,0,0,.7)';
 
-		$current_item_color = ! empty( pegasus_get_option( 'current_item_color' ) ) ? pegasus_get_option( 'current_item_color' ) : 'rgba(0,0,0,.9)';
 
-		$mobile_color = ! empty( pegasus_get_option( 'mobile_toggle_color' ) ) ? pegasus_get_option( 'mobile_toggle_color' ) : '#000';
+		$current_item_color = ! empty( pegasus_get_option( 'current_item_color' ) ) ? pegasus_get_option( 'current_item_color' ) : 'rgba(0,0,0,.9)';
 
 
 
@@ -404,11 +490,7 @@
 
 		$header_three_scroll_item_color = ! empty( pegasus_get_option( 'header_three_scroll_item_color' ) ) ? pegasus_get_option( 'header_three_scroll_item_color' ) : '#fff';
 
-		$top_bar_bkg_color = ! empty( pegasus_get_option( 'top_bar_bkg_color' ) ) ? pegasus_get_option( 'top_bar_bkg_color' ) : '#fff';
 
-		$top_bar_content_color = ! empty( pegasus_get_option( 'top_bar_font_color' ) ) ? pegasus_get_option( 'top_bar_font_color' ) : '#777';
-
-		$header_bkg_color = ! empty( pegasus_get_option( 'header_bkg_color' ) ) ? pegasus_get_option( 'header_bkg_color' ) : 'rgba(0,0,0,0)';
 
 		$additional_header_spacer_color = ! empty( pegasus_get_option( 'global_add_header_bg_color' ) ) ? pegasus_get_option( 'global_add_header_bg_color' ) : '#fff';
 
@@ -440,12 +522,17 @@
 		//overlay color
 		$global_additional_header_overlay_color = pegasus_get_option( 'global_add_header_overlay_color' ) ? pegasus_get_option( 'global_add_header_overlay_color' ) : '#303543';
 		$post_additional_header_overlay_color = get_post_meta( get_the_ID(), 'pegasus_add_header_overlay_color', true ) ? get_post_meta( get_the_ID(), 'pegasus_add_header_overlay_color', true ) : '#303543';
-		$additional_header_overlay_color = ( '#303543' !== $post_additional_header_overlay_color ) ? $post_additional_header_overlay_color : $global_additional_header_overlay_color;
+
+		// $global_additional_header_overlay_opacity = pegasus_get_option( 'global_add_header_overlay_opacity' ) ? pegasus_get_option( 'global_add_header_overlay_opacity' ) : '0.4';
+		// $post_additional_header_overlay_opacity = get_post_meta( get_the_ID(), 'pegasus_add_header_overlay_opacity', true ) ? get_post_meta( get_the_ID(), 'pegasus_add_header_overlay_opacity', true ) : '0.4';
+		// // if ( isset(  ) ) {
+
+		// }
+		$additional_header_overlay_color = ( '#303543' !== $post_additional_header_overlay_color ) ? hexToRgba( $post_additional_header_overlay_color ) : hexToRgba( $global_additional_header_overlay_color );
 
 		//opacity
-		$global_additional_header_overlay_opacity = pegasus_get_option( 'global_add_header_overlay_opacity' ) ? pegasus_get_option( 'global_add_header_overlay_opacity' ) : '0.4';
-		$post_additional_header_overlay_opacity = get_post_meta( get_the_ID(), 'pegasus_add_header_overlay_opacity', true ) ? get_post_meta( get_the_ID(), 'pegasus_add_header_overlay_opacity', true ) : '0.4';
-		$additional_header_overlay_opacity = ( '0.4' === $post_additional_header_overlay_opacity ) ? $post_additional_header_overlay_opacity : $global_additional_header_overlay_opacity;
+
+		//$additional_header_overlay_opacity = ( '0.4' === $post_additional_header_overlay_opacity ) ? $post_additional_header_overlay_opacity : $global_additional_header_overlay_opacity;
 
 		//color
 		$global_page_header_wysiwyg_color = pegasus_get_option( 'global_page_header_wysiwyg_color' ) ? pegasus_get_option( 'global_page_header_wysiwyg_color' ) : '#fff';
@@ -458,12 +545,11 @@
 		//$header_three_disable_fixed_checkbox =  pegasus_get_option('header_three_disable_fixed_checkbox');
 		$header_choice =  pegasus_get_option( 'header_select' );
 
+		$footer_txt_color = ! empty( pegasus_get_option( 'footer_text_color' ) ) ? pegasus_get_option( 'footer_text_color' ) : 'rgba(0,0,0,0)';
 		$footer_bkg_color = ! empty( pegasus_get_option( 'footer_bkg_color' ) ) ? pegasus_get_option( 'footer_bkg_color' ) : 'rgba(0,0,0,0)';
 		$bottom_footer_bkg_color = ! empty( pegasus_get_option( 'bottom_footer_bg_color' ) ) ? pegasus_get_option( 'bottom_footer_bg_color' ) : 'rgba(0,0,0,0)';
 
 		$custom_css =  ! empty( pegasus_get_option( 'custom_css_textareacode' ) ) ?  pegasus_get_option( 'custom_css_textareacode' ) : 'text';
-
-		$boxedornot = pegasus_get_option( 'boxed_layout_chk' );
 
 		ob_start();
 		?>
@@ -500,16 +586,54 @@
 					<?php endif; ?>
 				<?php endif; ?>
 			}
-			/* color within body */
-			#page-wrap { color: <?php echo $content_color; ?>; }
 
+			:root {
+				--pegasus-body-color: <?php echo $content_color; ?>;
+				--pegasus-top-header-bkg-color: <?php echo $top_bar_bkg_color; ?>;
+				--pegasus-top-header-content-color: <?php echo $top_bar_content_color; ?>;
+
+
+
+				--pegasus-header-bkg-color: <?php echo $header_bkg_color; ?>;
+
+				--pegasus-navbar-toggler-icon-color: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='<?php echo hexToRgba($mobile_color); ?>' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+				--pegasus-navbar-toggler-border-color: <?php echo $mobile_border_color; ?>;
+
+				--pegasus-nav-bg-color: <?php echo $nav_bg_color; ?>;
+
+
+				--pegasus-nav-item-color: <?php echo $nav_item_color; ?>;
+				--pegasus-nav-item-hover-color: <?php echo $nav_item_hover_color; ?>;
+
+				--pegasus-nav-item-bkg-color: <?php echo $nav_item_bkg_color; ?>;
+				--pegasus-nav-item-bkg-hover-color: <?php echo $nav_item_bkg_hover_color; ?>;
+
+				--pegasus-sub-nav-item-color: <?php echo $sub_nav_item_color; ?>;
+				--pegasus-sub-nav-item-hover-color: <?php echo $sub_nav_item_hover_color; ?>;
+
+				--pegasus-sub-nav-bkg-color: <?php echo $sub_nav_bg_color; ?>;
+				--pegasus-sub-nav-bkg-hover-color: <?php echo $sub_nav_bg_hover_color; ?>;
+
+				--pegasus-current-item-color: <?php echo $current_item_color; ?>;
+
+
+				--pegasus-header-three-mobile-color: <?php echo $header_three_mobile_color; ?>;
+				--pegasus-header-three-scroll-bg-color: <?php echo $header_three_scroll_bg_color; ?>;
+				--pegasus-header-three-scroll-item-color: <?php echo $header_three_scroll_item_color; ?>;
+
+				--pegasus-additional-header-spacer-color: <?php echo $additional_header_spacer_color; ?>;
+				--pegasus-additional-header-overlay-color: <?php echo $additional_header_overlay_color; ?>;
+
+				--pegasus-page-header-wysiwyg-color: <?php echo $page_header_wysiwyg_color; ?>;
+
+			}
 
 			<?php
 				/* ==================
 					boxed layout
 				===================*/
 
-				if($boxedornot === 'on') {
+				if($boxedOrNot === 'on') {
 			?>
 				#wrapper {
 					-webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -532,119 +656,6 @@
 				}
 			?>
 
-			<?php /*===== Top bar =====*/ ?>
-			#top-bar {	background-color: <?php echo $top_bar_bkg_color; ?>; }
-			#top-bar a, #top-bar .text { color: <?php echo $top_bar_content_color; ?>; }
-
-			<?php /*===== Header =====*/ ?>
-			#header { background: <?php echo $header_bkg_color; ?>; }
-
-			<?php /*===== the navs =====*/ ?>
-			.the-default-nav,
-			.the-default-second-nav,
-			.the-default-third-nav,
-			.the-default-fourth-nav
-			{ background-color: <?php echo $nav_bg_color; ?>; }
-
-			.the-default-fourth-nav { border-bottom: 5px solid <?php echo $mobile_color; ?>; }
-
-			<?php
-				/* ==================
-					second header
-				===================*/
-
-				if( $header_choice === 'header-two' ) {
-			?>
-
-			<?php
-				}
-
-			/*=====
-				Nav Item Color Bkg/Txt color
-			=====*/ ?>
-			.navbar-light .dropdown-menu li a,
-			.navbar-light .dropdown-menu a,
-			#menu-social-icons li:before,
-			.the-nav-cart .sub-menu,
-			.the-nav-cart li a,
-			.the-default-nav .pegasus-social li a i:before,
-			.dropdown a,
-			.nav-link,
-			nav .active > a
-			{ <?php if( $nav_item_color ) { ?>
-				color: <?php echo $nav_item_color; ?>;
-			<?php } ?> }
-
-
-			<?php
-				/* ==================
-					hover color
-				===================*/
-				$hoverbkgortext =  pegasus_get_option( 'hover_chk_decision' );
-				if( 'on' === $hoverbkgortext ) :
-
-			?>
-				header .nav > li > a:hover,
-				header .nav > li > a:focus,
-				header .sub-menu a:hover,
-				header .nav ul li a:hover,
-				#top-bar .sub-menu li a:hover,
-				.dropdown-menu .nav-link:hover
-				{ background-color: <?php echo $hover_bg_color; ?>; }
-			<?php
-				else:
-			?>
-				header .nav > li > a:hover,
-				header .nav > li > a:focus,
-				header .sub-menu a:hover,
-				header .nav ul li a:hover,
-				#top-bar .sub-menu li a:hover,
-				.dropdown-menu .nav-link:hover,
-				.the-default-nav .pegasus-social li a i:before
-				{ color: <?php echo $hover_bg_color; ?>; }
-			<?php
-				endif;
-			?>
-
-			<?php /*===== MegaFish =====*/ ?>
-			@media only screen and ( min-width: 981px ) {
-				.sf-mega,
-				.mega-sub-menu,
-				.sf-mega .list-group,
-				.sf-mega .list-group .list-group-item
-				{ background: <?php echo $sub_nav_bg_color; ?>; }
-
-				.mega-sub-menu li a { color: <?php echo $sub_nav_item_color; ?>; }
-
-				.sf-mega .mega-sub-menu li a { color: <?php echo $nav_item_color; ?>; }
-			}
-
-			<?php /*===== submenu nav bkg color  =====*/ ?>
-			.the-nav-cart .sub-menu { background: <?php echo $sub_nav_bg_color; ?>; }
-
-			<?php /*===== current menu item color =====*/ ?>
-			.current-menu-item > a
-			{  color: <?php echo $current_item_color; ?>; }
-
-
-			<?php /*===== MOBILE COLORING =====*/ ?>
-			.navbar-toggle .icon-bar,
-			.default-skin .navbar-default .navbar-toggle .icon-bar,
-			.default-skin .nav .open>a,
-			.default-skin .nav .open>a:focus,
-			.default-skin .nav .open>a:hover,
-			#header .navi-btn a i
-			{ background: <?php echo $mobile_color; ?>; }
-			.mobile-menu-close .fa-times-circle:before { color: <?php echo $mobile_color; ?>; }
-			.navbar-toggle { border: 1px solid <?php echo $mobile_color; ?>; }
-
-			.navbar-toggler-icon {
-				/* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); */
-				background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-			}
-			.navbar-toggler {
-				border-color: <?php echo $mobile_color; ?>;
-			}
 
 
 			<?php /*===== additional header stuff =====*/ ?>
@@ -671,14 +682,7 @@
 
 			}
 
-			.parallax-image .overlay, #large-header:before {
-				background: <?php echo $additional_header_overlay_color; ?>;
-				opacity: <?php echo $additional_header_overlay_opacity; ?>;
-			}
 
-			.pegasus-header-content {
-				color: <?php echo $page_header_wysiwyg_color; ?>;
-			}
 
 
 			<?php /*===== header three mobile color =====*/ ?>
@@ -698,8 +702,12 @@
 			}
 
 			<?php /*===== footer =====*/ ?>
-			footer { background: <?php echo $footer_bkg_color; ?>; }
+			.pegasus-footer footer { background: <?php echo $footer_bkg_color; ?>; }
 			.colophon-container { background: <?php echo $bottom_footer_bkg_color; ?>; }
+
+
+
+
 
 			<?php //echo $custom_css; ?>
 
@@ -1032,847 +1040,10 @@
 	/*=============== END WOOCOMMERCE =================*/
 
 
+	include_once( 'page_options.php' );
 
+	include_once( 'cpt.php' );
 
-
-	/**
-	 * Include and setup custom metaboxes and fields. (make sure you copy this file to outside the CMB2 directory)
-	 *
-	 * Be sure to replace all instances of 'yourprefix_' with your project's prefix.
-	 * http://nacin.com/2010/05/11/in-wordpress-prefix-everything/
-	 *
-	 * @category YourThemeOrPlugin
-	 * @package  Demo_CMB2
-	 * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
-	 * @link     https://github.com/WebDevStudios/CMB2
-	 */
-	/**
-	 * Get the bootstrap! If using the plugin from wordpress.org, REMOVE THIS!
-	 */
-	if ( file_exists( dirname( __FILE__ ) . '/cmb2/init.php' ) ) {
-		require_once dirname( __FILE__ ) . '/cmb2/init.php';
-	} elseif ( file_exists( dirname( __FILE__ ) . '/CMB2/init.php' ) ) {
-		require_once dirname( __FILE__ ) . '/CMB2/init.php';
-	}
-
-	add_action( 'cmb2_admin_init', 'pegasus_register_metabox' );
-	/**
-	 * Hook in and add a demo metabox. Can only happen on the 'cmb2_admin_init' or 'cmb2_init' hook.
-	 */
-	function pegasus_register_metabox() {
-		// Start with an underscore to hide fields from custom fields list
-		$prefix = 'pegasus';
-
-		$cmb_demo2 = new_cmb2_box( array(
-			'id'            => $prefix . 'metabox2',
-			'title'         => __( 'Pegasus Page Options', 'pegasus-bootstrap' ),
-			'object_types'  => array( 'page', 'post', 'course_unit' ), // Post type
-		) );
-
-		$cmb_demo2->add_field( array(
-			'name' => __( 'Fullwidth Container Checkbox', 'pegasus-bootstrap' ),
-			'desc' => __( 'Check this box to make the page fullwidth, this shuold override the global fullwidth theme option.', 'pegasus-bootstrap' ),
-			'id'   => $prefix . '-page-container-checkbox',
-			'type' => 'checkbox',
-		) );
-
-		$cmb_demo2->add_field( array(
-			'name' => __( 'Disable Page Header', 'pegasus-bootstrap' ),
-			'desc' => __( 'Check this box to disable the Page Header.', 'pegasus-bootstrap' ),
-			'id'   => $prefix . '-page-header-checkbox',
-			'type' => 'checkbox',
-		) );
-
-
-		/**
-		 * Sample metabox to demonstrate each field type included
-		 */
-		$cmb_demo = new_cmb2_box( array(
-			'id'            => $prefix . 'metabox',
-			'title'         => __( 'Additional Header Options', 'pegasus-bootstrap' ),
-			'object_types'  => array( 'page',  'course_unit', 'staff', 'reviews', 'post' ), // Post type, might need to add more cpt's to this
-
-		) );
-
-		$cmb_demo->add_field( array(
-			'name'             => __( 'Additional Header', 'pegasus-bootstrap' ),
-			'desc'             => __( 'This is used if you need additional header spacing. Select Header Type (no hdr, sml hdr, lrg hdr)', 'pegasus-bootstrap' ),
-			'id'               => $prefix . '_page_header_select',
-			'type'             => 'select',
-			'show_option_none' => false,
-			'default'          => 'no-header',
-			'options'          => array(
-				'no-header' => __( 'No Header - No Spacing', 'pegasus-bootstrap' ),
-				'space' => __( 'No Header - Just Spacing', 'pegasus-bootstrap' ),
-				'sml-header'   => __( 'Small Header - With Parallax', 'pegasus-bootstrap' ),
-				'lrg-header'     => __( 'Large Header - Full Width and Height', 'pegasus-bootstrap' ),
-			),
-		) );
-
-		$cmb_demo->add_field( array(
-			'name'    => __( 'Overlay color', 'pegasus-bootstrap' ),
-			//'desc' => '',
-			'id'      => $prefix . '_add_header_overlay_color',
-			'type'    => 'colorpicker',
-			'default' => '#303543'
-		) );
-		$cmb_demo->add_field( array(
-			'name' => 'Overlay Opacity',
-			//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
-			'id'   => $prefix . '_add_header_overlay_opacity',
-			'type' => 'text',
-			'default' => '0.4'
-		) );
-		$cmb_demo->add_field( array(
-			'name' => 'NoSpacer Padding',
-			//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
-			'id'   => $prefix . '_nospacer_padding',
-			'type' => 'text',
-			'default' => '55px 0'
-		) );
-
-		$cmb_demo->add_field( array(
-			'name' => __( 'Disable Parallax', 'pegasus-bootstrap' ),
-			'desc' => 'Check this box if you want to disable parallax effect.',
-			'id'   => $prefix . '_add_header_disable_parralax_chk',
-			'type' => 'checkbox',
-		) );
-
-		$cmb_demo->add_field( array(
-			'name'             => __( 'Image Repeat', 'pegasus-bootstrap' ),
-			'desc'             => '<strong>Choose between:
-										   1.) No Repeat
-										   2.) Repeat
-										   3.) Repeat-X
-										   3.) Repeat-Y
-										   4.) Space
-										   5.) Round
-										</strong>',
-			'id'               => $prefix . '_add_header_bkg_img_repeat',
-			'type'             => 'select',
-			'show_option_none' => false,
-			'default'          => 'none',
-			'options'          => array(
-				'no-repeat' => __( 'No Repeat', 'cmb2' ),
-				'repeat' => __( 'Repeat', 'cmb2' ),
-				'repeat-x'   => __( 'Repeat X', 'cmb2' ),
-				'repeat-y'     => __( 'Repeat Y', 'cmb2' ),
-				'space'     => __( 'Space', 'cmb2' ),
-				'round'     => __( 'Round', 'cmb2' ),
-			),
-		) );
-		$cmb_demo->add_field( array(
-			'name'             => __( 'Image Position', 'pegasus-bootstrap' ),
-			'desc'             => '<strong>Choose between:
-										   1.) Center Center
-										   2.) Top Left
-										   3.) Top Center
-										   3.) Top Right
-										   4.) Bottom Left
-										   5.) Bottom Center
-											6.) Bottom Right
-										</strong>',
-			'id'               => $prefix . '_add_header_bkg_img_pos',
-			'type'             => 'select',
-			'show_option_none' => false,
-			'default'          => '50-0',
-			'options'          => array(
-				'50-0' => __( '50% 0', 'cmb2' ),
-				'100-100' => __( '100% 100%', 'cmb2' ),
-				'center-center' => __( 'Center Center', 'cmb2' ),
-				'top-left'   => __( 'Top Left', 'cmb2' ),
-				'top-center'     => __( 'Top Center', 'cmb2' ),
-				'top-right'     => __( 'Top Right', 'cmb2' ),
-				'bottom-left'     => __( 'Bottom Left', 'cmb2' ),
-				'bottom-center'     => __( 'Bottom Center', 'cmb2' ),
-				'bottom-right'     => __( 'Bottom Right', 'cmb2' ),
-			),
-		) );
-		$cmb_demo->add_field( array(
-			'name'             => __( 'Image Size', 'pegasus-bootstrap' ),
-			'desc'             => '<strong>Choose between:
-									   1.) None
-									   2.) Cover
-									   3.) 100% 100%
-									</strong>',
-			'id'               => $prefix . '_add_header_bkg_img_size',
-			'type'             => 'select',
-			'show_option_none' => false,
-			'default'          => 'cover',
-			'options'          => array(
-				'auto' => __( 'None', 'cmb2' ),
-				'cover'   => __( 'Cover', 'cmb2' ),
-				'100-100'     => __( '100% 100%', 'cmb2' ),
-				'contain'   => __( 'Contain', 'cmb2' ),
-			),
-		) );
-
-		$cmb_demo->add_field( array(
-			'name' => __( 'Background Attachment Fixed', 'pegasus-bootstrap' ),
-			'desc' => 'Check this box if you want the background image to be fixed / parallax effect.',
-			'id'   => $prefix . '_add_header_bkg_img_fixed_chk',
-			'type' => 'checkbox',
-		) );
-
-
-		$cmb_demo->add_field( array(
-			'name'    => __( 'Header Content wysiwyg', 'cmb2' ),
-			'desc'    => __( 'This will show up in the Additional Header select area.', 'cmb2' ),
-			'id'      => $prefix . '_page_header_wysiwyg',
-			'type'    => 'wysiwyg',
-			'options' => array( 'textarea_rows' => 5, ),
-		) );
-
-		$cmb_demo->add_field( array(
-			'name'    => __( 'Header Content color', 'pegasus-bootstrap' ),
-			//'desc' => '',
-			'id'      => $prefix . '_page_header_wysiwyg_color',
-			'type'    => 'rgba_colorpicker',
-			'default' => '#fff'
-		) );
-	}
-
-
-
-
-	/* ===============================================================================================
-	============================ CUSTOM POST TYPE  ==================================================
-	================================================================================================*/
-	add_action( 'init', 'pegasus_cpt_init' );
-	function pegasus_cpt_init() {
-
-		$cpt_portfolio = ( 'on' === pegasus_get_option( 'cpt_portfolio_checkbox' ) ) ? true : false;
-		if ( true === $cpt_portfolio ) {
-			/*============================
-			======= Portfolio Post Type ========
-			============================*/
-
-			$portfolio_labels = array(
-				'name' => _x('Portfolios', 'post type general name', 'pegasus-bootstrap'),
-				'singular_name' => _x('Portfolio', 'post type singular name', 'pegasus-bootstrap'),
-				'add_new' => _x('Add New', 'portfolio', 'pegasus-bootstrap'),
-				'add_new_item' => __('Add New Portfolio', 'pegasus-bootstrap'),
-				'edit_item' => __('Edit Portfolio', 'pegasus-bootstrap'),
-				'new_item' => __('New Portfolio', 'pegasus-bootstrap'),
-				'view_item' => __('View Portfolio', 'pegasus-bootstrap'),
-				'search_items' => __('Search Portfolio', 'pegasus-bootstrap'),
-				'not_found' =>  __('No portfolio found', 'pegasus-bootstrap'),
-				'not_found_in_trash' => __('No portfolio found in Trash', 'pegasus-bootstrap'),
-				'parent_item_colon' => '',
-				'menu_name' => 'Portfolio'
-			);
-
-			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
-			$portfolio_args = array(
-				'labels' => $portfolio_labels,
-				'public' => true,
-				'publicly_queryable' => true,
-				'show_ui' => true,
-				'show_in_menu' => true,
-				'query_var' => true,
-				'rewrite' => true,
-				/* this is important to make it so that page-portfolio.php will show when used */
-				'capability_type' => 'post',
-				'can_export' => true,
-				 /* make sure has_archive is turned off if you plan on using page-portfolio.php */
-				'has_archive' => false,
-				'hierarchical' => true,
-				'menu_position' => null,
-				/* include this line to use global categories */
-				//'taxonomies' => array('category'),
-				'supports' => array('title','editor','author','thumbnail','excerpt','comments','custom-fields','page-attributes')
-			);
-
-			// We call this function to register the custom post type
-			register_post_type( 'portfolio', $portfolio_args);
-
-			/*============================
-			======= Portfolio Taxonomy ========
-			============================*/
-
-			// Initialize Taxonomy Labels
-			$tags_labels = array(
-				'name' => _x( 'Tags', 'taxonomy general name', 'pegasus-bootstrap' ),
-				'singular_name' => _x( 'Tag', 'taxonomy singular name' , 'pegasus-bootstrap'),
-				'search_items' =>  __( 'Search Types' , 'pegasus-bootstrap'),
-				'all_items' => __( 'All Tags' , 'pegasus-bootstrap'),
-				'parent_item' => __( 'Parent Tags', 'pegasus-bootstrap' ),
-				'parent_item_colon' => __( 'Parent Tags:' , 'pegasus-bootstrap'),
-				'edit_item' => __( 'Edit Tags', 'pegasus-bootstrap' ),
-				'update_item' => __( 'Update Tags' , 'pegasus-bootstrap'),
-				'add_new_item' => __( 'Add New Tags', 'pegasus-bootstrap' ),
-				'new_item_name' => __( 'New Tags Name' , 'pegasus-bootstrap'),
-			);
-
-			$cats_labels = array(
-				'name' => _x( 'Categories', 'taxonomy general name', 'pegasus-bootstrap' ),
-				'singular_name' => _x( 'Cat', 'taxonomy singular name' , 'pegasus-bootstrap'),
-				'search_items' =>  __( 'Search Types' , 'pegasus-bootstrap'),
-				'all_items' => __( 'All Cats' , 'pegasus-bootstrap'),
-				'parent_item' => __( 'Parent Cats', 'pegasus-bootstrap' ),
-				'parent_item_colon' => __( 'Parent Cats:' , 'pegasus-bootstrap'),
-				'edit_item' => __( 'Edit Cats', 'pegasus-bootstrap' ),
-				'update_item' => __( 'Update Cats' , 'pegasus-bootstrap'),
-				'add_new_item' => __( 'Add New Cats', 'pegasus-bootstrap' ),
-				'new_item_name' => __( 'New Cats Name' , 'pegasus-bootstrap'),
-			);
-
-			// Register Custom Taxonomy - Tags
-			register_taxonomy('tagportfolio',array('portfolio'), array(
-				'hierarchical' => false, // define whether to use a system like tags or categories
-				'labels' => $tags_labels,
-				'show_ui' => true,
-				'show_admin_column'     => true,
-				'query_var' => true,
-				'rewrite' => array( 'slug' => 'tag-portfolio' ),
-			));
-
-			// Register Custom Taxonomy - Category
-			register_taxonomy('catportfolio',array('portfolio'), array(
-				'hierarchical' => true, // define whether to use a system like tags or categories
-				'labels' => $cats_labels,
-				'show_ui' => true,
-				'show_admin_column'     => true,
-				'query_var' => true,
-				'rewrite' => array( 'slug' => 'cat-portfolio' ),
-			));
-		}
-
-		$cpt_staff = ( 'on' === pegasus_get_option( 'cpt_staff_checkbox' ) ) ? true : false;
-		if ( true === $cpt_staff ) {
-			/*============================
-			========= Staff Post Type ========
-			============================*/
-
-			$staff_labels = array(
-				'name' => _x('Staff', 'post type general name', 'pegasus-bootstrap'),
-				'singular_name' => _x('Staff', 'post type singular name', 'pegasus-bootstrap'),
-				'add_new' => _x('Add New', 'staff', 'pegasus-bootstrap'),
-				'add_new_item' => __('Add New Staff', 'pegasus-bootstrap'),
-				'edit_item' => __('Edit Staff', 'pegasus-bootstrap'),
-				'new_item' => __('New Staff', 'pegasus-bootstrap'),
-				'view_item' => __('View Staff', 'pegasus-bootstrap'),
-				'search_items' => __('Search Staff', 'pegasus-bootstrap'),
-				'not_found' =>  __('No staff found', 'pegasus-bootstrap'),
-				'not_found_in_trash' => __('No staff found in Trash', 'pegasus-bootstrap'),
-				'parent_item_colon' => '',
-				'menu_name' => 'Staff'
-			);
-
-			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
-			$staff_args = array(
-				'labels' => $staff_labels,
-				'public' => true,
-				'publicly_queryable' => true,
-				'show_ui' => true,
-				'show_in_menu' => true,
-				'query_var' => true,
-				'rewrite' => true,
-				/* this is important to make it so that page-portfolio.php will show when used */
-				'capability_type' => 'post',
-				'can_export' => true,
-				 /* make sure has_archive is turned off if you plan on using page-portfolio.php */
-				'has_archive' => false,
-				'hierarchical' => false,
-				'menu_position' => null,
-				/* include this line to use global categories */
-				//'taxonomies' => array('category'),
-				'supports' => array('title','editor','author','thumbnail','excerpt','comments','custom-fields','page-attributes')
-			);
-
-			// We call this function to register the custom post type
-			register_post_type( 'staff', $staff_args);
-
-			// Register Custom Taxonomy - Categories
-			register_taxonomy('department',array('staff'), array(
-				'hierarchical' => true, // define whether to use a system like tags or categories
-				'labels' => $cats_labels,
-				'show_ui' => true,
-				'show_admin_column'     => true,
-				'query_var' => true,
-				'rewrite' => array( 'slug' => 'department' ),
-			));
-		}
-
-		$cpt_testimonial = ( 'on' === pegasus_get_option( 'cpt_testimonial_checkbox' ) ) ? true : false;
-		if ( true === $cpt_testimonial ) {
-			/*================================
-			========Testimonial Post Type ========
-			================================*/
-
-			$review_labels = array(
-				'name' => _x('Testimonials', 'post type general name', 'pegasus-bootstrap'),
-				'singular_name' => _x('Testimonials', 'post type singular name', 'pegasus-bootstrap'),
-				'add_new' => _x('Add New', 'testimonial', 'pegasus-bootstrap'),
-				'add_new_item' => __('Add New Testimonials', 'pegasus-bootstrap'),
-				'edit_item' => __('Edit Testimonial', 'pegasus-bootstrap'),
-				'new_item' => __('New Testimonial', 'pegasus-bootstrap'),
-				'view_item' => __('View Testimonials', 'pegasus-bootstrap'),
-				'search_items' => __('Search Testimonials', 'pegasus-bootstrap'),
-				'not_found' =>  __('No testimonial found', 'pegasus-bootstrap'),
-				'not_found_in_trash' => __('No testimonial found in Trash', 'pegasus-bootstrap'),
-				'parent_item_colon' => '',
-				'menu_name' => 'Testimonial'
-			);
-
-			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
-			$review_args = array(
-				'labels' => $review_labels,
-				'public' => true,
-				'publicly_queryable' => true,
-				'show_ui' => true,
-				'show_in_menu' => true,
-				'query_var' => true,
-				'rewrite' => true,
-				/* this is important to make it so that page-portfolio.php will show when used */
-				'capability_type' => 'post',
-				'can_export' => true,
-				 /* make sure has_archive is turned off if you plan on using page-portfolio.php */
-				'has_archive' => false,
-				'hierarchical' => false,
-				'menu_position' => null,
-				/* include this line to use global categories */
-				//'taxonomies' => array('category'),
-				'supports' => array( 'title' )
-			);
-
-			// We call this function to register the custom post type
-			register_post_type( 'testimonial', $review_args);
-
-			remove_post_type_support( 'testimonial', 'editor', 'permalink', 'comments', 'thumbnail', 'custom-fields', 'author', 'excerpt', 'trackbacks', 'page-attributes' );
-
-			function remove_yoast_metabox_testimonial(){
-				remove_meta_box( 'wpseo_meta', 'testimonial', 'normal' );
-			}
-			add_action( 'add_meta_boxes', 'remove_yoast_metabox_testimonial', 11 );
-
-			add_action( 'cmb2_admin_init', 'pegasus_testimonial_metabox' );
-
-			function pegasus_testimonial_metabox() {
-				$prefix = 'pegasus_testimonial_';
-
-				$testimonial_metabox = new_cmb2_box(
-					array(
-						'id'           => $prefix . 'content',
-						'title'        => __( 'Testimonial Slider Slides', 'pegasus-bootstrap' ),
-						'object_types' => array( 'testimonial' ),
-						'priority'     => 'high',
-					)
-				);
-
-				$testimonial_group_fields = $testimonial_metabox->add_field(
-					array(
-						'id'         => $prefix . 'slides',
-						'type'       => 'group',
-						'repeatable' => true,
-						'options'    => array(
-							'group_title'   => 'Slide #{#}',
-							'add_button'    => 'Add Another Slide',
-							'remove_button' => 'Remove Slide',
-							'sortable'      => true,
-							'closed'        => true, // true to have the groups closed by default
-						),
-
-					)
-				);
-
-				$testimonial_metabox->add_group_field(
-					$testimonial_group_fields, array(
-						'name'             => 'Title',
-						'id'               => $prefix . 'title',
-						'type'             => 'text',
-						'allow_custom_url' => true,
-					)
-				);
-
-				$testimonial_metabox->add_group_field(
-					$testimonial_group_fields, array(
-						'name'             => 'Link',
-						'id'               => $prefix . 'link',
-						'type'             => 'text',
-						'allow_custom_url' => true,
-					)
-				);
-
-				$testimonial_metabox->add_group_field(
-					$testimonial_group_fields, array(
-						'name' => 'Slide Image',
-						'id'   => $prefix . 'slide_image',
-						'type' => 'file',
-					)
-				);
-
-				$testimonial_metabox->add_group_field(
-					$testimonial_group_fields, array(
-						'name'              => 'Alt Text',
-						'id'                => $prefix . 'alt_text',
-						'type'              => 'text',
-					)
-				);
-
-				$testimonial_metabox->add_group_field(
-					$testimonial_group_fields, array(
-						'name'              => 'Caption',
-						'id'                => $prefix . 'caption',
-						'type'              => 'text',
-					)
-				);
-
-			} //end testimonial cmb2 function
-		}
-
-		$cpt_logo_slider = ( 'on' === pegasus_get_option( 'cpt_logo_slider_checkbox' ) ) ? true : false;
-		if ( true === $cpt_logo_slider ) {
-			/*============================
-			======= Logo Slider Post Type ========
-			============================*/
-
-			$logo_slider_labels = array(
-				'name' => _x('Logos', 'logo slider general name', 'pegasus-bootstrap'),
-				'singular_name' => _x('Logo', 'logo slider singular name', 'pegasus-bootstrap'),
-				'add_new' => _x('Add New', 'logo', 'pegasus-bootstrap'),
-				'add_new_item' => __('Add New Logo', 'pegasus-bootstrap'),
-				'edit_item' => __('Edit Logo', 'pegasus-bootstrap'),
-				'new_item' => __('New Logo', 'pegasus-bootstrap'),
-				'view_item' => __('View Logo', 'pegasus-bootstrap'),
-				'search_items' => __('Search Logo', 'pegasus-bootstrap'),
-				'not_found' =>  __('No logo found', 'pegasus-bootstrap'),
-				'not_found_in_trash' => __('No logo found in Trash', 'pegasus-bootstrap'),
-				'parent_item_colon' => '',
-				'menu_name' => 'Logo Slider'
-			);
-
-			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
-			$logo_slider_args = array(
-				'labels' => $logo_slider_labels,
-				'public' => true,
-				'publicly_queryable' => true,
-				'show_ui' => true,
-				'show_in_menu' => true,
-				'query_var' => true,
-				'rewrite' => true,
-				/* this is important to make it so that page-portfolio.php will show when used */
-				'capability_type' => 'post',
-				'can_export' => true,
-				 /* make sure has_archive is turned off if you plan on using page-portfolio.php */
-				'has_archive' => false,
-				'hierarchical' => true,
-				'menu_position' => null,
-				/* include this line to use global categories */
-				//'taxonomies' => array('category'),
-				'supports' => array( 'title' )
-			);
-
-			// We call this function to register the custom post type
-			register_post_type( 'logo_slider', $logo_slider_args);
-
-			remove_post_type_support( 'logo_slider', 'editor', 'permalink', 'comments', 'thumbnail', 'custom-fields', 'author', 'excerpt', 'trackbacks' );
-
-			function remove_yoast_metabox_logo_slider(){
-				remove_meta_box( 'wpseo_meta', 'logo_slider', 'normal' );
-			}
-			add_action( 'add_meta_boxes', 'remove_yoast_metabox_logo_slider', 11 );
-
-			add_action( 'cmb2_admin_init', 'pegasus_logo_slider_metabox' );
-
-			function pegasus_logo_slider_metabox() {
-				$prefix = 'pegasus_logo_slider_';
-
-				$logo_slider_metabox = new_cmb2_box(
-					array(
-						'id'           => $prefix . 'content',
-						'title'        => __( 'Logo Slider Slides', 'pegasus-bootstrap' ),
-						'object_types' => array( 'logo_slider' ),
-						'priority'     => 'high',
-					)
-				);
-
-				$logo_slider_group_fields = $logo_slider_metabox->add_field(
-					array(
-						'id'         => $prefix . 'slides',
-						'type'       => 'group',
-						'repeatable' => true,
-						'options'    => array(
-							'group_title'   => 'Slide #{#}',
-							'add_button'    => 'Add Another Slide',
-							'remove_button' => 'Remove Slide',
-							'sortable'      => true,
-							'closed'        => true, // true to have the groups closed by default
-						),
-
-					)
-				);
-
-				$logo_slider_metabox->add_group_field(
-					$logo_slider_group_fields, array(
-						'name'             => 'Title',
-						'id'               => $prefix . 'title',
-						'type'             => 'text',
-						'allow_custom_url' => true,
-					)
-				);
-
-				$logo_slider_metabox->add_group_field(
-					$logo_slider_group_fields, array(
-						'name'             => 'Link',
-						'id'               => $prefix . 'link',
-						'type'             => 'text',
-						'allow_custom_url' => true,
-					)
-				);
-
-				$logo_slider_metabox->add_group_field(
-					$logo_slider_group_fields, array(
-						'name' => 'Slide Image',
-						'id'   => $prefix . 'slide_image',
-						'type' => 'file',
-					)
-				);
-
-				$logo_slider_metabox->add_group_field(
-					$logo_slider_group_fields, array(
-						'name'              => 'Alt Text',
-						'id'                => $prefix . 'alt_text',
-						'type'              => 'text',
-					)
-				);
-
-				$logo_slider_metabox->add_group_field(
-					$logo_slider_group_fields, array(
-						'name'              => 'Caption',
-						'id'                => $prefix . 'caption',
-						'type'              => 'text',
-					)
-				);
-
-			} //end logo slider cmb2 function
-
-			//Make new custom column
-			add_filter('manage_logo_slider_posts_columns', 'posts_columns_id', 5);
-			function posts_columns_id( $defaults ){
-				$defaults['pegasus_shortcode_id'] = __('Shortcode');
-				return $defaults;
-			}
-
-			//add content to new custom column
-			add_action('manage_logo_slider_posts_custom_column', 'posts_custom_id_columns', 5, 2);
-			function posts_custom_id_columns( $column, $post_id ){
-				switch ( $column ) {
-					case 'pegasus_shortcode_id' :
-						echo '<pre><code>[pegasus_logo_slider id="' . $post_id . '" ]</code></pre>'; // the data that is displayed in the column
-						break;
-				}
-			}
-
-			//make custom column sortable
-			add_filter( 'manage_edit-logo_slider_sortable_columns', 'itsg_add_custom_column_make_sortable' );
-			function itsg_add_custom_column_make_sortable( $columns ) {
-				$columns['usefulness'] = 'usefulness';
-
-				return $columns;
-			}
-
-			// Add custom column sort request to post list page
-			add_action( 'load-edit.php', 'itsg_add_custom_column_sort_request' );
-			function itsg_add_custom_column_sort_request() {
-				add_filter( 'request', 'itsg_add_custom_column_do_sortable' );
-			}
-
-			// Handle the custom column sorting
-			function itsg_add_custom_column_do_sortable( $vars ) {
-
-				// check if post type is being viewed -- replace ht_kb with your CPT slug
-				if ( isset( $vars['post_type'] ) && 'ht_kb' == $vars['post_type'] ) {
-
-					// check if sorting has been applied
-					if ( isset( $vars['orderby'] ) && 'usefulness' == $vars['orderby'] ) {
-
-						// apply the sorting to the post list
-						$vars = array_merge(
-							$vars,
-							array(
-								'meta_key' => '_ht_kb_usefulness',
-								'orderby' => 'meta_value_num'
-							)
-						);
-					}
-				}
-
-				return $vars;
-			}
-
-		} //end logo slider
-
-
-	} //cpt init
-
-	/*~~~~~~~~~~~~~~~~~~~~
-		LOGO SLIDER
-	~~~~~~~~~~~~~~~~~~~~~*/
-	// [pegasus_logo_slider id="5" ]
-	function pegasus_logo_slider_query_shortcode( $atts ) {
-
-		$a = shortcode_atts( array(
-			//"id" => ''
-		), $atts );
-
-		// Defaults
-		extract(shortcode_atts(array(
-			//"the_query" => '',
-			"id" => ''
-		), $atts));
-
-		// de-funkify query
-		//$the_query = preg_replace('~&#x0*([0-9a-f]+);~ei', 'chr(hexdec("\\1"))', $the_query);
-		//$the_query = preg_replace('~&#0*([0-9]+);~e', 'chr(\\1)', $the_query);
-
-		//$the_query = preg_replace_callback('~&#x0*([0-9a-f]+);~', function($matches){
-			//return chr( dechex( $matches[1] ) );
-		//}, $the_query);
-
-		//$the_query = preg_replace_callback('~&#0*([0-9]+);~', function($matches){
-			//return chr( $matches[1] );
-		//}, $the_query);
-
-		//if ( '' === $the_query || null === $the_query || empty( $the_query ) ) {
-			$the_query = 'post_type=logo_slider&p=' . $atts['id'];
-		//}
-
-		// query is made
-		query_posts( $the_query );
-
-		// Reset and setup variables
-		global $post;
-		$output = '';
-		$temp_title = '';
-		$temp_link = '';
-		$temp_date = '';
-		$temp_pic = '';
-		$temp_content = '';
-		$the_id = '';
-
-		// the loop
-		if (have_posts()) : while (have_posts()) : the_post();
-
-			$temp_title = get_the_title($post->ID);
-			$temp_link = get_permalink($post->ID);
-			$temp_date = get_the_date($post->ID);
-			$temp_pic = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
-			$temp_excerpt = wp_trim_words( get_the_excerpt(), 150 );
-			$temp_content = wp_trim_words( get_the_content(), 300 );
-			$the_id = get_the_ID();
-
-			$slides = get_post_meta( $the_id, 'pegasus_logo_slider_slides', true );
-
-			if ( ! empty( $slides ) ) {
-				foreach ( (array) $slides as $key => $slide ) {
-					$prefix = 'pegasus_logo_slider_';
-
-					$slide_title = isset( $slide[$prefix . 'title'] ) ? sanitize_title( $slide[$prefix . 'title'] ) : '';
-					$slide_link = isset( $slide[$prefix . 'link'] ) ? esc_url( $slide[$prefix . 'link'] ) : '';
-					$slide_img_id = isset( $slide[$prefix . 'slide_image_id'] ) ? absint ( $slide[$prefix . 'slide_image_id'] ) : '';
-					$slide_slide_img = isset( $slide[$prefix . 'slide_image'] ) ? esc_url( $slide[$prefix . 'slide_image'] ) : '';
-					$slide_alt_text = isset( $slide[$prefix . 'alt_text'] ) ? $slide[$prefix . 'alt_text'] : '';
-					$slide_caption = isset( $slide[$prefix . 'caption'] ) ? $slide[$prefix . 'caption'] : '';
-
-
-					$output .= "<article class='post-$the_id' >";
-					$output .= '<div class="slick-slider-item">';
-					if ( $slide_link ) {
-						$output .= '<a href="' . $slide_link  . '" >';
-					}
-						if( $slide_slide_img ) {
-							$output .= '<img class="post-img-feat" src="' . $slide_slide_img . '" alt="' . $slide_alt_text . '">';
-						}
-						if( $slide_title ) {
-							$output .= '<p class="slick-p">' . $slide_title . '</p>';
-						}
-						if( $slide_caption ) {
-							$output .= '<p class="slick-p">' . $slide_caption . '</p>';
-						}
-					if ( $slide_link ) {
-						$output .= '</a>';
-					}
-					$output .= '</div>';
-					$output .= "</article>";
-
-				} // End foreach().
-			}
-
-		endwhile; else:
-			$output .= "nothing found.";
-		endif;
-
-		wp_reset_query();
-
-		wp_enqueue_style( 'slick-css' );
-		wp_enqueue_style( 'slick-theme-css' );
-		wp_enqueue_script( 'slick-js' );
-		wp_enqueue_script( 'match-height-js' );
-		wp_enqueue_script( 'pegasus-carousel-plugin-js' );
-
-		return '<div class="center logo-slider slider">' . $output . '</div>';
-
-	}
-	add_shortcode("pegasus_logo_slider", "pegasus_logo_slider_query_shortcode");
-
-
-	function pegasus_rewrite_flush() {
-		flush_rewrite_rules();
-	}
-	add_action( 'after_switch_theme', 'pegasus_rewrite_flush' );
-
-	/* fixes permalinks for custom post types */
-	add_action('init', 'pegasus_rewrite');
-	function pegasus_rewrite() {
-		global $wp_rewrite;
-		$wp_rewrite->add_permastruct('typename', 'typename/%year%/%postname%/', true, 1);
-		add_rewrite_rule('typename/([0-9]{4})/(.+)/?$', 'index.php?typename=$matches[2]', 'top');
-		$wp_rewrite->flush_rules(); // !!!
-	}
-
-
-
-
-	// // Bootstrap 4 Content Options
-	// function bootstrap4_content_options($options) {
-	//   return array_merge($options, array(
-	// 	'img_class' => 'img-fluid',
-	// 	'align_center_class' => 'mx-auto',
-	// 	'edit_post_link_class' => 'btn btn-secondary'
-	//   ));
-	// }
-	// add_filter( 'bootstrap_content_options', 'bootstrap4_content_options', 1 );
-
-	// // Bootstrap 4 Forms Options
-	// function bootstrap4_forms_options($options) {
-	//   return array_merge($options, array(
-	// 	'search_submit_label' => '<i>🔎</i>'
-	//   ));
-	// }
-	// add_filter( 'bootstrap_forms_options', 'bootstrap4_forms_options', 1 );
-
-	// // Bootstrap 4 Gallery Options
-	// function bootstrap4_gallery_options($options) {
-	//   return array_merge($options, array(
-	// 	'gallery_thumbnail_class' => '',
-	// 	'gallery_thumbnail_img_class' => 'img-thumbnail mb-2',
-	// 	'close_button_class' => 'btn btn-secondary',
-	// 	'carousel_item_class' => 'carousel-item'
-	//   ));
-	// }
-	// add_filter( 'bootstrap_gallery_options', 'bootstrap4_gallery_options', 1 );
-
-	// // Bootstrap 4 Widget Options
-	// function bootstrap4_widgets_options($options) {
-	// 	return array_merge( $options, array(
-	// 		'widget_class'          => 'card',
-	// 		'widget_modifier_class' => '',
-	// 		'widget_header_class'   => 'card-header',
-	// 		'widget_content_class'  => 'card-block'
-	// 	) );
-	// }
-	// add_filter( 'bootstrap_widgets_options', 'bootstrap4_widgets_options', 1 );
 
 	$bootstrap_config = array(
 		// Buttons

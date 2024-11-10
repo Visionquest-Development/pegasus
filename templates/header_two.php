@@ -40,7 +40,7 @@
 	$home_url = esc_url( home_url( '/' ) ) ? esc_url( home_url( '/' ) ) : '#';
 	$fallback_menu = '<ul id="" class="navbar-nav"><li class="nav-item active current-menu-item"><a class="nav-link" href="' . $home_url . '">Home <span class="sr-only">(current)</span></a></li></ul>';
 	$classes_for_nav_menu = 'navbar-nav primary-navigation-bar ' . $right_align_nav_items . ' ';
-	$final_menu = pegasus_get_menu( 'primary', $classes_for_nav_menu, 3, $fallback_menu );
+	$final_menu = pegasus_get_menu( 'primary', $classes_for_nav_menu, 4, $fallback_menu );
 	//$final_menu = $fallback_menu;
 
 	$final_inner_container_class = ( 'container-fluid' === $global_full_container_option ) ? $global_full_container_option : $header_inner_container_option;
@@ -65,7 +65,13 @@
 				<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) & 'container' !== $header_container_check ) : ?>
 					<div class="<?php echo $final_inner_container_class; ?>">
 				<?php endif; ?>
-
+						<a class="navbar-brand <?php echo $centerLogo; ?> " href="<?php echo esc_url( home_url( '/' ) ); ?>">
+							<?php if( ! empty( $logo ) ) : ?>
+								<img id="logo" src="<?php echo $logo; ?>" alt=""/>
+							<?php else: ?>
+								<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+							<?php endif; ?>
+						</a>
 						<!-- Brand and toggle get grouped for better mobile display -->
 						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#pegasus_header_two" aria-controls="pegasus_header_two"  aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
@@ -73,20 +79,20 @@
 
 						<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="pegasus_header_two">
 							<?php
+							/*
 							if( ! empty( $logo ) ) : ?>
 								<a class="navbar-brand logo-container <?php echo $centerLogo; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" alt=""/></a>
 							<?php else: ?>
 								<h1 class="site-title <?php echo $centerLogo; ?>"><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-							<?php endif;
+							<?php
+							endif;
+							*/
 							echo $final_menu;
 							if( 'on' === $moremenuchk ) {
 								get_template_part( 'templates/more_menu', 'header' );
 							}
 							if( 'on' === $searchmenuchk ) {
-								//echo '<form role="search" method="get" id="searchform" class="searchform search-form form-inilne ml-auto mr-0" action="' . home_url( '/' ) . '">';
-								//get_search_form();
 								get_template_part( 'templates/header_search', 'header' );
-								//echo '</form>';
 							}
 							if ( 'on' === $woo_check ) {
 								if ( class_exists( 'WooCommerce' ) ) {

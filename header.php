@@ -67,7 +67,7 @@
 			<?php  if( 'on' === $page_loader_choice ) { ?>
 				<div class="page-loader">
 					<img src="<?php echo get_template_directory_uri(); ?>/images/loader.gif" alt="">
-				</div> 
+				</div>
 			<?php }  ?>
 			<div class="mainbar">
 
@@ -107,43 +107,9 @@
 						get_template_part( 'templates/top_bar', 'header' );
 					}
 					?>
-					<nav class="navbar <?php echo $bootstrap_navbar_expand_class; ?> the-default-nav <?php echo $bootstrap_color_scheme; ?> <?php echo $bootstrap_color_utility; ?> sticky-top" role="navigation">
-						<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) & 'container' !== $header_container_check ) : ?>
-						<div class="<?php echo $final_inner_container_class; ?>">
-							<?php endif; ?>
-							<a class="navbar-brand <?php echo $centerLogo; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-								<?php bloginfo( 'name' ); ?>
-							</a>
-							<!-- Brand and toggle get grouped for better mobile display -->
-							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1"  aria-label="Toggle navigation">
-								<span class="navbar-toggler-icon"></span>
-							</button>
-							<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="bs-example-navbar-collapse-1">
-								<?php
-								echo $final_menu;
-
-								if( 'on' === $moremenuchk ) {
-									get_template_part( 'templates/more_menu', 'header' );
-								}
-
-								if ( 'on' === $woo_check ) {
-									if ( class_exists( 'WooCommerce' ) ) {
-										// code that requires WooCommerce
-										get_template_part( 'templates/header_cart', 'header' );
-									} else {
-										// you don't appear to have WooCommerce activated
-										echo '<div class="woo-error navbar-right">Enable WooCommerce</div>';
-									}
-								}
-								if( 'on' === $top_social_check ){
-									get_template_part( 'templates/social_icons', 'header' );
-								}
-								?>
-							</div>
-							<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) ) : ?>
-						</div ><!-- container-->
-					<?php endif; ?>
-					</nav>
+					<?php
+						get_template_part( 'templates/sticky_header', 'header' );
+					?>
 				<?php endif; ?>
 
 				<?php
@@ -164,7 +130,14 @@
 					<?php }
 				?>
 
-				<?php get_template_part( 'templates/additional_header' ); ?>
+				<?php
+					// $header_choice =  pegasus_get_option( 'header_select' );
+					// //var_dump($header_choice);
+					// if ( 'header-three' !== $header_choice ) {
+					// 	//get_template_part( 'templates/additional-header' );
+					// }
+					//get_template_part( 'templates/additional-header' );
+				?>
 
 			 	<?php
 					$breadcrumbs_check =  pegasus_get_option( 'bread_chk' );
