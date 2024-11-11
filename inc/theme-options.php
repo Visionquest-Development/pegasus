@@ -518,7 +518,7 @@ class Pegasus_Admin {
 			'name'    => __( 'More Menu Widget Areas', 'pegasus-theme' ),
 			'id'      => 'more_menu_widget_areas',
 			'type'    => 'radio',
-			'default' => 'two',
+			'default' => 2,
 			'options' => array(
 				0 => __( 'None', 'pegasus-theme' ),
 				1 => __( 'One', 'pegasus-theme' ),

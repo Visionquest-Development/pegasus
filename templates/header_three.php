@@ -110,8 +110,8 @@
 								</ul>-->
 								<?php
 									$classes_for_nav_menu2 = ' navbar-nav mr-auto pegasus-mobile-nav ';
-									$final_menu2 = pegasus_get_menu( 'primary', $classes_for_nav_menu2, 4, $fallback_menu );
-									echo $final_menu2;
+									//$final_menu2 = ;
+									echo pegasus_get_menu( 'primary', $classes_for_nav_menu2, 4, $fallback_menu );
 								?>
 								<!--<form class="form-inline my-2 my-lg-0">
 									<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
