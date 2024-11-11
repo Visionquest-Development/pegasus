@@ -991,19 +991,19 @@
 			)
 		);
 
-		$check_for_menu_name = wp_nav_menu(
-			array(
-				'menu' => $name,
-				'menu_class'	=> $menu_classes,
-				'container'		=> false,
-				'echo' => false,
-				'depth'				=> $depth,
-				'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback', //returns /ul if no menu
-				//'walker'			=> new Bootstrap_Walker_Nav_Menu()
-			)
-		);
+		// $check_for_menu_name = wp_nav_menu(
+		// 	array(
+		// 		'menu' => $name,
+		// 		'menu_class'	=> $menu_classes,
+		// 		'container'		=> false,
+		// 		'echo' => false,
+		// 		'depth'				=> $depth,
+		// 		'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback', //returns /ul if no menu
+		// 		//'walker'			=> new Bootstrap_Walker_Nav_Menu()
+		// 	)
+		// );
 
-		$try_to_find_menu = ( '</ul>' !== $check_for_theme_location ) ? $check_for_theme_location : $check_for_menu_name;
+		$try_to_find_menu = ( '</ul>' !== $check_for_theme_location ) ? $check_for_theme_location : $fallback_menu;
 		if ( '' !== $fallback_menu ) {
 			$final_menu = ( '</ul>' !== $try_to_find_menu ) ? $try_to_find_menu : $fallback_menu;
 		} else {
