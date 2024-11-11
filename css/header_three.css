@@ -2,6 +2,17 @@ body {
 	min-height: 75rem;
 	/*padding-top: 4.5rem;*/
 }
+
+
+.header-sticky.on .navbar {
+  background: var(--pegasus-header-three-scroll-bg-color);
+  transition: background-color 0.5s ease;
+}
+
+.header-sticky.on .navbar .nav-link {
+  color: var(--pegasus-header-three-scroll-item-color) !important;
+}
+
 .redq .navbar-toggler {
 	width: 60px;
 
@@ -120,7 +131,22 @@ body {
   margin-top: var(--pegasus-header-three-fixed-menu-height) !important;
 }
 
+/* DESKTOP ONLY */
+@media (min-width: 768px) {
 
+  /* for theird nav */
+  .pegasus-mobile-nav li:hover>.dropdown-menu {
+      display: block !important;
+      padding-top: 0;
+      padding-bottom: 0;
+      border: none;
+  }
+
+  .pegasus-mobile-nav .dropdown-menu .dropdown-menu {
+    left: 100%;
+    top: -1px;
+  }
+}
 
 
 /*@media (max-width: 991.98px) { */

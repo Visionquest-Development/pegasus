@@ -792,13 +792,13 @@ class Pegasus_Admin {
 			'type'    => 'rgba_colorpicker',
 			'default' => 'rgba(48, 53, 67, 1)'
 		) );
-		// $cmb->add_field( array(
-		// 	'name' => 'Overlay Opacity',
-		// 	//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
-		// 	'id'   => 'global_add_header_overlay_opacity',
-		// 	'type' => 'text',
-		// 	'default' => '0.4'
-		// ) );
+		$cmb->add_field( array(
+			'name' => 'Overlay Opacity',
+			//'desc' => 'If there is no color on your footer, enable this so that the footer is easily identifiable.',
+			'id'   => 'global_add_header_overlay_opacity',
+			'type' => 'text',
+			'default' => '0.4'
+		) );
 
 		$cmb->add_field( array(
 			'name' => 'NoSpacer Padding',

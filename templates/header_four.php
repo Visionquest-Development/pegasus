@@ -1,23 +1,23 @@
 <div id="header" class="the-fourth-nav">
-	<?php 
+	<?php
 		$top_header_choice =  pegasus_get_option( 'top_header_chk' );
-		$headerContainerCheck =  pegasus_get_option( 'header_container' ); 
-		if($top_header_choice === 'on' ) { get_template_part( 'templates/top-bar', 'header' ); } 
+		$headerContainerCheck =  pegasus_get_option( 'header_container' );
+		if($top_header_choice === 'on' ) { get_template_part( 'templates/top_bar', 'header' ); }
 	?>
-	
 
-	<?php get_template_part( 'templates/additional-header' ); ?>
-	
+
+	<?php get_template_part( 'templates/additional_header' ); ?>
+
 	<div id="mega-menu" class="header header-sticky primary-menu the-default-fourth-nav icons-no default-skin ">
-	
-		
+
+
 		<div class="<?php  if(!$headerContainerCheck) { echo 'container'; }else{ echo 'container-fluid'; } ?>">
 			<div class="row">
 				<nav class="navbar navbar-default redq" role="navigation">
 					<div class="">
 						<!-- Brand and toggle get grouped for better mobile display -->
 						<div class="navbar-header">
-							
+
 							<button type="button" class="navbar-toggle" data-toggle="collapse">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
@@ -31,7 +31,7 @@
 										<img id="logo" src="<?php echo $logo; ?>" alt=""/>
 									<?php else: ?>
 										<?php bloginfo( 'name' ); ?>
-									<?php endif; 
+									<?php endif;
 								?>
 							</a>
 						</div>
@@ -45,11 +45,11 @@
 										<img id="logo" src="<?php echo $logo; ?>" alt=""/>
 									<?php else: ?>
 										<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-									<?php endif; 
+									<?php endif;
 								?>
 							</a>
 							<a class="mobile-menu-close"><i class="fa fa-times-circle"></i></a>
-							<?php 
+							<?php
 								$args = array(
 									//'menu' 			=> 'header-menu',
 									'theme_location'  => 'primary',
@@ -59,18 +59,18 @@
 								wp_nav_menu( $args );
 								?>
 								<div class="navbar-right">
-									<?php 
-										
+									<?php
+
 										$woo_check =  pegasus_get_option( 'woo_chk' );
 										if ( $woo_check === 'on' ) {
 											if ( class_exists( 'WooCommerce' ) ) {
 											  // code that requires WooCommerce
-											  get_template_part( 'templates/header-cart', 'header' );
+											  get_template_part( 'templates/header_cart', 'header' );
 											} else {
 											  // you don't appear to have WooCommerce activated
 											  echo '<div class="nav navbar-nav woo-error navbar-right">Enable WooCommerce</div>';
 											}
-										} 
+										}
 										//$nav_social_check =  pegasus_get_option( 'nav_social_chk' );
 										//if($nav_social_check === 'on'){
 											//get_template_part( 'templates/social_icons', 'header' );
@@ -88,12 +88,11 @@
 				<!-- end nav -->
 			</div>
 			<!-- end .row -->
-			
-			
+
+
 		</div>
 		<!-- end .container -->
 	</div>
 	<!-- end .header -->
-</div> 
-			
-		
+</div>
+

@@ -46,7 +46,7 @@
   /* This makes the header have the on class if you refresh the page when scrolled down */
   jQuery(document).scroll(function($) {
     if (jQuery(window).scrollTop() >= 75) {
-        jQuery('#mega-menu').addClass('on');
+        jQuery('.header-sticky').addClass('on');
     }
   });
 
@@ -67,7 +67,4 @@
     } else {
         console.error('Element with id "wpadminbar" not found.');
     }
-
-
-
   });

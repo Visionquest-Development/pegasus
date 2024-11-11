@@ -68,7 +68,7 @@
 			<div class="header header-sticky primary-menu the-default-third-nav icons-no default-skin ">
 				<?php
 					if($top_header_choice === 'on' ) {
-						get_template_part( 'templates/top-bar', 'header' );
+						get_template_part( 'templates/top_bar', 'header' );
 					}
 				?>
 				<nav id="mega-menu" class="navbar navbar-expand-md fixed-top ">
@@ -119,7 +119,7 @@
 								</form>-->
 
 								<?php
-									/*$moremenuchk =  pegasus_get_option( 'header_more_chk' );
+									$moremenuchk =  pegasus_get_option( 'header_more_chk' );
 									if($moremenuchk === 'on') {
 										$args = array(
 											'menu' 			=> 'more-menu',
@@ -128,7 +128,7 @@
 											'container'		=> 'false'
 										);
 										wp_nav_menu( $args );
-									}*/
+									}
 								?>
 
 								<div class="navbar-right">
@@ -162,5 +162,9 @@
 		</div><!-- header container -->
 	</div><!-- end header tag -->
 
-	<?php get_template_part( 'templates/additional-header' ); ?>
+	<?php
+		//echo '======== Starting Additional Header =======';
+		//get_template_part( 'templates/additional_header' );
+		//echo '======== Ending Additional Header =========';
+		?>
 

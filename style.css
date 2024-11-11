@@ -219,6 +219,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
   .parallax-image .overlay, #large-header:before {
     background: var(--pegasus-additional-header-overlay-color);
+    opacity: var(--pegasus-additional-header-overlay-opacity);
   }
 
 

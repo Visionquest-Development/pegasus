@@ -1,15 +1,15 @@
-<!--	
+<!--
 	<div id="mega-menu" class="header header-sticky primary-menu the-default-fifth-nav icons-no default-skin ">
-		
-	
+
+
 	</div>
 -->
-<?php 
+<?php
 	$top_header_choice = pegasus_get_option( 'top_header_chk' );
-	
+
 	//echo $top_header_choice;
-	if($top_header_choice === 'on' ) { 
-		get_template_part( 'templates/top-bar', 'header' );
+	if($top_header_choice === 'on' ) {
+		get_template_part( 'templates/top_bar', 'header' );
 	}
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top keegans-nav">
@@ -30,7 +30,7 @@
 			<?php endif; ?>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
-			<?php 
+			<?php
 				$args = array(
 					'container'		=> false,
 					//'menu' 			=> 'primary-menu',
@@ -52,7 +52,7 @@
 	<!-- Sidebar navigate Button -->
 	<div class="navi-btn">
 		<a href="#"><i class="fa fa-bars"></i></a>
-	</div> 
+	</div>
 
 
 	<!-- Logo Area -->
@@ -65,16 +65,16 @@
 		<?php else: ?>
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 		<?php endif; ?>
-		
+
 		<!-- Logo sub text -->
 		<!--<span>Some Text Here</span>-->
 	</div>
-	
+
 
 	<!-- Sidebar Widget -->
 	<div class="nav-sidebar-widget">
 		<!-- Sidebar list items -->
-		<?php 
+		<?php
 			$args = array(
 				'container'		=> false,
 				//'menu' 			=> 'primary-menu',
@@ -89,7 +89,7 @@
 		?>
 	</div>
 	<div class="">
-	<?php 
+	<?php
 		/*
 		$woo_check =  pegasus_get_option( 'woo_chk' );
 		if ( $woo_check === 'on' ) {
@@ -107,7 +107,7 @@
 		//}
 	?>
 	</div>
-	
+
 </div>
 
-<?php get_template_part( 'templates/additional-header' ); ?>
+<?php get_template_part( 'templates/additional_header' ); ?>
