@@ -117,12 +117,31 @@ body {
 }
 
 #page-wrap {
-  margin-top: var(--pegasus-header-three-fixed-menu-height);
+  margin-top: var(--pegasus-header-three-fixed-menu-height) !important;
 }
 
 
 
+
+
 @media (max-width: 991.98px) {
+  .pegasus-mobile-nav {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .offcanvas-collapse .dropdown-menu {
+    display: block;
+    padding-bottom: 0;
+    padding-top: 0;
+    padding-left: 15px;
+    border: none;
+    background: transparent;
+  }
+
+  .pegasus-mobile-nav .dropdown-menu .dropdown-item {
+    background-color: transparent !important;
+  }
 
   .admin-bar .offcanvas-collapse {
     top: calc( var(--pegasus-admin-bar-height) + var(--pegasus-header-three-fixed-menu-height) );

@@ -768,7 +768,7 @@
 
 		/* get this ready to actually be added */
 
-		//wp_enqueue_script( 'pegasus_custom_js', get_template_directory_uri() . '/js/pegasus-custom.js', array(), '', true );
+		wp_enqueue_script( 'pegasus_custom_js', get_template_directory_uri() . '/dist/js/main.js', array(), '', true );
 
 		$header_choice = pegasus_get_option( 'header_select' );
 		$moremenuchk = pegasus_get_option( 'header_more_chk' );

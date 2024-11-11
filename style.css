@@ -38,7 +38,14 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	*/
 	/* move admin bar so I can see what im doing and editing
 	.admin-bar .navbar-fixed-top, .admin-bar #mega-menu, .admin-bar a.mobile-menu-close {	margin-top: 30px;  } */
-	/*
+
+  .admin-bar #header.fixed-top {
+      top: 32px;
+  }
+
+
+
+  /*
 	body.admin-bar { margin-top: 32px; }
 
 	@media screen and (max-width: 782px) {
@@ -46,20 +53,42 @@ Use it to make something cool, have fun, and share what you've learned with othe
 		body.admin-bar.navbar-fixed-top-is-active .header-container.navbar-fixed-top { margin-top: 46px !important; }
 	}
 	*/
+
+  .admin-bar.navbar-fixed-top-is-active #page-wrap {
+    margin-top: var(--pegasus-header-fixed-menu-height);
+}
+
+  /* DESKTOP ONLY */
+  @media screen and (min-width: 783px) {
+
+  }
+  @media screen and (max-width: 783px) {
+    .admin-bar #header.fixed-top {
+        top: 46px;
+    }
+  }
+
+  /* MOBILE ONLY */
 	@media screen and (max-width: 600px) {
 
 		#wpadminbar {
 		    position: fixed;
 		}
 
-    .admin-bar .the-default-third-nav #mega-menu.fixed-top {
+    /* .admin-bar .the-default-third-nav #mega-menu.fixed-top {
       top: 46px !important;
-    }
+    } */
 	}
 
   .admin-bar .the-default-third-nav #mega-menu.fixed-top {
-    top: 32px;
+    top: var(--pegasus-admin-bar-height);
   }
+
+  @media screen and (max-width: 576px) {
+
+
+  }
+
 	/*
 	body.admin-bar.navbar-fixed-top-is-active .header-container.navbar-fixed-top { margin-top: 32px; }
 
@@ -101,7 +130,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
   #top-bar {	background-color: var(--pegasus-top-header-bkg-color); }
   #top-bar a, #top-bar .text { color: var(--pegasus-top-header-content-color); }
 
-  #header, #mega-menu {
+  #header {
     background: var(--pegasus-header-bkg-color);
   }
 

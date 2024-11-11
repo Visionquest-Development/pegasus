@@ -162,5 +162,5 @@
 		</div><!-- header container -->
 	</div><!-- end header tag -->
 
-	<?php //get_template_part( 'templates/additional-header' ); ?>
+	<?php get_template_part( 'templates/additional-header' ); ?>
 

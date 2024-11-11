@@ -72,7 +72,7 @@
 			<div class="mainbar">
 
 				<?php
-					if ( 'sticky-top' !== $sticky_header_choice ) :
+					if ( 'sticky-top' !== $sticky_header_choice ) {
 				?>
 					<header>
 						<?php
@@ -100,17 +100,18 @@
 						<!-- end .header -->
 					</header>
 				<?php
-					else:
-				?>
-					<?php
+					} else {
+					/* if not a normal header, then
+					====================STICKY HEADER =========================*/
+
 					if( 'on' === $top_header_choice ) {
 						get_template_part( 'templates/top_bar', 'header' );
 					}
-					?>
-					<?php
-						get_template_part( 'templates/sticky_header', 'header' );
-					?>
-				<?php endif; ?>
+
+					get_template_part( 'templates/sticky_header', 'header' );
+					/* ===================END STICKY HEADER =====================*/
+					} //end if sticky header
+				?>
 
 				<?php
 
@@ -131,12 +132,12 @@
 				?>
 
 				<?php
-					// $header_choice =  pegasus_get_option( 'header_select' );
-					// //var_dump($header_choice);
-					// if ( 'header-three' !== $header_choice ) {
-					// 	//get_template_part( 'templates/additional-header' );
-					// }
-					//get_template_part( 'templates/additional-header' );
+					//$header_choice =  pegasus_get_option( 'header_select' );
+					//var_dump($header_choice);
+					//if ( 'header-three' !== $header_choice ) {
+						//get_template_part( 'templates/additional-header', 'header' );
+					//}
+					get_template_part( 'templates/additional-header', 'header' );
 				?>
 
 			 	<?php

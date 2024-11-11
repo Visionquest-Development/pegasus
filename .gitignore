@@ -14,7 +14,7 @@ yarn-error.log
 *.log
 
 # Build output and compiled assets
-dist/
+
 *.map
 
 # OS-specific files
