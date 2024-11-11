@@ -625,7 +625,9 @@
 				--pegasus-additional-header-overlay-color: <?php echo $additional_header_overlay_color; ?>;
 
 				--pegasus-page-header-wysiwyg-color: <?php echo $page_header_wysiwyg_color; ?>;
-
+				--pegasus-footer-bkg-color: <?php echo $footer_bkg_color; ?>;
+				--pegasus-footer-txt-color: <?php echo $footer_txt_color; ?>;
+				--pegasus-bottom-footer-bkg-color: <?php echo $bottom_footer_bkg_color; ?>;
 			}
 
 			<?php
@@ -681,33 +683,6 @@
 				<?php endif; ?>
 
 			}
-
-
-
-
-			<?php /*===== header three mobile color =====*/ ?>
-			#mobile-menu-wrap { background: <?php echo $header_three_mobile_color; ?>; }
-
-			<?php /*===== header three and four stuff =====*/ ?>
-			.align-right .navbar-nav {
-				text-align: <?php if($header_three_menu_position == "on") { echo 'right'; }else{ echo 'left'; } ?>;
-			}
-			.default-skin.header.on { background: <?php echo $header_three_scroll_bg_color; ?>; }
-			.default-skin.header.on .navbar-default .navbar-nav>.open>a,
-			.default-skin.header.on .navbar-default .navbar-nav>.open>a:hover,
-			.default-skin.header.on .navbar-default .navbar-nav>li>a,
-			.default-skin.header.on li.dropdown.open a span,
-			.navbar-default .navbar-nav>.open>a:focus {
-				color: <?php echo $header_three_scroll_item_color; ?>;
-			}
-
-			<?php /*===== footer =====*/ ?>
-			.pegasus-footer footer { background: <?php echo $footer_bkg_color; ?>; }
-			.colophon-container { background: <?php echo $bottom_footer_bkg_color; ?>; }
-
-
-
-
 
 			<?php //echo $custom_css; ?>
 

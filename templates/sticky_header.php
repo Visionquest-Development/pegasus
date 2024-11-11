@@ -40,7 +40,7 @@
 	$home_url = esc_url( home_url( '/' ) ) ? esc_url( home_url( '/' ) ) : '#';
 	$fallback_menu = '<ul id="" class="navbar-nav"><li class="nav-item active current-menu-item"><a class="nav-link" href="' . $home_url . '">Home <span class="sr-only">(current)</span></a></li></ul>';
 	$classes_for_nav_menu = 'navbar-nav primary-navigation-bar ' . $right_align_nav_items . ' ';
-	$final_menu = pegasus_get_menu( 'primary', $classes_for_nav_menu, 4, $fallback_menu );
+	//$final_menu = pegasus_get_menu( 'primary', $classes_for_nav_menu, 4, $fallback_menu );
 	//$final_menu = $fallback_menu;
 
 	$final_inner_container_class = ( 'container-fluid' === $global_full_container_option ) ? $global_full_container_option : $header_inner_container_option;
@@ -98,7 +98,7 @@
 				</button>
 				<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="pegasus_sticky_header">
 					<?php
-					echo $final_menu;
+					echo pegasus_get_menu( 'primary', $classes_for_nav_menu, 4, $fallback_menu );
 
 					if( 'on' === $moremenuchk ) {
 						get_template_part( 'templates/more_menu', 'header' );

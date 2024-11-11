@@ -157,14 +157,12 @@ Use it to make something cool, have fun, and share what you've learned with othe
   /* ================================== */
   .nav-link
   {
-    color: var(--pegasus-nav-item-color);
+    color: var(--pegasus-nav-item-color) !important;
   }
 
   .nav-item {
     background: var(--pegasus-nav-item-bkg-color);
-  }
-  .nav-item:hover {
-    background: var(--pegasus-nav-item-bkg-hover-color);
+    /*color: var(--pegasus-nav-item-color);*/
   }
 
 
@@ -172,17 +170,21 @@ Use it to make something cool, have fun, and share what you've learned with othe
   /* DESKTOP ONLY MEDIA QUERY */
   @media only screen and (min-width : 768px) {
 
+    .nav-item:hover {
+      background: var(--pegasus-nav-item-bkg-hover-color);
+    }
+
     .sub-menu .dropdown-item {
       color: var(--pegasus-sub-nav-item-color);
       border-radius: 6px;
     }
-    .sub-menu .dropdown-item:hover { color: var(--pegasus-sub-nav-item-hover-color); }
+    .sub-menu .dropdown-item:hover {
+      color: var(--pegasus-sub-nav-item-hover-color);
+      background-color: var(--pegasus-sub-nav-bkg-hover-color) !important;
+    }
 
     .sub-menu .dropdown-item {
       background-color: var(--pegasus-sub-nav-bkg-color) !important;
-    }
-    .dropdown-item:hover {
-      background-color: var(--pegasus-sub-nav-bkg-hover-color) !important;
     }
 
   }
@@ -470,6 +472,15 @@ Use it to make something cool, have fun, and share what you've learned with othe
   .pegasus-footer #footer-widgets .footer-widget-area .card .list-group-item {
     background: transparent;
 	  border-color: transparent;
+  }
+
+  .pegasus-footer footer {
+    background: var(--pegasus-footer-bkg-color);
+    color: var(--pegasus-footer-txt-color);
+  }
+
+  .colophon-container {
+    background: var(--pegasus-bottom-footer-bkg-color);
   }
 
   .pegasus-footer hr { margin: 0; }

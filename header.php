@@ -49,7 +49,7 @@
 
 		$home_url = esc_url( home_url( '/' ) ) ? esc_url( home_url( '/' ) ) : '#';
 		$fallback_menu = '<ul id="" class="navbar-nav"><li class="nav-item active current-menu-item"><a class="nav-link" href="' . $home_url . '">Home <span class="sr-only">(current)</span></a></li></ul>';
-		$final_menu = pegasus_get_menu( 'primary', 'navbar-nav primary-navigation-bar', 3, $fallback_menu );
+		//$final_menu = pegasus_get_menu( 'primary', 'navbar-nav primary-navigation-bar', 3, $fallback_menu );
 
 		$logo = pegasus_get_option( 'logo' );
 		$centerLogo = ( 'on' === pegasus_get_option( 'logo_centered' ) ) ? 'center' : '';

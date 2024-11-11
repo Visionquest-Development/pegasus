@@ -234,7 +234,7 @@ class Pegasus_Admin {
 			'name'    => __( 'Content color (body,p)', 'pegasus-theme' ),
 			'id'      => 'content_color',
 			'type'    => 'rgba_colorpicker',
-			//'default' => '#ffffff'
+			'default' => 'rgba(119, 119, 119, 1)'
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Footer Widget Areas', 'pegasus-theme' ),
@@ -481,18 +481,14 @@ class Pegasus_Admin {
 			'desc' => 'This is for the entire background of the header.',
 			//'default' => 'rgba(0,0,0,0)'
 		) );
-		$cmb->add_field( array(
-			'name' => 'Social Icons enable',
-			'desc' => 'Check this if you want the social icons to appear in the header.',
-			'id'   => 'nav_social_chk',
-			'type' => 'checkbox',
-		) );
+
 		$cmb->add_field( array(
 			'name' => 'Search Box enable',
 			'desc' => 'Check this if you want the search to appear in the header.',
 			'id'   => 'search_box_chk',
 			'type' => 'checkbox',
 		) );
+
 		$cmb->add_field( array(
 			'name' => 'Fixed Navigation',
 			'desc' => 'Check this box to make the the header fixed. This also enables the absolute menu.',
@@ -503,6 +499,12 @@ class Pegasus_Admin {
 			'name' => 'Sticky Navigation',
 			'desc' => 'This only works for Header Two',
 			'id'   => 'header_sticky_checkbox',
+			'type' => 'checkbox',
+		) );
+		$cmb->add_field( array(
+			'name' => 'Social Icons enable',
+			'desc' => 'Check this if you want the social icons to appear in the header.',
+			'id'   => 'nav_social_chk',
 			'type' => 'checkbox',
 		) );
 		$cmb->add_field( array(
