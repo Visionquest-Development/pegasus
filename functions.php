@@ -183,7 +183,7 @@
 					} else {
 						register_sidebar( array(
 							'name'          => __( 'Mega Menu 1', 'pegasus-bootstrap' ),
-							'id' => 'mega-menu-1',
+							'id' => 'mega_one',
 							//'description' => __( 'Displays on the footer right before the copyright.', 'pegasus-bootstrap' ),
 							'before_widget' => '<div id="%1$s" class="widget %2$s">',
 							'after_widget'  => '</div>',
@@ -201,7 +201,7 @@
 					} else {
 						register_sidebars( $more_menu_widgets, array(
 							'name'          => __( 'Mega Menu %d', 'pegasus-bootstrap' ),
-							'id'            => 'mega-menu',
+							'id'            => 'mega_menu_%d',
 							'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
 							'before_widget' => '<div id="%1$s" class="widget %2$s">',
 							'after_widget'  => '</div>',
@@ -220,7 +220,7 @@
 					} else {
 						register_sidebars( $more_menu_widgets, array(
 							'name'          => __( 'Mega Menu %d', 'pegasus-bootstrap' ),
-							'id'            => 'mega-menu',
+							'id'            => 'mega_menu_%d',
 							'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
 							'before_widget' => '<div id="%1$s" class="widget %2$s">',
 							'after_widget'  => '</div>',
@@ -241,7 +241,7 @@
 					} else {
 						register_sidebars( $more_menu_widgets, array(
 							'name'          => __( 'Mega Menu %d', 'pegasus-bootstrap' ),
-							'id'            => 'mega-menu',
+							'id'            => 'mega_menu_%d',
 							'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
 							'before_widget' => '<div id="%1$s" class="widget %2$s">',
 							'after_widget'  => '</div>',
@@ -251,7 +251,7 @@
 					}
 					break;
 				default:
-					register_nav_menu( 'mega-one', __( 'Mega Menu Column One', 'pegasus-bootstrap' ) );
+					register_nav_menu( 'mega_one', __( 'Mega Menu Column One', 'pegasus-bootstrap' ) );
 			}
 
 			/**
@@ -518,7 +518,7 @@
 
 		$header_three_menu_position = ! empty( pegasus_get_option( 'header_three_right_checkbox' ) ) ? pegasus_get_option( 'header_three_right_checkbox' ) : 'left';
 
-		$header_three_scroll_bg_color = ! empty( pegasus_get_option( 'header_three_scroll_bg_color' ) ) ? pegasus_get_option( 'header_three_scroll_bg_color' ) : '#fff';
+		$header_three_scroll_bg_color = ! empty( pegasus_get_option( 'header_three_scroll_bg_color' ) ) ? pegasus_get_option( 'header_three_scroll_bg_color' ) : 'rgba(0,0,0,0.8)';
 
 		$header_three_scroll_item_color = ! empty( pegasus_get_option( 'header_three_scroll_item_color' ) ) ? pegasus_get_option( 'header_three_scroll_item_color' ) : '#fff';
 
@@ -845,12 +845,42 @@
 	} //end function
 	add_action( 'wp_enqueue_scripts', 'pegasus_scripts' );
 
+
 	$fixed_header_choice = pegasus_get_option( 'header_fixed_checkbox' );
+
 	if( 'on' === $fixed_header_choice ) {
 		add_filter( 'body_class', function( $classes ) {
 		    return array_merge( $classes, array( 'navbar-fixed-top-is-active' ) );
 		} );
 	} //end fixed chk
+
+	add_filter( 'body_class', function( $classes ) {
+		$header_choice = pegasus_get_option('header_select');
+		return array_merge( $classes, array( $header_choice ) );
+	} );
+
+	add_filter( 'body_class', function( $classes ) {
+		$global_additional_header_choice = pegasus_get_option( 'global_additional_header_option' );
+		$post_additional_header_choice =
+			get_post_meta( get_the_ID(), 'pegasus_page_header_select', true ) ?
+			get_post_meta( get_the_ID(), 'pegasus_page_header_select', true ) :
+			'no-header';
+
+		$additional_header_choice = $global_additional_header_choice;
+
+		if ( 'no-header' !== $post_additional_header_choice ) {
+			$additional_header_choice = $post_additional_header_choice;
+		}
+		return array_merge( $classes, array( $additional_header_choice ) );
+	} );
+
+	add_filter( 'body_class', function( $classes ) {
+		$top_header_choice = ( 'on' === pegasus_get_option( 'top_header_chk' ) ) ? pegasus_get_option( 'top_header_chk' ) : 'off';
+		if ( 'on' === $top_header_choice) {
+			$top_header_choice = 'top-header-is-active';
+		}
+		return array_merge( $classes, array( $top_header_choice ) );
+	} );
 
 
 	/*add_action('wp_enqueue_scripts', 'fixed_header_js_in_footer');

@@ -275,6 +275,27 @@
   .sf-mega .card { background: inherit; border: none; }
   .sf-mega .list-group-item { border: none; }
 
+  .sf-mega {
+
+    background: rgba(255, 255, 255, 0.8);
+    border: dashed;
+
+    .nav {
+      display: block;
+    }
+
+  }
+
+  @media only screen and (min-width: 768px) {
+      .sub-menu .dropdown-item {
+          background-color: transparent !important;
+          &:hover {
+              background-color: transparent !important;
+          }
+      }
+  }
+
+
   /* ~~~~~~~~~~~~~~~~~~~~
   ~~~~SMALL HEADER ~~~~
   ~~~~~~~~~~~~~~~~~~~~~*/

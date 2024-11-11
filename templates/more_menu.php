@@ -21,14 +21,14 @@
 							if ( 'navs' === $mega_menus_nav_vs_widgets_select ) {
 								echo '<div class="row">';
 									echo '<div class="sf-mega-section ' . $more_widget_class . '">';
-									echo pegasus_get_menu( 'mega-menu-1', 'mega-sub-menu', 1, $fallback_menu );
+									echo pegasus_get_menu( 'mega_one', 'mega-sub-menu', 4, $fallback_menu );
 									echo '</div>';
 								echo '</div>';
 							} elseif ( 'widgets' === $mega_menus_nav_vs_widgets_select ) {
 								echo '<div class="row">';
 									echo '<div class="sf-mega-section ' . $more_widget_class . '">';
 									//if ( is_active_sidebar( 'mega-menu-1' ) ) {
-										dynamic_sidebar( 'mega-menu-1' );
+										dynamic_sidebar( 'mega_one' );
 									//}
 									echo '</div>';
 								echo '</div>';
@@ -41,7 +41,7 @@
 								echo '<div class="row">';
 								for( $i = 1; $i <= $more_menu_widgets; $i++ ) {
 									echo '<div class="sf-mega-section ' . $more_widget_class . '" role="complementary" >';
-									echo pegasus_get_menu( 'mega-menu-' . $i, 'mega-sub-menu', 1, $fallback_menu );
+									echo pegasus_get_menu( 'mega-menu-' . $i, 'mega-sub-menu', 4, $fallback_menu );
 									echo '</div><!-- .widget-area -->';
 								}
 								echo '</div>';
@@ -49,7 +49,7 @@
 								echo '<div class="row">';
 								for( $i = 1; $i <= $more_menu_widgets; $i++ ) {
 									echo '<div id="pegasus-more-menu-widget-' . $i . '" class="sf-mega-section ' . $more_widget_class . '" role="complementary" >';
-									dynamic_sidebar( 'mega-menu-' . $i );
+									dynamic_sidebar( 'mega_menu_' . $i );
 									echo '</div><!-- .widget-area -->';
 								}
 								echo '</div>';
@@ -61,7 +61,7 @@
 								echo '<div class="row">';
 								for( $i = 1; $i <= $more_menu_widgets; $i++ ) {
 									echo '<div class="sf-mega-section ' . $more_widget_class . '" role="complementary" >';
-									echo pegasus_get_menu( 'mega-menu-' . $i, 'mega-sub-menu', 1, $fallback_menu );;
+									echo pegasus_get_menu( 'mega-menu-' . $i, 'mega-sub-menu', 4, $fallback_menu );;
 									echo '</div><!-- .widget-area -->';
 								}
 								echo '</div>';
@@ -69,7 +69,7 @@
 								echo '<div class="row">';
 								for( $i = 1; $i <= $more_menu_widgets; $i++ ) {
 									echo '<div id="pegasus-more-menu-widget-' . $i . '" class="sf-mega-section ' . $more_widget_class . '" role="complementary" >';
-									dynamic_sidebar( 'mega-menu-' . $i );
+									dynamic_sidebar( 'mega_menu_' . $i );
 									echo '</div><!-- .widget-area -->';
 								}
 								echo '</div>';
@@ -81,7 +81,7 @@
 								echo '<div class="row">';
 								for( $i = 1; $i <= $more_menu_widgets; $i++ ) {
 									echo '<div class="sf-mega-section ' . $more_widget_class . '" role="complementary" >';
-									echo pegasus_get_menu( 'mega-menu-' . $i, 'mega-sub-menu', 1, $fallback_menu );
+									echo pegasus_get_menu( 'mega-menu-' . $i, 'mega-sub-menu', 4, $fallback_menu );
 									echo '</div><!-- .widget-area -->';
 								}
 								echo '</div>';
@@ -89,7 +89,7 @@
 								echo '<div class="row">';
 								for( $i = 1; $i <= $more_menu_widgets; $i++ ) {
 									echo '<div id="pegasus-more-menu-widget-' . $i . '" class="sf-mega-section ' . $more_widget_class . '" role="complementary" >';
-									dynamic_sidebar( 'mega-menu-' . $i );
+									dynamic_sidebar( 'mega_menu_' . $i );
 									echo '</div><!-- .widget-area -->';
 								}
 								echo '</div>';

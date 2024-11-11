@@ -52,8 +52,6 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     const megaMenu = document.getElementById('mega-menu');
-    const wpAdminBar = document.getElementById('wpadminbar');
-
     if (megaMenu) {
         const menuHeight = megaMenu.offsetHeight;
         document.documentElement.style.setProperty('--pegasus-header-three-fixed-menu-height', `${menuHeight}px`);
@@ -61,10 +59,19 @@
         console.error('Element with id "mega-menu" not found.');
     }
 
+    const wpAdminBar = document.getElementById('wpadminbar');
     if ( wpAdminBar) {
       const wpAdminBarHeight = wpAdminBar.offsetHeight;
       document.documentElement.style.setProperty('--pegasus-admin-bar-height', `${wpAdminBarHeight}px`);
     } else {
         console.error('Element with id "wpadminbar" not found.');
+    }
+
+    const topBar = document.getElementById('top-bar');
+    if ( topBar) {
+      const topBarHeight = topBar.offsetHeight;
+      document.documentElement.style.setProperty('--pegasus-top-bar-height', `${topBarHeight}px`);
+    } else {
+        console.error('Element with id "top-bar" not found.');
     }
   });

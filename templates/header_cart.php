@@ -14,7 +14,7 @@
 		'echo' => false,
 		'depth'				=> 1,
 		'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback',
-		'walker'			=> new WP_Bootstrap_Navwalker(),
+		//'walker'			=> new WP_Bootstrap_Navwalker(),
 		'items_wrap'      => '%3$s',
 	) );
 

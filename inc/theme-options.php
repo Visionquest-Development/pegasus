@@ -619,7 +619,7 @@ class Pegasus_Admin {
 			'id'      => 'header_three_scroll_bg_color',
 			'type'    => 'rgba_colorpicker',
 			'desc' => 'The color of the background after the user has scrolled down 200 pixels.',
-			//'default' => 'rgba(0,0,0,0)'
+			'default' => 'rgba(0,0,0,0.8)'
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Scroll Nav Item Color', 'pegasus-theme' ),

@@ -127,7 +127,7 @@ body {
 	}
 }
 
-#page-wrap {
+.no-header #page-wrap {
   margin-top: var(--pegasus-header-three-fixed-menu-height) !important;
 }
 
