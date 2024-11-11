@@ -592,9 +592,9 @@
 		//$header_three_disable_fixed_checkbox =  pegasus_get_option('header_three_disable_fixed_checkbox');
 		//$header_choice =  pegasus_get_option( 'header_select' );
 
-		$footer_txt_color = ! empty( pegasus_get_option( 'footer_text_color' ) ) ? pegasus_get_option( 'footer_text_color' ) : 'rgba(0,0,0,1)';
-		$footer_bkg_color = ! empty( pegasus_get_option( 'footer_bkg_color' ) ) ? pegasus_get_option( 'footer_bkg_color' ) : 'rgba(255,255,255,1)';
-		$bottom_footer_bkg_color = ! empty( pegasus_get_option( 'bottom_footer_bg_color' ) ) ? pegasus_get_option( 'bottom_footer_bg_color' ) : 'rgba(255,255,255,0.8)';
+		$footer_txt_color = ! empty( pegasus_get_option( 'footer_text_color' ) ) ? pegasus_get_option( 'footer_text_color' ) : 'rgba(0,0,0,0.8)';
+		$footer_bkg_color = ! empty( pegasus_get_option( 'footer_bkg_color' ) ) ? pegasus_get_option( 'footer_bkg_color' ) : 'rgba(0,0,0,0.02)';
+		$bottom_footer_bkg_color = ! empty( pegasus_get_option( 'bottom_footer_bg_color' ) ) ? pegasus_get_option( 'bottom_footer_bg_color' ) : 'rgba(0,0,0,0.04)';
 
 		$custom_css =  ! empty( pegasus_get_option( 'custom_css_textareacode' ) ) ?  pegasus_get_option( 'custom_css_textareacode' ) : 'text';
 
@@ -986,24 +986,24 @@
 				'container'		=> false,
 				'echo' => false,
 				'depth'				=> $depth,
-				'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback', //returns /ul if no menu
+				//'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback', //returns /ul if no menu
 				//'walker'			=> new Bootstrap_Walker_Nav_Menu()
 			)
 		);
 
-		$check_for_menu_name = wp_nav_menu(
-			array(
-				'menu' => $name,
-				'menu_class'	=> $menu_classes,
-				'container'		=> false,
-				'echo' => false,
-				'depth'				=> $depth,
-				'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback', //returns /ul if no menu
-				//'walker'			=> new Bootstrap_Walker_Nav_Menu()
-			)
-		);
+		// $check_for_menu_name = wp_nav_menu(
+		// 	array(
+		// 		'menu' => $name,
+		// 		'menu_class'	=> $menu_classes,
+		// 		'container'		=> false,
+		// 		'echo' => false,
+		// 		'depth'				=> $depth,
+		// 		//'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback', //returns /ul if no menu
+		// 		//'walker'			=> new Bootstrap_Walker_Nav_Menu()
+		// 	)
+		// );
 
-		$try_to_find_menu = ( '</ul>' !== $check_for_theme_location ) ? $check_for_theme_location : $check_for_menu_name;
+		$try_to_find_menu = ( '</ul>' !== $check_for_theme_location ) ? $check_for_theme_location : $fallback_menu;
 		if ( '' !== $fallback_menu ) {
 			$final_menu = ( '</ul>' !== $try_to_find_menu ) ? $try_to_find_menu : $fallback_menu;
 		} else {

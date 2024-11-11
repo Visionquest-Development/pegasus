@@ -933,19 +933,19 @@ class Pegasus_Admin {
 			'name'    => __( 'Footer Text color', 'pegasus-theme' ),
 			'id'      => 'footer_text_color',
 			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(0,0,0,1)'
+			'default' => 'rgba(0,0,0,0.8)'
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Footer Bkg color', 'pegasus-theme' ),
 			'id'      => 'footer_bkg_color',
 			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(255,255,255,1)'
+			'default' => 'rgba(0,0,0,0.02)'
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Bottom Footer Background color', 'pegasus-theme' ),
 			'id'      => 'bottom_footer_bg_color',
 			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(255,255,255,0.8)'
+			'default' => 'rgba(0,0,0,0.04)'
 		) );
 		$cmb->add_field( array(
 			'name' => 'Fullwidth Bottom Bar',
