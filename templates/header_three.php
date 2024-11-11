@@ -71,7 +71,7 @@
 						get_template_part( 'templates/top-bar', 'header' );
 					}
 				?>
-				<nav id="mega-menu" class="navbar navbar-expand-lg fixed-top ">
+				<nav id="mega-menu" class="navbar navbar-expand-md fixed-top ">
 					<div class="container <?php echo $header_container_check; ?>">
 
 

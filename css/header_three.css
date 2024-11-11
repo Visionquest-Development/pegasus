@@ -123,8 +123,8 @@ body {
 
 
 
-
-@media (max-width: 991.98px) {
+/*@media (max-width: 991.98px) { */
+@media (max-width: 767px) {
   .pegasus-mobile-nav {
     padding-top: 10px;
     padding-bottom: 10px;
