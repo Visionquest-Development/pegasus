@@ -592,9 +592,9 @@
 		//$header_three_disable_fixed_checkbox =  pegasus_get_option('header_three_disable_fixed_checkbox');
 		//$header_choice =  pegasus_get_option( 'header_select' );
 
-		$footer_txt_color = ! empty( pegasus_get_option( 'footer_text_color' ) ) ? pegasus_get_option( 'footer_text_color' ) : 'rgba(0,0,0,0)';
-		$footer_bkg_color = ! empty( pegasus_get_option( 'footer_bkg_color' ) ) ? pegasus_get_option( 'footer_bkg_color' ) : 'rgba(0,0,0,0)';
-		$bottom_footer_bkg_color = ! empty( pegasus_get_option( 'bottom_footer_bg_color' ) ) ? pegasus_get_option( 'bottom_footer_bg_color' ) : 'rgba(0,0,0,0)';
+		$footer_txt_color = ! empty( pegasus_get_option( 'footer_text_color' ) ) ? pegasus_get_option( 'footer_text_color' ) : 'rgba(0,0,0,1)';
+		$footer_bkg_color = ! empty( pegasus_get_option( 'footer_bkg_color' ) ) ? pegasus_get_option( 'footer_bkg_color' ) : 'rgba(255,255,255,1)';
+		$bottom_footer_bkg_color = ! empty( pegasus_get_option( 'bottom_footer_bg_color' ) ) ? pegasus_get_option( 'bottom_footer_bg_color' ) : 'rgba(255,255,255,0.8)';
 
 		$custom_css =  ! empty( pegasus_get_option( 'custom_css_textareacode' ) ) ?  pegasus_get_option( 'custom_css_textareacode' ) : 'text';
 
