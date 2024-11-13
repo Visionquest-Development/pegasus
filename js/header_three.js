@@ -2,7 +2,40 @@
       Fixed Header
   ======================================*/
 
-  jQuery(window).bind('scroll', function($) {
+  const getHeaderHeightThree = (headerId, cssVar) => {
+    //const header = document.getElementById(headerId);
+    const headers = document.querySelectorAll(headerId);
+    headers.forEach((header, index) => {
+      if (header) {
+        const headerHeight = header.offsetHeight;
+        document.documentElement.style.setProperty(`${cssVar}`, `${headerHeight}px`);
+      } else {
+        console.error(`Element matching selector "${selector}" not found.`);
+      }
+    });
+    // if (header) {
+    //     const headerHeight = header.offsetHeight;
+    //     document.documentElement.style.setProperty(cssVar, `${headerHeight}px`);
+    // } else {
+    //     console.error(`Element with id "${headerId}" not found.`);
+    // }
+  }
+
+  // const getAdminBarHeightThree = (adminBarId, cssVar) => {
+  //   const adminBar = document.getElementById(adminBarId);
+
+  //   if (adminBar) {
+  //       const adminBarHeight = adminBar.offsetHeight;
+  //       document.documentElement.style.setProperty(cssVar, `${adminBarHeight}px`);
+  //   } else {
+  //       console.error(`Element with id "${adminBarId}" not found.`);
+  //   }
+  // }
+
+  /* ===================================
+      ON SCROLL EFFECT
+  ====================================*/
+  jQuery(window).on('scroll', function($) {
     var navHeight = jQuery(window).height() - 480;
     var width = jQuery(window).width();
 
@@ -15,63 +48,63 @@
         jQuery('.header-sticky').removeClass('on');
         jQuery('#top-bar').removeClass('hide');
     }
+    //getAdminBarHeightThree('wpadminbar', '--pegasus-admin-bar-height');
   });
 
+  /* ===================================
+      DOCUMENT READY FN
+  ====================================*/
+
   jQuery(document).ready(function($) {
-    /*=========================*/
-    /*  CUSTOM HEADER          */
-    /*=========================*/
-    $('.redq .navbar-toggle').click(function(e) {
+
+    // Mobile Menu Toggle
+    $('.redq .navbar-toggle').on('click',function(e) {
         e.preventDefault();
         $('body').addClass('mobile-menu-open');
     });
 
-    $('.mobile-menu-close').click(function(e) {
+    //mobile menu close
+    $('.mobile-menu-close').on('click', function(e) {
         e.preventDefault();
         $('body').removeClass('mobile-menu-open');
     });
 
-    $(window).resize(function() {
+    //close mobile menu on window resize
+    $(window).on('resize', function() {
         var width = $(window).width();
         if (width >= 768) {
             $('body').removeClass('mobile-menu-open');
         }
     });
 
+    // Offcanvas Menu
     $('[data-toggle="offcanvas"]').on('click', function() {
         $('.offcanvas-collapse').toggleClass('open');
     });
   });
 
+
   /* This makes the header have the on class if you refresh the page when scrolled down */
-  jQuery(document).scroll(function($) {
+  jQuery(document).trigger( 'scroll', function($) {
     if (jQuery(window).scrollTop() >= 75) {
-        jQuery('.header-sticky').addClass('on');
+      //jQuery('#top-bar').addClass('hide');
+      jQuery('.header-sticky').addClass('on');
+      getHeaderHeightThree('#mega-menu', '--pegasus-header-three-fixed-menu-height');
     }
   });
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const megaMenu = document.getElementById('mega-menu');
-    if (megaMenu) {
-        const menuHeight = megaMenu.offsetHeight;
-        document.documentElement.style.setProperty('--pegasus-header-three-fixed-menu-height', `${menuHeight}px`);
-    } else {
-        console.error('Element with id "mega-menu" not found.');
-    }
+document.addEventListener('DOMContentLoaded', function() {
+  //var test = getHeaderHeightThree('header', '--pegasus-header-three-fixed-menu-height');
+  //console.log( "test: ", test );
 
-    const wpAdminBar = document.getElementById('wpadminbar');
-    if ( wpAdminBar) {
-      const wpAdminBarHeight = wpAdminBar.offsetHeight;
-      document.documentElement.style.setProperty('--pegasus-admin-bar-height', `${wpAdminBarHeight}px`);
-    } else {
-        console.error('Element with id "wpadminbar" not found.');
-    }
+  getHeaderHeightThree('#mega-menu', '--pegasus-header-three-fixed-menu-height');
+  //getAdminBarHeightThree('wpadminbar', '--pegasus-admin-bar-height');
 
-    const topBar = document.getElementById('top-bar');
-    if ( topBar) {
-      const topBarHeight = topBar.offsetHeight;
-      document.documentElement.style.setProperty('--pegasus-top-bar-height', `${topBarHeight}px`);
-    } else {
-        console.error('Element with id "top-bar" not found.');
-    }
+  // Add event listener for window resize
+  window.addEventListener('resize', function() {
+    getHeaderHeightThree('#mega-menu', '--pegasus-header-three-fixed-menu-height');
+    //getAdminBarHeightThree('wpadminbar', '--pegasus-admin-bar-height');
   });
+
+  //getHeaderHeightThree('header', '--pegasus-header-three-fixed-menu-height');
+});

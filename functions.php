@@ -845,20 +845,24 @@
 	} //end function
 	add_action( 'wp_enqueue_scripts', 'pegasus_scripts' );
 
-
+	/*=======================
+	 ADD BODY CLASSES
+	 ========================*/
+	 /* ===== FIXED HEADER CHOICE =====*/
 	$fixed_header_choice = pegasus_get_option( 'header_fixed_checkbox' );
-
 	if( 'on' === $fixed_header_choice ) {
 		add_filter( 'body_class', function( $classes ) {
 		    return array_merge( $classes, array( 'navbar-fixed-top-is-active' ) );
 		} );
 	} //end fixed chk
 
+	/* ===== HEADER CHOICE ===== */
 	add_filter( 'body_class', function( $classes ) {
 		$header_choice = pegasus_get_option('header_select');
 		return array_merge( $classes, array( $header_choice ) );
 	} );
 
+	/*  ===== ADDITIONAL HEADER CHOICE ===== */
 	add_filter( 'body_class', function( $classes ) {
 		$global_additional_header_choice = pegasus_get_option( 'global_additional_header_option' );
 		$post_additional_header_choice =
@@ -874,6 +878,7 @@
 		return array_merge( $classes, array( $additional_header_choice ) );
 	} );
 
+	/*  ===== TOP HEADER CHOICE ===== */
 	add_filter( 'body_class', function( $classes ) {
 		$top_header_choice = ( 'on' === pegasus_get_option( 'top_header_chk' ) ) ? pegasus_get_option( 'top_header_chk' ) : 'off';
 		if ( 'on' === $top_header_choice) {

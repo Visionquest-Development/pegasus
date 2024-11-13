@@ -9,7 +9,7 @@
 
 ?>
 
-<ul id="pegasus-mega-menu" class="navbar-nav sf-menu mr-auto ">
+<ul id="pegasus-mega-menu" class="navbar-nav sf-menu ms-auto ">
 	<li class="the-more-link">
 		<div class="sf-mega container-fluid">
 

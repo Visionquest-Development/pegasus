@@ -39,7 +39,7 @@
         }
 
         var scrollDiv = jQuery(this);
-        jQuery(window).scroll(function () {
+        jQuery(window).trigger( 'scroll', function () {
             if ('0' === jQuery(window).scrollTop()) {
                 jQuery(scrollDiv).fadeOut('slow');
             } else {
@@ -58,7 +58,7 @@
 
         });
 
-        jQuery(this).click(function () {
+        jQuery(this).on('click', function () {
             jQuery('html, body').animate({ scrollTop: 0 }, 'slow');
         });
 
@@ -181,7 +181,7 @@
 
 
 
-    jQuery(window).resize(function () {
+    jQuery(window).on('resize', function () {
         update_fixed_header_top_value();
         if (jQuery("body").hasClass("navbar-fixed-top-is-active")) {
             update_page_wrap_height();
@@ -232,19 +232,15 @@ jQuery(document).ready(function ($) {
 
 });
 
+const getTopBarHeight = (topBarId, cssVar) => {
+  const topBar = document.getElementById(topBarId);
 
-
-
-const getHeaderHeight = (headerId, cssVar) => {
-  const header = document.getElementById(headerId);
-
-  if (header) {
-    const headerHeight = header.offsetHeight;
-    document.documentElement.style.setProperty(cssVar, `${headerHeight}px`);
+  if (topBar) {
+      const topBarHeight = topBar.offsetHeight;
+      document.documentElement.style.setProperty(cssVar, `${topBarHeight}px`);
   } else {
-    console.error(`Element with id "${headerId}" not found.`);
+      console.error(`Element with id "${topBarId}" not found.`);
   }
-
 }
 
 const getAdminBarHeight = (adminBarId, cssVar) => {
@@ -259,16 +255,32 @@ const getAdminBarHeight = (adminBarId, cssVar) => {
 
 }
 
+const getHeaderHeight = (headerId, cssVar) => {
+  const headers = document.querySelectorAll(headerId);
+  //console.log( "header: ", header );
+  headers.forEach((header, index) => {
+    if (header) {
+      const headerHeight = header.offsetHeight;
+      document.documentElement.style.setProperty(`${cssVar}`, `${headerHeight}px`);
+    } else {
+      console.error(`Element matching selector "${selector}" not found.`);
+    }
+  });
+
+}
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
-
-  getHeaderHeight('header', '--pegasus-header-fixed-menu-height');
+  getTopBarHeight('top-bar', '--pegasus-top-bar-height');
   getAdminBarHeight('wpadminbar', '--pegasus-admin-bar-height');
+  getHeaderHeight('#header .header-container', '--pegasus-header-fixed-menu-height');
 
   // Add event listener for window resize
   window.addEventListener('resize', function () {
-    getHeaderHeight('header', '--pegasus-header-fixed-menu-height');
+    getTopBarHeight('top-bar', '--pegasus-top-bar-height');
     getAdminBarHeight('wpadminbar', '--pegasus-admin-bar-height');
+    getHeaderHeight('#header .header-container', '--pegasus-header-fixed-menu-height');
   });
 
 });

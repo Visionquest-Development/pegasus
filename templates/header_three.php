@@ -93,21 +93,7 @@
 							</button>
 
 							<div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-								<!--<ul class="navbar-nav mr-auto">
-									<li class="nav-item active">
-										<a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="#">Notifications</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="#">Profile</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="#">Switch account</a>
-									</li>
 
-								</ul>-->
 								<?php
 									$classes_for_nav_menu2 = ' navbar-nav mr-auto pegasus-mobile-nav ';
 									//$final_menu2 = ;
@@ -131,7 +117,7 @@
 									}
 								?>
 
-								<div class="navbar-right">
+								<div class="navbar-right ms-auto">
 									<?php
 
 										if ( 'on' === $woo_check ) {

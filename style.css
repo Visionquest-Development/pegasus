@@ -80,25 +80,6 @@ Use it to make something cool, have fun, and share what you've learned with othe
     } */
 	}
 
-  body.admin-bar .the-default-third-nav #mega-menu.fixed-top {
-    top: var(--pegasus-admin-bar-height);
-  }
-
-  /* IF TOP NAV IS ENABLED */
-  body.admin-bar.top-header-is-active .the-default-third-nav {
-      /*margin-top: calc( var(--pegasus-admin-bar-height) + var(--pegasus-top-bar-height) );*/
-      margin-top: var(--pegasus-admin-bar-height);
-  }
-
-  body.admin-bar.top-header-is-active .the-default-third-nav #mega-menu.fixed-top {
-    top: calc( var(--pegasus-admin-bar-height) + var(--pegasus-top-bar-height) );
-  }
-
-
-  /* IF SCROLL IS ENABLED */
-  body.admin-bar .the-default-third-nav.on #mega-menu.fixed-top {
-    top: var(--pegasus-admin-bar-height) !important;
-  }
 
 
   @media screen and (max-width: 576px) {

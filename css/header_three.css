@@ -13,6 +13,55 @@ body {
   color: var(--pegasus-header-three-scroll-item-color) !important;
 }
 
+
+body.admin-bar .the-default-third-nav #mega-menu.fixed-top {
+  top: var(--pegasus-admin-bar-height);
+}
+
+/* IF TOP NAV IS ENABLED */
+body.admin-bar.top-header-is-active .the-default-third-nav {
+    /*margin-top: calc( var(--pegasus-admin-bar-height) + var(--pegasus-top-bar-height) );*/
+    margin-top: var(--pegasus-admin-bar-height);
+}
+
+body.no-header #page-wrap {
+  margin-top: var(--pegasus-header-three-fixed-menu-height);
+}
+
+body.top-header-is-active:not(.lrg-header) #page-wrap {
+  margin-top: var(--pegasus-top-bar-height);
+}
+
+
+body.admin-bar.top-header-is-active .the-default-third-nav #mega-menu.fixed-top {
+  top: calc( var(--pegasus-admin-bar-height) + var(--pegasus-top-bar-height) );
+}
+body.admin-bar.top-header-is-active .the-default-third-nav.on #mega-menu.fixed-top {
+  top: var(--pegasus-admin-bar-height);
+}
+
+
+
+/* body.no-header #page-wrap {
+  margin-top: var(--pegasus-header-three-fixed-menu-height) !important;
+} */
+
+body.no-header.top-header-is-active #page-wrap {
+  margin-top: calc( var(--pegasus-top-bar-height) + var(--pegasus-header-three-fixed-menu-height) ) !important;
+}
+
+
+
+
+
+
+
+.navbar-brand {
+  z-index: 999;
+}
+
+
+
 .redq .navbar-toggler {
 	width: 60px;
 
@@ -101,20 +150,30 @@ body {
 
 /* Mobile Responsive Adjustments */
 @media (max-width: 768px) {
-    .redq .navbar-header {
-        /*flex-direction: column;*/
-    }
+  .redq .navbar-header {
+      /*flex-direction: column;*/
+  }
 
-    .redq #menu-main-menu-2 {
-        flex-direction: column;
-        align-items: center;
-    }
+  .redq #menu-main-menu-2 {
+      flex-direction: column;
+      align-items: center;
+  }
 
-    .redq #menu-main-menu-2 .nav-item {
-        margin: 10px 0;
-    }
+  .redq #menu-main-menu-2 .nav-item {
+      margin: 10px 0;
+  }
 
 	.mobile-menu-close{position:fixed;top:0;right:0;font-size:20px;display:block;z-index:9999;cursor:pointer;padding:13px;width:46px;text-align:center}
+
+  /* IF SCROLL IS ENABLED */
+  body.admin-bar .the-default-third-nav.on #mega-menu.fixed-top {
+    top: var(--pegasus-admin-bar-height) !important;
+  }
+
+  .header-sticky.on #top-bar {
+    display: none;
+  }
+
 }
 
 @media (min-width: 768px) {
@@ -125,10 +184,6 @@ body {
 	.redq .navbar-header {
 		align-items: center; /* Vertically center items within the navbar */
 	}
-}
-
-.no-header #page-wrap {
-  margin-top: var(--pegasus-header-three-fixed-menu-height) !important;
 }
 
 /* DESKTOP ONLY */
@@ -170,12 +225,20 @@ body {
   }
 
   .admin-bar .offcanvas-collapse {
-    top: calc( var(--pegasus-admin-bar-height) + var(--pegasus-header-three-fixed-menu-height) );
+    padding-top: calc( var(--pegasus-admin-bar-height) + var(--pegasus-header-three-fixed-menu-height) );
   }
+  .admin-bar .offcanvas-collapse.open {
+    padding-top: calc(
+      var(--pegasus-admin-bar-height) +
+      var(--pegasus-header-three-fixed-menu-height) +
+      var(--pegasus-top-bar-height)
+    );
+  }
+
   .offcanvas-collapse {
     position: fixed;
     /* top: 56px; *//* Height of navbar */
-    top: calc( var(--pegasus-header-three-fixed-menu-height) );
+    top: 0px;
     bottom: 0;
     left: 100%;
     width: 100%;
@@ -233,3 +296,6 @@ body {
 .lh-125 { line-height: 1.25; }
 .lh-150 { line-height: 1.5; }
 
+#mega-menu .navbar-toggler {
+  z-index: 999;
+}
