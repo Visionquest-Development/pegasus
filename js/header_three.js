@@ -10,7 +10,7 @@
         const headerHeight = header.offsetHeight;
         document.documentElement.style.setProperty(`${cssVar}`, `${headerHeight}px`);
       } else {
-        console.error(`Element matching selector "${selector}" not found.`);
+        console.log(`Element matching selector "${selector}" not found.`);
       }
     });
     // if (header) {

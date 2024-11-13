@@ -346,7 +346,7 @@
 	/* remove admin bar for all users when logged in */
 	//add_filter( 'show_admin_bar', '__return_false' );
 
-	//add_filter( 'show_admin_bar', '__return_false' );
+	add_filter( 'show_admin_bar', '__return_false' );
 
 
 	//REMOVE WPADMIN BAR CSS FROM INLIINE CSS

@@ -3,7 +3,7 @@
   function getCSSVariableValue(propertyName) {
     // Get the computed style of the document's root element (html)
     const rootStyles = document.documentElement.getAttribute('style');
-    console.log( "rootStyles: ", rootStyles );
+    //console.log( "rootStyles: ", rootStyles );
     // Get the value of the specified CSS variable
     //const variableValue = rootStyles;
     //console.log( "variableValue: ", variableValue );
@@ -24,24 +24,8 @@
     return parsedCSS[propertyName] || null;
   }
 
-  jQuery( window ).load(function() {
-    //var	adminbarheight = jQuery("#wpadminbar").height();
-    //console.log( "admin bar height: ", adminbarheight );
 
-    let adminBarHeight = parseInt( getCSSVariableValue('--pegasus-admin-bar-height'), 10 );
-    console.log( "Admin bar height 2: ", adminBarHeight );
-
-    t(adminBarHeight);
-
-    window.addEventListener('resize', function(adminBarHeight) {
-      //adminBarHeight = getCSSVariableValue('--pegasus-admin-bar-height');
-      //console.log( "Admin bar height 3: ", parseInt(adminBarHeight, 10) );
-      t(adminBarHeight);
-    });
-
-  });
-
-  function t(adminBarHeight = 32) {
+  function largeHeader(adminBarHeight = 32) {
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
     var g = {
@@ -105,4 +89,22 @@
 		//console.log(p.style.height);
   }
 
-  t();
+  largeHeader();
+
+
+  jQuery( window ).on( 'load', function() {
+    //var	adminbarheight = jQuery("#wpadminbar").height();
+    //console.log( "admin bar height: ", adminbarheight );
+
+    let adminBarHeight = parseInt( getCSSVariableValue('--pegasus-admin-bar-height'), 10 );
+    //console.log( "Admin bar height 2: ", adminBarHeight );
+
+    //largeHeader(adminBarHeight);
+
+    window.addEventListener('resize', function(adminBarHeight) {
+      adminBarHeight = parseInt( getCSSVariableValue('--pegasus-admin-bar-height'), 10 );
+      //console.log( "Admin bar height 3: ", parseInt(adminBarHeight, 10) );
+      //largeHeader(adminBarHeight);
+    });
+
+  });

@@ -239,7 +239,7 @@ const getTopBarHeight = (topBarId, cssVar) => {
       const topBarHeight = topBar.offsetHeight;
       document.documentElement.style.setProperty(cssVar, `${topBarHeight}px`);
   } else {
-      console.error(`Element with id "${topBarId}" not found.`);
+      console.log(`Element with id "${topBarId}" not found.`);
   }
 }
 
@@ -250,7 +250,7 @@ const getAdminBarHeight = (adminBarId, cssVar) => {
     const adminBarHeight = adminBar.offsetHeight;
     document.documentElement.style.setProperty(cssVar, `${adminBarHeight}px`);
   } else {
-    console.error(`Element with id "${adminBarId}" not found.`);
+    console.log(`Element with id "${adminBarId}" not found.`);
   }
 
 }
@@ -263,7 +263,7 @@ const getHeaderHeight = (headerId, cssVar) => {
       const headerHeight = header.offsetHeight;
       document.documentElement.style.setProperty(`${cssVar}`, `${headerHeight}px`);
     } else {
-      console.error(`Element matching selector "${selector}" not found.`);
+      console.log(`Element matching selector "${selector}" not found.`);
     }
   });
 
