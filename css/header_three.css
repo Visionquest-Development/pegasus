@@ -244,9 +244,18 @@ body.no-header.top-header-is-active #page-wrap {
     );
   }
   .admin-bar .offcanvas-collapse {
-    padding-top: calc( var(--pegasus-admin-bar-height) + var(--pegasus-header-three-fixed-menu-height) );
+    padding-top: calc(
+      var(--pegasus-admin-bar-height) +
+      var(--pegasus-header-three-fixed-menu-height)
+    );
   }
   .admin-bar .offcanvas-collapse.open {
+    padding-top: calc(
+      var(--pegasus-admin-bar-height) +
+      var(--pegasus-header-three-fixed-menu-height)
+    );
+  }
+  .admin-bar.top-bar-is-active .offcanvas-collapse.open {
     padding-top: calc(
       var(--pegasus-admin-bar-height) +
       var(--pegasus-header-three-fixed-menu-height) +

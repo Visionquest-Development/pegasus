@@ -346,7 +346,10 @@
 	/* remove admin bar for all users when logged in */
 	//add_filter( 'show_admin_bar', '__return_false' );
 
-	add_filter( 'show_admin_bar', '__return_false' );
+	$pegasus_admin_choice = ( 'on' === pegasus_get_option( 'wp_admin_bar_chk' ) ) ? true : false;
+	if ( true === $pegasus_admin_choice ) {
+		add_filter( 'show_admin_bar', '__return_false' );
+	}
 
 
 	//REMOVE WPADMIN BAR CSS FROM INLIINE CSS
@@ -1013,7 +1016,7 @@
 
 
 	function pegasus_get_menu( $name, $menu_classes, $depth, $fallback_menu ) {
-
+		$check_for_theme_location = '';
 		$check_for_theme_location = wp_nav_menu(
 			array(
 				'theme_location' => $name,
