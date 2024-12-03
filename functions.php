@@ -883,7 +883,7 @@
 
 	/*  ===== TOP HEADER CHOICE ===== */
 	add_filter( 'body_class', function( $classes ) {
-		$top_header_choice = ( 'on' === pegasus_get_option( 'top_header_chk' ) ) ? pegasus_get_option( 'top_header_chk' ) : 'off';
+		$top_header_choice = ( 'on' === pegasus_get_option( 'top_header_chk' ) ) ? pegasus_get_option( 'top_header_chk' ) : 'top-header-off';
 		if ( 'on' === $top_header_choice) {
 			$top_header_choice = 'top-header-is-active';
 		}
@@ -959,7 +959,7 @@
 		$output = '';
 
 		$chk_for_lang = get_language_attributes();
-		$lang_attr = language_attributes();
+		//$lang_attr = language_attributes();
 		$default_output = 'lang="en-US"';
 		//$default_output = '';
 
@@ -967,9 +967,9 @@
 			$output = $chk_for_lang;
 		}
 
-		if ( $lang_attr ) {
-			$output = $lang_attr;
-		}
+		// if ( $lang_attr ) {
+		// 	$output = $lang_attr;
+		// }
 
 		if ( '' === $output || null === $output ) {
 			$output = $default_output;

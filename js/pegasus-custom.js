@@ -214,7 +214,7 @@ jQuery(document).ready(function ($) {
     // }
 
 
-
+  console.log("test");
 
     // Replace social media nav menu with Font Awesome icons
 

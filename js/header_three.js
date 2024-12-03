@@ -42,11 +42,12 @@
     if (jQuery(window).scrollTop() > navHeight) {
         jQuery('.header-sticky').addClass('on');
         if (width >= 768) {
-            jQuery('#top-bar').addClass('hide');
+            jQuery('#top-bar').fadeOut(600).addClass('hide');
         }
     } else {
         jQuery('.header-sticky').removeClass('on');
-        jQuery('#top-bar').removeClass('hide');
+        jQuery('#top-bar').fadeIn(600).removeClass('hide');
+        getAdminBarHeight('wpadminbar', '--pegasus-admin-bar-height');
     }
     //getAdminBarHeightThree('wpadminbar', '--pegasus-admin-bar-height');
   });
