@@ -832,13 +832,13 @@
 
 				break;
 			case "header-four":
-				wp_enqueue_script( 'header_four_js', get_template_directory_uri() . '/js/header-four.js', array(), '', true );
-				wp_enqueue_style( 'header_four_style', get_template_directory_uri() . '/css/header-four.css' );
+				wp_enqueue_script( 'header_four_js', get_template_directory_uri() . '/js/header_four.js', array(), '', true );
+				wp_enqueue_style( 'header_four_style', get_template_directory_uri() . '/css/header_four.css' );
 
 				break;
 			case "header-five":
-				wp_enqueue_script( 'header_five_js', get_template_directory_uri() . '/js/header-five.js', array(), '', true );
-				wp_enqueue_style( 'header_five_style', get_template_directory_uri() . '/css/header-five.css' );
+				wp_enqueue_script( 'header_five_js', get_template_directory_uri() . '/js/header_five.js', array(), '', true );
+				wp_enqueue_style( 'header_five_style', get_template_directory_uri() . '/css/header_five.css' );
 
 				break;
 			default:

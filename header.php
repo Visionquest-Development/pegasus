@@ -134,7 +134,7 @@
 				<?php
 					$header_choice =  pegasus_get_option( 'header_select' );
 					//var_dump($header_choice);
-					if ( 'header-three' !== $header_choice ) {
+					if ( 'header-three' !== $header_choice && 'header-four' !== $header_choice ) {
 						get_template_part( 'templates/additional_header', 'header' );
 					}
 					//get_template_part( 'templates/additional_header', 'header' );

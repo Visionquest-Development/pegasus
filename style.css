@@ -148,7 +148,8 @@ Use it to make something cool, have fun, and share what you've learned with othe
     background-color: var(--pegasus-nav-bg-color);
   }
 
-  .the-default-fourth-nav { border-bottom: 5px solid var(--pegasus-navbar-toggler-border-color); }
+  /* .the-default-fourth-nav { border-bottom: 5px solid var(--pegasus-navbar-toggler-border-color); } */
+  .the-default-fourth-nav { border-bottom: 5px solid pink; }
 
   /* ================================== */
       /* NAVIGATION COLORS */

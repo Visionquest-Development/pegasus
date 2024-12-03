@@ -110,4 +110,3 @@
 
 </div>
 
-<?php get_template_part( 'templates/additional_header' ); ?>

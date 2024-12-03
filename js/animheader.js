@@ -9,6 +9,12 @@
     //console.log( "variableValue: ", variableValue );
     // Return the trimmed value
     //return variableValue.trim();
+
+    if (!rootStyles) {
+      // If there's no style attribute, return null to avoid errors
+      return null;
+    }
+
     const properties = rootStyles.split(';').filter(Boolean);
 
     // Parse each property and store it in an object
@@ -70,15 +76,38 @@
       //console.log( "admin bar height: ", adminBarHeight );
 
     //console.log( "variables: ", variables );
-
+    if ( jQuery('body').hasClass('header-four') ) {
+      h_height = jQuery("#mega-menu").height() + 5;
+    }
 		windowHeight = windowHeight - h_height;
 		//console.log(windowHeight);
-    if( jQuery('body').hasClass('admin-bar') ) {
-      //const adminBarHeight = getCSSVariableValue('--pegasus-admin-bar-height');
-      windowHeight = windowHeight - adminBarHeight;
+
+    if( jQuery('body').hasClass('header-three') || jQuery('body').hasClass('header-four') ) {
+      if( jQuery('body').hasClass('admin-bar') ) {
+        //const adminBarHeight = getCSSVariableValue('--pegasus-admin-bar-height');
+        windowHeight = windowHeight - adminBarHeight;
+      }
     }
+
+
+    //demo-canvas
+    // if ( jQuery('body').hasClass('header-four') ) {
+    //   const headerFourHeight = getCSSVariableValue('--pegasus-header-four-menu-height');
+
+    //   if( jQuery('body').hasClass('admin-bar') ) {
+    //     console.log( "Window height: ", windowHeight );
+    //     console.log( "Admin bar height: ", adminBarHeight );
+    //     console.log( "Header four height: ", headerFourHeight );
+
+    //     windowHeight = windowHeight - headerFourHeight - adminBarHeight;
+    //   } else {
+    //     windowHeight = windowHeight - headerFourHeight;
+    //   }
+    // }
+
 		//p.style.height = c + "px", f, f.width = u, f.height = c, m = f.getContext("2d");
     largeHeader.style.height = windowHeight + "px";
+
     canvasNode.width = windowWidth;
     canvasNode.height = windowHeight;
     header_canvas = canvasNode.getContext("2d");
