@@ -48,6 +48,10 @@
 
 		var canvasNode = document.getElementById("demo-canvas");
 
+    if (!$header.length) {  // Check if the element does NOT exist
+      console.log("#Header element does not exist.");
+    }
+
 		// if (jQuery("body").hasClass("navbar-fixed-top-is-active")) {
 		// 	console.log( "Fixed Header checkbox: " + "yes" );
 		// }
