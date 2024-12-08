@@ -66,6 +66,13 @@
         margin-right: 10px;
     }
 
+
+
+  .pegasus-wrap {
+    position: relative;
+    margin: 0 20px 20px 0;
+  }
+
 	.pegasus-wrap pre {
 		overflow: auto;
 		font-family: monospace, monospace;
@@ -96,5 +103,13 @@
 		background-color: transparent;
 		border-radius: 0;
 	}
+
+  .red-text {
+    color: red;
+    padding: 2px 3px;
+    border: 1px solid #777;
+    background: #dedede;
+    border-radius: 7px;
+  }
 
   .js .tmce-active .wp-editor-area { color: black; }

@@ -6,6 +6,7 @@
 			exit;
 		}
 		get_header();
+		global $post;
 	?>
 	<div id="page-wrap">
 		<?php
@@ -33,7 +34,9 @@
 			//page header theme option
 			$global_disable_page_header_option =  pegasus_get_option('page_header_chk' ) ? pegasus_get_option('page_header_chk' ) : 'off';
 			//check theme option for page header before page option
-			$page_title = $post->post_title;
+			if ( $post ) {
+				$page_title = $post->post_title;
+			}
 			$is_this_home = is_home();
 			if ( 'on' === $global_disable_page_header_option ) {
 				$final_page_header_option = 'on';

@@ -77,11 +77,51 @@ class Pegasus_Admin {
 	 * @since 0.1.0
 	 */
 	public function add_options_page() {
-		$this->options_page = add_menu_page( $this->title, $this->title, 'manage_options', $this->key, array( $this, 'admin_page_display' ) );
+
+		$this->options_page = add_menu_page(
+			$this->title,
+			$this->title,
+			'manage_options',
+			$this->key,
+			array( $this, 'admin_page_display' )
+		);
+
 		//$this->options_page = add_theme_page( $this->title, $this->title, 'manage_options', $this->key, array( $this, 'admin_page_display' ) );
+
+		add_submenu_page(
+			$this->key, // Parent slug
+			'General Options', // Page title
+			'General Options', // Menu title
+			'manage_options', // Capability
+			$this->key, // Menu slug
+			array( $this, 'admin_page_display' ) // Callback function
+		);
+
+		// add_submenu_page(
+		// 	$this->key, // Parent slug
+		// 	'Theme Secondary Options', // Page title
+		// 	'Theme Secondary Options', // Menu title
+		// 	'manage_options', // Capability
+		// 	'theme_secondary_options_slug', // Menu slug
+		// 	array( $this, 'submenu_admin_page_display' ) // Callback function
+		// );
+
+
 		// Include CMB CSS in the head to avoid FOUC
 		add_action( "admin_print_styles-{$this->options_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
+	} //end add options page function
+
+	/*
+	public function submenu_admin_page_display() {
+		?>
+		<div class="wrap cmb2-options-page <?php echo $this->key; ?>">
+			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
+			<h3
+		</div>
+		<?php
 	}
+	*/
+
 	/**
 	 * Admin page markup. Mostly handled by CMB2
 	 * @since  0.1.0
@@ -95,6 +135,7 @@ class Pegasus_Admin {
 		</div>
 		<?php
 	}
+
 	/**
 	 * Add the options metabox to the array of metaboxes
 	 * @since  0.1.0
