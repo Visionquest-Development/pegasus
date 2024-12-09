@@ -539,18 +539,18 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	}
 
 	@media only screen and ( max-width: 783px ) {
-		.footer-widget-area { width: 50% !important; }
+		.footer-widget-area { width: 50%; }
 	}
 
 	@media only screen and ( max-width: 768px ) {
 
-		.the-nav-cart li { display: inline-block !important; }
+		.the-nav-cart li { display: inline-block; }
 		header .nav ul li { display: block; }
 		/*.the-default-nav #navbar { overflow-y: visible; max-height: none !important; }*/
 		/*#header { padding: 0 20px; }*/
 
         .dropdown-menu {
-            background-color: transparent !important;
+            background-color: transparent;
         }
 
 		.the-nav-cart .sub-menu {  left: 0; }
@@ -565,13 +565,13 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
     @media only screen and (max-width: 575px) {
 
-        #top-bar .center .text { padding: 0 !important; }
+        #top-bar .center .text { padding: 0; }
         #top-bar .navbar { display: block; }
     }
 
 	@media only screen and (max-width: 479px) {
 
-		.footer-widget-area { float: none !important; width: 100% !important; }
+		.footer-widget-area { float: none; width: 100%; }
 
 		.the-nav-cart .sub-menu { min-width: 225px;  }
 

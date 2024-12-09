@@ -48,8 +48,9 @@
 
 		var canvasNode = document.getElementById("demo-canvas");
 
-    if (!$header.length) {  // Check if the element does NOT exist
+    if (!h_height.length) {  // Check if the element does NOT exist
       console.log("#Header element does not exist.");
+      //return;
     }
 
 		// if (jQuery("body").hasClass("navbar-fixed-top-is-active")) {
@@ -93,6 +94,18 @@
       }
     }
 
+    if ( jQuery('body').hasClass('header-five') ) {
+      //const headerFiveHeight = getCSSVariableValue('--pegasus-header-five-menu-height');
+
+      if( jQuery('body').hasClass('admin-bar') ) {
+        windowHeight = window.innerHeight - adminBarHeight;
+      } else {
+        windowHeight = window.innerHeight;
+      }
+
+      //windowHeight = window.innerHeight;
+    }
+
 
     //demo-canvas
     // if ( jQuery('body').hasClass('header-four') ) {
@@ -110,6 +123,7 @@
     // }
 
 		//p.style.height = c + "px", f, f.width = u, f.height = c, m = f.getContext("2d");
+    console.log( "Window height: ", windowHeight );
     largeHeader.style.height = windowHeight + "px";
 
     canvasNode.width = windowWidth;

@@ -32,11 +32,11 @@
 
 	#page-wrap { padding: 20px 0; }
 
-	.sub-menu { background: inherit !important; list-style-type: none; }
+	.sub-menu { background: inherit; list-style-type: none; }
 
 
-	.sidebar-nav .the-nav-cart { float: none !important; }
-	.sidebar-nav .the-nav-cart li { float: none !important; }
+	.sidebar-nav .the-nav-cart { float: none; }
+	.sidebar-nav .the-nav-cart li { float: none; }
 
 	.sidebar-nav .the-nav-cart .sub-menu {
 		left: 0;
@@ -47,12 +47,15 @@
 	~~~~~~~~~~~~~~~~~~~~~*/
 	.keegans-nav {
     display: none;
-    border-color: #9a1f27 !important;
+    border-color: #9a1f27;
     background: #9a1f27;
   }
 
 
-
+  .keegans-header-menu li .nav-link.active{
+    font-weight: bold;
+    font-size: 20px;
+  }
 
 
 	/*~~~~~~~~~~~~~~~~~~~~~
@@ -148,14 +151,14 @@
 	}
 
 	.nav-sidebar-widget {
-		padding: 0 22px;
+		/* padding: 0 22px; */
 		margin-top: 0;
 	}
 
 
 	.nav-sidebar-widget ul li a {
 		display: block;
-		padding: 5px 0;
+		
 		font-size: 15px;
 		line-height: 18px;
 		color: #fff;

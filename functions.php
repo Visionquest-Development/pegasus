@@ -789,11 +789,12 @@
 		//wp_enqueue_style( 'animate-css', get_template_directory_uri() . '/inc/css/animate.min.css' );
 		wp_enqueue_style( 'bootstrap-style', get_template_directory_uri() . '/dist/css/main.css' );
 		//wp_enqueue_script( 'popper_js', get_template_directory_uri() . '/inc/bootstrap/js/popper.min.js', array('jquery'), '', true );
-		wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/inc/bootstrap/js/5.3.3/bootstrap.min.js', array('jquery'), '', true );
+		wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/inc/bootstrap/js/5.3.3/bootstrap.bundle.min.js', array('jquery'), '', true );
 		wp_enqueue_style( 'pegasus_font_awesome', get_template_directory_uri() . '/inc/css/font-awesome.min.css', null, null, null );
 		//wp_enqueue_script( 'modernizer_js', get_template_directory_uri() . '/inc/modernizer/modernizer.custom.js', array('jquery'), '', true );
 
 		//wp_enqueue_style( 'pegasus-style', get_template_directory_uri() . '/style.css' );
+
 
 		/* get this ready to actually be added */
 
@@ -842,6 +843,8 @@
 			case "header-five":
 				wp_enqueue_script( 'header_five_js', get_template_directory_uri() . '/js/header_five.js', array(), '', true );
 				wp_enqueue_style( 'header_five_style', get_template_directory_uri() . '/css/header_five.css' );
+				wp_enqueue_script( 'cookie_js', get_template_directory_uri() . '/admin/cookie.js', array('jquery'), '', true );
+
 
 				break;
 			default:

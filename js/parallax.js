@@ -15,7 +15,7 @@ http://www.gnu.org/licenses/gpl.html
 	var $window = $(window);
 	var windowHeight = $window.height();
 
-	$window.resize(function () {
+	$window.on( 'resize', function () {
 		windowHeight = $window.height();
 	});
 
@@ -24,16 +24,16 @@ http://www.gnu.org/licenses/gpl.html
 		var getHeight;
 		var firstTop;
 		var paddingTop = 0;
-		
-		//get the starting position of each element to have parallax applied to it	
+
+		//get the starting position of each element to have parallax applied to it
 		function update (){
-			
+
 			$this.each(function(){
-								
+
 				//firstTop = $this.offset().top;
                 firstTop = 0;
 			});
-	
+
 			if (outerHeight) {
 				getHeight = function(jqo) {
 					return jqo.outerHeight(true);
@@ -43,32 +43,32 @@ http://www.gnu.org/licenses/gpl.html
 					return jqo.height();
 				};
 			}
-				
+
 			// setup defaults if arguments aren't specified
 			if (arguments.length < 1 || xpos === null) xpos = "50%";
 			if (arguments.length < 2 || speedFactor === null) speedFactor = 0.5;
 			if (arguments.length < 3 || outerHeight === null) outerHeight = true;
-			
+
 			// function to be called whenever the window is scrolled or resized
-			
+
 				var pos = $(window).scrollTop();
-	
+
 				$this.each(function(){
 					var $element = $(this);
 					var top = $element.offset().top;
 					var height = getHeight($element);
-	
+
 					// Check if totally above or totally below viewport
 					if (top + height < pos || top > pos + windowHeight) {
 						return;
 					}
-					
-					if($(window).width() > 768) $this.css('backgroundPosition', xpos + " " + Math.round((firstTop - pos) * speedFactor) + "px");
-					
-				});
-		}		
 
-		$window.bind('scroll', update).resize(update);
+					if($(window).width() > 768) $this.css('backgroundPosition', xpos + " " + Math.round((firstTop - pos) * speedFactor) + "px");
+
+				});
+		}
+
+		$window.on('scroll', update).resize(update);
 		update();
 	};
 })(jQuery);
@@ -82,9 +82,9 @@ http://www.gnu.org/licenses/gpl.html
 // =============================================
 // Parallax Init
 // =============================================
-	
-	jQuery(window).bind('load', function () {
-	parallaxInit();						  
+
+	jQuery(window).on('load', function () {
+	parallaxInit();
 	});
 	function parallaxInit() {
 		jQuery('.parallax').each(function(){
