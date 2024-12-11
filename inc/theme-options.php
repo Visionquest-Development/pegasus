@@ -769,31 +769,31 @@ class Pegasus_Admin {
 			'name'    => __( 'Sub-Menu Item color for Desktop', 'pegasus-theme' ),
 			'id'      => 'sub_nav_item_color',
 			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(0,0,0,0.65)'
+			//'default' => 'rgba(0,0,0,0.65)'
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Sub-Menu Item Hover color for Desktop', 'pegasus-theme' ),
 			'id'      => 'sub_nav_item_hover_color',
 			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(0,0,0,0.45)'
+			//'default' => 'rgba(0,0,0,0.45)'
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Sub-Menu Background color', 'pegasus-theme' ),
 			'id'      => 'sub_nav_bg_color',
 			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(222,222,222,0.8)'
+			//'default' => 'rgba(222,222,222,0.8)'
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Sub-Menu Background Hover color', 'pegasus-theme' ),
 			'id'      => 'sub_nav_bg_hover_color',
 			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(222,222,222,0.6)'
+			//'default' => 'rgba(222,222,222,0.6)'
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Active/Current Menu Item color', 'pegasus-theme' ),
 			'id'      => 'current_item_color',
 			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(0,0,0,0.80)'
+			//'default' => 'rgba(0,0,0,0.80)'
 		) );
 
 		/*============================

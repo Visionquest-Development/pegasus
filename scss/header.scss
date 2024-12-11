@@ -223,16 +223,16 @@
   ================================*/
   @media (max-width:768px) {
     .dropdown-menu {
-        display: block !important;
-        border: none !important;
-        margin-left: 1.5rem  !important;
+        display: block;
+        border: none;
+        margin-left: 1.5rem;
 
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
     .dropdown-item:active, .dropdown-item:hover  {
-        background-color: transparent !important;
+        background-color: transparent;
     }
 
     .dropdown-toggle::after {

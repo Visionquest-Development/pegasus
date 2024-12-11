@@ -161,9 +161,9 @@
 			<h1>Blog Usage</h1>
 			<p>Here is some content for the Blog Usage page.</p>
 			<p>Callout Usage 1:<br>
-				<?php output_shortcode_pre('[blog]'); ?>
+				<?php output_shortcode_pre('[blog the_query="post_type=post&order_by=date&order=ASC"]'); ?>
 			</p>
-			<?php output_shortcode_pre('[blog]', 'wp'); ?>
+			<?php output_shortcode_pre('[blog the_query="post_type=post&order_by=date&order=ASC"]', 'wp'); ?>
 		</div>
 		<?php
 	}

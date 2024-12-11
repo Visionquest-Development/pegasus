@@ -23,7 +23,7 @@
 				'not_found' =>  __('No portfolio found', 'pegasus-bootstrap'),
 				'not_found_in_trash' => __('No portfolio found in Trash', 'pegasus-bootstrap'),
 				'parent_item_colon' => '',
-				'menu_name' => 'Portfolio'
+				'menu_name' => 'Pegasus Portfolio'
 			);
 
 			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
@@ -48,7 +48,7 @@
 			);
 
 			// We call this function to register the custom post type
-			register_post_type( 'portfolio', $portfolio_args);
+			register_post_type( 'pegasus_portfolio', $portfolio_args);
 
 			/*============================
 			======= Portfolio Taxonomy ========
@@ -120,7 +120,7 @@
 				'not_found' =>  __('No staff found', 'pegasus-bootstrap'),
 				'not_found_in_trash' => __('No staff found in Trash', 'pegasus-bootstrap'),
 				'parent_item_colon' => '',
-				'menu_name' => 'Staff'
+				'menu_name' => 'Pegasus Staff'
 			);
 
 			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
@@ -145,7 +145,7 @@
 			);
 
 			// We call this function to register the custom post type
-			register_post_type( 'staff', $staff_args);
+			register_post_type( 'pegasus_staff', $staff_args);
 
 			// Register Custom Taxonomy - Categories
 			register_taxonomy('department',array('staff'), array(
@@ -176,7 +176,7 @@
 				'not_found' =>  __('No testimonial found', 'pegasus-bootstrap'),
 				'not_found_in_trash' => __('No testimonial found in Trash', 'pegasus-bootstrap'),
 				'parent_item_colon' => '',
-				'menu_name' => 'Testimonial'
+				'menu_name' => 'Pegasus Testimonial'
 			);
 
 			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
@@ -201,12 +201,12 @@
 			);
 
 			// We call this function to register the custom post type
-			register_post_type( 'testimonial', $review_args);
+			register_post_type( 'pegasus_testimonial', $review_args);
 
-			remove_post_type_support( 'testimonial', 'editor', 'permalink', 'comments', 'thumbnail', 'custom-fields', 'author', 'excerpt', 'trackbacks', 'page-attributes' );
+			remove_post_type_support( 'pegasus_testimonial', 'editor', 'permalink', 'comments', 'thumbnail', 'custom-fields', 'author', 'excerpt', 'trackbacks', 'page-attributes' );
 
 			function remove_yoast_metabox_testimonial(){
-				remove_meta_box( 'wpseo_meta', 'testimonial', 'normal' );
+				remove_meta_box( 'wpseo_meta', 'pegasus_testimonial', 'normal' );
 			}
 			add_action( 'add_meta_boxes', 'remove_yoast_metabox_testimonial', 11 );
 
@@ -219,7 +219,7 @@
 					array(
 						'id'           => $prefix . 'content',
 						'title'        => __( 'Testimonial Slider Slides', 'pegasus-bootstrap' ),
-						'object_types' => array( 'testimonial' ),
+						'object_types' => array( 'pegasus_testimonial' ),
 						'priority'     => 'high',
 					)
 				);
@@ -283,6 +283,70 @@
 				);
 
 			} //end testimonial cmb2 function
+
+
+
+			//Make new custom column
+			add_filter('manage_pegasus_testimonial_posts_columns', 'pegasus_testimonial_posts_columns_id', 5);
+			function pegasus_testimonial_posts_columns_id( $defaults ){
+				$defaults['pegasus_shortcode_id'] = __('Shortcode');
+				return $defaults;
+			}
+
+			//add content to new custom column
+			add_action('manage_pegasus_testimonial_posts_custom_column', 'pegasus_testimonial_posts_custom_id_columns', 5, 2);
+			function pegasus_testimonial_posts_custom_id_columns( $column, $post_id ){
+				switch ( $column ) {
+					case 'pegasus_shortcode_id' :
+						//echo '<pre><code>[pegasus_logo_slider id="' . $post_id . '" ]</code></pre>'; // the data that is displayed in the column
+						echo '<input
+					type="text"
+					readonly
+					value="' . esc_html('[pegasus_testimonial_slider id="' . $post_id . '"]') . '"
+					class="regular-text code"
+					id="my-shortcode"
+					onClick="this.select();"
+				>';
+						break;
+				}
+			}
+
+			//make custom column sortable
+			add_filter( 'manage_edit-pegasus_testimonial_sortable_columns', 'pegasus_testimonial_add_custom_column_make_sortable' );
+			function pegasus_testimonial_add_custom_column_make_sortable( $columns ) {
+				$columns['usefulness'] = 'usefulness';
+
+				return $columns;
+			}
+
+			// Add custom column sort request to post list page
+			add_action( 'load-edit.php', 'pegasus_testimonial_add_custom_column_sort_request' );
+			function pegasus_testimonial_add_custom_column_sort_request() {
+				add_filter( 'request', 'pegasus_testimonial_add_custom_column_do_sortable' );
+			}
+
+			// Handle the custom column sorting
+			function pegasus_testimonial_add_custom_column_do_sortable( $vars ) {
+
+				// check if post type is being viewed -- replace ht_kb with your CPT slug
+				if ( isset( $vars['post_type'] ) && 'ht_kb' == $vars['post_type'] ) {
+
+					// check if sorting has been applied
+					if ( isset( $vars['orderby'] ) && 'usefulness' == $vars['orderby'] ) {
+
+						// apply the sorting to the post list
+						$vars = array_merge(
+							$vars,
+							array(
+								'meta_key' => '_ht_kb_usefulness',
+								'orderby' => 'meta_value_num'
+							)
+						);
+					}
+				}
+
+				return $vars;
+			}
 		}
 
 		$cpt_logo_slider = ( 'on' === pegasus_get_option( 'cpt_logo_slider_checkbox' ) ) ? true : false;
@@ -295,7 +359,7 @@
 				'name' => _x('Logos', 'logo slider general name', 'pegasus-bootstrap'),
 				'singular_name' => _x('Logo', 'logo slider singular name', 'pegasus-bootstrap'),
 				'add_new' => _x('Add New', 'logo', 'pegasus-bootstrap'),
-				'add_new_item' => __('Add New Logo', 'pegasus-bootstrap'),
+				'add_new_item' => __('Add New Slider', 'pegasus-bootstrap'),
 				'edit_item' => __('Edit Logo', 'pegasus-bootstrap'),
 				'new_item' => __('New Logo', 'pegasus-bootstrap'),
 				'view_item' => __('View Logo', 'pegasus-bootstrap'),
@@ -303,7 +367,7 @@
 				'not_found' =>  __('No logo found', 'pegasus-bootstrap'),
 				'not_found_in_trash' => __('No logo found in Trash', 'pegasus-bootstrap'),
 				'parent_item_colon' => '',
-				'menu_name' => 'Logo Slider'
+				'menu_name' => 'Pegasus Logo Slider'
 			);
 
 			// Some arguments and in the last line 'supports', we say to WordPress what features are supported on the Project post type
@@ -328,12 +392,12 @@
 			);
 
 			// We call this function to register the custom post type
-			register_post_type( 'logo_slider', $logo_slider_args);
+			register_post_type( 'pegasus_logo_slider', $logo_slider_args);
 
-			remove_post_type_support( 'logo_slider', 'editor', 'permalink', 'comments', 'thumbnail', 'custom-fields', 'author', 'excerpt', 'trackbacks' );
+			remove_post_type_support( 'pegasus_logo_slider', 'editor', 'permalink', 'comments', 'thumbnail', 'custom-fields', 'author', 'excerpt', 'trackbacks' );
 
 			function remove_yoast_metabox_logo_slider(){
-				remove_meta_box( 'wpseo_meta', 'logo_slider', 'normal' );
+				remove_meta_box( 'wpseo_meta', 'pegasus_logo_slider', 'normal' );
 			}
 			add_action( 'add_meta_boxes', 'remove_yoast_metabox_logo_slider', 11 );
 
@@ -346,7 +410,7 @@
 					array(
 						'id'           => $prefix . 'content',
 						'title'        => __( 'Logo Slider Slides', 'pegasus-bootstrap' ),
-						'object_types' => array( 'logo_slider' ),
+						'object_types' => array( 'pegasus_logo_slider' ),
 						'priority'     => 'high',
 					)
 				);
@@ -412,24 +476,32 @@
 			} //end logo slider cmb2 function
 
 			//Make new custom column
-			add_filter('manage_logo_slider_posts_columns', 'posts_columns_id', 5);
+			add_filter('manage_pegasus_logo_slider_posts_columns', 'posts_columns_id', 5);
 			function posts_columns_id( $defaults ){
 				$defaults['pegasus_shortcode_id'] = __('Shortcode');
 				return $defaults;
 			}
 
 			//add content to new custom column
-			add_action('manage_logo_slider_posts_custom_column', 'posts_custom_id_columns', 5, 2);
+			add_action('manage_pegasus_logo_slider_posts_custom_column', 'posts_custom_id_columns', 5, 2);
 			function posts_custom_id_columns( $column, $post_id ){
 				switch ( $column ) {
 					case 'pegasus_shortcode_id' :
-						echo '<pre><code>[pegasus_logo_slider id="' . $post_id . '" ]</code></pre>'; // the data that is displayed in the column
+						//echo '<pre><code>[pegasus_logo_slider id="' . $post_id . '" ]</code></pre>'; // the data that is displayed in the column
+						echo '<input
+					type="text"
+					readonly
+					value="' . esc_html('[pegasus_logo_slider id="' . $post_id . '"]') . '"
+					class="regular-text code"
+					id="my-shortcode"
+					onClick="this.select();"
+				>';
 						break;
 				}
 			}
 
 			//make custom column sortable
-			add_filter( 'manage_edit-logo_slider_sortable_columns', 'itsg_add_custom_column_make_sortable' );
+			add_filter( 'manage_edit-pegasus_logo_slider_sortable_columns', 'itsg_add_custom_column_make_sortable' );
 			function itsg_add_custom_column_make_sortable( $columns ) {
 				$columns['usefulness'] = 'usefulness';
 
@@ -518,7 +590,7 @@
 		//}, $the_query);
 
 		//if ( '' === $the_query || null === $the_query || empty( $the_query ) ) {
-			$the_query = 'post_type=logo_slider&p=' . $atts['id'];
+			$the_query = 'post_type=pegasus_logo_slider&p=' . $atts['id'];
 		//}
 
 		// query is made
