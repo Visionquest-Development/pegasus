@@ -109,16 +109,16 @@
 
     //demo-canvas
     // if ( jQuery('body').hasClass('header-four') ) {
-    //   const headerFourHeight = getCSSVariableValue('--pegasus-header-four-menu-height');
+    //   //const headerFourHeight = getCSSVariableValue('--pegasus-header-four-menu-height');
 
     //   if( jQuery('body').hasClass('admin-bar') ) {
-    //     console.log( "Window height: ", windowHeight );
-    //     console.log( "Admin bar height: ", adminBarHeight );
-    //     console.log( "Header four height: ", headerFourHeight );
+    //     // console.log( "Window height: ", windowHeight );
+    //     // console.log( "Admin bar height: ", adminBarHeight );
+    //     // console.log( "Header four height: ", headerFourHeight );
 
-    //     windowHeight = windowHeight - headerFourHeight - adminBarHeight;
+    //     windowHeight = windowHeight + jQuery("#mega-menu").height() - adminBarHeight;
     //   } else {
-    //     windowHeight = windowHeight - headerFourHeight;
+    //     windowHeight = windowHeight + headerFourHeight;
     //   }
     // }
 
