@@ -29,7 +29,7 @@ function bootstrap_gallery($params, $content = null) {
 
   $__bootstrap_gallery_instance++;
 
-	$params = array_merge([
+  $defaults = [
 		'type' => '',
 		'format' => '',
     'id' => 'bootstrap-gallery-' . $__bootstrap_gallery_instance,
@@ -53,17 +53,26 @@ function bootstrap_gallery($params, $content = null) {
     'size' => 'medium',
     'fit' => 'cover',
     'autoplay' => false,
-    'interval' => 3000,
+    'interval' => 5000,
     'captions' => null,
     'align' => '',
     'attrs' => [],
-    'fullscreen' => true,
+    'lightbox' => true,
     'thumbnails' => true
-  ], $params);
-
+  ];
   $params = apply_filters('bootstrap_gallery_args', $params);
+	$params = array_merge($defaults, $params);
 
-  $post_title = !$params['title'] ? get_the_title() : ''; // Alternatively show post title on gallery
+  $params['title'] = $params['title'] ?: get_the_title();
+  $params['lightbox'] = $params['lightbox'] === 'false' ? false : $params['lightbox'];
+  $params['lightbox'] = $params['lightbox'] ? array_merge([
+    'fit' => 'contain',
+    'backdrop' => true,
+    'header' => true,
+    'footer' => true,
+  ], is_array($params['lightbox']) ? $params['lightbox'] : []) : null;
+
+  $params['thumbnails'] = $params['thumbnails'] === 'false' ? false : $params['thumbnails'];
 
   $template_locations = [
     get_template_directory() . '/bootstrap/gallery',
@@ -156,7 +165,6 @@ function bootstrap_gallery($params, $content = null) {
     'id' => $params['id'],
     'columns' => $params['columns'],
     'title' => $params['title'],
-    'post_title' => $post_title,
     'size' => $params['size'],
     'autoplay' => $params['autoplay'],
     'interval' => $params['interval'],
@@ -165,7 +173,7 @@ function bootstrap_gallery($params, $content = null) {
     'fit' => $params['fit'],
     'align' => $params['align'],
     'attrs' => $attrs,
-    'fullscreen' => $params['fullscreen'],
+    'lightbox' => $params['lightbox'],
     'thumbnails' => $params['thumbnails']
   ]);
 
@@ -181,5 +189,32 @@ function post_gallery_filter($output, $attr = []) {
 
   return $output;
 }
-
 add_filter( 'post_gallery', 'benignware\wp\bootstrap_hooks\post_gallery_filter', 0, 2);
+
+function enqueue_gallery_scripts() {
+  wp_enqueue_script(
+    'bootstrap-gallery',
+    plugins_url('gallery.js', __FILE__),
+    [],
+    null,
+    true
+  );
+  wp_enqueue_style(
+    'bootstrap-gallery',
+    plugins_url('gallery.css', __FILE__)
+  );
+
+  // Zoom, not yet fully implemented:
+  // wp_enqueue_script(
+  //   'bootstrap-zoom',
+  //   plugins_url('zoom.js', __FILE__),
+  //   [],
+  //   null,
+  //   true
+  // );
+  // wp_enqueue_style(
+  //   'bootstrap-zoom',
+  //   plugins_url('zoom.css', __FILE__)
+  // );
+}
+add_action('wp_enqueue_scripts', 'benignware\wp\bootstrap_hooks\enqueue_gallery_scripts');

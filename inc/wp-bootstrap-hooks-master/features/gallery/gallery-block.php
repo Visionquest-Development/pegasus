@@ -2,6 +2,13 @@
 namespace benignware\wp\bootstrap_hooks;
  
 function render_block_gallery($html, $block = null) {
+  static $last_heading = '';
+
+  if ($block['blockName'] === 'core/heading') {
+    // Save the content of the heading block (you can adjust this as needed)
+    $last_heading = strip_tags($html); // store only the text
+  }
+
   if ($block['blockName'] === 'core/gallery') {
     $attrs = $block['attrs'];
     $captions = [];
@@ -58,6 +65,8 @@ function render_block_gallery($html, $block = null) {
 
     if ($gallery_caption) {
       $title = $gallery_caption->textContent;
+    } else if ($last_heading) {
+      $title = $last_heading;
     }
 
     $columns = isset($attrs['columns']) && !empty($attrs['columns']) ? $attrs['columns'] : 3;
@@ -67,9 +76,13 @@ function render_block_gallery($html, $block = null) {
     $align = isset($attrs['align']) ? $attrs['align'] : '';
     $class = isset($attrs['className']) ? $attrs['className'] : $container->getAttribute('class');
 
-    $attrs = get_attributes($container);
+    $html_attrs = get_attributes($container);
 
-    $html = bootstrap_gallery([
+    unset($html_attrs['id']);
+    unset($html_attrs['class']);
+
+    $block_attr_params = $attrs;
+    $determined_params = [
       'id' => $id,
       'ids' => $ids,
       'class' => $class,
@@ -79,8 +92,11 @@ function render_block_gallery($html, $block = null) {
       'captions' => $captions,
       'fit' => $fit,
       'align' => $align,
-      'attrs' => $attrs
-    ]);
+      'attrs' => $html_attrs
+    ];
+    $params = array_merge($block_attr_params, $determined_params);
+
+    $html = bootstrap_gallery($params);
   }
 
   return $html;
