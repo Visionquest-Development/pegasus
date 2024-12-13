@@ -189,8 +189,11 @@ class Pegasus_Admin {
 		$cmb->add_field( array(
 			'name'    => __( 'Background color', 'pegasus-theme' ),
 			'id'      => 'bg_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => '#404040'
+			'type'    => 'colorpicker',
+			//'default' => '#404040',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Background Image', 'pegasus-theme' ),
@@ -274,8 +277,11 @@ class Pegasus_Admin {
 		$cmb->add_field( array(
 			'name'    => __( 'Content color (body,p)', 'pegasus-theme' ),
 			'id'      => 'content_color',
-			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(119, 119, 119, 1)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(119, 119, 119, 1)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Footer Widget Areas', 'pegasus-theme' ),
@@ -417,14 +423,20 @@ class Pegasus_Admin {
 		$cmb->add_field( array(
 			'name'    => __( 'Top Bar Background Color', 'pegasus-theme' ),
 			'id'      => 'top_bar_bkg_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(0,0,0,0)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(0,0,0,0)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Top Bar Font color', 'pegasus-theme' ),
 			'id'      => 'top_bar_font_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(0,0,0,0)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(0,0,0,0)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'             => __( 'Top Column Count', 'pegasus-theme' ),
@@ -506,21 +518,30 @@ class Pegasus_Admin {
 		$cmb->add_field( array(
 			'name'    => __( 'Mobile Hamburger Menu Color', 'pegasus-theme' ),
 			'id'      => 'mobile_toggle_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(0,0,0,0)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(0,0,0,0)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Mobile Hamburger Menu Border Color', 'pegasus-theme' ),
 			'id'      => 'mobile_toggle_border_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(0,0,0,0)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(0,0,0,0)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Header Bkg color', 'pegasus-theme' ),
 			'id'      => 'header_bkg_color',
-			'type'    => 'rgba_colorpicker',
+			'type'    => 'colorpicker',
 			'desc' => 'This is for the entire background of the header.',
-			//'default' => 'rgba(0,0,0,0)'
+			//'default' => 'rgba(0,0,0,0)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 
 		$cmb->add_field( array(
@@ -651,22 +672,31 @@ class Pegasus_Admin {
 		$cmb->add_field( array(
 			'name'    => __( 'Mobile Background color', 'pegasus-theme' ),
 			'id'      => 'header_three_mobile_bg_color',
-			'type'    => 'rgba_colorpicker',
+			'type'    => 'colorpicker',
 			'desc' => 'This is the background of the sidebar nav on mobile.',
-			//'default' => 'rgba(0,0,0,0)'
+			//'default' => 'rgba(0,0,0,0)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Scroll Bkg color', 'pegasus-theme' ),
 			'id'      => 'header_three_scroll_bg_color',
-			'type'    => 'rgba_colorpicker',
+			'type'    => 'colorpicker',
 			'desc' => 'The color of the background after the user has scrolled down 200 pixels.',
-			'default' => 'rgba(0,0,0,0.8)'
+			//'default' => 'rgba(0,0,0,0.8)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Scroll Nav Item Color', 'pegasus-theme' ),
 			'id'      => 'header_three_scroll_item_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(0,0,0,0)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(0,0,0,0)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 
 		/*============================
@@ -731,69 +761,102 @@ class Pegasus_Admin {
 			'name'    => __( 'Nav Background color', 'pegasus-theme' ),
 			'desc' => 'Make sure select "None" for the option above ( Boostrap Nav Utility Class ).',
 			'id'      => 'nav_bg_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(0,0,0,0)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(0,0,0,0)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		// $cmb->add_field( array(
 		// 	'name'    => __( 'Nav Background Hover color', 'pegasus-theme' ),
 		// 	//'desc' => 'Make sure select "None" for the option above ( Boostrap Nav Utility Class ).',
 		// 	'id'      => 'nav_bg_hover_color',
-		// 	'type'    => 'rgba_colorpicker',
-		// 	//'default' => 'rgba(0,0,0,0)'
+		// 	'type'    => 'colorpicker',
+		// 	//'default' => 'rgba(0,0,0,0)',
+		// 'options' => array(
+		// 		'alpha' => true,
+		// 	),
 		// ) );
 		$cmb->add_field( array(
 			'name'    => __( 'Nav Item color', 'pegasus-theme' ),
 			'id'      => 'nav_item_color',
-			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(0,0,0,0.65)'
+			'type'    => 'colorpicker',
+			'default' => 'rgba(0,0,0,0.65)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Nav Item Hover color', 'pegasus-theme' ),
 			'id'      => 'nav_item_hover_color',
-			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(0,0,0,0.45)'
+			'type'    => 'colorpicker',
+			'default' => 'rgba(0,0,0,0.45)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Nav Item Background color', 'pegasus-theme' ),
 			'id'      => 'nav_item_bkg_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => '#dedede'
+			'type'    => 'colorpicker',
+			//'default' => '#dedede',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Nav Item Background Hover color', 'pegasus-theme' ),
 			'id'      => 'nav_item_bkg_hover_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => '#dedede'
+			'type'    => 'colorpicker',
+			//'default' => '#dedede',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Sub-Menu Item color for Desktop', 'pegasus-theme' ),
 			'id'      => 'sub_nav_item_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(0,0,0,0.65)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(0,0,0,0.65)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Sub-Menu Item Hover color for Desktop', 'pegasus-theme' ),
 			'id'      => 'sub_nav_item_hover_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(0,0,0,0.45)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(0,0,0,0.45)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Sub-Menu Background color', 'pegasus-theme' ),
 			'id'      => 'sub_nav_bg_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(222,222,222,0.8)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(222,222,222,0.8)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Sub-Menu Background Hover color', 'pegasus-theme' ),
 			'id'      => 'sub_nav_bg_hover_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(222,222,222,0.6)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(222,222,222,0.6)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Active/Current Menu Item color', 'pegasus-theme' ),
 			'id'      => 'current_item_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(0,0,0,0.80)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(0,0,0,0.80)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 
 		/*============================
@@ -823,15 +886,21 @@ class Pegasus_Admin {
 			'name'    => __( 'Additional Header Background color', 'pegasus-theme' ),
 			'desc' => 'This shows by default when no header option is selected on the backend of a page. You must select short or large header on the page options to disable this.',
 			'id'      => 'global_add_header_bg_color',
-			'type'    => 'rgba_colorpicker',
-			//'default' => 'rgba(0,0,0,0)'
+			'type'    => 'colorpicker',
+			//'default' => 'rgba(0,0,0,0)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Overlay color', 'pegasus-theme' ),
 			//'desc' => '',
 			'id'      => 'global_add_header_overlay_color',
-			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(48, 53, 67, 1)'
+			'type'    => 'colorpicker',
+			'default' => 'rgba(48, 53, 67, 1)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name' => 'Overlay Opacity',
@@ -949,8 +1018,11 @@ class Pegasus_Admin {
 			'name'    => __( 'Header Content color', 'pegasus-theme' ),
 			//'desc' => '',
 			'id'      => 'global_page_header_wysiwyg_color',
-			'type'    => 'rgba_colorpicker',
-			'default' => '#fff'
+			'type'    => 'colorpicker',
+			'default' => '#fff',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 
 
@@ -973,20 +1045,29 @@ class Pegasus_Admin {
 		$cmb->add_field( array(
 			'name'    => __( 'Footer Text color', 'pegasus-theme' ),
 			'id'      => 'footer_text_color',
-			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(0,0,0,0.8)'
+			'type'    => 'colorpicker',
+			'default' => 'rgba(0,0,0,0.8)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Footer Bkg color', 'pegasus-theme' ),
 			'id'      => 'footer_bkg_color',
-			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(0,0,0,0.02)'
+			'type'    => 'colorpicker',
+			'default' => 'rgba(0,0,0,0.02)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name'    => __( 'Bottom Footer Background color', 'pegasus-theme' ),
 			'id'      => 'bottom_footer_bg_color',
-			'type'    => 'rgba_colorpicker',
-			'default' => 'rgba(0,0,0,0.04)'
+			'type'    => 'colorpicker',
+			'default' => 'rgba(0,0,0,0.04)',
+			'options' => array(
+				'alpha' => true,
+			),
 		) );
 		$cmb->add_field( array(
 			'name' => 'Fullwidth Bottom Bar',

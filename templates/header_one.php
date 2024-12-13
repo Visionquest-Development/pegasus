@@ -28,7 +28,7 @@
 
 	$logo = pegasus_get_option( 'logo' );
 	$centerLogo = ( 'on' === pegasus_get_option( 'logo_centered' ) ) ? 'center' : '';
-	$nav_menu_justify_check = ( 'on' === pegasus_get_option( 'nav_justify' ) ) ? 'justify-content-md-center' : '';
+	$nav_menu_justify_check = ( 'on' === pegasus_get_option( 'nav_justify' ) ) ? 'mx-auto' : '';
 	if ( 'justify-content-md-center' === $nav_menu_justify_check ) {
 		$right_align_nav_items = 'ms-auto';
 	}

@@ -34,7 +34,7 @@
 
 		$logo = pegasus_get_option( 'logo' );
 		$centerLogo = ( 'on' === pegasus_get_option( 'logo_centered' ) ) ? 'center' : '';
-		$nav_menu_justify_check = ( 'on' === pegasus_get_option( 'nav_justify' ) ) ? 'justify-content-md-center' : '';
+		$nav_menu_justify_check = ( 'on' === pegasus_get_option( 'nav_justify' ) ) ? 'mx-auto' : '';
 		$moremenuchk = pegasus_get_option( 'header_more_chk' );
 		$woo_check =  pegasus_get_option( 'woo_chk' );
 		$nav_social_check =  pegasus_get_option( 'nav_social_chk' );
@@ -95,7 +95,7 @@
 							<div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
 
 								<?php
-									$classes_for_nav_menu2 = ' navbar-nav mr-auto pegasus-mobile-nav ';
+									$classes_for_nav_menu2 = ' navbar-nav ms-auto ' . $nav_menu_justify_check . ' pegasus-mobile-nav ';
 									//$final_menu2 = ;
 									echo pegasus_get_menu( 'primary', $classes_for_nav_menu2, 4, $fallback_menu );
 								?>

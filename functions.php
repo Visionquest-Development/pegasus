@@ -70,23 +70,32 @@
 				'required'  => false,
 			),
 
+			//CMB2 Colorpicker
+			// array(
+			// 	'name'      => 'WP-Colorpicker-alpha',
+			// 	'slug'      => 'WP_ColorPicker_Alpha',
+			// 	'source'    => 'https://github.com/kallookoo/wp-color-picker-alpha/archive/master.zip',
+			// 	'required'  => true,
+			// 	'force_activation'   => true,
+			// ),
+
 			// CMB2 Colorpicker
-			array(
-				'name'      => 'CMB2 RGBa Colorpicker',
-				'slug'      => 'CMB2_RGBa_Picker-master',
-				'source'    => 'https://github.com/JayWood/CMB2_RGBa_Picker/archive/master.zip',
-				'required'  => true,
-				'force_activation'   => true,
-			),
+			// array(
+			// 	'name'      => 'CMB2 RGBa Colorpicker',
+			// 	'slug'      => 'CMB2_RGBa_Picker-master',
+			// 	'source'    => 'https://github.com/JayWood/CMB2_RGBa_Picker/archive/master.zip',
+			// 	'required'  => true,
+			// 	'force_activation'   => true,
+			// ),
 
 			// CMB2 Conditionals
-			array(
-				'name'      => 'CMB2 Conditionals',
-				'slug'      => 'cmb2-conditionals',
-				'source'    => 'https://github.com/jcchavezs/cmb2-conditionals/archive/master.zip',
-				'required'  => true,
-				'force_activation'   => true,
-			),
+			// array(
+			// 	'name'      => 'CMB2 Conditionals',
+			// 	'slug'      => 'cmb2-conditionals',
+			// 	'source'    => 'https://github.com/jcchavezs/cmb2-conditionals/archive/master.zip',
+			// 	'required'  => true,
+			// 	'force_activation'   => true,
+			// ),
 
 			// Page Builder from SiteOrgin
 			array(
@@ -776,7 +785,41 @@
 		// if ( $hook !== 'pegasus-plugins-slug' ) {
 		// 	return;
 		// }
+
 		wp_enqueue_script('clipboard-js', 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js', [], '2.0.11', true);
+
+		// wp_enqueue_style( 'wp-color-picker' );
+		// $url_to_script = get_template_directory_uri() . '/admin/wp-color-picker-alpha.min.js';
+		// wp_register_script( 'wp-color-picker-alpha', $url_to_script, array( 'wp-color-picker' ), '', true );
+
+		// wp_add_inline_script(
+		// 	'wp-color-picker-alpha',
+		// 	'jQuery( function() { jQuery( ".color-picker" ).wpColorPicker(); } );'
+		// );
+
+		//wp_enqueue_script( 'wp-color-picker-alpha' );
+
+		/*
+		if ( is_admin() ) {
+			add_action( 'wp_default_scripts', 'wpmm_custom_scripts' );
+
+			function wpmm_custom_scripts( $scripts ) {
+				$scripts->add( 'wp-color-picker', "/wp-admin/js/color-picker-suffix.js", array( 'iris' ), false, 1 );
+
+				if ( did_action( 'init' ) ) {
+					$scripts->localize( 'wp-color-picker', 'wpColorPickerL10n', array(
+						'clear'            => __( 'Clear' ),
+						'clearAriaLabel'   => __( 'Clear color' ),
+						'defaultString'    => __( 'Default' ),
+						'defaultAriaLabel' => __( 'Select default color' ),
+						'pick'             => __( 'Select Color' ),
+						'defaultLabel'     => __( 'Color value' ),
+					));
+				}
+			}
+		} //end if
+		*/
+
 	}
 	add_action('admin_enqueue_scripts', 'pegasus_admin_scripts');
 

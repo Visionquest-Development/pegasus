@@ -1,5 +1,28 @@
 <?php
+
+add_action('after_setup_theme', 'override_wp_bootstrap_hooks', 20);
+
+function override_wp_bootstrap_hooks() {
+    // Call the wp_bootstrap_hooks function with the desired arguments, excluding 'forms'
+    wp_bootstrap_hooks(
+        //'content',
+        'functions',
+        'comments',
+        'blocks',
+		'forms',
+        'gallery',
+        'navigation',
+        'pagination',
+        'widgets',
+        'header',
+        'taxonomies',
+        'thumbnails',
+        'theme'
+    );
+}
+
 $bootstrap_config = array(
+
 		// Buttons
 		'button_class' => 'btn btn-%1$s',
 		'button_outline_class' => 'btn btn-outline-%1$s',
