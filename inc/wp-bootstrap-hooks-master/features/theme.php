@@ -12,7 +12,7 @@ function _bootstrap_is_block_editor() {
 	if (!function_exists('get_current_screen')) {
 		return false;
 	}
-	
+
 	$current_screen = get_current_screen();
 
 	if ( $current_screen && method_exists($current_screen, 'is_block_editor') && $current_screen->is_block_editor() ) {
@@ -22,7 +22,7 @@ function _bootstrap_is_block_editor() {
 	return false;
 }
 
- 
+
  /**
 * Add color styling from settings
 * Inserted with an enqueued CSS file
@@ -30,14 +30,14 @@ function _bootstrap_is_block_editor() {
 
 function _bootstrap_get_theme_json() {
 	$merged_data = \WP_Theme_JSON_Resolver::get_merged_data();
-	
+
 	if (!method_exists($merged_data, 'get_data')) {
 		return [];
 	}
 
 	$theme_json = $merged_data->get_data();
 	$default_theme_json = json_decode(file_get_contents(ABSPATH . WPINC . '/theme.json'), true);
-	
+
 	$theme_json = array_merge(
 		$default_theme_json,
 		$theme_json,
@@ -134,7 +134,7 @@ function _bootstrap_get_preset_resolver($theme_json) {
 function _bootstrap_presets_css_action() {
 	$is_editor = isset($_GET['is_editor']) ? stripslashes($_GET['is_editor']) == 1 : false;
 	$body_selector = $is_editor ? '.editor-styles-wrapper' : 'body';
-	
+
 	$theme_json = _bootstrap_get_theme_json();
 	$resolve_preset = _bootstrap_get_preset_resolver($theme_json);
 
@@ -167,7 +167,7 @@ function _bootstrap_presets_css_action() {
 
 	// 	if ($key === 'core/navigation') {
 	// 		$selector = '.navbar';
-			
+
 	// 		$x = query_object($block, 'spacing.padding.left');
 	// 		$y = query_object($block, 'spacing.padding.top');
 
@@ -184,7 +184,7 @@ function _bootstrap_presets_css_action() {
 	// 			'--bs-navbar-nav-link-padding-y' => $ly,
 	// 		];
 	// 	}
-		
+
 	// 	return $acc;
 	// }, []);
 	$block_css = [];
@@ -320,14 +320,14 @@ add_action( 'enqueue_block_assets', function() {
 	if (_bootstrap_is_block_editor()) {
 		$url = add_query_arg('action', 'bootstrap_presets_css', admin_url( 'admin-ajax.php' ));
 		$url = add_query_arg('is_editor', '1', $url);
-	
+
 		wp_register_style('bootstrap-presets', $url);
 		wp_enqueue_style('bootstrap-presets');
 
     wp_enqueue_script( 'bootstrap-editor',  plugin_dir_url( dirname(__FILE__) ) . '/assets/editor.js' );
 	}
 });
-
+/*
 function _bootstrap_filter_body_html($buffer) {
   $theme_json = _bootstrap_get_theme_json();
   $resolve_preset = _bootstrap_get_preset_resolver($theme_json);
@@ -356,6 +356,7 @@ function _bootstrap_filter_body_html($buffer) {
   return $buffer;
 }
 
+
 ob_start();
 
 add_action('shutdown', function() {
@@ -368,7 +369,7 @@ add_action('shutdown', function() {
 
     echo _bootstrap_filter_body_html($final);
 }, 0);
-
+*/
 add_action( 'wp_enqueue_scripts', function() {
   wp_enqueue_style(
     'bootstrap-global-styles',
