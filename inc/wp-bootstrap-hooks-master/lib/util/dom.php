@@ -52,7 +52,7 @@ function _stringify_style($styles) {
   $styles = array_filter($styles, function($value, $key) {
     return $key;
   }, ARRAY_FILTER_USE_BOTH);
-
+  
   return implode(';', array_map(function($key, $value) {
     return trim($key) . ': ' . trim($value);
   }, array_keys($styles), array_values($styles)));
@@ -97,18 +97,16 @@ function _stringify_class($classes) {
   return implode(' ', array_unique($classes));
 }
 
-function has_class($element, $pattern) {
-	if ( $element && null !== $element ) {
-		if ( 1 !== $element->nodeType ) {
-			return;
-		}
-	} else {
-		return;
-	}
+function has_class($element, ...$patterns) {
+  if (!$element || $element->nodeType !== 1) {
+    return;
+  }
 
   $classes = _parse_class($element->getAttribute('class'));
-  $classes = array_filter($classes, function($class) use ($pattern) {
-    return $class === $pattern || @preg_match($pattern, $class);
+  $classes = array_filter($classes, function($class) use ($patterns) {
+    return array_reduce($patterns, function($result, $pattern) use ($class) {
+      return $result || $class === $pattern || @preg_match($pattern, $class);
+    }, false);
   });
 
   return count($classes) > 0;
@@ -126,7 +124,7 @@ function add_class($element, $class) {
   } else {
     $classes[] = $class;
   }
-
+  
   $element->setAttribute('class', _stringify_class($classes));
 }
 
@@ -182,7 +180,7 @@ function find_all_by_class($element, ...$classes) {
     $items = $xpath->query(".//*[contains(concat(' ', normalize-space(@class), ' '), ' " . $class . " ')]", $element);
     $result = array_merge($result, iterator_to_array($items));
   }
-
+  
   return $result;
 }
 
@@ -300,12 +298,12 @@ function inner_root($root) {
       if ($p !== null) {
         $inner_root = $element;
       }
-
+      
       $p = $element;
     } else {
       break;
     }
-
+    
   }
 
   return $inner_root;
@@ -314,7 +312,7 @@ function inner_root($root) {
 function append_html($parent, $source) {
   $tmpDoc = new \DOMDocument();
   $tmpDoc->loadHTML($source);
-
+  
   foreach ($tmpDoc->getElementsByTagName('body')->item(0)->childNodes as $node) {
     $node = $parent->ownerDocument->importNode($node, true);
     $parent->appendChild($node);
@@ -331,7 +329,6 @@ function wrap_element($element, $tag_name) {
   return $wrapper_element;
 }
 
-
 function get_inner_html($element) {
   $innerHTML = '';
   foreach ($element->childNodes as $child) {
@@ -342,4 +339,18 @@ function get_inner_html($element) {
 
 function get_outer_html($element) {
   return $element->ownerDocument->saveHTML($element);
+}
+
+function remove_text_nodes($element) {
+  // Get all child nodes as an array (static snapshot)
+  $childNodes = iterator_to_array($element->childNodes);
+
+  // Iterate over the child nodes
+  foreach ($childNodes as $node) {
+
+      // Only remove text nodes (nodeType 3)
+      if ($node->nodeType === 3) {
+          $element->removeChild($node);  // Remove the text node
+      }
+  }
 }
