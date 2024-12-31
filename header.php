@@ -49,7 +49,7 @@
 
 		$home_url = esc_url( home_url( '/' ) ) ? esc_url( home_url( '/' ) ) : '#';
 		$fallback_menu = '<ul id="" class="navbar-nav"><li class="nav-item active current-menu-item"><a class="nav-link" href="' . $home_url . '">Home <span class="sr-only">(current)</span></a></li></ul>';
-		$final_menu = pegasus_get_menu( 'primary', 'navbar-nav primary-navigation-bar', 3, $fallback_menu );
+		//$final_menu = pegasus_get_menu( 'primary', 'navbar-nav primary-navigation-bar', 3, $fallback_menu );
 
 		$logo = pegasus_get_option( 'logo' );
 		$centerLogo = ( 'on' === pegasus_get_option( 'logo_centered' ) ) ? 'center' : '';
@@ -67,12 +67,12 @@
 			<?php  if( 'on' === $page_loader_choice ) { ?>
 				<div class="page-loader">
 					<img src="<?php echo get_template_directory_uri(); ?>/images/loader.gif" alt="">
-				</div> 
+				</div>
 			<?php }  ?>
 			<div class="mainbar">
 
 				<?php
-					if ( 'sticky-top' !== $sticky_header_choice ) :
+					if ( 'sticky-top' !== $sticky_header_choice ) {
 				?>
 					<header>
 						<?php
@@ -100,51 +100,18 @@
 						<!-- end .header -->
 					</header>
 				<?php
-					else:
-				?>
-					<?php
+					} else {
+					/* if not a normal header, then
+					====================STICKY HEADER =========================*/
+
 					if( 'on' === $top_header_choice ) {
 						get_template_part( 'templates/top_bar', 'header' );
 					}
-					?>
-					<nav class="navbar <?php echo $bootstrap_navbar_expand_class; ?> the-default-nav <?php echo $bootstrap_color_scheme; ?> <?php echo $bootstrap_color_utility; ?> sticky-top" role="navigation">
-						<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) & 'container' !== $header_container_check ) : ?>
-						<div class="<?php echo $final_inner_container_class; ?>">
-							<?php endif; ?>
-							<a class="navbar-brand <?php echo $centerLogo; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-								<?php bloginfo( 'name' ); ?>
-							</a>
-							<!-- Brand and toggle get grouped for better mobile display -->
-							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1"  aria-label="Toggle navigation">
-								<span class="navbar-toggler-icon"></span>
-							</button>
-							<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="bs-example-navbar-collapse-1">
-								<?php
-								echo $final_menu;
 
-								if( 'on' === $moremenuchk ) {
-									get_template_part( 'templates/more_menu', 'header' );
-								}
-
-								if ( 'on' === $woo_check ) {
-									if ( class_exists( 'WooCommerce' ) ) {
-										// code that requires WooCommerce
-										get_template_part( 'templates/header_cart', 'header' );
-									} else {
-										// you don't appear to have WooCommerce activated
-										echo '<div class="woo-error navbar-right">Enable WooCommerce</div>';
-									}
-								}
-								if( 'on' === $top_social_check ){
-									get_template_part( 'templates/social_icons', 'header' );
-								}
-								?>
-							</div>
-							<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) ) : ?>
-						</div ><!-- container-->
-					<?php endif; ?>
-					</nav>
-				<?php endif; ?>
+					get_template_part( 'templates/sticky_header', 'header' );
+					/* ===================END STICKY HEADER =====================*/
+					} //end if sticky header
+				?>
 
 				<?php
 
@@ -164,7 +131,14 @@
 					<?php }
 				?>
 
-				<?php get_template_part( 'templates/additional_header' ); ?>
+				<?php
+					$header_choice =  pegasus_get_option( 'header_select' );
+					//var_dump($header_choice);
+					if ( 'header-three' !== $header_choice && 'header-four' !== $header_choice ) {
+						get_template_part( 'templates/additional_header', 'header' );
+					}
+					//get_template_part( 'templates/additional_header', 'header' );
+				?>
 
 			 	<?php
 					$breadcrumbs_check =  pegasus_get_option( 'bread_chk' );

@@ -25,9 +25,8 @@
 		case "space":
 			?>
 				<div class="noheader-spacer"></div>
-			<?php 
+			<?php
 			break;
-			
 		case "sml-header":
 			/*========= SMALL HEADER ==========*/
 			?>
@@ -43,7 +42,6 @@
 			</section>
 			<?php
 			break;
-			
 		case "lrg-header":
 			/*==================================
 			============ LARGE HEADER ==========
@@ -55,7 +53,7 @@
 					<?php echo $the_header_content; ?>
 				</div>
 			</section>
-			<?php 
+			<?php
 			break;
 	}
 ?>
