@@ -1158,3 +1158,129 @@
 
 	include_once( 'theme/pegasus_plugins_suite_admin_menu.php' );
 
+	function pegasus_settings_table($atts) {
+
+		$atts = shortcode_atts(
+			array(
+				'plugin_slug' => '', // Default to an empty string
+			),
+			$atts,
+			'pegasus_settings_table'
+		);
+
+		// Get the plugin slug from the shortcode attributes
+		$plugin_slug = $atts['plugin_slug'];
+
+		// Check if the plugin slug is in the allowed array
+		$allowed_plugins = array(
+			'pegasus-blog',
+			'pegasus-callout',
+			'pegasus-carousel',
+			'pegasus-countup',
+			'pegasus-circle-progress',
+			'pegasus-masonry',
+			'pegasus-navmenu',
+			'pegasus-onepage',
+			'pegasus-packery',
+			'pegasus-popup',
+			'pegasus-posts-filter',
+			'pegasus-post-grid',
+			'pegasus-slider',
+			'pegasus-tabs',
+			'pegasus-toggleslide',
+			'pegasus-wow'
+		);
+
+		if (!in_array($plugin_slug, $allowed_plugins)) {
+			return '<p style="color: red;">Error: Invalid plugin slug provided.</p>';
+		}
+
+		// Load the settings.json file from the specified plugin
+		$file_path = plugins_url() . '/'. $plugin_slug . '/settings.json';
+		// echo '<pre>';
+		// var_dump( $file_path ); //plugins_url
+		// echo '</pre>';
+		// if (!file_exists($file_path)) {
+		// 	return '<p style="color: red;">Error: settings.json file not found for the specified plugin.</p>';
+		// }
+
+		$data = json_decode(file_get_contents($file_path), true);
+
+		if (json_last_error() !== JSON_ERROR_NONE) {
+			return '<p style="color: red;">Error: Invalid JSON provided.</p>';
+		}
+
+		// Start building the HTML
+		$html = '<table border="0" cellpadding="1" class="table pegasus-table" align="left">
+		<thead>
+		<tr>
+		<td><span><strong>Name</strong></span></td>
+		<td><span><strong>Attribute</strong></span></td>
+		<td><span><strong>Options</strong></span></td>
+		<td><span><strong>Description</strong></span></td>
+		<td><span><strong>Example</strong></span></td>
+		</tr>
+		</thead>
+		<tbody>';
+
+		// Iterate over the data to populate rows
+		if (!empty($data['rows'])) {
+			foreach ($data['rows'] as $section) {
+				if ( "pegasus-carousel" !== $plugin_slug ) {
+					// Add section header
+					$html .= '<tr >';
+						$html .= '<td colspan="5">';
+							$html .= '<span>';
+								$html .= '<strong>' . htmlspecialchars($section['section_name']) . '</strong>';
+							$html .= '</span>';
+						$html .= '</td>';
+					$html .= '</tr>';
+				}
+
+				if ( "pegasus-carousel" === $plugin_slug || "pegasus-slider" === $plugin_slug || "pegasus-post-grid" === $plugin_slug ) {
+					// Iterate over each setting group within the section
+					foreach ($section as $key => $settings) {
+						if ($key !== 'section_name') {
+							// Add group header
+							$html .= '<tr>';
+							$html .= '<td colspan="5">';
+							$html .= '<span>';
+							$html .= '<strong>' . htmlspecialchars(ucwords(str_replace('_', ' ', $key))) . '</strong>';
+							$html .= '</span>';
+							$html .= '</td>';
+							$html .= '</tr>';
+
+							// Add rows in the group
+							foreach ($settings as $row) {
+								$html .= '<tr>
+									<td>' . htmlspecialchars($row['name']) . '</td>
+									<td>' . htmlspecialchars($row['attribute']) . '</td>
+									<td>' . nl2br(htmlspecialchars($row['options'])) . '</td>
+									<td>' . nl2br(htmlspecialchars($row['description'])) . '</td>
+									<td><code>' . htmlspecialchars($row['example']) . '</code></td>
+								</tr>';
+							}
+						}
+					} //end foreach
+				} else {
+					// Add rows in the section
+					foreach ($section['rows'] as $row) {
+						$html .= '<tr>
+							<td >' . htmlspecialchars($row['name']) . '</td>
+							<td >' . htmlspecialchars($row['attribute']) . '</td>
+							<td >' . nl2br(htmlspecialchars($row['options'])) . '</td>
+							<td >' . nl2br(htmlspecialchars($row['description'])) . '</td>
+							<td ><code>' . htmlspecialchars($row['example']) . '</code></td>
+						</tr>';
+					}
+				} //end if carousel or slider
+
+			} //end foreach for section in json
+		} //end if
+
+		$html .= '</tbody></table>';
+
+		// Return the generated HTML
+		return $html;
+	}
+	add_shortcode('pegasus_settings_table', 'pegasus_settings_table');
