@@ -112,13 +112,13 @@
     margin: 0 20px 20px 0;
   }
 
-	#pegasus_option_metabox .pegasus-wrap pre {
+	.pegasus-wrap pre {
 		overflow: auto;
 		font-family: monospace, monospace;
 		font-size: 1em;
 		display: block;
 		padding: 9.5px;
-		margin: 0 0 10px;
+		margin: 40px 20px 20px 0;
 		line-height: 1.42857143;
 		color: #333;
 		word-break: break-all;
@@ -128,13 +128,13 @@
 		border-radius: 4px;
 	}
 
-	#pegasus_option_metabox .pegasus-wrap pre,
-	#pegasus_option_metabox .pegasus-wrap blockquote {
+	.pegasus-wrap pre,
+	.pegasus-wrap blockquote {
 		border: 1px solid #999;
 		page-break-inside: avoid;
 	}
 
-	#pegasus_option_metabox .pegasus-wrap pre code {
+	.pegasus-wrap pre code {
 		padding: 0;
 		font-size: inherit;
 		color: inherit;
@@ -142,6 +142,10 @@
 		background-color: transparent;
 		border-radius: 0;
 	}
+
+  .pegasus-wrap input[type="text"].code {
+    margin-bottom: 20px;
+  }
 
   #pegasus_option_metabox .red-text {
     color: red;
@@ -156,7 +160,7 @@
     margin: 1px 10px 5px 0 !important;
     display: inline;
   }
-
+/*
   #pegasus_option_metabox #footer_copy_textareacode,
   #pegasus_option_metabox #custom_css_textareacode,
   #pegasus_option_metabox #custom_top_textareacode,
@@ -166,9 +170,42 @@
 
   .CodeMirror-code {
     color: black !important;
-  }
+  } */
 
   .js .tmce-active .wp-editor-area { color: black; }
 
   #setting-error-tgmpa { display: none; }
 
+
+
+  table.pegasus-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table.pegasus-table th {
+    background-color: #f1f1f1;
+    text-align: left;
+  }
+
+  table.pegasus-table th,
+  table.pegasus-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  table.pegasus-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  table.pegasus-table thead tr { background-color: #282828; }
+
+  table.pegasus-table thead tr td { padding: 10px; }
+
+  table.pegasus-table thead tr td strong { color: white; }
+
+  table.pegasus-table tbody tr:nth-child(0) { background-color: #cccccc; }
+
+  table.pegasus-table tbody tr td { padding: 10px; }
+
+  table.pegasus-table code { color: #d63384;}
