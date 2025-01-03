@@ -1,15 +1,14 @@
 
-
 jQuery(document).ready( function($) {
 
 	var pegasusSettingsForm = jQuery('#cmb2-metabox-pegasus_option_metabox');
-	
+
 	var newHTML = [];
 
 	var classArr = [];
-	
+
 	var optionsContainer;
-	
+
 	var toggleContainer;
 
 	var count = 1;
@@ -17,8 +16,8 @@ jQuery(document).ready( function($) {
 	$( pegasusSettingsForm ).children().each(function( index ) {
 
 		classArr = $( this ).attr("class").split(' ');
-		if ( '1' == jQuery.inArray( "cmb-type-title", classArr ) ) { 
-			
+		if ( '1' == jQuery.inArray( "cmb-type-title", classArr ) ) {
+
 			toggleContainer = $('<div class="pegasus-parent-' + count + '">');
 
 			optionsContainer = $('<div class="pegasus-options-toggle-content-' + count + '">');
@@ -29,76 +28,40 @@ jQuery(document).ready( function($) {
 
 			$(this).addClass("pegasus-toggle");
 			count++;
-			
+
 		}else{
-			$( optionsContainer ).append(this);	
-		} 
+			$( optionsContainer ).append(this);
+		}
 
 	});
 
+  jQuery('[class^="pegasus-parent-"]').find('.pegasus-toggle').on("click", function (event) {
+    // Find the parent number dynamically
+    const parentClass = $(this).closest('[class^="pegasus-parent-"]').attr('class');
+    const parentNumber = parentClass.match(/pegasus-parent-(\d+)/)[1];
+
+    // Toggle the corresponding content and button active state
+    $(`.pegasus-options-toggle-content-${parentNumber}`).slideToggle();
+    $(this).toggleClass('active');
+    $('.CodeMirror').each(function(i, el){
+      el.CodeMirror.refresh();
+    });
+    event.preventDefault();
+  });
 
 
+
+/*
 	jQuery('.pegasus-parent-1 .pegasus-toggle').on("click", function(event){
-		//first open the container with the social stuff 
+		//first open the container with the social stuff
 		$('.pegasus-options-toggle-content-1' ).slideToggle();
 		// Then add a class to the button to give it a hover
 		$('.pegasus-parent-1 .pegasus-toggle' ).toggleClass('active');
 		event.preventDefault();
-	}); 
-
-	jQuery('.pegasus-parent-2 .pegasus-toggle').on("click", function(event){
-		$('.pegasus-options-toggle-content-2' ).slideToggle();
-		$('.pegasus-parent-2 .pegasus-toggle' ).toggleClass('active');
-		event.preventDefault();
-	}); 
-
-	jQuery('.pegasus-parent-3 .pegasus-toggle').on("click", function(event){
-		$('.pegasus-options-toggle-content-3' ).slideToggle();
-		$('.pegasus-parent-3 .pegasus-toggle' ).toggleClass('active');
-		event.preventDefault();
-	}); 
-
-	jQuery('.pegasus-parent-4 .pegasus-toggle').on("click", function(event){
-		$('.pegasus-options-toggle-content-4' ).slideToggle();
-		$('.pegasus-parent-4 .pegasus-toggle' ).toggleClass('active');
-		event.preventDefault();
-	}); 
-
-	jQuery('.pegasus-parent-5 .pegasus-toggle').on("click", function(event){
-		$('.pegasus-options-toggle-content-5' ).slideToggle();
-		$('.pegasus-parent-5 .pegasus-toggle' ).toggleClass('active');
-		event.preventDefault();
-	}); 
-
-	jQuery('.pegasus-parent-6 .pegasus-toggle').on("click", function(event){
-		$('.pegasus-options-toggle-content-6' ).slideToggle();
-		$('.pegasus-parent-6 .pegasus-toggle' ).toggleClass('active');
-		event.preventDefault();
-	}); 
-
-	jQuery('.pegasus-parent-7 .pegasus-toggle').on("click", function(event){
-		$('.pegasus-options-toggle-content-7' ).slideToggle();
-		$('.pegasus-parent-7 .pegasus-toggle' ).toggleClass('active');
-		event.preventDefault();
-	}); 
-
-	jQuery('.pegasus-parent-8 .pegasus-toggle').on("click", function(event){
-		$('.pegasus-options-toggle-content-8' ).slideToggle();
-		$('.pegasus-parent-8 .pegasus-toggle' ).toggleClass('active');
-		event.preventDefault();
-	}); 
-
-	jQuery('.pegasus-parent-9 .pegasus-toggle').on("click", function(event){
-		$('.pegasus-options-toggle-content-9' ).slideToggle();
-		$('.pegasus-parent-9 .pegasus-toggle' ).toggleClass('active');
-		event.preventDefault();
 	});
 
-    jQuery('.pegasus-parent-10 .pegasus-toggle').on("click", function(event){
-        $('.pegasus-options-toggle-content-10' ).slideToggle();
-        $('.pegasus-parent-10 .pegasus-toggle' ).toggleClass('active');
-        event.preventDefault();
-    });
+  ...............
+*/
 
 
     /*============================
@@ -134,7 +97,7 @@ jQuery(document).ready( function($) {
 
 	/* SDECOND CHECK */
 	// Add onclick handler to checkbox w/id checkme
-   	jQuery("#woo_chk").click(function(){
+   	jQuery("#woo_chk").on('click', function(){
 		// If checked
 		if (jQuery("#woo_chk").is(":checked")) {
 			//show the hidden div
@@ -157,19 +120,17 @@ jQuery(document).ready( function($) {
 	function hideTopBarFields() {
 		jQuery('.cmb2-id-top-header-title').hide();
 		jQuery('.cmb2-id-top-bar-bkg-color').hide();
-	    jQuery('.cmb2-id-top-bar-font-color').hide();
-        jQuery('.cmb2-id-toparea-code').hide();
-        jQuery('.cmb2-id-top-social-chk').hide();
-        
+	  jQuery('.cmb2-id-top-bar-font-color').hide();
+    jQuery('.cmb2-id-toparea-code').hide();
+    jQuery('.cmb2-id-top-social-chk').hide();
 	}
 
 	function showTopBarFields() {
 		jQuery('.cmb2-id-top-header-title').show();
 		jQuery('.cmb2-id-top-bar-bkg-color').show();
-	    jQuery('.cmb2-id-top-bar-font-color').show();
-        jQuery('.cmb2-id-toparea-code').show();
-        jQuery('.cmb2-id-top-social-chk').show();
-       
+    jQuery('.cmb2-id-top-bar-font-color').show();
+    jQuery('.cmb2-id-toparea-code').show();
+    jQuery('.cmb2-id-top-social-chk').show();
 	}
 
 	/* FIRST CHECK */
@@ -183,7 +144,7 @@ jQuery(document).ready( function($) {
 
 	/* SDECOND CHECK */
 	// Add onclick handler to checkbox w/id checkme
-   	jQuery("#top_header_chk").click(function(){
+  jQuery("#top_header_chk").on('click', function(){
 		// If checked
 		if (jQuery("#top_header_chk").is(":checked")) {
 			//show the hidden div
@@ -192,7 +153,7 @@ jQuery(document).ready( function($) {
 			//otherwise, hide it
 			hideTopBarFields();
 		}
-  	});
+  });
 
   	/*=============END===============*/
 
@@ -202,7 +163,7 @@ jQuery(document).ready( function($) {
 		HEADER ONE AND TWO CHECKBOX
 	=================================*/
 
-	
+
     /*if( jQuery('#header_select').val() == 'header-one' || jQuery('#header_select').val() == 'header-two') {
         jQuery('.cmb2-id-header-one-title').show();
         jQuery('.cmb2-id-logo-centered').show();
@@ -211,45 +172,45 @@ jQuery(document).ready( function($) {
     }
 
 
-    jQuery('#header_select').bind('change', function (e) { 
+    jQuery('#header_select').bind('change', function (e) {
         if( jQuery('#header_select').val() == 'header-one' || jQuery('#header_select').val() == 'header-two' ) {
             jQuery('.cmb2-id-header-one-title').show();
         	jQuery('.cmb2-id-logo-centered').show();
         	jQuery('.cmb2-id-nav-social-chk').show();
-        	jQuery('.cmb2-id-header-one-fixed-checkbox').show();            
+        	jQuery('.cmb2-id-header-one-fixed-checkbox').show();
         } else{
            	jQuery('.cmb2-id-header-one-title').hide();
         	jQuery('.cmb2-id-logo-centered').hide();
         	jQuery('.cmb2-id-nav-social-chk').hide();
         	jQuery('.cmb2-id-header-one-fixed-checkbox').hide();
-        }         
-    });*/
-	
-
-    /* fixes for save button */
-    $('#pegasus_option_metabox input[type="submit"]').wrap('<div class="pegasus-save-btn-container"></div>');
-
-
-    $('#pegasus_option_metabox input[type="submit"]').on("click", function () {
-        console.log( "save init" );
-
-        $('.cmb-type-title').each( function ( index, value ) {
-            if ( $( this ).hasClass('active') ) {
-                jQuery.cookie( 'option_' + index + '_is_active', 'true', { expires: 7, path: '/' });
-            } else {
-                jQuery.cookie( 'option_' + index + '_is_active', 'false', { expires: 7, path: '/' });
-            }
-
-        });
-
-    });
-
-    $('.cmb-type-title').each( function( index, value ) {
-        if ( 'true' === jQuery.cookie( 'option_' + index + '_is_active' ) ) {
-            $('.pegasus-parent-' + parseInt( index + 1 ) + ' .pegasus-toggle' ).addClass('active');
-            $('.pegasus-options-toggle-content-' + parseInt( index + 1 ) ).show();
         }
+    });*/
+
+
+/* fixes for save button */
+$('#pegasus_option_metabox input[type="submit"]').wrap('<div class="pegasus-save-btn-container"></div>');
+
+
+$('#pegasus_option_metabox input[type="submit"]').on("click", function () {
+    //console.log( "save init" );
+
+    $('.cmb-type-title').each( function ( index, value ) {
+        if ( $( this ).hasClass('active') ) {
+            jQuery.cookie( 'option_' + index + '_is_active', 'true', { expires: 7, path: '/' });
+        } else {
+            jQuery.cookie( 'option_' + index + '_is_active', 'false', { expires: 7, path: '/' });
+        }
+
     });
+
+});
+
+$('.cmb-type-title').each( function( index, value ) {
+    if ( 'true' === jQuery.cookie( 'option_' + index + '_is_active' ) ) {
+        $('.pegasus-parent-' + parseInt( index + 1 ) + ' .pegasus-toggle' ).addClass('active');
+        $('.pegasus-options-toggle-content-' + parseInt( index + 1 ) ).show();
+    }
+});
 
 
 
@@ -337,3 +298,11 @@ jQuery(document).ready( function($) {
 
 })(jQuery);
 */
+
+
+
+jQuery(window).on('load', function($) {
+
+  jQuery( 'input[type="button"].wp-picker-clear').prop( 'value', 'Clear' );
+
+});

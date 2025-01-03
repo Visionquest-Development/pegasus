@@ -1,10 +1,10 @@
 <?php
-/* 
+/*
 	Template Name: No Sidebar Template
 */
 ?>
 	<?php get_header(); ?>
-	
+
 	<div id="page-wrap">
 		<?php
 			//full container page options
@@ -45,12 +45,12 @@
 				$final_page_header_option = 'off';
 			}
 		?>
-		
+
 		<div class="<?php echo $final_container_class; ?>">
 		<!-- Example row of columns -->
 			<div class="">
-		
-				<div class="inner-content">	
+
+				<div class="inner-content">
 					<div class="content-no-sidebar">
 						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 							<?php if( 'off' === $final_page_header_option ) { ?>
@@ -68,9 +68,9 @@
 							<?php }else{ ?>
 								<div class="page-header-spacer"></div>
 							<?php } ?>
-							
+
 							<?php the_content(); ?>
-						
+
 						<?php endwhile; else: ?>
 							<?php /* kinda a 404 of sorts when not working */ ?>
 							<div class="page-header">
@@ -78,6 +78,27 @@
 							</div>
 							<p>No content is appearing for this page!</p>
 						<?php endif; ?>
+						<?php
+							if ( function_exists( 'wp_bootstrap_edit_post_link' ) ) {
+								// Edit post link
+								wp_bootstrap_edit_post_link(
+									sprintf(
+										/* translators: %s: Name of current post */
+										__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
+										get_the_title()
+									),
+									'<span class="edit-link">',
+									'</span>'
+								);
+							}
+							if ( function_exists( 'wp_bootstrap_posts_pagination' ) ) {
+								wp_bootstrap_posts_pagination( array(
+									'prev_text'          => __( 'Previous page', 'pegasus-bootstrap' ),
+									'next_text'          => __( 'Next page', 'pegasus-bootstrap' ),
+									'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus-bootstrap' ) . ' </span>'
+								) );
+							}
+						?>
 					</div>
 				</div><!--end inner content-->
 

@@ -1,0 +1,83 @@
+---
+version: '3'
+
+services:
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_DATABASE: wordpress
+    image: mariadb:latest
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+  wordpress:
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DEBUG: 1
+      WP_ENVIRONMENT_TYPE: 'local'
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - 8020:80
+    restart: always
+    volumes:
+      - wordpress:/var/www/html
+      - .:/var/www/html/wp-content/plugins/bootstrap-hooks
+      - ./bin/install-wp.sh:/usr/local/bin/install-wp
+      - .uploads:/var/www/html/wp-content/uploads
+      - .fonts:/var/www/html/wp-content/fonts
+      - ./test/themes/bootstrap-blocks:/var/www/html/wp-content/themes/bootstrap-blocks
+      - ./test/themes/bootstrap-classic:/var/www/html/wp-content/themes/bootstrap-classic
+      - ./test/themes/bootstrap-classic-custom:/var/www/html/wp-content/themes/bootstrap-classic-custom
+    working_dir: /var/www/html
+  wp:
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+    image: wordpress:cli
+    user: '33:33'
+    depends_on:
+      - db
+      - wordpress
+    volumes:
+      - wordpress:/var/www/html
+      - .:/var/www/html/wp-content/plugins/bootstrap-hooks
+      - ./bin/install-wp.sh:/usr/local/bin/install-wp
+      - .uploads:/var/www/html/wp-content/uploads
+      - .plugins:/var/www/html/wp-content/plugins
+    links:
+      - db:db
+    command: "--info"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+    restart: always
+    ports:
+      - 8021:80
+    volumes:
+      - /sessions
+  composer:
+    image: composer
+    command: install
+    working_dir: /var/www/html
+    depends_on:
+      - wordpress
+    volumes:
+      - ./composer.json:/var/www/html/composer.json
+      - ./composer.lock:/var/www/html/composer.lock
+      - ./bin/install-wp.sh:/usr/local/bin/install-wp
+      - .uploads:/var/www/html/wp-content/uploads
+      - .fonts:/var/www/html/wp-content/fonts
+      - wordpress:/var/www/html
+    links:
+      - wordpress:wordpress
+volumes:
+  db_data:
+  wordpress:

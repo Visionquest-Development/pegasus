@@ -1,0 +1,43 @@
+
+@use './variables' as *;
+
+@use "../inc/bootstrap/scss/root";
+
+// 6. Optionally include any other parts as needed
+@use "../inc/bootstrap/scss/utilities";
+@use "../inc/bootstrap/scss/reboot";
+@use "../inc/bootstrap/scss/type";
+@use "../inc/bootstrap/scss/images";
+@use "../inc/bootstrap/scss/containers";
+@use "../inc/bootstrap/scss/grid";
+@use "../inc/bootstrap/scss/tables";
+@use "../inc/bootstrap/scss/buttons";
+@use "../inc/bootstrap/scss/transitions";
+@use "../inc/bootstrap/scss/dropdown";
+@use "../inc/bootstrap/scss/button-group";
+@use "../inc/bootstrap/scss/nav";
+@use "../inc/bootstrap/scss/navbar";
+@use "../inc/bootstrap/scss/accordion";
+@use "../inc/bootstrap/scss/breadcrumb";
+@use "../inc/bootstrap/scss/pagination";
+@use "../inc/bootstrap/scss/badge";
+@use "../inc/bootstrap/scss/alert";
+@use "../inc/bootstrap/scss/progress";
+@use "../inc/bootstrap/scss/list-group";
+@use "../inc/bootstrap/scss/close";
+@use "../inc/bootstrap/scss/toasts";
+@use "../inc/bootstrap/scss/modal";
+@use "../inc/bootstrap/scss/tooltip";
+@use "../inc/bootstrap/scss/carousel";
+@use "../inc/bootstrap/scss/spinners";
+@use "../inc/bootstrap/scss/offcanvas";
+@use "../inc/bootstrap/scss/placeholders";
+@use "../inc/bootstrap/scss/forms";
+@use "../inc/bootstrap/scss/accordion";
+
+@use "../inc/bootstrap/scss/helpers";
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@use "../inc/bootstrap/scss/utilities/api";
+
+// 8. Add additional custom code here

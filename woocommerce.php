@@ -25,7 +25,7 @@
 			//page header theme option
 			$global_disable_page_header_option =  pegasus_get_option('page_header_chk' ) ? pegasus_get_option('page_header_chk' ) : 'off';
 			//check theme option for page header before page option
-			$page_title = $post->post_title;
+			//$page_title = $post->post_title;
 			$is_this_home = is_home();
 			if ( 'on' === $global_disable_page_header_option ) {
 				$final_page_header_option = 'on';
@@ -40,12 +40,12 @@
 		<div class="<?php echo $final_container_class; ?>">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xg-9">
-					<div class="inner-content">	
+					<div class="inner-content">
 						<?php woocommerce_content(); ?>
 					</div><!--end inner content-->
 				</div>
 				<?php get_sidebar( 'shop' ); ?>
-		   
+
 			</div><!--end row -->
 		</div><!-- end container -->
 	</div><!-- end page wrap -->

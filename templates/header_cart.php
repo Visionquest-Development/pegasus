@@ -14,7 +14,7 @@
 		'echo' => false,
 		'depth'				=> 1,
 		'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback',
-		'walker'			=> new WP_Bootstrap_Navwalker(),
+		//'walker'			=> new WP_Bootstrap_Navwalker(),
 		'items_wrap'      => '%3$s',
 	) );
 
@@ -34,7 +34,7 @@
 	$shop_page_url = get_permalink( get_option( 'woocommerce_shop_page_id' ) );
 ?>
 
-<ul class="the-nav-cart pl-md-3 ml-auto">
+<ul class="the-nav-cart pl-md-3 ms-auto">
 	<?php if( 'on' !== $shop_link_choice ) : ?>
 		<li class="menu-item">
 			<a class="shop-link" href="<?php echo $shop_page_url; ?>">Shop</a>
@@ -43,7 +43,9 @@
 
 	<?php if ( 'on' !== $user_menu_choice ) : ?>
 	<li class="woo-item user-menu-container menu-item">
-		<a class="user-menu " href="#" ><?php echo $user_menu_logged_in_out; ?></a>
+		<a class="user-menu " href="#" >
+			<?php echo $user_menu_logged_in_out; ?>
+		</a>
 		<ul class="sub-menu">
 			<li class="menu-item">
 				<?php
@@ -79,13 +81,13 @@
 			<?php
 				echo $final_user_menu;
 			?>
-			<?php 
+			<?php
 				if ( is_user_logged_in() ) {
 				?>
 				<li class="menu-item">
 					<a class="nav-link" href="<?php echo esc_url( home_url( '/' ) ); ?>wp-login.php?action=logout">Log Out <i class="fa fa-sign-out"></i></a>
 				</li>
-				<?php 
+				<?php
 				}
 			?>
 		</ul>
@@ -93,9 +95,7 @@
 
 	<?php if( 'on' !== $cart_menu_choice ) : ?>
 	<li class="header-cart-item woo-item menu-item">
-		<a class="cart-contents" href="<?php echo $final_woo_cart_url; ?>" title="<?php echo $woo_url_title; ?>">
-			<?php echo $final_cart_count; ?>
-		</a>
+		<a class="cart-contents" href="<?php echo $final_woo_cart_url; ?>" title="<?php echo $woo_url_title; ?>"><?php echo $final_cart_count; ?></a>
 		<ul class="sub-menu">
 			<?php if( !is_cart() ) : ?>
 				<li>

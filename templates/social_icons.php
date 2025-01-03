@@ -9,19 +9,19 @@ if ( has_nav_menu( 'social-icons' ) ) :
 		'echo' => false,
 		'depth'				=> 1,
 		'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback',
-		'walker'			=> new WP_Bootstrap_Navwalker(),
+		//'walker'			=> new WP_Bootstrap_Navwalker(),
 		'items_wrap'      => '%3$s',
     ) );
 	$fallback_social_menu = '<ul><li><a href="#" class="fa fa-facebook">FB</a></li></ul>';
 	$final_social_menu = ( null !== $social_menu_check ) ? $social_menu_check : $fallback_social_menu;
 ?>
-<ul class="ml-lg-3 pegasus-social">
+<ul class="ms-auto pegasus-social">
 	<?php echo $final_social_menu; ?>
 </ul>
 
 
 <?php
 else:
-	echo '<p style="margin: 10px 0 0;">Select social menu</p>';
+	echo '<p class="m-2 ms-auto">Select social menu</p>';
 endif;
 ?>
