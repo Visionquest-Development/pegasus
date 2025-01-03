@@ -5,6 +5,15 @@
 ?>
 	<?php get_header(); ?>
 	
+			<?php
+
+			$header_choice = pegasus_get_option( 'header_select' );
+			//var_dump($header_choice);
+			if ( 'header-three' === $header_choice ) {
+				get_template_part( 'templates/additional_header' );
+			}
+		?>
+	
 
 	<?php
 		//this is the option on the page options

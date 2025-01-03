@@ -591,8 +591,11 @@
 		}
 		//$additional_header_overlay_opacity = ( '0.4' === $post_additional_header_overlay_opacity ) ? $post_additional_header_overlay_opacity : $global_additional_header_overlay_opacity;
 
-
-
+		$global_additional_header_overlay_disable = ( "on" === pegasus_get_option( 'global_add_header_overlay_disable_chk' ) ) ? true : false;
+		$post_additional_header_overlay_disable = ( "on" === get_post_meta( get_the_ID(), 'pegasus_add_header_disable_overlay_chk', true ) ) ? true : false;
+		
+		$additional_header_overlay_disable = ( true === $post_additional_header_overlay_disable ) ? $post_additional_header_overlay_disable : $global_additional_header_overlay_disable;
+		
 		//color
 		$global_page_header_wysiwyg_color = pegasus_get_option( 'global_page_header_wysiwyg_color' ) ? pegasus_get_option( 'global_page_header_wysiwyg_color' ) : '#fff';
 		$post_page_header_wysiwyg_color = get_post_meta( get_the_ID(), 'pegasus_page_header_wysiwyg_color', true ) ? get_post_meta( get_the_ID(), 'pegasus_page_header_wysiwyg_color', true ) : '#fff';
@@ -614,9 +617,9 @@
 		?>
 
 			body {
-				<?php if( $bg_color ) : ?>
+				<?php /*if( $bg_color ) : ?>
 				background-color: <?php echo $bg_color; ?>;
-				<?php endif; ?>
+				<?php endif;*/ ?>
 
 				<?php if( $bg_img ) : ?>
 					background-image: url(<?php echo $bg_img; ?>);
@@ -645,8 +648,14 @@
 					<?php endif; ?>
 				<?php endif; ?>
 			}
+			
+			<?php if ( true === $additional_header_overlay_disable ) { ?>
+				#large-header::before { display: none !important; }
+			<?php } ?>
+
 
 			:root {
+				--pegasus-background-color: <?php echo $bg_color; ?>;
 				--pegasus-body-color: <?php echo $content_color; ?>;
 				--pegasus-top-header-bkg-color: <?php echo $top_bar_bkg_color; ?>;
 				--pegasus-top-header-content-color: <?php echo $top_bar_content_color; ?>;
