@@ -102,6 +102,13 @@
 			'id'   => $prefix . '_add_header_disable_parralax_chk',
 			'type' => 'checkbox',
 		) );
+		
+		$cmb_demo->add_field( array(
+			'name' => __( 'Disable Overlay', 'pegasus-bootstrap' ),
+			'desc' => 'Check this box if you want to disable overlay on small or large header effect.',
+			'id'   => $prefix . '_add_header_disable_overlay_chk',
+			'type' => 'checkbox',
+		) );
 
 		$cmb_demo->add_field( array(
 			'name'             => __( 'Image Repeat', 'pegasus-bootstrap' ),

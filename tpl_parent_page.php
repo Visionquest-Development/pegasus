@@ -5,8 +5,7 @@
 ?>
 	<?php get_header(); ?>
 	
-	<div id="page-wrap">
-		<?php
+			<?php
 
 			$header_choice = pegasus_get_option( 'header_select' );
 			//var_dump($header_choice);
@@ -14,6 +13,8 @@
 				get_template_part( 'templates/additional_header' );
 			}
 		?>
+	
+	<div id="page-wrap">
 		<?php
 			//this is the option on the page options
 			$pegasus_container_choice = get_post_meta( get_the_ID(), 'pegasus-page-container-checkbox', true );

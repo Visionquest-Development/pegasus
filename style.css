@@ -101,6 +101,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
 	body {
 		position: relative;
+		background-color: var(--pegasus-background-color) !important;
 	}
 
 	body, html { min-height:100%; height: 100%; margin:0; padding:0; }
@@ -121,6 +122,8 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	img.wp-smiley, img.emoji { font-size: 2rem; }
 
 	.js .tmce-active .wp-editor-area { color: black; }
+	
+	#commentform textarea { overflow: hidden;  }
 
   /* body color */
   #page-wrap { color: var(--pegasus-body-color); }
@@ -154,7 +157,10 @@ Use it to make something cool, have fun, and share what you've learned with othe
   /* ================================== */
       /* NAVIGATION COLORS */
   /* ================================== */
-  .nav-link
+  .the-default-nav .nav-link,
+  .the-default-second-nav .nav-link,
+  .the-default-third-nav .nav-link,
+  .the-default-fourth-nav .nav-link
   {
     color: var(--pegasus-nav-item-color) !important;
   }
