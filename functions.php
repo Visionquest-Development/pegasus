@@ -614,9 +614,9 @@
 		?>
 
 			body {
-				<?php if( $bg_color ) : ?>
-				background-color: <?php echo $bg_color; ?>;
-				<?php endif; ?>
+				<?php /*if( $bg_color ) : ?>
+				background-color: <?php echo $bg_color; ?> !important;
+				<?php endif;*/ ?>
 
 				<?php if( $bg_img ) : ?>
 					background-image: url(<?php echo $bg_img; ?>);
@@ -647,6 +647,7 @@
 			}
 
 			:root {
+				--pegasus-background-color: <?php echo $bg_color; ?>;
 				--pegasus-body-color: <?php echo $content_color; ?>;
 				--pegasus-top-header-bkg-color: <?php echo $top_bar_bkg_color; ?>;
 				--pegasus-top-header-content-color: <?php echo $top_bar_content_color; ?>;
@@ -717,6 +718,7 @@
 			<?php
 				}
 			?>
+
 
 
 			<?php /*===== additional header stuff =====*/ ?>

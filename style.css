@@ -101,6 +101,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
 	body {
 		position: relative;
+		background-color: var(--pegasus-background-color) !important;
 	}
 
 	body, html { min-height:100%; height: 100%; margin:0; padding:0; }

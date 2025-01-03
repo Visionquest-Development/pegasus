@@ -43,9 +43,7 @@
 
 	<?php if ( 'on' !== $user_menu_choice ) : ?>
 	<li class="woo-item user-menu-container menu-item">
-		<a class="user-menu " href="#" >
-			<?php echo $user_menu_logged_in_out; ?>
-		</a>
+		<a class="user-menu " href="#" ><?php echo $user_menu_logged_in_out; ?></a>
 		<ul class="sub-menu">
 			<li class="menu-item">
 				<?php
