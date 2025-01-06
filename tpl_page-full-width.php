@@ -5,15 +5,16 @@
 ?>
 	<?php get_header(); ?>
 
-	<div id="page-wrap">
-		<?php
+	<?php
+		$header_choice = pegasus_get_option( 'header_select' );
+		//var_dump($header_choice);
+		if ( 'header-three' === $header_choice ) {
+			get_template_part( 'templates/additional_header' );
+		}
+	?>
 
-			$header_choice = pegasus_get_option( 'header_select' );
-			//var_dump($header_choice);
-			if ( 'header-three' === $header_choice ) {
-				get_template_part( 'templates/additional_header' );
-			}
-		?>
+	<div id="page-wrap">
+
 		<?php
 			//full container page options
 			$post_full_container_choice = get_post_meta( get_the_ID(), 'pegasus-page-container-checkbox', true );
