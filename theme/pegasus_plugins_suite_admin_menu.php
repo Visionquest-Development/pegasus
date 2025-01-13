@@ -212,8 +212,8 @@
 	function pegasus_blurb_submenu_page() {
 		?>
 		<h1>Blurb Usage</h1>
-		<?php output_shortcode_pre('[blurb title="the_title" subtitle="the_subtitle" ]The content for the blurb[/blurb]'); ?>
-		<?php output_shortcode_pre('[blurb title="the_title" subtitle="the_subtitle" ]The content for the blurb[/blurb]', 'wp'); ?>
+		<?php output_shortcode_pre('[blurb title="the_title" subtitle="the_subtitle" button_text="the_button_text" button_url="the_button_url" ]The content for the blurb[/blurb]'); ?>
+		<?php output_shortcode_pre('[blurb title="the_title" subtitle="the_subtitle" button_text="the_button_text" button_url="the_button_url" ]The content for the blurb[/blurb]', 'wp'); ?>
 		<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-blurb"]'); ?>
 		<?php
 	}
@@ -243,10 +243,21 @@ backgroundcolor="#dedede"]
 			</p>
 
 			<p>Callout Usage 2:<br>
-				<?php output_shortcode_pre('[callout title="the_title" subtitle="the_subtitle" button_text="the_button_text" button_url="the_button_url" ]The content for the callout[/callout]'); ?>
+				<?php output_shortcode_pre('[callout
+button="yes"
+background="http://pegasustheme.com/wp-content/uploads/2016/07/quadroIdeas_0047-21.jpg"
+link="http://example.com"
+external="yes"
+color="white"
+link_text="Learn More"
+]
+<p>Get your copy now!Suspendisse vitae bibendum mauris. Nunc iaculis nisl vitae laoreet elementum donec dignissim metus sit.</p>
+[/callout]'); ?>
+				<?php //output_shortcode_pre('[callout title="the_title" subtitle="the_subtitle" button_text="the_button_text" button_url="the_button_url" ]The content for the callout[/callout]'); ?>
 			</p>
 
 			<?php output_shortcode_pre('[callout button="yes" link="http://example.com" color="black" external="yes" backgroundcolor="#dedede"] <h2>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Donec sollicitudin molestie malesuada. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec sollicitudin molestie malesuada. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</h2>[/callout]', 'wp'); ?>
+			<?php //output_shortcode_pre('[callout button="yes" background="http://pegasustheme.com/wp-content/uploads/2016/07/quadroIdeas_0047-21.jpg" link="http://example.com" external="yes" color="white" link_text="Learn More" ]<p>Get your copy now!Suspendisse vitae bibendum mauris. Nunc iaculis nisl vitae laoreet elementum donec dignissim metus sit.</p>[/callout]', 'wp'); ?>
 
 			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-callout"]'); ?>
 		</div>
@@ -274,8 +285,8 @@ backgroundcolor="#dedede"]
 		?>
 		<div class="pegasus-wrap">
 			<h1>Circle Progress Usage</h1>
-			<?php output_shortcode_pre('[circle_progress number="90"]  '); ?>
-			<?php output_shortcode_pre('[circle_progress number="90"]  ', 'wp'); ?>
+			<?php output_shortcode_pre('[circle_progress number="90" color="blue"]  '); ?>
+			<?php output_shortcode_pre('[circle_progress number="90" color="blue"]  ', 'wp'); ?>
 			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-circle-progress"]'); ?>
 		</div>
 		<?php
@@ -285,8 +296,8 @@ backgroundcolor="#dedede"]
 		?>
 		<div class="pegasus-wrap">
 			<h1>Countup Usage</h1>
-			<?php output_shortcode_pre('[counter_up number="83"]'); ?>
-			<?php output_shortcode_pre('[counter_up number="83"]', 'wp'); ?>
+			<?php output_shortcode_pre('[counter_up container="h2" number="83"]'); ?>
+			<?php output_shortcode_pre('[counter_up container="h2" number="83"]', 'wp'); ?>
 			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-countup"]'); ?>
 		</div>
 		<?php
@@ -338,8 +349,8 @@ backgroundcolor="#dedede"]
 		?>
 		<div class="pegasus-wrap">
 			<h1>One Page Usage</h1>
-			<?php output_shortcode_pre('[section][/section]'); ?>
-			<?php output_shortcode_pre('[section][/section]', 'wp'); ?>
+			<?php output_shortcode_pre('[section id="section-1" class="section-container" bkg_color="#dedede" text_color="#000000" image=""][/section]'); ?>
+			<?php output_shortcode_pre('[section id="section-1" class="section-container" bkg_color="#dedede" text_color="#000000" image=""][/section]', 'wp'); ?>
 			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-onepage"]'); ?>
 		</div>
 		<?php

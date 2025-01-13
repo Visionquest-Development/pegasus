@@ -593,9 +593,9 @@
 
 		$global_additional_header_overlay_disable = ( "on" === pegasus_get_option( 'global_add_header_overlay_disable_chk' ) ) ? true : false;
 		$post_additional_header_overlay_disable = ( "on" === get_post_meta( get_the_ID(), 'pegasus_add_header_disable_overlay_chk', true ) ) ? true : false;
-		
+
 		$additional_header_overlay_disable = ( true === $post_additional_header_overlay_disable ) ? $post_additional_header_overlay_disable : $global_additional_header_overlay_disable;
-		
+
 		//color
 		$global_page_header_wysiwyg_color = pegasus_get_option( 'global_page_header_wysiwyg_color' ) ? pegasus_get_option( 'global_page_header_wysiwyg_color' ) : '#fff';
 		$post_page_header_wysiwyg_color = get_post_meta( get_the_ID(), 'pegasus_page_header_wysiwyg_color', true ) ? get_post_meta( get_the_ID(), 'pegasus_page_header_wysiwyg_color', true ) : '#fff';
@@ -648,7 +648,7 @@
 					<?php endif; ?>
 				<?php endif; ?>
 			}
-			
+
 			<?php if ( true === $additional_header_overlay_disable ) { ?>
 				#large-header::before { display: none !important; }
 			<?php } ?>
@@ -1172,6 +1172,7 @@
 		$atts = shortcode_atts(
 			array(
 				'plugin_slug' => '', // Default to an empty string
+				'shortcode_name' => ''
 			),
 			$atts,
 			'pegasus_settings_table'
@@ -1220,7 +1221,7 @@
 		}
 
 		// Start building the HTML
-		$html = '<table border="0" cellpadding="1" class="table pegasus-table" align="left">
+		$html = '<table border="0" cellpadding="1" class="table responsive pegasus-table" align="left">
 		<thead>
 		<tr>
 		<td><span><strong>Name</strong></span></td>
@@ -1232,18 +1233,50 @@
 		</thead>
 		<tbody>';
 
+		if ( $atts['shortcode_name'] ) {
+			// $html .= '<tr >';
+			// 	$html .= '<td colspan="5">';
+			// 		$html .= '<span>';
+			// 			$html .= '<strong>' . htmlspecialchars($atts['shortcode_name']) . '</strong>';
+			// 		$html .= '</span>';
+			// 	$html .= '</td>';
+			// $html .= '</tr>';
+			$html .= '<caption><strong>' . htmlspecialchars(str_replace('_', ' ', $atts['shortcode_name'])) . '</strong></caption>';
+
+			foreach ($data['rows'] as $key => $value) {
+				// echo '<pre>';
+				// var_dump($value);
+				// echo '</pre>';
+				foreach ($value[$atts['shortcode_name']] as $single) {
+					$html .= '<tr>
+						<td>' . htmlspecialchars($single['name']) . '</td>
+						<td>' . htmlspecialchars($single['attribute']) . '</td>
+						<td>' . nl2br(htmlspecialchars($single['options'])) . '</td>
+						<td>' . nl2br(htmlspecialchars($single['description'])) . '</td>
+						<td><code>' . htmlspecialchars($single['example']) . '</code></td>
+					</tr>';
+				}
+			}
+
+			$html .= '</tbody></table>';
+			return $html;
+		}
+
+
 		// Iterate over the data to populate rows
 		if (!empty($data['rows'])) {
 			foreach ($data['rows'] as $section) {
 				if ( "pegasus-carousel" !== $plugin_slug ) {
 					// Add section header
-					$html .= '<tr >';
-						$html .= '<td colspan="5">';
-							$html .= '<span>';
-								$html .= '<strong>' . htmlspecialchars($section['section_name']) . '</strong>';
-							$html .= '</span>';
-						$html .= '</td>';
-					$html .= '</tr>';
+					// $html .= '<tr >';
+					// 	$html .= '<td colspan="5">';
+					// 		$html .= '<span>';
+					// 			$html .= '<strong>' . htmlspecialchars($section['section_name']) . '</strong>';
+					// 		$html .= '</span>';
+					// 	$html .= '</td>';
+					// $html .= '</tr>';
+					$html .= '<caption><strong>' . htmlspecialchars(str_replace('_', ' ', $section['section_name'])) . '</strong></caption>';
+
 				}
 
 				if ( "pegasus-carousel" === $plugin_slug || "pegasus-slider" === $plugin_slug || "pegasus-post-grid" === $plugin_slug ) {
