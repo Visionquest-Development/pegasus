@@ -1,18 +1,19 @@
 <?php
-/*
+/* 
 	Template Name: List Sub-pages Template
 */
 ?>
 	<?php get_header(); ?>
+	
+			<?php
 
-	<?php
-		$header_choice = pegasus_get_option( 'header_select' );
-		//var_dump($header_choice);
-		if ( 'header-three' === $header_choice ) {
-			get_template_part( 'templates/additional_header' );
-		}
-	?>
-
+			$header_choice = pegasus_get_option( 'header_select' );
+			//var_dump($header_choice);
+			if ( 'header-three' === $header_choice ) {
+				get_template_part( 'templates/additional_header' );
+			}
+		?>
+	
 	<div id="page-wrap">
 		<?php
 			//this is the option on the page options
@@ -22,20 +23,20 @@
 
 			$page_vs_global_check = $pegasus_container_choice ? $pegasus_container_choice : $full_container_chk_choice;
 			$final_container_class = $page_vs_global_check ? $page_vs_global_check : 'container';
-
-			//$meta2 = get_post_meta($post->ID);
-			//echo "<pre>";  var_dump($meta2); echo "</pre><hr>";
+			
+			//$meta2 = get_post_meta($post->ID); 
+			//echo "<pre>";  var_dump($meta2); echo "</pre><hr>";  
 			//echo $pegasus_container_choice;
 		?>
-
+		
 		<div class="<?php echo $final_container_class; ?>">
 		<!-- Example row of columns -->
 			<div class="">
-
-				<div class="inner-content">
+		
+				<div class="inner-content">	
 					<div class="content-no-sidebar clearfix">
 						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-							<?php
+							<?php 
 								$page_header_choice =  pegasus_get_option('page_header_chk' );
 								if( $page_header_choice != 'on' ) {
 							?>
@@ -45,11 +46,11 @@
 							<?php }else{ ?>
 								<div class="page-header-spacer"></div>
 							<?php } ?>
-
+							
 							<?php the_content(); ?>
-
-							<?php
-
+							
+							<?php 
+		
 								$args = array(
 									'post_type'      => 'page',
 									'posts_per_page' => -1,
@@ -59,7 +60,7 @@
 								);
 								$parent = new WP_Query( $args );
 
-								if ( $parent->have_posts() ) :
+								if ( $parent->have_posts() ) : 
 							?>
 
 								<?php while ( $parent->have_posts() ) : $parent->the_post(); ?>
@@ -70,11 +71,11 @@
 
 								<?php endwhile; ?>
 
-							<?php
-								endif;
-								wp_reset_query();
+							<?php 
+								endif; 
+								wp_reset_query(); 
 							?>
-
+							
 						<?php endwhile; else: ?>
 							<?php /* kinda a 404 of sorts when not working */ ?>
 							<div class="page-header">
