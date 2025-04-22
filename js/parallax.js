@@ -86,27 +86,27 @@ http://www.gnu.org/licenses/gpl.html
 	//jQuery(window).on('load', function () {
 		//parallaxInit();
 	//});
-
+	
 	jQuery(document).ready(function($) {
 		parallaxInit();
 	});
-
+	
 	function parallaxInit() {
 		jQuery('#small-header .parallax').each(function(){
 			jQuery(this).parallax("50%", 0.5);
 		});
-
-
+		
+		
 		//jQuery('.parallax').each(function(){
 			//jQuery(this).parallax("50%", 0.5);
 		//});
-
-		//jQuery('.single-qbiq_events .qbiq-parallax').each(function(){
-			//jQuery(this).parallax("20%", 0.25);
-		//});
-
-
-		//jQuery('.parallax').each(function(){
-			//jQuery(this).parallax("50%", 0.5);
-		//});
+		
+		jQuery('.single-qbiq_events .qbiq-parallax').each(function(){
+			jQuery(this).parallax("20%", 0.25);
+		});
+		
+		
+		jQuery('.parallax').each(function(){
+			jQuery(this).parallax("50%", 0.5);
+		});
 	}
