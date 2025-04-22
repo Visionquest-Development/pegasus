@@ -88,6 +88,11 @@
 		/* padding-left: 1rem; */
     margin-left: 3rem !important;
 	}
+	
+	.CodeMirror-sizer {
+		/* padding-left: 1rem; */
+    margin-left: 3rem !important;
+	}
 
   #pegasus_option_metabox .pegasus-save-btn-container {
     padding: 20px;
