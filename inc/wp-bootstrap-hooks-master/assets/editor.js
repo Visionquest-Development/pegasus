@@ -144,10 +144,6 @@
 
     const editorWrapper = iframeDocument.body;
 
-    if (!editorWrapper) {
-      return;
-    }
-
     const observer = new MutationObserver(styleChangedCallback);
 
     observer.observe(editorWrapper, {

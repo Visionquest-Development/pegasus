@@ -930,13 +930,6 @@ class Pegasus_Admin {
 			'id'   => 'global_add_header_disable_parralax_chk',
 			'type' => 'checkbox',
 		) );
-		
-		$cmb->add_field( array(
-			'name' => __( 'Disable Overlay', 'pegasus-theme' ),
-			'desc' => 'Check this box if you want to disable overlay effect.',
-			'id'   => 'global_add_header_disable_overlay_chk',
-			'type' => 'checkbox',
-		) );
 
 		$cmb->add_field( array(
 			'name'             => __( 'Background Image Repeat', 'pegasus-theme' ),

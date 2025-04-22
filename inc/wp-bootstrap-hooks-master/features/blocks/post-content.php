@@ -12,10 +12,10 @@ function render_block_post_content($content, $block) {
     return $content;
   }
 
-  // Remove empty paragraphs
-  $content = preg_replace('/<p><\/p>/', '', $content);
+  // echo $block['blockName'];
+  // echo '<br/>';
 
   return get_markup($content);
 }
 
-add_filter('render_block', 'benignware\wp\bootstrap_hooks\render_block_post_content', 10, 2);
+add_filter('render_block', 'benignware\wp\bootstrap_hooks\render_block_post_content', 100, 2);

@@ -15,8 +15,7 @@ function render_block_columns($content, $block) {
   $options = wp_bootstrap_options();
   $attrs = $block['attrs'];
   $doc = parse_html($content);
-  
-  $container = find_by_class($doc, 'wp-block-columns');
+  $container = root_element($doc);
 
   remove_class($container, 'is-layout-flex');
   remove_class($container, 'is-not-stacked-on-mobile');
@@ -49,7 +48,6 @@ function render_block_columns($content, $block) {
   }
 
   add_class($row, 'row');
-  remove_class($row, '~^is-layout-');
 
   $i = 0;
 

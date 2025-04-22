@@ -3,7 +3,6 @@
 use function benignware\wp\bootstrap_hooks\add_class;
 use function benignware\wp\bootstrap_hooks\has_class;
 
-
 add_filter( 'wp_link_pages', function ( $output, $args ) {
   if (!current_theme_supports('bootstrap')) {
     return $output;
@@ -148,7 +147,7 @@ add_filter( "next_post_link", function($output) {
     return $output;
   }
 
-  extract(wp_bootstrap_options());
+  $options = wp_bootstrap_options();
 
   $doc = new DOMDocument();
   @$doc->loadHTML('<?xml encoding="utf-8" ?>' . $output );
@@ -165,11 +164,10 @@ add_filter( "next_post_link", function($output) {
     return $output;
   }
 
-  add_class($root, $post_navigation_link_wrapper_class);
+  add_class($root, $options['page_item_class']);
 
   $link = $doc->getElementsByTagName('a')->item(0);
-  
-  add_class($link, $post_navigation_link_class);
+  add_class($link, $options['post_nav_link_class']);
 
   $output = preg_replace('~(?:<\?[^>]*>|<(?:!DOCTYPE|/?(?:html|head|body))[^>]*>)\s*~i', '', $doc->saveHTML());
 
@@ -181,7 +179,7 @@ add_filter( "previous_post_link", function($output) {
     return $output;
   }
 
-  extract(wp_bootstrap_options());
+  $options = wp_bootstrap_options();
 
   $doc = new DOMDocument();
   @$doc->loadHTML('<?xml encoding="utf-8" ?>' . $output );
@@ -194,10 +192,10 @@ add_filter( "previous_post_link", function($output) {
 
   $root = $body->firstChild;
 
-  add_class($root, $post_navigation_link_wrapper_class);
+  add_class($root, $options['page_item_class']);
 
   $link = $doc->getElementsByTagName('a')->item(0);
-  add_class($link, $post_navigation_link_class);
+  add_class($link, $options['post_nav_link_class']);
 
   $output = preg_replace('~(?:<\?[^>]*>|<(?:!DOCTYPE|/?(?:html|head|body))[^>]*>)\s*~i', '', $doc->saveHTML());
 

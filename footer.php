@@ -108,11 +108,11 @@
 						</div>
 					</footer>
 				</div>
-
+			
 			</div><!--mainbar end-->
-
-		</div><!--end-page-wrapper-->
+		
+		</div><!--end-wrapper-->
 		<?php wp_footer(); ?>
-
+		
 	</body>
 </html>

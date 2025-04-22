@@ -122,45 +122,6 @@
 		}
 	}
 
-	$allowed_plugins = array(
-		'pegasus-blog',
-		'pegasus-callout',
-		'pegasus-carousel',
-		'pegasus-countup',
-		'pegasus-circle-progress',
-		'pegasus-masonry',
-		'pegasus-navmenu',
-		'pegasus-onepage',
-		'pegasus-packery',
-		'pegasus-popup',
-		'pegasus-posts-filter',
-		'pegasus-post-grid',
-		'pegasus-slider',
-		'pegasus-tabs',
-		'pegasus-toggleslide',
-		'pegasus-wow'
-	);
-
-
-	function pegasus_check_for_plugin_suite($allowed_plugins) {
-		if ( ! function_exists( 'is_plugin_active' ) ) {
-			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		}
-
-		foreach ($allowed_plugins as $plugin_slug) {
-			$plugin_path = $plugin_slug . '/' . $plugin_slug . '.php';
-			if (is_plugin_active($plugin_path)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	if (pegasus_check_for_plugin_suite($allowed_plugins)) {
-		add_action('admin_menu', 'pegasus_plugins_admin_menu');
-	}
-
-
 	function output_shortcode_pre($shortcode, $format = 'html') {
 		switch ($format) {
 			case 'html':
@@ -203,8 +164,6 @@
 				<?php output_shortcode_pre('[blog the_query="post_type=post&order_by=date&order=ASC"]'); ?>
 			</p>
 			<?php output_shortcode_pre('[blog the_query="post_type=post&order_by=date&order=ASC"]', 'wp'); ?>
-
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-blog"]'); ?>
 		</div>
 		<?php
 	}
@@ -212,9 +171,8 @@
 	function pegasus_blurb_submenu_page() {
 		?>
 		<h1>Blurb Usage</h1>
-		<?php output_shortcode_pre('[blurb title="the_title" subtitle="the_subtitle" button_text="the_button_text" button_url="the_button_url" ]The content for the blurb[/blurb]'); ?>
-		<?php output_shortcode_pre('[blurb title="the_title" subtitle="the_subtitle" button_text="the_button_text" button_url="the_button_url" ]The content for the blurb[/blurb]', 'wp'); ?>
-		<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-blurb"]'); ?>
+		<?php output_shortcode_pre('[blurb title="the_title" subtitle="the_subtitle" ]The content for the blurb[/blurb]'); ?>
+		<?php output_shortcode_pre('[blurb title="the_title" subtitle="the_subtitle" ]The content for the blurb[/blurb]', 'wp'); ?>
 		<?php
 	}
 
@@ -243,23 +201,12 @@ backgroundcolor="#dedede"]
 			</p>
 
 			<p>Callout Usage 2:<br>
-				<?php output_shortcode_pre('[callout
-button="yes"
-background="http://pegasustheme.com/wp-content/uploads/2016/07/quadroIdeas_0047-21.jpg"
-link="http://example.com"
-external="yes"
-color="white"
-link_text="Learn More"
-]
-<p>Get your copy now!Suspendisse vitae bibendum mauris. Nunc iaculis nisl vitae laoreet elementum donec dignissim metus sit.</p>
-[/callout]'); ?>
-				<?php //output_shortcode_pre('[callout title="the_title" subtitle="the_subtitle" button_text="the_button_text" button_url="the_button_url" ]The content for the callout[/callout]'); ?>
+				<?php output_shortcode_pre('[callout title="the_title" subtitle="the_subtitle" button_text="the_button_text" button_url="the_button_url" ]The content for the callout[/callout]'); ?>
 			</p>
 
 			<?php output_shortcode_pre('[callout button="yes" link="http://example.com" color="black" external="yes" backgroundcolor="#dedede"] <h2>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Donec sollicitudin molestie malesuada. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec sollicitudin molestie malesuada. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</h2>[/callout]', 'wp'); ?>
-			<?php //output_shortcode_pre('[callout button="yes" background="http://pegasustheme.com/wp-content/uploads/2016/07/quadroIdeas_0047-21.jpg" link="http://example.com" external="yes" color="white" link_text="Learn More" ]<p>Get your copy now!Suspendisse vitae bibendum mauris. Nunc iaculis nisl vitae laoreet elementum donec dignissim metus sit.</p>[/callout]', 'wp'); ?>
 
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-callout"]'); ?>
+
 		</div>
 		<?php
 	}
@@ -271,12 +218,8 @@ link_text="Learn More"
 			<?php output_shortcode_pre('[logo_slider the_query="post_type=logo_slider&showposts=100&order_by=title&order=ASC"]'); ?>
 			<?php output_shortcode_pre('[logo_slider the_query="post_type=logo_slider&showposts=100&order_by=title&order=ASC"]', 'wp'); ?>
 
-			<?php //echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-carousel"]'); ?>
-
 			<?php output_shortcode_pre('[testimonial_slider image="circle" type="bubble" class="test" the_query="post_type=testimonial&showposts=100" ]'); ?>
 			<?php output_shortcode_pre('[testimonial_slider image="circle" type="bubble" class="test" the_query="post_type=testimonial&showposts=100" ]', 'wp'); ?>
-
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-carousel"]'); ?>
 		</div>
 		<?php
 	}
@@ -285,9 +228,8 @@ link_text="Learn More"
 		?>
 		<div class="pegasus-wrap">
 			<h1>Circle Progress Usage</h1>
-			<?php output_shortcode_pre('[circle_progress number="90" color="blue"]  '); ?>
-			<?php output_shortcode_pre('[circle_progress number="90" color="blue"]  ', 'wp'); ?>
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-circle-progress"]'); ?>
+			<?php output_shortcode_pre('[circle_progress number="90"]  '); ?>
+			<?php output_shortcode_pre('[circle_progress number="90"]  ', 'wp'); ?>
 		</div>
 		<?php
 	}
@@ -296,9 +238,8 @@ link_text="Learn More"
 		?>
 		<div class="pegasus-wrap">
 			<h1>Countup Usage</h1>
-			<?php output_shortcode_pre('[counter_up container="h2" number="83"]'); ?>
-			<?php output_shortcode_pre('[counter_up container="h2" number="83"]', 'wp'); ?>
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-countup"]'); ?>
+			<?php output_shortcode_pre('[counter_up number="83"]'); ?>
+			<?php output_shortcode_pre('[counter_up number="83"]', 'wp'); ?>
 		</div>
 		<?php
 	}
@@ -310,23 +251,22 @@ link_text="Learn More"
 			<p>Masonry Usage 1:<br>
 <?php output_shortcode_pre('
 [masonry]
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/abarth.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Acura.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/alfaromeo.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Aston-Martin.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Audi.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/bentley.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/BMW.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Buick.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Cadillac.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Chevrolet.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/chrysler.png" alt="image">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/250x500/">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/250x500/">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/250x500/">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/250x500/">
 [/masonry]
 '); ?>
 			</p>
-			<?php output_shortcode_pre('[masonry]<img src="http://pegasustheme.com/wp-content/uploads/2025/01/abarth.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Acura.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/alfaromeo.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Aston-Martin.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Audi.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/bentley.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/BMW.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Buick.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Cadillac.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Chevrolet.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/chrysler.png" alt="image">[/masonry]'); ?>
-			<?php output_shortcode_pre('[masonry]<img src="http://pegasustheme.com/wp-content/uploads/2025/01/abarth.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Acura.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/alfaromeo.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Aston-Martin.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Audi.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/bentley.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/BMW.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Buick.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Cadillac.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Chevrolet.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/chrysler.png" alt="image">[/masonry]', 'wp'); ?>
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-masonry"]'); ?>
+			<?php output_shortcode_pre('[masonry]<img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/">[/masonry]'); ?>
+			<?php output_shortcode_pre('[masonry]<img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/">[/masonry]', 'wp'); ?>
 		</div>
 		<?php
 	}
@@ -340,7 +280,6 @@ link_text="Learn More"
 
 			<?php output_shortcode_pre('[bootstrap_menu menu="primary" additional_classes="navbar-expand"]'); ?>
 			<?php output_shortcode_pre('[bootstrap_menu menu="primary" additional_classes="navbar-expand"]', 'wp'); ?>
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-navmenu"]'); ?>
 		</div>
 		<?php
 	}
@@ -349,9 +288,8 @@ link_text="Learn More"
 		?>
 		<div class="pegasus-wrap">
 			<h1>One Page Usage</h1>
-			<?php output_shortcode_pre('[section id="section-1" class="section-container" bkg_color="#dedede" text_color="#000000" image=""][/section]'); ?>
-			<?php output_shortcode_pre('[section id="section-1" class="section-container" bkg_color="#dedede" text_color="#000000" image=""][/section]', 'wp'); ?>
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-onepage"]'); ?>
+			<?php output_shortcode_pre('[section][/section]'); ?>
+			<?php output_shortcode_pre('[section][/section]', 'wp'); ?>
 		</div>
 		<?php
 	}
@@ -363,23 +301,22 @@ link_text="Learn More"
 			<p>Packery Usage 1:<br>
 			<?php output_shortcode_pre('
 [packery]
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/abarth.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Acura.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/alfaromeo.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Aston-Martin.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Audi.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/bentley.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/BMW.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Buick.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Cadillac.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Chevrolet.png" alt="image">
-	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/chrysler.png" alt="image">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/960x550/">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/250x500/">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/750x500/">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/250x250/">
+	<img src="https://via.placeholder.com/250x500/">
 [/packery]
 '); ?>
 			</p>
-			<?php output_shortcode_pre('[packery]<img src="http://pegasustheme.com/wp-content/uploads/2025/01/abarth.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Acura.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/alfaromeo.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Aston-Martin.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Audi.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/bentley.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/BMW.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Buick.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Cadillac.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Chevrolet.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/chrysler.png" alt="image">[/packery]'); ?>
-			<?php output_shortcode_pre('[packery]<img src="http://pegasustheme.com/wp-content/uploads/2025/01/abarth.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Acura.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/alfaromeo.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Aston-Martin.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Audi.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/bentley.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/BMW.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Buick.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Cadillac.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Chevrolet.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/chrysler.png" alt="image">[/packery]', 'wp'); ?>
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-packery"]'); ?>
+			<?php output_shortcode_pre('[packery]<img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/">[/packery]'); ?>
+			<?php output_shortcode_pre('[packery]<img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/">[/packery]', 'wp'); ?>
 		</div>
 		<?php
 	}
@@ -390,7 +327,6 @@ link_text="Learn More"
 			<h1>Popup Usage</h1>
 			<?php output_shortcode_pre('[popup] image content goes here [/popup]'); ?>
 			<?php output_shortcode_pre('[popup] image content goes here [/popup]', 'wp'); ?>
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-popup"]'); ?>
 		</div>
 		<?php
 	}
@@ -433,7 +369,6 @@ link_text="Learn More"
 			<?php output_shortcode_pre('[loop-grid the_query="post_type=post&showposts=100&ord=ASC&order_by=date" bkg_color="#dedede" pagination="yes"]'); ?>
 			<?php output_shortcode_pre('[loop-grid the_query="post_type=post&showposts=100&ord=ASC&order_by=date" bkg_color="#dedede" pagination="yes"]', 'wp'); ?>
 
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-post-grid"]'); ?>
 		</div>
 		<?php
 	}
@@ -444,7 +379,6 @@ link_text="Learn More"
 			<h1>Posts Filter Usage</h1>
 			<?php output_shortcode_pre('[ajax_filter_posts per_page="1"]'); ?>
 			<?php output_shortcode_pre('[ajax_filter_posts per_page="1"]', 'wp'); ?>
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-posts-filter"]'); ?>
 		</div>
 		<?php
 	}
@@ -494,7 +428,6 @@ the_query="showposts=100&post_type=post"
 			<?php output_shortcode_pre('[thumb_slider][thumb_slide title="slide1" number="1"]<img src="http://slippry.com assets/img/image-1.jpg" alt="This is caption 1">[/thumb_slide][thumb_slide title="slide2" number="2"]<img src="http://slippry.com/assets/img/image-2.jpg" alt="This is caption 2">[/thumb_slide][thumb_slide title="slide3" number="3"]<img src="http://slippry.com/assets/img/image-3.jpg" alt="This is caption 3">[/thumb_slide][thumb_slide title="slide4" number="4"]<img src="http://slippry.com/assets/img/image-4.jpg" alt="This is caption 4">[/thumb_slide][/thumb_slider]'); ?>
 			<?php output_shortcode_pre('[thumb_slider][thumb_slide title="slide1" number="1"]<img src="http://slippry.com/assets/img/image-1.jpg" alt="This is caption 1">[/thumb_slide][thumb_slide title="slide2" number="2"]<img src="http://slippry.com/assets/img/image-2.jpg" alt="This is caption 2">[/thumb_slide][thumb_slide title="slide3" number="3"]<img src="http://slippry.com/assets/img/image-3.jpg" alt="This is caption 3">[/thumb_slide][thumb_slide title="slide4" number="4"]<img src="http://slippry.com/assets/img/image-4.jpg" alt="This is caption 4">[/thumb_slide][/thumb_slider]', 'wp'); ?>
 
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-slider"]'); ?>
 		</div>
 		<?php
 	}
@@ -515,7 +448,6 @@ the_query="showposts=100&post_type=post"
 '); ?>
 			<?php output_shortcode_pre('[tabs][tab class="first" title="Home"]Vivamus suscipit tortor eget felis porttitor volutpat. [/tab][tab class="second" title="Profile"]Pellentesque in ipsum id orci porta dapibus.[/tab][/tabs]'); ?>
 			<?php output_shortcode_pre('[tabs][tab class="first" title="Home"]Vivamus suscipit tortor eget felis porttitor volutpat. [/tab][tab class="second" title="Profile"]Pellentesque in ipsum id orci porta dapibus.[/tab][/tabs]', 'wp'); ?>
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-tabs"]'); ?>
 		</div>
 		<?php
 	}
@@ -526,7 +458,6 @@ the_query="showposts=100&post_type=post"
 			<h1>Tooldrawer Usage</h1>
 			<?php output_shortcode_pre('[tooldrawer]'); ?>
 			<?php output_shortcode_pre('[tooldrawer]', 'wp'); ?>
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-tooldrawer"]'); ?>
 		</div>
 		<?php
 	}
@@ -544,7 +475,6 @@ the_query="showposts=100&post_type=post"
 '); ?>
 			<?php output_shortcode_pre('[toggleslide title="the_title" ]The content for the toggleslide[/toggleslide]'); ?>
 			<?php output_shortcode_pre('[toggleslide title="the_title" ]The content for the toggleslide[/toggleslide]', 'wp'); ?>
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-toggleslide"]'); ?>
 		</div>
 		<?php
 	}
@@ -555,7 +485,6 @@ the_query="showposts=100&post_type=post"
 			<h1>Wow Usage</h1>
 			<?php output_shortcode_pre('[wow]wow content [/wow]'); ?>
 			<?php output_shortcode_pre('[wow]wow content [/wow]', 'wp'); ?>
-			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-wow"]'); ?>
 		</div>
 		<?php
 	}
@@ -579,3 +508,5 @@ the_query="showposts=100&post_type=post"
 
 	}
 
+	// Hook to admin menu
+	add_action('admin_menu', 'pegasus_plugins_admin_menu');

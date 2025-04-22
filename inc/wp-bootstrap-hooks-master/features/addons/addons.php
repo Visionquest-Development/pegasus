@@ -1,3 +1,3 @@
 <?php
 
-require 'dropdown/dropdown.php';
+require 'dropdown.php';

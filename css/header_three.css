@@ -56,8 +56,6 @@ body.no-header.top-header-is-active #page-wrap {
 
 
 
-
-
 .navbar-brand {
   z-index: 999;
 }
@@ -253,15 +251,13 @@ body.no-header.top-header-is-active #page-wrap {
 
   /* OFFCANVAS */
   .offcanvas-collapse {
-    padding-top: var(--pegasus-header-three-fixed-menu-height);
+    padding-top: calc( var(--pegasus-header-three-fixed-menu-height) );
   }
   .offcanvas-collapse.open {
-    /*padding-top: calc(
+    padding-top: calc(
       var(--pegasus-header-three-fixed-menu-height) +
       var(--pegasus-top-bar-height)
-    );*/
-	
-	padding-top: var(--pegasus-header-three-fixed-menu-height);
+    );
   }
 
   /* ADMIN BAR */

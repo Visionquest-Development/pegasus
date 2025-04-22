@@ -47,7 +47,7 @@
 
 	add_theme_support( 'bootstrap' );
 
-	require_once 'inc/wp-bootstrap-hooks-master/bootstrap-hooks.php';
+	//require_once 'inc/wp-bootstrap-hooks-master/bootstrap-hooks.php';
 
 	/*=========================================
 
@@ -591,10 +591,7 @@
 		}
 		//$additional_header_overlay_opacity = ( '0.4' === $post_additional_header_overlay_opacity ) ? $post_additional_header_overlay_opacity : $global_additional_header_overlay_opacity;
 
-		$global_additional_header_overlay_disable = ( "on" === pegasus_get_option( 'global_add_header_overlay_disable_chk' ) ) ? true : false;
-		$post_additional_header_overlay_disable = ( "on" === get_post_meta( get_the_ID(), 'pegasus_add_header_disable_overlay_chk', true ) ) ? true : false;
 
-		$additional_header_overlay_disable = ( true === $post_additional_header_overlay_disable ) ? $post_additional_header_overlay_disable : $global_additional_header_overlay_disable;
 
 		//color
 		$global_page_header_wysiwyg_color = pegasus_get_option( 'global_page_header_wysiwyg_color' ) ? pegasus_get_option( 'global_page_header_wysiwyg_color' ) : '#fff';
@@ -617,9 +614,9 @@
 		?>
 
 			body {
-				<?php /*if( $bg_color ) : ?>
+				<?php if( $bg_color ) : ?>
 				background-color: <?php echo $bg_color; ?>;
-				<?php endif;*/ ?>
+				<?php endif; ?>
 
 				<?php if( $bg_img ) : ?>
 					background-image: url(<?php echo $bg_img; ?>);
@@ -649,13 +646,7 @@
 				<?php endif; ?>
 			}
 
-			<?php if ( true === $additional_header_overlay_disable ) { ?>
-				#large-header::before { display: none !important; }
-			<?php } ?>
-
-
 			:root {
-				--pegasus-background-color: <?php echo $bg_color; ?>;
 				--pegasus-body-color: <?php echo $content_color; ?>;
 				--pegasus-top-header-bkg-color: <?php echo $top_bar_bkg_color; ?>;
 				--pegasus-top-header-content-color: <?php echo $top_bar_content_color; ?>;
@@ -1167,162 +1158,3 @@
 
 	include_once( 'theme/pegasus_plugins_suite_admin_menu.php' );
 
-	function pegasus_settings_table($atts) {
-
-		$atts = shortcode_atts(
-			array(
-				'plugin_slug' => '', // Default to an empty string
-				'shortcode_name' => ''
-			),
-			$atts,
-			'pegasus_settings_table'
-		);
-
-		// Get the plugin slug from the shortcode attributes
-		$plugin_slug = $atts['plugin_slug'];
-
-		// Check if the plugin slug is in the allowed array
-		$allowed_plugins = array(
-			'pegasus-blog',
-			'pegasus-callout',
-			'pegasus-carousel',
-			'pegasus-countup',
-			'pegasus-circle-progress',
-			'pegasus-masonry',
-			'pegasus-navmenu',
-			'pegasus-onepage',
-			'pegasus-packery',
-			'pegasus-popup',
-			'pegasus-posts-filter',
-			'pegasus-post-grid',
-			'pegasus-slider',
-			'pegasus-tabs',
-			'pegasus-toggleslide',
-			'pegasus-wow'
-		);
-
-		if (!in_array($plugin_slug, $allowed_plugins)) {
-			return '<p style="color: red;">Error: Invalid plugin slug provided.</p>';
-		}
-
-		// Load the settings.json file from the specified plugin
-		$file_path = plugins_url() . '/'. $plugin_slug . '/settings.json';
-		// echo '<pre>';
-		// var_dump( $file_path ); //plugins_url
-		// echo '</pre>';
-		// if (!file_exists($file_path)) {
-		// 	return '<p style="color: red;">Error: settings.json file not found for the specified plugin.</p>';
-		// }
-
-		$data = json_decode(file_get_contents($file_path), true);
-
-		if (json_last_error() !== JSON_ERROR_NONE) {
-			return '<p style="color: red;">Error: Invalid JSON provided.</p>';
-		}
-
-		// Start building the HTML
-		$html = '<table border="0" cellpadding="1" class="table responsive pegasus-table" align="left">
-		<thead>
-		<tr>
-		<td><span><strong>Name</strong></span></td>
-		<td><span><strong>Attribute</strong></span></td>
-		<td><span><strong>Options</strong></span></td>
-		<td><span><strong>Description</strong></span></td>
-		<td><span><strong>Example</strong></span></td>
-		</tr>
-		</thead>
-		<tbody>';
-
-		if ( $atts['shortcode_name'] ) {
-			// $html .= '<tr >';
-			// 	$html .= '<td colspan="5">';
-			// 		$html .= '<span>';
-			// 			$html .= '<strong>' . htmlspecialchars($atts['shortcode_name']) . '</strong>';
-			// 		$html .= '</span>';
-			// 	$html .= '</td>';
-			// $html .= '</tr>';
-			$html .= '<caption><strong>' . htmlspecialchars(str_replace('_', ' ', $atts['shortcode_name'])) . '</strong></caption>';
-
-			foreach ($data['rows'] as $key => $value) {
-				// echo '<pre>';
-				// var_dump($value);
-				// echo '</pre>';
-				foreach ($value[$atts['shortcode_name']] as $single) {
-					$html .= '<tr>
-						<td>' . htmlspecialchars($single['name']) . '</td>
-						<td>' . htmlspecialchars($single['attribute']) . '</td>
-						<td>' . nl2br(htmlspecialchars($single['options'])) . '</td>
-						<td>' . nl2br(htmlspecialchars($single['description'])) . '</td>
-						<td><code>' . htmlspecialchars($single['example']) . '</code></td>
-					</tr>';
-				}
-			}
-
-			$html .= '</tbody></table>';
-			return $html;
-		}
-
-
-		// Iterate over the data to populate rows
-		if (!empty($data['rows'])) {
-			foreach ($data['rows'] as $section) {
-				if ( "pegasus-carousel" !== $plugin_slug ) {
-					// Add section header
-					// $html .= '<tr >';
-					// 	$html .= '<td colspan="5">';
-					// 		$html .= '<span>';
-					// 			$html .= '<strong>' . htmlspecialchars($section['section_name']) . '</strong>';
-					// 		$html .= '</span>';
-					// 	$html .= '</td>';
-					// $html .= '</tr>';
-					$html .= '<caption><strong>' . htmlspecialchars(str_replace('_', ' ', $section['section_name'])) . '</strong></caption>';
-
-				}
-
-				if ( "pegasus-carousel" === $plugin_slug || "pegasus-slider" === $plugin_slug || "pegasus-post-grid" === $plugin_slug ) {
-					// Iterate over each setting group within the section
-					foreach ($section as $key => $settings) {
-						if ($key !== 'section_name') {
-							// Add group header
-							$html .= '<tr>';
-							$html .= '<td colspan="5">';
-							$html .= '<span>';
-							$html .= '<strong>' . htmlspecialchars(ucwords(str_replace('_', ' ', $key))) . '</strong>';
-							$html .= '</span>';
-							$html .= '</td>';
-							$html .= '</tr>';
-
-							// Add rows in the group
-							foreach ($settings as $row) {
-								$html .= '<tr>
-									<td>' . htmlspecialchars($row['name']) . '</td>
-									<td>' . htmlspecialchars($row['attribute']) . '</td>
-									<td>' . nl2br(htmlspecialchars($row['options'])) . '</td>
-									<td>' . nl2br(htmlspecialchars($row['description'])) . '</td>
-									<td><code>' . htmlspecialchars($row['example']) . '</code></td>
-								</tr>';
-							}
-						}
-					} //end foreach
-				} else {
-					// Add rows in the section
-					foreach ($section['rows'] as $row) {
-						$html .= '<tr>
-							<td >' . htmlspecialchars($row['name']) . '</td>
-							<td >' . htmlspecialchars($row['attribute']) . '</td>
-							<td >' . nl2br(htmlspecialchars($row['options'])) . '</td>
-							<td >' . nl2br(htmlspecialchars($row['description'])) . '</td>
-							<td ><code>' . htmlspecialchars($row['example']) . '</code></td>
-						</tr>';
-					}
-				} //end if carousel or slider
-
-			} //end foreach for section in json
-		} //end if
-
-		$html .= '</tbody></table>';
-
-		// Return the generated HTML
-		return $html;
-	}
-	add_shortcode('pegasus_settings_table', 'pegasus_settings_table');
