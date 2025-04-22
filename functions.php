@@ -47,7 +47,7 @@
 
 	add_theme_support( 'bootstrap' );
 
-	require_once 'inc/wp-bootstrap-hooks-master/bootstrap-hooks.php';
+	//require_once 'inc/wp-bootstrap-hooks-master/bootstrap-hooks.php';
 
 	/*=========================================
 
