@@ -1,4 +1,4 @@
-	<?php
+<?php
 		/**
 		 * Silence is golden; exit if accessed directly
 		 */
@@ -154,7 +154,11 @@
 
 									<?php the_content(); ?>
 
-									<?php comments_template(); ?>
+									<?php 
+									if ( ! function_exists( 'is_woocommerce' ) || ! is_woocommerce() ) {
+										comments_template(); 
+									}
+									?>
 								<?php endwhile; else: ?>
 									<?php /* kinda a 404 of sorts when not working */ ?>
 									<div class="page-header">
