@@ -34,7 +34,7 @@
 			//page header theme option
 			$global_disable_page_header_option =  pegasus_get_option('page_header_chk' ) ? pegasus_get_option('page_header_chk' ) : 'off';
 			//check theme option for page header before page option
-			if ( $post ) {
+			if ( isset($post) ) {
 				$page_title = $post->post_title;
 			}
 			$is_this_home = is_home();

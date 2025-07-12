@@ -552,12 +552,17 @@
 		$global_additional_header_bg_img_repeat = pegasus_get_option( 'global_add_header_bkg_img_repeat' );
 		$post_additional_header_bg_img_repeat = get_post_meta( get_the_ID(), 'pegasus_add_header_bkg_img_repeat', true );
 		$additional_header_bg_img_repeat = ( 'no-repeat' === $post_additional_header_bg_img_repeat ) ? $global_additional_header_bg_img_repeat : $post_additional_header_bg_img_repeat;
-
+		
+		//position
+		$global_additional_header_bg_img_pos = pegasus_get_option( 'global_add_header_bkg_img_pos' );
+		$post_additional_header_bg_img_pos = ( '' !== get_post_meta( get_the_ID(), 'pegasus_add_header_bkg_img_pos', true ) ) ? get_post_meta( get_the_ID(), 'pegasus_add_header_bkg_img_pos', true ) : 'center-center';
+		$additional_header_bg_img_pos = ( 'center-center' === $post_additional_header_bg_img_pos ) ? $global_additional_header_bg_img_pos : $post_additional_header_bg_img_pos;
+		
 		//add header size
 		$global_additional_header_bg_img_size = pegasus_get_option( 'global_add_header_bkg_img_size' );
 		$post_additional_header_bg_img_size = ( '' !== get_post_meta( get_the_ID(), 'pegasus_add_header_bkg_img_size', true ) ) ? get_post_meta( get_the_ID(), 'pegasus_add_header_bkg_img_size', true ) : 'cover';
-		$additional_header_bg_img_size = ( 'cover' === $post_additional_header_bg_img_size && 'auto' !== $global_additional_header_bg_img_size ) ? $global_additional_header_bg_img_size : $post_additional_header_bg_img_size;
-
+		$additional_header_bg_img_size = ( 'cover' === $post_additional_header_bg_img_size ) ? $global_additional_header_bg_img_size : $post_additional_header_bg_img_size;
+		
 		//add header img attached
 		$global_additional_header_bg_img_attached = ( 'on' === pegasus_get_option( 'global_add_header_bkg_img_fixed_chk' ) ) ? 'on' : 'off';
 		$post_additional_header_bg_img_attached = get_post_meta( get_the_ID(), 'pegasus_add_header_bkg_img_fixed_chk', true ) ? 'on' : 'off';
@@ -566,7 +571,7 @@
 		//overlay color
 		$global_additional_header_overlay_color = pegasus_get_option( 'global_add_header_overlay_color' ) ? pegasus_get_option( 'global_add_header_overlay_color' ) : 'rgba(48, 53, 67, 1)';
 		$post_additional_header_overlay_color = get_post_meta( get_the_ID(), 'pegasus_add_header_overlay_color', true ) ? get_post_meta( get_the_ID(), 'pegasus_add_header_overlay_color', true ) : 'rgba(48, 53, 67, 1)';
-
+		//overlay opacity
 		$global_additional_header_overlay_opacity = pegasus_get_option( 'global_add_header_overlay_opacity' ) ? pegasus_get_option( 'global_add_header_overlay_opacity' ) : '0.4';
 		$post_additional_header_overlay_opacity = get_post_meta( get_the_ID(), 'pegasus_add_header_overlay_opacity', true ) ? get_post_meta( get_the_ID(), 'pegasus_add_header_overlay_opacity', true ) : '0.4';
 
@@ -739,12 +744,21 @@
 
 				<?php if( $additional_header_bg_img_repeat ) : ?>
 					background-repeat: <?php echo $additional_header_bg_img_repeat; ?>;
+				<?php else: ?>	
+					background-repeat: no-repeat;
+				<?php endif; ?>
+				
+				
+				<?php if( 'center-center' === $additional_header_bg_img_pos ) : ?>
+					background-position: center center;
+				<?php else: ?>
+					background-position: center center; <?php //echo $additional_header_bg_img_pos; ?>
 				<?php endif; ?>
 
 				<?php if( '100-100' === $additional_header_bg_img_size ) : ?>
 					background-size: 100% 100%;
 				<?php else: ?>
-					background-size: <?php echo $additional_header_bg_img_size; ?>;
+					background-size: cover; <?php //echo $additional_header_bg_img_size; ?>
 				<?php endif; ?>
 
 				<?php if( 'on' === $additional_header_bg_img_attached ) : ?>

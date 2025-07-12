@@ -310,22 +310,22 @@ link_text="Learn More"
 			<p>Masonry Usage 1:<br>
 <?php output_shortcode_pre('
 [masonry]
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/250x500/">
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/250x500/">
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/250x500/">
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/250x500/">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/abarth.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Acura.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/alfaromeo.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Aston-Martin.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Audi.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/bentley.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/BMW.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Buick.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Cadillac.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Chevrolet.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/chrysler.png" alt="image">
 [/masonry]
 '); ?>
 			</p>
-			<?php output_shortcode_pre('[masonry]<img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/">[/masonry]'); ?>
-			<?php output_shortcode_pre('[masonry]<img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/">[/masonry]', 'wp'); ?>
+			<?php output_shortcode_pre('[masonry]<img src="http://pegasustheme.com/wp-content/uploads/2025/01/abarth.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Acura.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/alfaromeo.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Aston-Martin.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Audi.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/bentley.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/BMW.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Buick.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Cadillac.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Chevrolet.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/chrysler.png" alt="image">[/masonry]'); ?>
+			<?php output_shortcode_pre('[masonry]<img src="http://pegasustheme.com/wp-content/uploads/2025/01/abarth.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Acura.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/alfaromeo.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Aston-Martin.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Audi.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/bentley.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/BMW.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Buick.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Cadillac.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Chevrolet.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/chrysler.png" alt="image">[/masonry]', 'wp'); ?>
 			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-masonry"]'); ?>
 		</div>
 		<?php
@@ -363,22 +363,22 @@ link_text="Learn More"
 			<p>Packery Usage 1:<br>
 			<?php output_shortcode_pre('
 [packery]
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/960x550/">
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/250x500/">
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/750x500/">
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/250x250/">
-	<img src="https://via.placeholder.com/250x500/">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/abarth.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Acura.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/alfaromeo.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Aston-Martin.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Audi.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/bentley.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/BMW.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Buick.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Cadillac.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/Chevrolet.png" alt="image">
+	<img src="http://pegasustheme.com/wp-content/uploads/2025/01/chrysler.png" alt="image">
 [/packery]
 '); ?>
 			</p>
-			<?php output_shortcode_pre('[packery]<img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/">[/packery]'); ?>
-			<?php output_shortcode_pre('[packery]<img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x250/"><img src="https://via.placeholder.com/250x500/">[/packery]', 'wp'); ?>
+			<?php output_shortcode_pre('[packery]<img src="http://pegasustheme.com/wp-content/uploads/2025/01/abarth.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Acura.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/alfaromeo.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Aston-Martin.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Audi.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/bentley.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/BMW.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Buick.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Cadillac.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Chevrolet.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/chrysler.png" alt="image">[/packery]'); ?>
+			<?php output_shortcode_pre('[packery]<img src="http://pegasustheme.com/wp-content/uploads/2025/01/abarth.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Acura.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/alfaromeo.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Aston-Martin.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Audi.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/bentley.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/BMW.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Buick.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Cadillac.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/Chevrolet.png" alt="image"><img src="http://pegasustheme.com/wp-content/uploads/2025/01/chrysler.png" alt="image">[/packery]', 'wp'); ?>
 			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-packery"]'); ?>
 		</div>
 		<?php
