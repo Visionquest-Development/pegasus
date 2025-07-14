@@ -6,7 +6,7 @@
 				   id="header_s"
 				   class="search-field form-control"
 				   name="s"
-				   value="<?php echo get_search_query() ?>"
+				   value="<?php echo esc_attr( get_search_query() ); ?>"
 				   title="<?php echo esc_attr_x('Search for:', 'label') ?>"
 				   placeholder="<?php echo esc_attr_x('Search …', 'placeholder') ?>"
 				   aria-label="Search"

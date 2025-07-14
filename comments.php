@@ -69,7 +69,7 @@ if ( false === $disable_comments_chk ) {
 						$user_identity = $user->exists() ? $user->display_name : '';
 					?>
 					<?php if ( is_user_logged_in() ) : ?>
-						<p>Logged in as <a href="<?php echo esc_url( home_url( '/' ) ); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>.
+						<p>Logged in as <a href="<?php echo esc_url( home_url( '/' ) ); ?>/wp-admin/profile.php"><?php echo esc_html( $user_identity ); ?></a>.
 							<a href="<?php echo wp_logout_url( get_permalink() ); ?>" title="Log out of this account">Log out &raquo;</a></p>
 					<?php else : ?>
 						<?php
@@ -81,15 +81,15 @@ if ( false === $disable_comments_chk ) {
 						?>
 
 						<p>
-							<input type="text" name="author" id="author" value="<?php echo esc_attr( $commenter['comment_author'] ); ?>" size="22" tabindex="1" <?php echo $req_final; ?> />
+							<input type="text" name="author" id="author" value="<?php echo esc_attr( $commenter['comment_author'] ); ?>" size="22" tabindex="1" <?php echo esc_attr( $req_final ); ?> />
 							<label for="author">
-								<small>Name <?php echo $req_final; ?></small>
+								<small>Name <?php echo esc_html( $req_final ); ?></small>
 							</label>
 						</p>
 						<p>
-							<input type="text" name="email" id="email" value="<?php echo esc_attr( $commenter['comment_author_email'] ); ?>" size="22" tabindex="2" <?php echo $req_final; ?> />
+							<input type="text" name="email" id="email" value="<?php echo esc_attr( $commenter['comment_author_email'] ); ?>" size="22" tabindex="2" <?php echo esc_attr( $req_final ); ?> />
 							<label for="email">
-								<small>Mail (will not be published) <?php echo $req_final; ?></small>
+								<small>Mail (will not be published) <?php echo esc_html( $req_final ); ?></small>
 							</label>
 						</p>
 						<p>

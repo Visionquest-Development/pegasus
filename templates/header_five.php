@@ -24,7 +24,7 @@
 			<?php
 			$logo =  pegasus_get_option( 'logo' );
 			if( ! empty( $logo ) ) : ?>
-				<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" alt=""/></a>
+				<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo esc_url( $logo ); ?>" alt=""/></a>
 			<?php else: ?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			<?php endif; ?>
@@ -61,7 +61,7 @@
 		<?php
 		$logo =  pegasus_get_option( 'logo' );
 		if( ! empty( $logo ) ) : ?>
-			<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" alt=""/></a>
+			<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo esc_url( $logo ); ?>" alt=""/></a>
 		<?php else: ?>
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 		<?php endif; ?>

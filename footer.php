@@ -79,7 +79,7 @@
 								<div id="footer-widgets" class="footer-widget-areas clearfix">
 									<div class="row">
 										<?php for( $i = 1; $i <= $footer_widget_areas; $i++ ): ?>
-											<div id="footer-widget-<?php echo $i; ?>" class="footer-widget-area <?php echo $footer_widget_class; ?>" role="complementary" >
+											<div id="footer-widget-<?php echo esc_attr( $i ); ?>" class="footer-widget-area <?php echo esc_attr( $footer_widget_class ); ?>" role="complementary" >
 												<?php dynamic_sidebar( 'footer-' . $i ); ?>
 											</div><!-- .widget-area -->
 										<?php endfor; ?>
@@ -95,7 +95,7 @@
 										<?php
 											$custom_footer = pegasus_get_option( 'footer_copy_textareacode' );
 											if( $custom_footer ) {
-												echo $custom_footer;
+												echo wp_kses_post( $custom_footer );
 											} else {
 										?>
 											<p class="copyright">&copy; <?php echo date('Y');?> <?php bloginfo('name'); ?></p>

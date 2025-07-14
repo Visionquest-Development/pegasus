@@ -37,13 +37,13 @@
 <ul class="the-nav-cart pl-md-3 ms-auto">
 	<?php if( 'on' !== $shop_link_choice ) : ?>
 		<li class="menu-item">
-			<a class="shop-link" href="<?php echo $shop_page_url; ?>">Shop</a>
+			<a class="shop-link" href="<?php echo esc_url( $shop_page_url ); ?>">Shop</a>
 		</li>
 	<?php endif; ?>
 
 	<?php if ( 'on' !== $user_menu_choice ) : ?>
 	<li class="woo-item user-menu-container menu-item">
-		<a class="user-menu " href="#" ><?php echo $user_menu_logged_in_out; ?></a>
+		<a class="user-menu " href="#" ><?php echo esc_html( $user_menu_logged_in_out ); ?></a>
 		<ul class="sub-menu">
 			<li class="menu-item">
 				<?php
@@ -65,19 +65,19 @@
 						$temporary_name = substr( $final_name, 0, 25 );
 						if( '' != $temporary_name ) {
 							?>
-							<a class="nav-link" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>">
-								Hi, <?php echo $temporary_name . $final_last_name; ?>!
+							<a class="nav-link" href="<?php echo esc_url( get_permalink( get_option('woocommerce_myaccount_page_id') ) ); ?>" title="<?php _e('My Account','woothemes'); ?>">
+								Hi, <?php echo esc_html( $temporary_name . $final_last_name ); ?>!
 							</a>
 							<?php
 						}
 					} else{ ?>
-						<a class="nav-link" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','woothemes'); ?>">
+						<a class="nav-link" href="<?php echo esc_url( get_permalink( get_option('woocommerce_myaccount_page_id') ) ); ?>" title="<?php _e('Login / Register','woothemes'); ?>">
 							<?php _e('Login / Register','woothemes'); ?>
 						</a>
 				<?php } ?>
 			</li>
 			<?php
-				echo $final_user_menu;
+				echo wp_kses_post( $final_user_menu );
 			?>
 			<?php
 				if ( is_user_logged_in() ) {
@@ -93,7 +93,7 @@
 
 	<?php if( 'on' !== $cart_menu_choice ) : ?>
 	<li class="header-cart-item woo-item menu-item">
-		<a class="cart-contents" href="<?php echo $final_woo_cart_url; ?>" title="<?php echo $woo_url_title; ?>"><?php echo $final_cart_count; ?></a>
+		<a class="cart-contents" href="<?php echo esc_url( $final_woo_cart_url ); ?>" title="<?php echo esc_attr( $woo_url_title ); ?>"><?php echo esc_html( $final_cart_count ); ?></a>
 		<ul class="sub-menu">
 			<?php if( !is_cart() ) : ?>
 				<li>

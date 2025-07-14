@@ -632,14 +632,14 @@
 
 			body {
 				<?php /*if( $bg_color ) : ?>
-				background-color: <?php echo $bg_color; ?>;
+				background-color: <?php echo esc_attr( $bg_color ); ?>;
 				<?php endif;*/ ?>
 
 				<?php if( $bg_img ) : ?>
-					background-image: url(<?php echo $bg_img; ?>);
+					background-image: url(<?php echo esc_url( $bg_img ); ?>);
 
 					<?php if( $bg_img_repeat ) : ?>
-						background-repeat: <?php echo $bg_img_repeat; ?>;
+						background-repeat: <?php echo esc_attr( $bg_img_repeat ); ?>;
 					<?php endif; ?>
 
 					<?php if( '100-100' === $bg_img_pos ) : ?>
@@ -648,13 +648,13 @@
 						background-position: 50% 0;
 					<?php else: ?>
 						<?php $bg_img_pos = str_replace( '-', ' ', $bg_img_pos ); ?>
-						background-position: <?php echo $bg_img_pos; ?>;
+						background-position: <?php echo esc_attr( $bg_img_pos ); ?>;
 					<?php endif; ?>
 
 					<?php if( '100-100' === $bg_img_size ) : ?>
 						background-size: 100% 100%;
 					<?php else: ?>
-						background-size: <?php echo $bg_img_size; ?>;
+						background-size: <?php echo esc_attr( $bg_img_size ); ?>;
 					<?php endif; ?>
 
 					<?php if( 'on' === $bg_img_attached ) : ?>
@@ -669,48 +669,48 @@
 
 
 			:root {
-				--pegasus-background-color: <?php echo $bg_color; ?>;
-				--pegasus-body-color: <?php echo $content_color; ?>;
-				--pegasus-top-header-bkg-color: <?php echo $top_bar_bkg_color; ?>;
-				--pegasus-top-header-content-color: <?php echo $top_bar_content_color; ?>;
+				--pegasus-background-color: <?php echo esc_attr( $bg_color ); ?>;
+				--pegasus-body-color: <?php echo esc_attr( $content_color ); ?>;
+				--pegasus-top-header-bkg-color: <?php echo esc_attr( $top_bar_bkg_color ); ?>;
+				--pegasus-top-header-content-color: <?php echo esc_attr( $top_bar_content_color ); ?>;
 
 
 
-				--pegasus-header-bkg-color: <?php echo $header_bkg_color; ?>;
+				--pegasus-header-bkg-color: <?php echo esc_attr( $header_bkg_color ); ?>;
 
 				--pegasus-navbar-toggler-icon-color: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='<?php echo hexToRgba($mobile_color); ?>' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-				--pegasus-navbar-toggler-border-color: <?php echo $mobile_border_color; ?>;
+				--pegasus-navbar-toggler-border-color: <?php echo esc_attr( $mobile_border_color ); ?>;
 
-				--pegasus-nav-bg-color: <?php echo $nav_bg_color; ?>;
-
-
-				--pegasus-nav-item-color: <?php echo $nav_item_color; ?>;
-				--pegasus-nav-item-hover-color: <?php echo $nav_item_hover_color; ?>;
-
-				--pegasus-nav-item-bkg-color: <?php echo $nav_item_bkg_color; ?>;
-				--pegasus-nav-item-bkg-hover-color: <?php echo $nav_item_bkg_hover_color; ?>;
-
-				--pegasus-sub-nav-item-color: <?php echo $sub_nav_item_color; ?>;
-				--pegasus-sub-nav-item-hover-color: <?php echo $sub_nav_item_hover_color; ?>;
-
-				--pegasus-sub-nav-bkg-color: <?php echo $sub_nav_bg_color; ?>;
-				--pegasus-sub-nav-bkg-hover-color: <?php echo $sub_nav_bg_hover_color; ?>;
-
-				--pegasus-current-item-color: <?php echo $current_item_color; ?>;
+				--pegasus-nav-bg-color: <?php echo esc_attr( $nav_bg_color ); ?>;
 
 
-				--pegasus-header-three-mobile-color: <?php echo $header_three_mobile_color; ?>;
-				--pegasus-header-three-scroll-bg-color: <?php echo $header_three_scroll_bg_color; ?>;
-				--pegasus-header-three-scroll-item-color: <?php echo $header_three_scroll_item_color; ?>;
+				--pegasus-nav-item-color: <?php echo esc_attr( $nav_item_color ); ?>;
+				--pegasus-nav-item-hover-color: <?php echo esc_attr( $nav_item_hover_color ); ?>;
 
-				--pegasus-additional-header-spacer-color: <?php echo $additional_header_spacer_color; ?>;
-				--pegasus-additional-header-overlay-color: <?php echo $additional_header_overlay_color; ?>;
-				--pegasus-additional-header-overlay-opacity: <?php echo $additional_header_overlay_opacity; ?>;
+				--pegasus-nav-item-bkg-color: <?php echo esc_attr( $nav_item_bkg_color ); ?>;
+				--pegasus-nav-item-bkg-hover-color: <?php echo esc_attr( $nav_item_bkg_hover_color ); ?>;
 
-				--pegasus-page-header-wysiwyg-color: <?php echo $page_header_wysiwyg_color; ?>;
-				--pegasus-footer-bkg-color: <?php echo $footer_bkg_color; ?>;
-				--pegasus-footer-txt-color: <?php echo $footer_txt_color; ?>;
-				--pegasus-bottom-footer-bkg-color: <?php echo $bottom_footer_bkg_color; ?>;
+				--pegasus-sub-nav-item-color: <?php echo esc_attr( $sub_nav_item_color ); ?>;
+				--pegasus-sub-nav-item-hover-color: <?php echo esc_attr( $sub_nav_item_hover_color ); ?>;
+
+				--pegasus-sub-nav-bkg-color: <?php echo esc_attr( $sub_nav_bg_color ); ?>;
+				--pegasus-sub-nav-bkg-hover-color: <?php echo esc_attr( $sub_nav_bg_hover_color ); ?>;
+
+				--pegasus-current-item-color: <?php echo esc_attr( $current_item_color ); ?>;
+
+
+				--pegasus-header-three-mobile-color: <?php echo esc_attr( $header_three_mobile_color ); ?>;
+				--pegasus-header-three-scroll-bg-color: <?php echo esc_attr( $header_three_scroll_bg_color ); ?>;
+				--pegasus-header-three-scroll-item-color: <?php echo esc_attr( $header_three_scroll_item_color ); ?>;
+
+				--pegasus-additional-header-spacer-color: <?php echo esc_attr( $additional_header_spacer_color ); ?>;
+				--pegasus-additional-header-overlay-color: <?php echo esc_attr( $additional_header_overlay_color ); ?>;
+				--pegasus-additional-header-overlay-opacity: <?php echo esc_attr( $additional_header_overlay_opacity ); ?>;
+
+				--pegasus-page-header-wysiwyg-color: <?php echo esc_attr( $page_header_wysiwyg_color ); ?>;
+				--pegasus-footer-bkg-color: <?php echo esc_attr( $footer_bkg_color ); ?>;
+				--pegasus-footer-txt-color: <?php echo esc_attr( $footer_txt_color ); ?>;
+				--pegasus-bottom-footer-bkg-color: <?php echo esc_attr( $bottom_footer_bkg_color ); ?>;
 			}
 
 			<?php
@@ -745,14 +745,14 @@
 
 			<?php /*===== additional header stuff =====*/ ?>
 			.noheader-spacer {
-				background: <?php echo $additional_header_spacer_color; ?>;
-				padding: <?php echo $additional_header_spacer_padding; ?>;
+				background: <?php echo esc_attr( $additional_header_spacer_color ); ?>;
+				padding: <?php echo esc_attr( $additional_header_spacer_padding ); ?>;
 			}
 			.parallax-image {
-				background-image: url(<?php echo $additional_header_bkg_img; ?>);
+				background-image: url(<?php echo esc_url( $additional_header_bkg_img ); ?>);
 
 				<?php if( $additional_header_bg_img_repeat ) : ?>
-					background-repeat: <?php echo $additional_header_bg_img_repeat; ?>;
+					background-repeat: <?php echo esc_attr( $additional_header_bg_img_repeat ); ?>;
 				<?php else: ?>
 					background-repeat: no-repeat;
 				<?php endif; ?>
@@ -782,7 +782,7 @@
 			if ( '' === $custom_css || null === $custom_css ) {
 				echo '';
 			} else {
-				echo $custom_css;
+				echo wp_strip_all_tags( $custom_css );
 			}
 			?>
 

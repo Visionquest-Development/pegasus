@@ -77,10 +77,10 @@
 
 
 							<!--<a class="navbar-brand me-auto me-lg-0" href="#">Offcanvas navbar</a>-->
-							<a class="navbar-brand tk-proxima-nova large" href="<?php echo $home_url; ?>">
+							<a class="navbar-brand tk-proxima-nova large" href="<?php echo esc_url( $home_url ); ?>">
 								<?php
 									if( ! empty( $logo ) ) : ?>
-										<img id="logo" src="<?php echo $logo; ?>" alt=""/>
+										<img id="logo" src="<?php echo esc_url( $logo ); ?>" alt=""/>
 									<?php else: ?>
 										<?php bloginfo( 'name' ); ?>
 									<?php endif;

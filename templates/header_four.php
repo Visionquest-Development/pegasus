@@ -72,7 +72,7 @@
 							<?php
 								$logo =  pegasus_get_option( 'logo' );
 								if( ! empty( $logo ) ) : ?>
-									<img id="logo" src="<?php echo $logo; ?>" alt=""/>
+									<img id="logo" src="<?php echo esc_url( $logo ); ?>" alt=""/>
 								<?php else: ?>
 									<?php bloginfo( 'name' ); ?>
 								<?php endif;
@@ -98,11 +98,11 @@
 						<!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
 						<div class="collapse navbar-collapse" id="pegasus-header-four-nav">
 							<div class="mobile-container">
-								<a class="navbar-brand mobile tk-proxima-nova " href="<?php echo $home_url; ?>">
+								<a class="navbar-brand mobile tk-proxima-nova " href="<?php echo esc_url( $home_url ); ?>">
 									<?php
 										//$logo =  pegasus_get_option( 'logo' );
 										if( ! empty( $logo ) ) : ?>
-											<img id="logo" src="<?php echo $logo; ?>" alt=""/>
+											<img id="logo" src="<?php echo esc_url( $logo ); ?>" alt=""/>
 										<?php else: ?>
 											<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
 										<?php endif;

@@ -33,7 +33,7 @@ endif;
 			?>
 				<em>
 					<p class="content-item-date-time">
-						<?php echo $the_time;?>
+						<?php echo esc_html( $the_time );?>
 					</p>
 				</em>
 			<?php
@@ -52,7 +52,7 @@ endif;
 						<?php
 						$temporary_excerpt = substr( strip_tags( $pegasus_excerpt ), 0, 300 );
 						$final_excerpt = ( $pegasus_excerpt !== $temporary_excerpt ) ? ( $temporary_excerpt . '...') : $pegasus_excerpt;
-						echo $final_excerpt;
+						echo esc_html( $final_excerpt );
 						?>
 					</p>
 				<?php } else {
