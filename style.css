@@ -3,49 +3,58 @@ Theme Name: Pegasus
 Theme URI: http://visionquestdevelopment.com
 Author: Jim O'Brien
 Author URI: http://visionquestdevelopment.com/
-Description: This theme was developed for VISIONQUEST DEVELOPMENT. It's a theme that will have bootstrap elements that can be built with SiteOrginBuilder modules.
+Description: A responsive Bootstrap-based WordPress theme with flexible navigation options, customizable headers, and modern design features.
 Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: top bar, (fixed, scroll, and normal) navigation, small header and large header options, boxed layout,
-Text Domain: Bootstrap
+Tags: responsive-layout, custom-header, custom-menu, bootstrap, flexible-header, full-width-template
+Text Domain: pegasus
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
 
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~VQDEV CUSTOM CSS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	/*==================================================================
+						PEGASUS THEME CUSTOM STYLES
+	==================================================================*/
 
 
 	/*==========================
-		TEMPORARY
-	==========================
+		PAGE LAYOUT OVERRIDES
+	==========================*/
+	/* Uncomment if needed for page builder compatibility
 	#page-wrap .panel-grid { margin: 0 !important; }
 	#page-wrap .panel-grid .panel-grid-cell { padding: 0 !important; }
+	*/
+
+
+	/*==========================
+		ADMIN BAR ADJUSTMENTS
 	==========================*/
-
-
-	/* move admin bar so I can see what im doing and editing
-	.admin-bar .navbar-fixed-top, .admin-bar #mega-menu, .admin-bar a.mobile-menu-close {	margin-top: 32px;  }
+	/* Admin bar spacing adjustments (commented out - use if needed)
+	.admin-bar .navbar-fixed-top, .admin-bar #mega-menu, .admin-bar a.mobile-menu-close {
+		margin-top: 32px;
+	}
 	@media screen and ( max-width: 782px ) {
 		body { padding-top: 46px !important; }
 	}
 	@media screen and ( min-width: 782px ) {
-	html { margin-top: 32px !important; }
-	* html body { margin-top: 32px !important; }
+		html { margin-top: 32px !important; }
+		* html body { margin-top: 32px !important; }
 	}
 	*/
-	/* move admin bar so I can see what im doing and editing
-	.admin-bar .navbar-fixed-top, .admin-bar #mega-menu, .admin-bar a.mobile-menu-close {	margin-top: 30px;  } */
+	/* Alternative admin bar adjustment
+	.admin-bar .navbar-fixed-top, .admin-bar #mega-menu, .admin-bar a.mobile-menu-close {
+		margin-top: 30px;
+	}
+	*/
 
-  .admin-bar #header.fixed-top {
-      top: 32px;
-  }
+	.admin-bar #header.fixed-top {
+		top: 32px;
+	}
 
 
 
-  /*
+	/*
 	body.admin-bar { margin-top: 32px; }
 
 	@media screen and (max-width: 782px) {
@@ -54,9 +63,9 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	}
 	*/
 
-  .admin-bar.navbar-fixed-top-is-active #page-wrap {
-    margin-top: var(--pegasus-header-fixed-menu-height);
-  }
+	.admin-bar.navbar-fixed-top-is-active #page-wrap {
+		margin-top: var(--pegasus-header-fixed-menu-height);
+	}
 
   /* DESKTOP ONLY */
   @media screen and (min-width: 783px) {

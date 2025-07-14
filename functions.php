@@ -336,7 +336,7 @@
 			if ( 1 === $footer_widgets ) {
 				register_sidebar( array(
 					'name'          => __( 'Footer 1', 'pegasus-bootstrap' ),
-					'id' => 'footer',
+					'id' => 'footer-1',
 					//'description' => __( 'Displays on the footer right before the copyright.', 'pegasus-bootstrap' ),
 					'before_widget' => '<div id="%1$s" class="widget %2$s">',
 					'after_widget'  => '</div>',
@@ -807,9 +807,9 @@
 
 
 	function pegasus_admin_scripts($hook) {
-		wp_enqueue_style('admin-styles', get_template_directory_uri().'/admin/admin.css');
-		wp_enqueue_script( 'admin-js', get_template_directory_uri() . '/admin/admin.js', array( 'jquery', 'inline-edit-post' ), '', true );
-		wp_enqueue_script( 'cookie-js', get_template_directory_uri() . '/admin/cookie.js', array( 'jquery' ), '', true );
+		wp_enqueue_style('admin-styles', get_template_directory_uri().'/admin/admin.css', array(), '1.0.0');
+		wp_enqueue_script( 'admin-js', get_template_directory_uri() . '/admin/admin.js', array( 'jquery', 'inline-edit-post' ), '1.0.0', true );
+		wp_enqueue_script( 'cookie-js', get_template_directory_uri() . '/admin/cookie.js', array( 'jquery' ), '1.0.0', true );
 
 		//wp_enqueue_script('cmb2-conditionals-for-admin', plugins_url('/cmb2-conditionals.js', '/cmb2-conditionals/cmb2-conditionals.js'), array('jquery'), '', true);
 

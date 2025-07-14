@@ -49,7 +49,7 @@
 		var canvasNode = document.getElementById("demo-canvas");
 
     if (!h_height.length) {  // Check if the element does NOT exist
-      console.log("#Header element does not exist.");
+      // console.log("#Header element does not exist.");
       //return;
     }
 
@@ -123,7 +123,7 @@
     // }
 
 		//p.style.height = c + "px", f, f.width = u, f.height = c, m = f.getContext("2d");
-    console.log( "Window height: ", windowHeight );
+    // console.log( "Window height: ", windowHeight );
     largeHeader.style.height = windowHeight + "px";
 
     canvasNode.width = windowWidth;

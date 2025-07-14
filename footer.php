@@ -20,7 +20,7 @@
 				?>
 						<!-- Footer custom code for banner, etc. -->
 						<section class="pegasus-custom-footer">
-							<div class="<?php echo $final_footer_container_class; ?>">
+							<div class="<?php echo esc_attr( $final_footer_container_class ); ?>">
 								<div class="">
 									<?php echo do_shortcode( $footer_custom_code ); ?>
 								</div>
@@ -42,7 +42,7 @@
 
 						<!-- FOOTER SOCIAL WIDGET -->
 						<?php if ( is_active_sidebar( 'footer-social' ) ) : ?>
-							<div class="<?php echo $final_footer_container_class; ?>">
+							<div class="<?php echo esc_attr( $final_footer_container_class ); ?>">
 								<div class="footer-social-container">
 									<?php dynamic_sidebar( 'footer-social' ); ?>
 								</div>
@@ -75,7 +75,7 @@
 
 							if( $footer_widget_areas > 0 ) :
 						?>
-							<div class="<?php echo $final_footer_container_class; ?>">
+							<div class="<?php echo esc_attr( $final_footer_container_class ); ?>">
 								<div id="footer-widgets" class="footer-widget-areas clearfix">
 									<div class="row">
 										<?php for( $i = 1; $i <= $footer_widget_areas; $i++ ): ?>
@@ -89,7 +89,7 @@
 						<?php endif; ?>
 						<!-- COLOPHON -->
 						<div class="colophon-container">
-							<div class="<?php echo $final_footer_colophon_class; ?>">
+							<div class="<?php echo esc_attr( $final_footer_colophon_class ); ?>">
 								<div id="colophon" class="site-footer" role="contentinfo">
 									<div class="site-info">
 										<?php

@@ -717,7 +717,7 @@
 			}//end while
 			wp_reset_postdata();
 		} else {
-			echo '<p>No posts found.</p>';
+			echo '<p>' . esc_html__( 'No posts found.', 'pegasus' ) . '</p>';
 		}
 		//wp_reset_postdata();
 		wp_reset_query();
@@ -900,7 +900,7 @@
 			}//end while
 			wp_reset_postdata();
 		} else {
-			echo '<p>No posts found.</p>';
+			echo '<p>' . esc_html__( 'No posts found.', 'pegasus' ) . '</p>';
 		}
 
 		//wp_reset_postdata();

@@ -145,19 +145,19 @@
         var calculatedheight;
         var cssoutput;
         if (jQuery("body").hasClass("admin-bar")) {
-            console.log("Admin Bar: " + "yes");
+            // console.log("Admin Bar: " + "yes");
         } else {
-            console.log("Admin Bar: " + "no");
+            // console.log("Admin Bar: " + "no");
         }
 
         if (jQuery("body").hasClass("navbar-fixed-top-is-active")) {
-            console.log("Fixed Header checkbox: " + "yes");
+            // console.log("Fixed Header checkbox: " + "yes");
         } else {
-            console.log("Fixed Header checkbox: " + "no");
+            // console.log("Fixed Header checkbox: " + "no");
         }
 
         if (adminbarheight == null) {
-            console.log("Admin Bar height: " + adminbarheight);
+            // console.log("Admin Bar height: " + adminbarheight);
         }
 
     }
@@ -238,7 +238,7 @@ const getTopBarHeight = (topBarId, cssVar) => {
       const topBarHeight = topBar.offsetHeight;
       document.documentElement.style.setProperty(cssVar, `${topBarHeight}px`);
   } else {
-      console.log(`Element with id "${topBarId}" not found.`);
+      // console.log(`Element with id "${topBarId}" not found.`);
   }
 }
 
@@ -249,7 +249,7 @@ const getAdminBarHeight = (adminBarId, cssVar) => {
     const adminBarHeight = adminBar.offsetHeight;
     document.documentElement.style.setProperty(cssVar, `${adminBarHeight}px`);
   } else {
-    console.log(`Element with id "${adminBarId}" not found.`);
+    // console.log(`Element with id "${adminBarId}" not found.`);
   }
 
 }
@@ -262,7 +262,7 @@ const getHeaderHeight = (headerId, cssVar) => {
       const headerHeight = header.offsetHeight;
       document.documentElement.style.setProperty(`${cssVar}`, `${headerHeight}px`);
     } else {
-      console.log(`Element matching selector "${selector}" not found.`);
+      // console.log(`Element matching selector "${selector}" not found.`);
     }
   });
 
