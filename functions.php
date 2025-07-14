@@ -818,7 +818,7 @@
 		// 	return;
 		// }
 
-		wp_enqueue_script('clipboard-js', 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js', [], '2.0.11', true);
+		wp_enqueue_script('clipboard-js', get_template_directory_uri() . '/inc/js/clipboard/clipboard.min.js', [], '2.0.11', true);
 
 		// wp_enqueue_style( 'wp-color-picker' );
 		// $url_to_script = get_template_directory_uri() . '/admin/wp-color-picker-alpha.min.js';
