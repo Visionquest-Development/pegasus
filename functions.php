@@ -97,6 +97,15 @@
 			// 	'force_activation'   => true,
 			// ),
 
+			// WP BOOTSTRAP HOOKS
+			array(
+				'name'      => 'WP BOOTSTRAP HOOKS',
+				'slug'      => 'wp-bootstrap-hooks',
+				'source'    => 'https://github.com/benignware/wp-bootstrap-hooks/archive/master.zip',
+				'required'  => true,
+				'force_activation'   => true,
+			),
+
 			// Page Builder from SiteOrgin
 			array(
 				'name'      => 'Page Builder by SiteOrigin',
@@ -507,7 +516,7 @@
 		//$nav_bg_hover_color = ! empty( pegasus_get_option( 'nav_bg_hover_color' ) ) ? pegasus_get_option( 'nav_bg_hover_color' ) : 'rgba(0,0,0,0.0)';
 
 		$nav_item_color = ! empty( pegasus_get_option( 'nav_item_color' ) ) ? pegasus_get_option( 'nav_item_color' ) : '';
-		$nav_item_hover_color = ! empty( pegasus_get_option( 'nav_item_hover_color' ) ) ? pegasus_get_option( 'nav_item_hover_color' ) : '';
+		$nav_item_hover_color = ! empty( pegasus_get_option( 'nav_item_hover_color' ) ) ? pegasus_get_option( 'nav_item_hover_color' ) : 'rgba(0,0,0,0.45)';
 
 		$nav_item_bkg_color = ! empty( pegasus_get_option( 'nav_item_bkg_color' ) ) ? pegasus_get_option( 'nav_item_bkg_color' ) : '';
 		$nav_item_bkg_hover_color = ! empty( pegasus_get_option( 'nav_item_bkg_hover_color' ) ) ? pegasus_get_option( 'nav_item_bkg_hover_color' ) : '';
@@ -552,17 +561,17 @@
 		$global_additional_header_bg_img_repeat = pegasus_get_option( 'global_add_header_bkg_img_repeat' );
 		$post_additional_header_bg_img_repeat = get_post_meta( get_the_ID(), 'pegasus_add_header_bkg_img_repeat', true );
 		$additional_header_bg_img_repeat = ( 'no-repeat' === $post_additional_header_bg_img_repeat ) ? $global_additional_header_bg_img_repeat : $post_additional_header_bg_img_repeat;
-		
+
 		//position
 		$global_additional_header_bg_img_pos = pegasus_get_option( 'global_add_header_bkg_img_pos' );
 		$post_additional_header_bg_img_pos = ( '' !== get_post_meta( get_the_ID(), 'pegasus_add_header_bkg_img_pos', true ) ) ? get_post_meta( get_the_ID(), 'pegasus_add_header_bkg_img_pos', true ) : 'center-center';
 		$additional_header_bg_img_pos = ( 'center-center' === $post_additional_header_bg_img_pos ) ? $global_additional_header_bg_img_pos : $post_additional_header_bg_img_pos;
-		
+
 		//add header size
 		$global_additional_header_bg_img_size = pegasus_get_option( 'global_add_header_bkg_img_size' );
 		$post_additional_header_bg_img_size = ( '' !== get_post_meta( get_the_ID(), 'pegasus_add_header_bkg_img_size', true ) ) ? get_post_meta( get_the_ID(), 'pegasus_add_header_bkg_img_size', true ) : 'cover';
 		$additional_header_bg_img_size = ( 'cover' === $post_additional_header_bg_img_size ) ? $global_additional_header_bg_img_size : $post_additional_header_bg_img_size;
-		
+
 		//add header img attached
 		$global_additional_header_bg_img_attached = ( 'on' === pegasus_get_option( 'global_add_header_bkg_img_fixed_chk' ) ) ? 'on' : 'off';
 		$post_additional_header_bg_img_attached = get_post_meta( get_the_ID(), 'pegasus_add_header_bkg_img_fixed_chk', true ) ? 'on' : 'off';
@@ -744,11 +753,11 @@
 
 				<?php if( $additional_header_bg_img_repeat ) : ?>
 					background-repeat: <?php echo $additional_header_bg_img_repeat; ?>;
-				<?php else: ?>	
+				<?php else: ?>
 					background-repeat: no-repeat;
 				<?php endif; ?>
-				
-				
+
+
 				<?php if( 'center-center' === $additional_header_bg_img_pos ) : ?>
 					background-position: center center;
 				<?php else: ?>
