@@ -990,6 +990,12 @@
 
 		}
 
+		// Conditionally load mobile submenu always visible CSS
+		$mobile_submenu_always_visible = pegasus_get_option( 'mobile_submenu_always_visible' );
+		if ( 'on' === $mobile_submenu_always_visible ) {
+			wp_enqueue_style( 'pegasus-mobile-submenu-always-visible', get_template_directory_uri() . '/css/mobile-submenu-always-visible.css', array(), '1.0.0', 'all' );
+		}
+
 	} //end function
 	add_action( 'wp_enqueue_scripts', 'pegasus_scripts' );
 

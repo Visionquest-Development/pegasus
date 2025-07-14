@@ -1,0 +1,79 @@
+/*
+ * Mobile Submenu Always Visible Styles
+ * Applied when the "Mobile Submenu Always Visible" option is enabled
+ */
+
+/* TABLET AND BELOW - md */
+@media only screen and ( max-width: 767px ) {
+    
+    /* Always show dropdown menus on mobile/tablet */
+    .the-default-nav #menu-main-nav li.menu-item-has-children .dropdown-menu,
+    .navbar-nav .dropdown-menu,
+    .nav-item .dropdown-menu {
+        display: block !important;
+        position: static !important;
+        float: none !important;
+        width: auto !important;
+        margin-top: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+    }
+    
+    /* Style dropdown items for mobile */
+    .dropdown-item {
+        padding: 0.5rem 1rem !important;
+        background-color: transparent !important;
+        border: none !important;
+        color: var(--pegasus-nav-item-color) !important;
+    }
+    
+    .dropdown-item:hover,
+    .dropdown-item:focus {
+        background-color: transparent !important;
+        color: var(--pegasus-nav-item-hover-color) !important;
+    }
+    
+    .dropdown-item.active {
+        background-color: transparent !important;
+        color: var(--pegasus-current-item-color) !important;
+        font-weight: bold !important;
+    }
+    
+    /* Remove dropdown toggles/arrows on mobile */
+    .navbar-nav .nav-link.dropdown-toggle::after {
+        display: none !important;
+    }
+    
+    /* Ensure proper indentation for sub-menu items */
+    .dropdown-menu .dropdown-item {
+        padding-left: 2rem !important;
+    }
+    
+    /* Style nested dropdowns */
+    .dropdown-menu .dropdown-menu {
+        padding-left: 1rem !important;
+    }
+    
+    .dropdown-menu .dropdown-menu .dropdown-item {
+        padding-left: 3rem !important;
+    }
+    
+    /* Remove height restrictions and scrollbars on mobile dropdowns */
+    .dropdown-menu:not(.is-hierarchical),
+    .dropdown-menu {
+        max-height: none !important;
+        overflow-y: visible !important;
+        overflow-x: visible !important;
+        height: auto !important;
+    }
+    
+    /* Ensure sub-menus can expand fully without constraints */
+    .navbar-nav .dropdown-menu,
+    .nav-item .dropdown-menu {
+        max-height: unset !important;
+        overflow: visible !important;
+    }
+    
+}

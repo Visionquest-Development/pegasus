@@ -167,6 +167,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
       /* NAVIGATION COLORS */
   /* ================================== */
   .the-default-nav .nav-link,
+  .navbar-nav .nav-link.show,
   .the-default-second-nav .nav-link,
   .the-default-third-nav .nav-link,
   .the-default-fourth-nav .nav-link
@@ -216,17 +217,105 @@ Use it to make something cool, have fun, and share what you've learned with othe
       color: var(--pegasus-nav-item-hover-color) !important;
     }
 
+    /* Mobile submenu styling for standard dropdown behavior */
+    .dropdown-menu {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      margin-top: 0 !important;
+    }
+
+    .dropdown-item {
+      background-color: transparent !important;
+      color: var(--pegasus-nav-item-color) !important;
+      padding: 0.5rem 1rem !important;
+      border: none !important;
+    }
+
+    .dropdown-item:hover,
+    .dropdown-item:focus,
+    .dropdown-item:active {
+      background-color: transparent !important;
+      color: var(--pegasus-nav-item-hover-color) !important;
+    }
+
+    .dropdown-item.active {
+      background-color: transparent !important;
+      color: var(--pegasus-current-item-color) !important;
+      font-weight: bold !important;
+    }
+
+    /* Style submenu items with proper indentation */
+    .sub-menu .dropdown-item,
+    .dropdown-menu .dropdown-item {
+      padding-left: 2rem !important;
+      color: var(--pegasus-nav-item-color) !important;
+    }
+
+    .sub-menu .dropdown-item:hover,
+    .sub-menu .dropdown-item:focus,
+    .dropdown-menu .dropdown-item:hover,
+    .dropdown-menu .dropdown-item:focus {
+      background-color: transparent !important;
+      color: var(--pegasus-nav-item-hover-color) !important;
+    }
+
+    .sub-menu .current-menu-item .dropdown-item,
+    .dropdown-menu .current-menu-item .dropdown-item {
+      color: var(--pegasus-current-item-color) !important;
+      font-weight: bold !important;
+    }
+
+    /* Nested submenu indentation */
+    .dropdown-menu .dropdown-menu .dropdown-item {
+      padding-left: 3rem !important;
+    }
+
+    /* Remove height restrictions that cause scrollbars */
+    .dropdown-menu:not(.is-hierarchical),
+    .dropdown-menu {
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
   }
+
 
   .navbar-nav .nav-link:hover,
   .navbar-nav .nav-link:focus
   {
-    color: var(--pegasus-nav-item-hover-color);
+    color: var(--pegasus-nav-item-hover-color) !important;
   }
 
-  .current-menu-item > a {
+  /* Override Bootstrap hover states for active items */
+  .navbar-nav .nav-link.active:hover,
+  .navbar-nav .nav-link.active:focus,
+  .navbar-nav .nav-link.show:hover,
+  .navbar-nav .nav-link.show:focus {
+    color: var(--pegasus-nav-item-hover-color) !important;
+  }
+
+  .current-menu-item > a
+  {
     color: var(--pegasus-current-item-color) !important;
   }
+
+  /* Override Bootstrap active states with higher specificity */
+  .navbar-nav .nav-link.active,
+  .navbar-nav .nav-link.show.active {
+    color: var(--pegasus-current-item-color) !important;
+  }
+
+  .navbar-nav .nav-link.show {
+    color: var(--pegasus-nav-item-color) !important;
+  }
+
+  .sub-menu .current-menu-item .dropdown-item.dropdown-item.active,
+  .dropdown-item.active {
+    color: var(--pegasus-current-item-color) !important;
+  }
+
+
 
   .pegasus-header-content {
     color: var(--pegasus-page-header-wysiwyg-color);
@@ -562,7 +651,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 		/*#header { padding: 0 20px; }*/
 
         .dropdown-menu {
-            background-color: transparent;
+            background-color: transparent !important;
         }
 
 		.the-nav-cart .sub-menu {  left: 0; }

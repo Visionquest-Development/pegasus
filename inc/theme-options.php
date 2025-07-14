@@ -859,6 +859,13 @@ class Pegasus_Admin {
 			),
 		) );
 
+		$cmb->add_field( array(
+			'name' => __( 'Mobile Submenu Always Visible', 'pegasus-theme' ),
+			'desc' => __( 'Check this box to make all submenus always visible on mobile devices instead of requiring clicks to expand them.', 'pegasus-theme' ),
+			'id'   => 'mobile_submenu_always_visible',
+			'type' => 'checkbox',
+		) );
+
 		/*============================
 			ADDITIONAL HEADER OPTIONS
 		=============================*/
@@ -930,7 +937,7 @@ class Pegasus_Admin {
 			'id'   => 'global_add_header_disable_parralax_chk',
 			'type' => 'checkbox',
 		) );
-		
+
 		$cmb->add_field( array(
 			'name' => __( 'Disable Overlay', 'pegasus-theme' ),
 			'desc' => 'Check this box if you want to disable overlay effect.',
@@ -1221,51 +1228,19 @@ function pegasus_admin() {
  * @return mixed           Option value
  */
 function pegasus_get_option( $key = '', $default = false ) {
-	// Validate input parameters
-	if ( empty( $key ) || ! is_string( $key ) ) {
-		return $default;
-	}
-
-	// Try CMB2 first if available
 	if ( function_exists( 'cmb2_get_option' ) ) {
-		try {
-			$admin_instance = pegasus_admin();
-			if ( $admin_instance && isset( $admin_instance->key ) ) {
-				return cmb2_get_option( $admin_instance->key, $key, $default );
-			}
-		} catch ( Exception $e ) {
-			// Log error in development/debug mode
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'Pegasus Theme: Error getting CMB2 option for key ' . $key . ': ' . $e->getMessage() );
-			}
-		}
+		// Use cmb2_get_option as it passes through some key filters.
+		return cmb2_get_option( pegasus_admin()->key, $key, $default );
 	}
-
-	// Fallback to get_option if CMB2 is not loaded yet
-	try {
-		$admin_instance = pegasus_admin();
-		if ( ! $admin_instance || ! isset( $admin_instance->key ) ) {
-			return $default;
-		}
-
-		$opts = get_option( $admin_instance->key, array() );
-		
-		if ( 'all' === $key ) {
-			return is_array( $opts ) ? $opts : $default;
-		}
-		
-		if ( is_array( $opts ) && array_key_exists( $key, $opts ) && false !== $opts[ $key ] ) {
-			return $opts[ $key ];
-		}
-		
-	} catch ( Exception $e ) {
-		// Log error in development/debug mode
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( 'Pegasus Theme: Error getting option for key ' . $key . ': ' . $e->getMessage() );
-		}
+	// Fallback to get_option if CMB2 is not loaded yet.
+	$opts = get_option( pegasus_admin()->key, $key, $default );
+	$val = $default;
+	if ( 'all' == $key ) {
+		$val = $opts;
+	} elseif ( is_array( $opts ) && array_key_exists( $key, $opts ) && false !== $opts[ $key ] ) {
+		$val = $opts[ $key ];
 	}
-
-	return $default;
+	return $val;
 }
 // Get it started
 pegasus_admin();
