@@ -27,7 +27,7 @@
 	$woo_cart_total = WC()->cart->get_cart_total();
 
 	$final_woo_cart_url = $woo_cart_url;
-	$woo_url_title = __( 'View your shopping cart', 'pegasus-bootstrap' );
+	$woo_url_title = __( 'View your shopping cart', 'pegasus' );
 	$final_cart_count = sprintf (_n( '%d', '%d', $woo_cart_count ), $woo_cart_count );
 	$final_cart_total = ' - ' . $woo_cart_total;
 

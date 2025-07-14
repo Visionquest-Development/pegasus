@@ -122,9 +122,9 @@
 								<?php
 									// Previous/next page navigation.
 									wp_bootstrap_posts_pagination( array(
-										'prev_text'          => __( 'Previous page', 'textdomain' ),
-										'next_text'          => __( 'Next page', 'textdomain' ),
-										'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'textdomain' ) . ' </span>'
+										'prev_text'          => __( 'Previous page', 'pegasus' ),
+										'next_text'          => __( 'Next page', 'pegasus' ),
+										'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus' ) . ' </span>'
 									) );
 								?>
 

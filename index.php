@@ -99,7 +99,7 @@
 										'include'            => '',
 										'hierarchical'       => 0,
 										'title_li'           => 0,
-										'show_option_none'   => __( '' ),
+										'show_option_none'   => __( '', 'pegasus' ),
 										'number'             => null,
 										'echo'               => 1,
 										'depth'              => 0,
@@ -172,7 +172,7 @@
 								wp_bootstrap_edit_post_link(
 									sprintf(
 										/* translators: %s: Name of current post */
-										__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
+										__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'pegasus' ),
 										get_the_title()
 									),
 									'<span class="edit-link">',
@@ -181,9 +181,9 @@
 							}
 							if ( function_exists( 'wp_bootstrap_posts_pagination' ) ) {
 								wp_bootstrap_posts_pagination( array(
-									'prev_text'          => __( 'Previous page', 'pegasus-bootstrap' ),
-									'next_text'          => __( 'Next page', 'pegasus-bootstrap' ),
-									'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus-bootstrap' ) . ' </span>'
+									'prev_text'          => __( 'Previous page', 'pegasus' ),
+									'next_text'          => __( 'Next page', 'pegasus' ),
+									'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus' ) . ' </span>'
 								) );
 							}
 						?>

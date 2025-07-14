@@ -826,7 +826,7 @@ class Pegasus_Admin {
 			'name'    => __( 'Sub-Menu Item Hover color for Desktop', 'pegasus-theme' ),
 			'id'      => 'sub_nav_item_hover_color',
 			'type'    => 'colorpicker',
-			//'default' => 'rgba(0,0,0,0.45)',
+			'default' => 'rgba(0,0,0,0.45)',
 			'options' => array(
 				'alpha' => true,
 			),

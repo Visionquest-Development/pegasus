@@ -6,6 +6,17 @@
 		exit;
 	}
 
+
+	/**
+	 * Enqueue RTL stylesheet if needed
+	 */
+	function pegasus_rtl_support() {
+		if ( is_rtl() ) {
+			wp_enqueue_style( 'pegasus-rtl', get_template_directory_uri() . '/rtl.css', array(), '1.0.0' );
+		}
+	}
+	add_action( 'wp_enqueue_scripts', 'pegasus_rtl_support' );
+
 	/**
 	 * Plugin requirements (TGMPA) & Bootstrap CMB2
 	 */
@@ -148,7 +159,7 @@
 
 
 		$config = array(
-			'id'           => 'pegasus-bootstrap',                 // Unique ID for hashing notices for multiple instances of TGMPA.
+			'id'           => 'pegasus',                 // Unique ID for hashing notices for multiple instances of TGMPA.
 			'default_path' => '',                      // Default absolute path to bundled plugins.
 			'menu'         => 'tgmpa-install-plugins', // Menu slug.
 			'has_notices'  => true,                    // Show admin notices or not.
@@ -175,6 +186,12 @@
 		function pegasus_theme_setup() {
 
 			/*
+			 * Make theme available for translation.
+			 * Translations can be filed in the /languages/ directory.
+			 */
+			load_theme_textdomain( 'pegasus', get_template_directory() . '/languages' );
+
+			/*
 			 * Let WordPress manage the document title.
 			 * By adding theme support, we declare that this theme does not use a
 			 * hard-coded <title> tag in the document head, and expect WordPress to
@@ -183,13 +200,23 @@
 			add_theme_support( 'title-tag' );
 			add_theme_support( 'menus' );
 			add_theme_support( 'post-thumbnails' );
+			add_theme_support( 'automatic-feed-links' );
+			add_theme_support( 'html5', array(
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'script',
+				'style'
+			) );
 
 			/**
 			 * Register our primary menu
 			 */
-			register_nav_menu( 'primary', __( 'Primary Menu', 'pegasus-bootstrap' ) );
-			register_nav_menu( 'social-icons', __( 'Social Icon Menu', 'pegasus-bootstrap' ) );
-			register_nav_menu( 'user-menu', __( 'User Account Menu', 'pegasus-bootstrap' ) );
+			register_nav_menu( 'primary', __( 'Primary Menu', 'pegasus' ) );
+			register_nav_menu( 'social-icons', __( 'Social Icon Menu', 'pegasus' ) );
+			register_nav_menu( 'user-menu', __( 'User Account Menu', 'pegasus' ) );
 
 			$mega_menu_widget_choice = absint( pegasus_get_option( 'more_menu_widget_areas' ) );
 			$more_menu_widgets       = $mega_menu_widget_choice ? $mega_menu_widget_choice : 1;
@@ -197,12 +224,12 @@
 			switch ( $more_menu_widgets ) {
 				case 1:
 					if ( 'widgets' !== $mega_menus_nav_vs_widgets_select ) {
-						register_nav_menu( 'mega-menu-1', __( 'Mega Menu Column One', 'pegasus-bootstrap' ) );
+						register_nav_menu( 'mega-menu-1', __( 'Mega Menu Column One', 'pegasus' ) );
 					} else {
 						register_sidebar( array(
-							'name'          => __( 'Mega Menu 1', 'pegasus-bootstrap' ),
+							'name'          => __( 'Mega Menu 1', 'pegasus' ),
 							'id' => 'mega_one',
-							//'description' => __( 'Displays on the footer right before the copyright.', 'pegasus-bootstrap' ),
+							//'description' => __( 'Displays on the footer right before the copyright.', 'pegasus' ),
 							'before_widget' => '<div id="%1$s" class="widget %2$s">',
 							'after_widget'  => '</div>',
 							'before_title'  => '<h3 class="widgettitle">',
@@ -213,14 +240,14 @@
 				case 2:
 					if ( 'widgets' !== $mega_menus_nav_vs_widgets_select ) {
 						register_nav_menus( array(
-							'mega-menu-1' => __( 'Mega Menu Column One' ),
-							'mega-menu-2' => __( 'Mega Menu Column Two' )
+							'mega-menu-1' => __( 'Mega Menu Column One', 'pegasus' ),
+							'mega-menu-2' => __( 'Mega Menu Column Two', 'pegasus' )
 						) );
 					} else {
 						register_sidebars( $more_menu_widgets, array(
-							'name'          => __( 'Mega Menu %d', 'pegasus-bootstrap' ),
+							'name'          => __( 'Mega Menu %d', 'pegasus' ),
 							'id'            => 'mega_menu_%d',
-							'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
+							'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus' ),
 							'before_widget' => '<div id="%1$s" class="widget %2$s">',
 							'after_widget'  => '</div>',
 							'before_title'  => '<h2 class="widget-title">',
@@ -237,9 +264,9 @@
 						) );
 					} else {
 						register_sidebars( $more_menu_widgets, array(
-							'name'          => __( 'Mega Menu %d', 'pegasus-bootstrap' ),
+							'name'          => __( 'Mega Menu %d', 'pegasus' ),
 							'id'            => 'mega_menu_%d',
-							'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
+							'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus' ),
 							'before_widget' => '<div id="%1$s" class="widget %2$s">',
 							'after_widget'  => '</div>',
 							'before_title'  => '<h2 class="widget-title">',
@@ -258,9 +285,9 @@
 						) );
 					} else {
 						register_sidebars( $more_menu_widgets, array(
-							'name'          => __( 'Mega Menu %d', 'pegasus-bootstrap' ),
+							'name'          => __( 'Mega Menu %d', 'pegasus' ),
 							'id'            => 'mega_menu_%d',
-							'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
+							'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus' ),
 							'before_widget' => '<div id="%1$s" class="widget %2$s">',
 							'after_widget'  => '</div>',
 							'before_title'  => '<h2 class="widget-title">',
@@ -269,7 +296,7 @@
 					}
 					break;
 				default:
-					register_nav_menu( 'mega_one', __( 'Mega Menu Column One', 'pegasus-bootstrap' ) );
+					register_nav_menu( 'mega_one', __( 'Mega Menu Column One', 'pegasus' ) );
 			}
 
 			/**
@@ -278,7 +305,7 @@
 			register_sidebar( array(
 				'name'          => __( 'Sidebar', 'pegasus-theme' ),
 				'id'            => 'sidebar-right',
-				'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
+				'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus' ),
 				'before_widget' => '<div id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h3 class="widget-title">',
@@ -290,7 +317,7 @@
 				register_sidebar( array(
 					'name'          => __( 'Sidebar Left', 'pegasus-theme' ),
 					'id'            => 'sidebar-left',
-					'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
+					'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus' ),
 					'before_widget' => '<div id="%1$s" class="widget %2$s">',
 					'after_widget'  => '</div>',
 					'before_title'  => '<h3 class="widget-title">',
@@ -299,9 +326,9 @@
 			}
 			/* Shop Sidebar widget */
 			register_sidebar( array(
-				'name' => __( 'Shop Sidebar', 'pegasus-bootstrap' ),
+				'name' => __( 'Shop Sidebar', 'pegasus' ),
 				'id' => 'shop-sidebar',
-				'description' => __( 'Displays on the shop page where the sidebar should go.', 'pegasus-bootstrap' ),
+				'description' => __( 'Displays on the shop page where the sidebar should go.', 'pegasus' ),
 				'before_widget' => '<div id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h3 class="widgettitle">',
@@ -309,9 +336,9 @@
 			));
 			/* Shop Cart widget */
 			register_sidebar( array(
-				'name' => __( 'Cart Widget', 'pegasus-bootstrap' ),
+				'name' => __( 'Cart Widget', 'pegasus' ),
 				'id' => 'shop-cart',
-				'description' => __( 'Displays on sub menu of cart in header.', 'pegasus-bootstrap' ),
+				'description' => __( 'Displays on sub menu of cart in header.', 'pegasus' ),
 				'before_widget' => '<div id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h3 class="widgettitle">',
@@ -319,9 +346,9 @@
 			));
 			/* FOOTER SOCIAL widget */
 			register_sidebar( array(
-				'name' => __( 'Footer Social Widget', 'pegasus-bootstrap' ),
+				'name' => __( 'Footer Social Widget', 'pegasus' ),
 				'id' => 'footer-social',
-				'description' => __( 'Displays on the footer right before the copyright.', 'pegasus-bootstrap' ),
+				'description' => __( 'Displays on the footer right before the copyright.', 'pegasus' ),
 				'before_widget' => '<div id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h3 class="widgettitle">',
@@ -335,9 +362,9 @@
 			$footer_widgets = $footer_widget_option ? $footer_widget_option : 1;
 			if ( 1 === $footer_widgets ) {
 				register_sidebar( array(
-					'name'          => __( 'Footer 1', 'pegasus-bootstrap' ),
+					'name'          => __( 'Footer 1', 'pegasus' ),
 					'id' => 'footer-1',
-					//'description' => __( 'Displays on the footer right before the copyright.', 'pegasus-bootstrap' ),
+					//'description' => __( 'Displays on the footer right before the copyright.', 'pegasus' ),
 					'before_widget' => '<div id="%1$s" class="widget %2$s">',
 					'after_widget'  => '</div>',
 					'before_title'  => '<h3 class="widgettitle">',
@@ -345,9 +372,9 @@
 				));
 			} elseif ( $footer_widgets > 1 ) {
 				register_sidebars( $footer_widgets, array(
-					'name'          => __( 'Footer %d', 'pegasus-bootstrap' ),
+					'name'          => __( 'Footer %d', 'pegasus' ),
 					'id'            => 'footer',
-					'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus-bootstrap' ),
+					'description'   => __( 'Add widgets here to appear in your sidebar.', 'pegasus' ),
 					'before_widget' => '<div id="%1$s" class="widget %2$s">',
 					'after_widget'  => '</div>',
 					'before_title'  => '<h5 class="widget-title">',
@@ -525,7 +552,7 @@
 		$sub_nav_bg_hover_color = ! empty( pegasus_get_option( 'sub_nav_bg_hover_color' ) ) ? pegasus_get_option( 'sub_nav_bg_hover_color' ) : 'rgba(222,222,222,0.6)';
 
 		$sub_nav_item_color = ! empty( pegasus_get_option( 'sub_nav_item_color' ) ) ? pegasus_get_option( 'sub_nav_item_color' ) : '#777';
-		$sub_nav_item_hover_color = ! empty( pegasus_get_option( 'sub_nav_item_hover_color' ) ) ? pegasus_get_option( 'sub_nav_item_hover_color' ) : '#777';
+		$sub_nav_item_hover_color = ! empty( pegasus_get_option( 'sub_nav_item_hover_color' ) ) ? pegasus_get_option( 'sub_nav_item_hover_color' ) : 'rgba(0,0,0,0.45)';
 
 		$hoverBkgOrText =  pegasus_get_option( 'hover_chk_decision' );
 		$hover_bg_color = ! empty( pegasus_get_option( 'hover_bg_color' ) ) ? pegasus_get_option( 'hover_bg_color' ) : 'rgba(0,0,0,.7)';
@@ -858,14 +885,15 @@
 
 	/**
 	* Proper way to enqueue JS and IE fixes as of Mar 2015
+	* Performance optimizations: all scripts include version numbers for proper caching
 	*/
 	function pegasus_scripts() {
 
 		//wp_enqueue_style( 'animate-css', get_template_directory_uri() . '/inc/css/animate.min.css' );
-		wp_enqueue_style( 'bootstrap-style', get_template_directory_uri() . '/dist/css/main.css' );
+		wp_enqueue_style( 'bootstrap-style', get_template_directory_uri() . '/dist/css/main.css', array(), '1.0.0', 'all' );
 		//wp_enqueue_script( 'popper_js', get_template_directory_uri() . '/inc/bootstrap/js/popper.min.js', array('jquery'), '', true );
-		wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/inc/bootstrap/js/5.3.3/bootstrap.bundle.min.js', array('jquery'), '', true );
-		wp_enqueue_style( 'pegasus_font_awesome', get_template_directory_uri() . '/inc/css/font-awesome.min.css', null, null, null );
+		wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/inc/bootstrap/js/5.3.3/bootstrap.bundle.min.js', array('jquery'), '5.3.3', true );
+		wp_enqueue_style( 'pegasus_font_awesome', get_template_directory_uri() . '/inc/css/font-awesome.min.css', array(), '4.7.0', 'all' );
 		//wp_enqueue_script( 'modernizer_js', get_template_directory_uri() . '/inc/modernizer/modernizer.custom.js', array('jquery'), '', true );
 
 		//wp_enqueue_style( 'pegasus-style', get_template_directory_uri() . '/style.css' );
@@ -873,7 +901,7 @@
 
 		/* get this ready to actually be added */
 
-		wp_enqueue_script( 'pegasus_custom_js', get_template_directory_uri() . '/dist/js/main.js', array(), '', true );
+		wp_enqueue_script( 'pegasus_custom_js', get_template_directory_uri() . '/dist/js/main.js', array(), '1.0.0', true );
 
 		$header_choice = pegasus_get_option( 'header_select' );
 		$moremenuchk = pegasus_get_option( 'header_more_chk' );
@@ -888,37 +916,37 @@
 			if ( 'on' === $post_additional_header_disable_parallax || 'on' === $global_additional_header_disable_parallax ) {
 
 			} else {
-				wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '', true );
+				wp_enqueue_script( 'parallax_js', get_template_directory_uri() . '/js/parallax.js', array(), '1.0.0', true );
 			}
 		}
 		if( 'lrg-header' === $post_additional_header_choice || 'lrg-header' === $global_additional_header_choice  ) {
-			wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '', true );
+			wp_enqueue_script( 'animheader_custom_js', get_template_directory_uri() . '/js/animheader.js', array(), '1.0.0', true );
 		}
 
 		switch ($header_choice) {
 			case "header-one":
 			case "header-two":
 				if( 'on' === $moremenuchk ) {
-					wp_enqueue_style( 'megafish', get_template_directory_uri() . '/inc/css/megafish.css' );
-					wp_enqueue_script('superfish_js', get_template_directory_uri() .'/inc/js/superfish.js', array('jquery'), false, true);
-					wp_enqueue_script('hover_intent_js', get_template_directory_uri() .'/inc/js/hoverIntent.js', array('jquery'), false, true);
+					wp_enqueue_style( 'megafish', get_template_directory_uri() . '/inc/css/megafish.css', array(), '1.0.0', 'all' );
+					wp_enqueue_script('superfish_js', get_template_directory_uri() .'/inc/js/superfish.js', array('jquery'), '1.0.0', true);
+					wp_enqueue_script('hover_intent_js', get_template_directory_uri() .'/inc/js/hoverIntent.js', array('jquery'), '1.0.0', true);
 				}
 
 				break;
 			case "header-three":
-				wp_enqueue_script( 'header_three_js', get_template_directory_uri() . '/js/header_three.js', array(), '', true );
-				wp_enqueue_style( 'header_three_style', get_template_directory_uri() . '/css/header_three.css' );
+				wp_enqueue_script( 'header_three_js', get_template_directory_uri() . '/js/header_three.js', array(), '1.0.0', true );
+				wp_enqueue_style( 'header_three_style', get_template_directory_uri() . '/css/header_three.css', array(), '1.0.0', 'all' );
 
 				break;
 			case "header-four":
-				wp_enqueue_script( 'header_four_js', get_template_directory_uri() . '/js/header_four.js', array(), '', true );
-				wp_enqueue_style( 'header_four_style', get_template_directory_uri() . '/css/header_four.css' );
+				wp_enqueue_script( 'header_four_js', get_template_directory_uri() . '/js/header_four.js', array(), '1.0.0', true );
+				wp_enqueue_style( 'header_four_style', get_template_directory_uri() . '/css/header_four.css', array(), '1.0.0', 'all' );
 
 				break;
 			case "header-five":
-				wp_enqueue_script( 'header_five_js', get_template_directory_uri() . '/js/header_five.js', array(), '', true );
-				wp_enqueue_style( 'header_five_style', get_template_directory_uri() . '/css/header_five.css' );
-				wp_enqueue_script( 'cookie_js', get_template_directory_uri() . '/admin/cookie.js', array('jquery'), '', true );
+				wp_enqueue_script( 'header_five_js', get_template_directory_uri() . '/js/header_five.js', array(), '1.0.0', true );
+				wp_enqueue_style( 'header_five_style', get_template_directory_uri() . '/css/header_five.css', array(), '1.0.0', 'all' );
+				wp_enqueue_script( 'cookie_js', get_template_directory_uri() . '/admin/cookie.js', array('jquery'), '1.0.0', true );
 
 
 				break;
@@ -1035,29 +1063,6 @@
 		}
 	endif;
 
-	/* page laguage attributes function for header */
-	function pegasus_language_attributes() {
-		$output = '';
-
-		$chk_for_lang = get_language_attributes();
-		//$lang_attr = language_attributes();
-		$default_output = 'lang="en-US"';
-		//$default_output = '';
-
-		if ( $chk_for_lang ) {
-			$output = $chk_for_lang;
-		}
-
-		// if ( $lang_attr ) {
-		// 	$output = $lang_attr;
-		// }
-
-		if ( '' === $output || null === $output ) {
-			$output = $default_output;
-		}
-
-		return ' ' . $output . ' ';
-	}
 
 
 

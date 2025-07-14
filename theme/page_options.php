@@ -30,20 +30,20 @@
 
 		$cmb_demo2 = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox2',
-			'title'         => __( 'Pegasus Page Options', 'pegasus-bootstrap' ),
+			'title'         => __( 'Pegasus Page Options', 'pegasus' ),
 			'object_types'  => array( 'page', 'post', 'course_unit' ), // Post type
 		) );
 
 		$cmb_demo2->add_field( array(
-			'name' => __( 'Fullwidth Container Checkbox', 'pegasus-bootstrap' ),
-			'desc' => __( 'Check this box to make the page fullwidth, this shuold override the global fullwidth theme option.', 'pegasus-bootstrap' ),
+			'name' => __( 'Fullwidth Container Checkbox', 'pegasus' ),
+			'desc' => __( 'Check this box to make the page fullwidth, this shuold override the global fullwidth theme option.', 'pegasus' ),
 			'id'   => $prefix . '-page-container-checkbox',
 			'type' => 'checkbox',
 		) );
 
 		$cmb_demo2->add_field( array(
-			'name' => __( 'Disable Page Header', 'pegasus-bootstrap' ),
-			'desc' => __( 'Check this box to disable the Page Header.', 'pegasus-bootstrap' ),
+			'name' => __( 'Disable Page Header', 'pegasus' ),
+			'desc' => __( 'Check this box to disable the Page Header.', 'pegasus' ),
 			'id'   => $prefix . '-page-header-checkbox',
 			'type' => 'checkbox',
 		) );
@@ -54,28 +54,28 @@
 		 */
 		$cmb_demo = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox',
-			'title'         => __( 'Additional Header Options', 'pegasus-bootstrap' ),
+			'title'         => __( 'Additional Header Options', 'pegasus' ),
 			'object_types'  => array( 'page',  'course_unit', 'staff', 'reviews', 'post' ), // Post type, might need to add more cpt's to this
 
 		) );
 
 		$cmb_demo->add_field( array(
-			'name'             => __( 'Additional Header', 'pegasus-bootstrap' ),
-			'desc'             => __( 'This is used if you need additional header spacing. Select Header Type (no hdr, sml hdr, lrg hdr)', 'pegasus-bootstrap' ),
+			'name'             => __( 'Additional Header', 'pegasus' ),
+			'desc'             => __( 'This is used if you need additional header spacing. Select Header Type (no hdr, sml hdr, lrg hdr)', 'pegasus' ),
 			'id'               => $prefix . '_page_header_select',
 			'type'             => 'select',
 			'show_option_none' => false,
 			'default'          => 'no-header',
 			'options'          => array(
-				'no-header' => __( 'No Header - No Spacing', 'pegasus-bootstrap' ),
-				'space' => __( 'No Header - Just Spacing', 'pegasus-bootstrap' ),
-				'sml-header'   => __( 'Small Header - With Parallax', 'pegasus-bootstrap' ),
-				'lrg-header'     => __( 'Large Header - Full Width and Height', 'pegasus-bootstrap' ),
+				'no-header' => __( 'No Header - No Spacing', 'pegasus' ),
+				'space' => __( 'No Header - Just Spacing', 'pegasus' ),
+				'sml-header'   => __( 'Small Header - With Parallax', 'pegasus' ),
+				'lrg-header'     => __( 'Large Header - Full Width and Height', 'pegasus' ),
 			),
 		) );
 
 		$cmb_demo->add_field( array(
-			'name'    => __( 'Overlay color', 'pegasus-bootstrap' ),
+			'name'    => __( 'Overlay color', 'pegasus' ),
 			//'desc' => '',
 			'id'      => $prefix . '_add_header_overlay_color',
 			'type'    => 'colorpicker',
@@ -97,21 +97,21 @@
 		) );
 
 		$cmb_demo->add_field( array(
-			'name' => __( 'Disable Parallax', 'pegasus-bootstrap' ),
+			'name' => __( 'Disable Parallax', 'pegasus' ),
 			'desc' => 'Check this box if you want to disable parallax effect.',
 			'id'   => $prefix . '_add_header_disable_parralax_chk',
 			'type' => 'checkbox',
 		) );
 		
 		$cmb_demo->add_field( array(
-			'name' => __( 'Disable Overlay', 'pegasus-bootstrap' ),
+			'name' => __( 'Disable Overlay', 'pegasus' ),
 			'desc' => 'Check this box if you want to disable overlay on small or large header effect.',
 			'id'   => $prefix . '_add_header_disable_overlay_chk',
 			'type' => 'checkbox',
 		) );
 
 		$cmb_demo->add_field( array(
-			'name'             => __( 'Image Repeat', 'pegasus-bootstrap' ),
+			'name'             => __( 'Image Repeat', 'pegasus' ),
 			'desc'             => '<strong>Choose between:
 										   1.) No Repeat
 										   2.) Repeat
@@ -134,7 +134,7 @@
 			),
 		) );
 		$cmb_demo->add_field( array(
-			'name'             => __( 'Image Position', 'pegasus-bootstrap' ),
+			'name'             => __( 'Image Position', 'pegasus' ),
 			'desc'             => '<strong>Choose between:
 										   1.) Center Center
 										   2.) Top Left
@@ -161,7 +161,7 @@
 			),
 		) );
 		$cmb_demo->add_field( array(
-			'name'             => __( 'Image Size', 'pegasus-bootstrap' ),
+			'name'             => __( 'Image Size', 'pegasus' ),
 			'desc'             => '<strong>Choose between:
 									   1.) None
 									   2.) Cover
@@ -180,7 +180,7 @@
 		) );
 
 		$cmb_demo->add_field( array(
-			'name' => __( 'Background Attachment Fixed', 'pegasus-bootstrap' ),
+			'name' => __( 'Background Attachment Fixed', 'pegasus' ),
 			'desc' => 'Check this box if you want the background image to be fixed / parallax effect.',
 			'id'   => $prefix . '_add_header_bkg_img_fixed_chk',
 			'type' => 'checkbox',
@@ -196,7 +196,7 @@
 		) );
 
 		$cmb_demo->add_field( array(
-			'name'    => __( 'Header Content color', 'pegasus-bootstrap' ),
+			'name'    => __( 'Header Content color', 'pegasus' ),
 			//'desc' => '',
 			'id'      => $prefix . '_page_header_wysiwyg_color',
 			'type'    => 'rgba_colorpicker',

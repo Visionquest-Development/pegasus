@@ -57,13 +57,13 @@
 								<h1>
 									<?php
 									if ( is_day() ) :
-										printf( __( 'Daily Archives: %s', 'pegasus-bootstrap' ), get_the_date() );
+										printf( __( 'Daily Archives: %s', 'pegasus' ), get_the_date() );
 									elseif ( is_month() ) :
-										printf( __( 'Monthly Archives: %s', 'pegasus-bootstrap' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'pegasus-bootstrap' ) ) );
+										printf( __( 'Monthly Archives: %s', 'pegasus' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'pegasus' ) ) );
 									elseif ( is_year() ) :
-										printf( __( 'Yearly Archives: %s', 'pegasus-bootstrap' ), get_the_date( _x( 'Y', 'yearly archives date format', 'pegasus-bootstrap' ) ) );
+										printf( __( 'Yearly Archives: %s', 'pegasus' ), get_the_date( _x( 'Y', 'yearly archives date format', 'pegasus' ) ) );
 									else :
-										_e( 'Archives', 'pegasus-bootstrap' );
+										_e( 'Archives', 'pegasus' );
 									endif;
 									?>
 								</h1>
@@ -89,9 +89,9 @@
 
 						<?php
 						wp_bootstrap_posts_pagination( array(
-							'prev_text'          => __( 'Previous page', 'pegasus-bootstrap' ),
-							'next_text'          => __( 'Next page', 'pegasus-bootstrap' ),
-							'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus-bootstrap' ) . ' </span>'
+							'prev_text'          => __( 'Previous page', 'pegasus' ),
+							'next_text'          => __( 'Next page', 'pegasus' ),
+							'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus' ) . ' </span>'
 						) );
 						?>
 					</div><!--end inner content-->

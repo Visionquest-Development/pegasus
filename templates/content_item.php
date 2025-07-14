@@ -76,7 +76,7 @@ endif;
 			wp_bootstrap_edit_post_link(
 				sprintf(
 					/* translators: %s: Name of current post */
-					__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
+					__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'pegasus' ),
 					get_the_title()
 				),
 				'<span class="edit-link">',
