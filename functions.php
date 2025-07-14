@@ -18,19 +18,55 @@
 	add_action( 'wp_enqueue_scripts', 'pegasus_rtl_support' );
 
 	/**
+	 * Theme error logging helper function
+	 * Only logs errors when WP_DEBUG is enabled
+	 */
+	function pegasus_log_error( $message, $context = '' ) {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG && defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) {
+			$log_message = 'Pegasus Theme';
+			if ( ! empty( $context ) ) {
+				$log_message .= ' [' . $context . ']';
+			}
+			$log_message .= ': ' . $message;
+			error_log( $log_message );
+		}
+	}
+
+	/**
 	 * Plugin requirements (TGMPA) & Bootstrap CMB2
 	 */
-	require_once 'inc/class-tgm-plugin-activation.php';
+	$tgm_file = get_template_directory() . '/inc/class-tgm-plugin-activation.php';
+	if ( file_exists( $tgm_file ) ) {
+		require_once $tgm_file;
+	} else {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			error_log( 'Pegasus Theme: TGMPA file not found: ' . $tgm_file );
+		}
+	}
 
 	/**
 	 * Bootstrap CMB2
 	 */
-	require_once 'inc/cmb2/init.php';
+	$cmb2_file = get_template_directory() . '/inc/cmb2/init.php';
+	if ( file_exists( $cmb2_file ) ) {
+		require_once $cmb2_file;
+	} else {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			error_log( 'Pegasus Theme: CMB2 file not found: ' . $cmb2_file );
+		}
+	}
 
 	/**
 	 * Load the CMB2 powered theme options page
 	 */
-	require_once 'inc/theme-options.php';
+	$theme_options_file = get_template_directory() . '/inc/theme-options.php';
+	if ( file_exists( $theme_options_file ) ) {
+		require_once $theme_options_file;
+	} else {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			error_log( 'Pegasus Theme: Theme options file not found: ' . $theme_options_file );
+		}
+	}
 
 	/**
 	 * Load WP_BOOTSTRAP_HOOKS
@@ -1075,66 +1111,79 @@
 
 	function pegasus_image_display( $size = 'full', $override_default_image = '', $skip_default = false ) {
 		$base_default_image = get_template_directory_uri() . '/images/not-available.jpg';
-
 		$default_image = ( '' !== $override_default_image ) ? $override_default_image : $base_default_image;
 
+		// Try to get post thumbnail first
 		if ( has_post_thumbnail() ) {
 			$image_id = get_post_thumbnail_id();
-			$image_url = wp_get_attachment_image_src( $image_id, $size );
-			$image_url = $image_url[0];
-		} else {
-			//get first image in post content, if not then not-available.jpg
-			global $post, $posts;
-			$image_url = '';
-			ob_start();
-			ob_end_clean();
-			if ( $post ) {
-				$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-			}
-			if( true === $skip_default ) {
-				return '';
-			} else {
-				$image_url = ( 0 === $output ) ? ( $default_image ) : ( $matches [1] [0] );
+			if ( $image_id ) {
+				$image_data = wp_get_attachment_image_src( $image_id, $size );
+				// Validate that we got valid image data
+				if ( $image_data && is_array( $image_data ) && isset( $image_data[0] ) && ! empty( $image_data[0] ) ) {
+					return $image_data[0];
+				}
 			}
 		}
-		return $image_url;
+
+		// Fallback: Try to get first image from post content
+		global $post;
+		if ( $post && ! empty( $post->post_content ) ) {
+			$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+			if ( $output && isset( $matches[1] ) && isset( $matches[1][0] ) && ! empty( $matches[1][0] ) ) {
+				// Validate that the found image URL is not empty
+				$found_image = trim( $matches[1][0] );
+				if ( ! empty( $found_image ) ) {
+					return $found_image;
+				}
+			}
+		}
+
+		// Return default image or empty string based on skip_default flag
+		if ( true === $skip_default ) {
+			return '';
+		}
+
+		return $default_image;
 	}
 
 
 	function pegasus_get_menu( $name, $menu_classes, $depth, $fallback_menu ) {
-		$check_for_theme_location = '';
-		$check_for_theme_location = wp_nav_menu(
-			array(
-				'theme_location' => $name,
-				'menu_class'	=> $menu_classes,
-				'container'		=> false,
-				'echo' => false,
-				'depth'				=> $depth,
-				//'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback', //returns /ul if no menu
-				//'walker'			=> new Bootstrap_Walker_Nav_Menu()
-			)
-		);
-
-		// $check_for_menu_name = wp_nav_menu(
-		// 	array(
-		// 		'menu' => $name,
-		// 		'menu_class'	=> $menu_classes,
-		// 		'container'		=> false,
-		// 		'echo' => false,
-		// 		'depth'				=> $depth,
-		// 		//'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback', //returns /ul if no menu
-		// 		//'walker'			=> new Bootstrap_Walker_Nav_Menu()
-		// 	)
-		// );
-
-		$try_to_find_menu = ( '</ul>' !== $check_for_theme_location ) ? $check_for_theme_location : $fallback_menu;
-		if ( '' !== $fallback_menu ) {
-			$final_menu = ( '</ul>' !== $try_to_find_menu ) ? $try_to_find_menu : $fallback_menu;
-		} else {
-			$final_menu = ( '</ul>' !== $try_to_find_menu ) ? $try_to_find_menu : 'Please select a menu';
+		// Validate input parameters
+		if ( empty( $name ) || ! is_string( $name ) ) {
+			return ! empty( $fallback_menu ) ? $fallback_menu : '<ul class="navbar-nav"><li class="nav-item"><span class="nav-link">Menu not configured</span></li></ul>';
 		}
 
-		return $final_menu;
+		$check_for_theme_location = '';
+		
+		// Check if the theme location exists
+		if ( ! has_nav_menu( $name ) ) {
+			return ! empty( $fallback_menu ) ? $fallback_menu : '<ul class="navbar-nav"><li class="nav-item"><span class="nav-link">Menu location "' . esc_html( $name ) . '" not assigned</span></li></ul>';
+		}
+
+		try {
+			$check_for_theme_location = wp_nav_menu(
+				array(
+					'theme_location' => $name,
+					'menu_class'	=> $menu_classes,
+					'container'		=> false,
+					'echo' => false,
+					'depth'				=> $depth,
+					'fallback_cb'		=> '__return_false', // Return false if no menu found
+				)
+			);
+		} catch ( Exception $e ) {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'Pegasus Theme: Error rendering menu ' . $name . ': ' . $e->getMessage() );
+			}
+			return ! empty( $fallback_menu ) ? $fallback_menu : '<ul class="navbar-nav"><li class="nav-item"><span class="nav-link">Menu error</span></li></ul>';
+		}
+
+		// Validate the menu output
+		if ( empty( $check_for_theme_location ) || '</ul>' === $check_for_theme_location ) {
+			return ! empty( $fallback_menu ) ? $fallback_menu : '<ul class="navbar-nav"><li class="nav-item"><span class="nav-link">Menu empty</span></li></ul>';
+		}
+
+		return $check_for_theme_location;
 	}
 
 
@@ -1173,10 +1222,30 @@
 			// Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
 			add_filter( 'woocommerce_add_to_cart_fragments', 'pegasus_woocommerce_header_add_to_cart_fragment' );
 			function pegasus_woocommerce_header_add_to_cart_fragment( $fragments ) {
-				ob_start();
-				?>
-				<a class="cart-contents" href="<?php echo wc_get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>"><?php echo sprintf (_n( '%d item', '%d items', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ); ?></a>
-				<?php
+				// Check if WooCommerce cart is available
+				if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
+					return $fragments;
+				}
+
+				try {
+					$cart_count = WC()->cart->get_cart_contents_count();
+					$cart_url = wc_get_cart_url();
+					
+					ob_start();
+					?>
+					<a class="cart-contents" href="<?php echo esc_url( $cart_url ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'pegasus' ); ?>">
+						<?php echo sprintf( _n( '%d item', '%d items', $cart_count, 'pegasus' ), $cart_count ); ?>
+					</a>
+					<?php
+				} catch ( Exception $e ) {
+					pegasus_log_error( 'WooCommerce cart fragment error: ' . $e->getMessage(), 'WooCommerce' );
+					ob_start();
+					?>
+					<a class="cart-contents" href="#" title="<?php esc_attr_e( 'Cart unavailable', 'pegasus' ); ?>">
+						<?php esc_html_e( 'Cart', 'pegasus' ); ?>
+					</a>
+					<?php
+				}
 
 				$fragments['a.cart-contents'] = ob_get_clean();
 
