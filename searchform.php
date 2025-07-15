@@ -20,7 +20,9 @@
 	//echo '<form role="search" method="get" id="searchform" class="searchform search-form ' . $extra_classes . '" action="' . home_url( '/' ) . '">';
 ?>
 	<form role="search" method="get" class="searchform search-form" action="<?php echo home_url( '/' ); ?>">
-		<label class="screen-reader-text search-label" for="s-<?php echo esc_attr( $unique_id ); ?>"><?php echo _x('Search for:', 'label', 'pegasus') ?></label>
+		<label class="screen-reader-text search-label" for="s-<?php echo esc_attr( $unique_id ); ?>">
+			<?php echo _x('Search for:', 'label', 'pegasus') ?>
+		</label>
 		<div class="form-group mb-0">
 			<div class="input-group">
 				<input type="search"
@@ -29,7 +31,7 @@
 					   name="s"
 					   value="<?php echo esc_attr( get_search_query() ); ?>"
 					   title="<?php echo esc_attr_x('Search for:', 'label', 'pegasus') ?>"
-					   placeholder="<?php echo esc_attr_x('Search …', 'placeholder', 'pegasus') ?>"
+					   placeholder="<?php esc_attr_x('Search …', 'placeholder', 'pegasus') ?>"
 					   aria-label="Search"
 				/>
 				<button class="btn btn-primary searchSubmit" type="submit" title="Search">
