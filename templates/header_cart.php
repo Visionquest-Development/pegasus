@@ -77,7 +77,7 @@
 						}
 					} else{ ?>
 						<a class="nav-link" href="<?php echo esc_url( get_permalink( get_option('woocommerce_myaccount_page_id') ) ); ?>" title="<?php _e('Login / Register', 'pegasus'); ?>">
-							<?php _e('Login / Register'); ?>
+							<?php _e('Login / Register', 'pegasus'); ?>
 						</a>
 				<?php } ?>
 			</li>
