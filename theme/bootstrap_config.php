@@ -5,7 +5,7 @@ $bootstrap_config = array(
 		// Buttons
 		'button_class' => 'btn btn-%1$s',
 		'button_outline_class' => 'btn btn-outline-%1$s',
-		// WP Forms Configuration
+		// WP Forms REMOVE
 		'search_form_class' => '',
 		'search_submit_label' => __('Search'),
 		// Forms
@@ -17,7 +17,7 @@ $bootstrap_config = array(
 		'checkbox_label_class' => 'form-check-label',
 		'field_class' => 'form-group mb-3',
 		'submit_class' => 'btn btn-primary mt-3',
-		'submit_button_class' => 'btn btn-primary', // Note: May be redundant with submit_class
+		'submit_button_class' => 'btn btn-primary', // FIXME: Redundant option
 		// Comments
 		'reply_link_class' => 'btn btn-outline-primary btn-sm mb-3',
 		'comment_label' => __('Comment'),
@@ -61,7 +61,7 @@ $bootstrap_config = array(
 		// Grid
 		'columns_class' => 'row',
 		'column_class' => 'col col-%2$s-%1$s',
-		// Modal Configuration
+		// TODO: Modals
 		'close_button_class' => 'btn btn-secondary',
 		'close_button_label' => __('Close'),
 		// Menu

@@ -224,8 +224,8 @@
 			/*
 			 * Make theme available for translation.
 			 * Translations can be filed in the /languages/ directory.
+			 * Note: Text domain loading moved to init hook via pegasus_load_textdomain()
 			 */
-			load_theme_textdomain( 'pegasus', get_template_directory() . '/languages' );
 
 			/*
 			 * Let WordPress manage the document title.
@@ -422,7 +422,14 @@
 	endif;
 	add_action( 'after_setup_theme', 'pegasus_theme_setup' );
 
-
+	/**
+	 * Load theme textdomain for translations
+	 * Moved to init hook to comply with WordPress 6.7.0+ requirements
+	 */
+	function pegasus_load_textdomain() {
+		load_theme_textdomain( 'pegasus', get_template_directory() . '/languages' );
+	}
+	add_action( 'init', 'pegasus_load_textdomain' );
 
 	/* remove admin bar for all users when logged in */
 	//add_filter( 'show_admin_bar', '__return_false' );
@@ -1160,7 +1167,7 @@
 		}
 
 		$check_for_theme_location = '';
-		
+
 		// Check if the theme location exists
 		if ( ! has_nav_menu( $name ) ) {
 			return ! empty( $fallback_menu ) ? $fallback_menu : '<ul class="navbar-nav"><li class="nav-item"><span class="nav-link">Menu location "' . esc_html( $name ) . '" not assigned</span></li></ul>';
@@ -1236,7 +1243,7 @@
 				try {
 					$cart_count = WC()->cart->get_cart_contents_count();
 					$cart_url = wc_get_cart_url();
-					
+
 					ob_start();
 					?>
 					<a class="cart-contents" href="<?php echo esc_url( $cart_url ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'pegasus' ); ?>">

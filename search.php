@@ -105,8 +105,8 @@
 								?><p>No results found.</p><?php
 							}
 						} else {
-							
-							
+
+
 							//global $query_string;
 							//wp_parse_str( $query_string, $search_query );
 							//$search = new WP_Query( $search_query );
@@ -124,9 +124,18 @@
 							$the_query = new WP_Query( $args );
 
 							if ( $the_query->have_posts() ) :
-								_e( "<h2 style='font-weight:bold;color:#000'>Search Results for: " . get_query_var('s') . "</h2>" );
-								echo '<div class="search-list-container">';
-
+								?>
+								<h2 style="font-weight:bold;color:#000">
+									<?php
+									printf(
+										/* translators: %s: search query */
+										esc_html__( 'Search Results for: %s', 'pegasus' ),
+										esc_html( get_query_var('s') )
+									);
+									?>
+								</h2>
+								<div class="search-list-container">
+								<?php
 								while ( $the_query->have_posts() ) : $the_query->the_post();
 									global $post;
 
@@ -151,7 +160,7 @@
 								?>
 
 							<?php else : ?>
-								<h1><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></h1>
+								<h1><?php esc_html_e( 'Sorry, no posts matched your criteria.', 'pegasus' ); ?></h1>
 							<?php endif;
 						} //end else
 					?>
