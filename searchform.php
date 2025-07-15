@@ -31,7 +31,7 @@
 					   name="s"
 					   value="<?php echo esc_attr( get_search_query() ); ?>"
 					   title="<?php echo esc_attr_x('Search for:', 'label', 'pegasus') ?>"
-					   placeholder="<?php esc_attr_x('Search …', 'placeholder', 'pegasus') ?>"
+					   placeholder="<?php echo esc_attr_x('Search …', 'placeholder', 'pegasus') ?>"
 					   aria-label="Search"
 				/>
 				<button class="btn btn-primary searchSubmit" type="submit" title="Search">
