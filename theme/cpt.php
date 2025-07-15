@@ -289,7 +289,7 @@
 			//Make new custom column
 			add_filter('manage_pegasus_testimonial_posts_columns', 'pegasus_testimonial_posts_columns_id', 5);
 			function pegasus_testimonial_posts_columns_id( $defaults ){
-				$defaults['pegasus_shortcode_id'] = __('Shortcode');
+				$defaults['pegasus_shortcode_id'] = __('Shortcode', 'pegasus');
 				return $defaults;
 			}
 
@@ -478,7 +478,7 @@
 			//Make new custom column
 			add_filter('manage_pegasus_logo_slider_posts_columns', 'posts_columns_id', 5);
 			function posts_columns_id( $defaults ){
-				$defaults['pegasus_shortcode_id'] = __('Shortcode');
+				$defaults['pegasus_shortcode_id'] = __('Shortcode', 'pegasus');
 				return $defaults;
 			}
 

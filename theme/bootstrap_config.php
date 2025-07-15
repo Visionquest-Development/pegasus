@@ -7,7 +7,7 @@ $bootstrap_config = array(
 		'button_outline_class' => 'btn btn-outline-%1$s',
 		// WP Forms Configuration
 		'search_form_class' => '',
-		'search_submit_label' => __('Search'),
+		'search_submit_label' => __('Search', 'pegasus'),
 		// Forms
 		'label_class' => 'form-label',
 		'text_input_class' => 'form-control',
@@ -20,7 +20,7 @@ $bootstrap_config = array(
 		'submit_button_class' => 'btn btn-primary', // Note: May be redundant with submit_class
 		// Comments
 		'reply_link_class' => 'btn btn-outline-primary btn-sm mb-3',
-		'comment_label' => __('Comment'),
+		'comment_label' => __('Comment', 'pegasus'),
 		'comment_text_container' => '<div class="%s">%s</div>',
 		'comment_text_container_class' => 'py-3 my-0',
 		// Content
@@ -63,7 +63,7 @@ $bootstrap_config = array(
 		'column_class' => 'col col-%2$s-%1$s',
 		// Modal Configuration
 		'close_button_class' => 'btn btn-secondary',
-		'close_button_label' => __('Close'),
+		'close_button_label' => __('Close', 'pegasus'),
 		// Menu
 		'menu_class' => 'nav',
 		'menu_item_class' => 'nav-item',

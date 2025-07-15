@@ -125,12 +125,12 @@
 			'show_option_none' => false,
 			'default'          => 'none',
 			'options'          => array(
-				'no-repeat' => __( 'No Repeat', 'cmb2' ),
-				'repeat' => __( 'Repeat', 'cmb2' ),
-				'repeat-x'   => __( 'Repeat X', 'cmb2' ),
-				'repeat-y'     => __( 'Repeat Y', 'cmb2' ),
-				'space'     => __( 'Space', 'cmb2' ),
-				'round'     => __( 'Round', 'cmb2' ),
+				'no-repeat' => __( 'No Repeat', 'pegasus' ),
+				'repeat' => __( 'Repeat', 'pegasus' ),
+				'repeat-x'   => __( 'Repeat X', 'pegasus' ),
+				'repeat-y'     => __( 'Repeat Y', 'pegasus' ),
+				'space'     => __( 'Space', 'pegasus' ),
+				'round'     => __( 'Round', 'pegasus' ),
 			),
 		) );
 		$cmb_demo->add_field( array(
@@ -149,15 +149,15 @@
 			'show_option_none' => false,
 			'default'          => '50-0',
 			'options'          => array(
-				'50-0' => __( '50% 0', 'cmb2' ),
-				'100-100' => __( '100% 100%', 'cmb2' ),
-				'center-center' => __( 'Center Center', 'cmb2' ),
-				'top-left'   => __( 'Top Left', 'cmb2' ),
-				'top-center'     => __( 'Top Center', 'cmb2' ),
-				'top-right'     => __( 'Top Right', 'cmb2' ),
-				'bottom-left'     => __( 'Bottom Left', 'cmb2' ),
-				'bottom-center'     => __( 'Bottom Center', 'cmb2' ),
-				'bottom-right'     => __( 'Bottom Right', 'cmb2' ),
+				'50-0' => __( '50% 0', 'pegasus' ),
+				'100-100' => __( '100% 100%', 'pegasus' ),
+				'center-center' => __( 'Center Center', 'pegasus' ),
+				'top-left'   => __( 'Top Left', 'pegasus' ),
+				'top-center'     => __( 'Top Center', 'pegasus' ),
+				'top-right'     => __( 'Top Right', 'pegasus' ),
+				'bottom-left'     => __( 'Bottom Left', 'pegasus' ),
+				'bottom-center'     => __( 'Bottom Center', 'pegasus' ),
+				'bottom-right'     => __( 'Bottom Right', 'pegasus' ),
 			),
 		) );
 		$cmb_demo->add_field( array(
@@ -172,10 +172,10 @@
 			'show_option_none' => false,
 			'default'          => 'cover',
 			'options'          => array(
-				'auto' => __( 'None', 'cmb2' ),
-				'cover'   => __( 'Cover', 'cmb2' ),
-				'100-100'     => __( '100% 100%', 'cmb2' ),
-				'contain'   => __( 'Contain', 'cmb2' ),
+				'auto' => __( 'None', 'pegasus' ),
+				'cover'   => __( 'Cover', 'pegasus' ),
+				'100-100'     => __( '100% 100%', 'pegasus' ),
+				'contain'   => __( 'Contain', 'pegasus' ),
 			),
 		) );
 
@@ -188,8 +188,8 @@
 
 
 		$cmb_demo->add_field( array(
-			'name'    => __( 'Header Content wysiwyg', 'cmb2' ),
-			'desc'    => __( 'This will show up in the Additional Header select area.', 'cmb2' ),
+			'name'    => __( 'Header Content wysiwyg', 'pegasus' ),
+			'desc'    => __( 'This will show up in the Additional Header select area.', 'pegasus' ),
 			'id'      => $prefix . '_page_header_wysiwyg',
 			'type'    => 'wysiwyg',
 			'options' => array( 'textarea_rows' => 5, ),

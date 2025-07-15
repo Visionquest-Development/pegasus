@@ -20,7 +20,7 @@
 				?>
 						<!-- Footer custom code for banner, etc. -->
 						<section class="pegasus-custom-footer">
-							<div class="<?php echo esc_attr( $final_footer_container_class ); ?>">
+							<div class="<?php echo $final_footer_container_class; ?>">
 								<div class="">
 									<?php echo do_shortcode( $footer_custom_code ); ?>
 								</div>
@@ -42,7 +42,7 @@
 
 						<!-- FOOTER SOCIAL WIDGET -->
 						<?php if ( is_active_sidebar( 'footer-social' ) ) : ?>
-							<div class="<?php echo esc_attr( $final_footer_container_class ); ?>">
+							<div class="<?php echo $final_footer_container_class; ?>">
 								<div class="footer-social-container">
 									<?php dynamic_sidebar( 'footer-social' ); ?>
 								</div>
@@ -75,11 +75,11 @@
 
 							if( $footer_widget_areas > 0 ) :
 						?>
-							<div class="<?php echo esc_attr( $final_footer_container_class ); ?>">
+							<div class="<?php echo $final_footer_container_class; ?>">
 								<div id="footer-widgets" class="footer-widget-areas clearfix">
 									<div class="row">
 										<?php for( $i = 1; $i <= $footer_widget_areas; $i++ ): ?>
-											<div id="footer-widget-<?php echo esc_attr( $i ); ?>" class="footer-widget-area <?php echo esc_attr( $footer_widget_class ); ?>" role="complementary" >
+											<div id="footer-widget-<?php echo $i; ?>" class="footer-widget-area <?php echo $footer_widget_class; ?>" role="complementary" >
 												<?php dynamic_sidebar( 'footer-' . $i ); ?>
 											</div><!-- .widget-area -->
 										<?php endfor; ?>
@@ -89,7 +89,7 @@
 						<?php endif; ?>
 						<!-- COLOPHON -->
 						<div class="colophon-container">
-							<div class="<?php echo esc_attr( $final_footer_colophon_class ); ?>">
+							<div class="<?php echo $final_footer_colophon_class; ?>">
 								<div id="colophon" class="site-footer" role="contentinfo">
 									<div class="site-info">
 										<?php

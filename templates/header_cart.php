@@ -1,4 +1,9 @@
 <?php
+	// Delay execution if WordPress hasn't fully loaded yet
+	if ( ! did_action( 'init' ) ) {
+		return;
+	}
+
 	global $woocommerce;
 	$shop_link_choice = ( 'on' === pegasus_get_option( 'shop_link_chk' ) ) ? pegasus_get_option( 'shop_link_chk' ) : 'off';
 	$user_menu_choice = ( 'on' === pegasus_get_option( 'user_menu_chk' ) ) ? pegasus_get_option( 'user_menu_chk' ) : 'off';
@@ -27,7 +32,7 @@
 	$woo_cart_total = WC()->cart->get_cart_total();
 
 	$final_woo_cart_url = $woo_cart_url;
-	$woo_url_title = __( 'View your shopping cart', 'pegasus' );
+	$woo_url_title = __( 'View your shopping cart' );
 	$final_cart_count = sprintf (_n( '%d', '%d', $woo_cart_count ), $woo_cart_count );
 	$final_cart_total = ' - ' . $woo_cart_total;
 
@@ -65,14 +70,14 @@
 						$temporary_name = substr( $final_name, 0, 25 );
 						if( '' != $temporary_name ) {
 							?>
-							<a class="nav-link" href="<?php echo esc_url( get_permalink( get_option('woocommerce_myaccount_page_id') ) ); ?>" title="<?php _e('My Account','woothemes'); ?>">
+							<a class="nav-link" href="<?php echo esc_url( get_permalink( get_option('woocommerce_myaccount_page_id') ) ); ?>" title="<?php _e('My Account'); ?>">
 								Hi, <?php echo esc_html( $temporary_name . $final_last_name ); ?>!
 							</a>
 							<?php
 						}
 					} else{ ?>
-						<a class="nav-link" href="<?php echo esc_url( get_permalink( get_option('woocommerce_myaccount_page_id') ) ); ?>" title="<?php _e('Login / Register','woothemes'); ?>">
-							<?php _e('Login / Register','woothemes'); ?>
+						<a class="nav-link" href="<?php echo esc_url( get_permalink( get_option('woocommerce_myaccount_page_id') ) ); ?>" title="<?php _e('Login / Register'); ?>">
+							<?php _e('Login / Register'); ?>
 						</a>
 				<?php } ?>
 			</li>
