@@ -1122,8 +1122,7 @@
 		}
 	endif;
 
-<<<<<<< Updated upstream
-=======
+
 	function pegasus_modify_home_category_query( $query ) {
 
 		// Only apply to the main loop on the frontend.
@@ -1138,7 +1137,7 @@
 	add_action( 'pre_get_posts', 'pegasus_modify_home_category_query' );
 
 	/* page laguage attributes function for header */
-	function pegasus_language_attributes() {
+	/*function pegasus_language_attributes() {
 		$output = '';
 
 		$chk_for_lang = get_language_attributes();
@@ -1159,8 +1158,8 @@
 		}
 
 		return ' ' . $output . ' ';
-	}
->>>>>>> Stashed changes
+	}*/
+
 
 
 
