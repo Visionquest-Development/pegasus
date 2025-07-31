@@ -71,6 +71,7 @@ endif;
 		</div>
 
 		<?php
+
 		if ( function_exists( 'wp_bootstrap_edit_post_link' ) ) {
 			// Edit post link
 			wp_bootstrap_edit_post_link(
@@ -83,6 +84,7 @@ endif;
 				'</span>'
 			);
 		}
+
 		?>
 
 	</article>
