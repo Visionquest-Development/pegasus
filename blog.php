@@ -58,7 +58,7 @@ get_header();
 						</div>
 						<p>No content is appearing for this page!</p>
 					<?php endif; ?>
-
+					<div class="pagination">
 					<?php
 					wp_bootstrap_posts_pagination( array(
 						'prev_text'          => __( 'Previous page', 'pegasus' ),
@@ -66,6 +66,7 @@ get_header();
 						'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus' ) . ' </span>'
 					) );
 					?>
+					</div>
 				</div><!--end inner content-->
 			</div>
 			<?php

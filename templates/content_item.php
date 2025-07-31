@@ -71,18 +71,25 @@ endif;
 		</div>
 
 		<?php
+		/*
 		if ( function_exists( 'wp_bootstrap_edit_post_link' ) ) {
 			// Edit post link
 			wp_bootstrap_edit_post_link(
 				sprintf(
+<<<<<<< Updated upstream
 					/* translators: %s: Name of current post */
 					__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'pegasus' ),
+=======
+					// translators: %s: Name of current post
+					__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
+>>>>>>> Stashed changes
 					get_the_title()
 				),
 				'<span class="edit-link">',
 				'</span>'
 			);
 		}
+		*/
 		?>
 
 	</article>

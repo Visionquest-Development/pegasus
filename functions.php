@@ -1102,16 +1102,65 @@
 	if ( ! function_exists( 'my_pagination' ) ) :
 		function my_pagination() {
 			global $wp_query;
+			//echo '<pre>';
+			//var_dump($wp_query);
+			//echo '</pre>';
 			$big = 999999999; // need an unlikely integer
 			echo paginate_links( array(
+				//'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+				//'format' => '?paged=%#%',
+				//'current' => max( 1, get_query_var('paged') ),
+				//'total' => $wp_query->max_num_pages
 				'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
 				'format' => '?paged=%#%',
 				'current' => max( 1, get_query_var('paged') ),
-				'total' => $wp_query->max_num_pages
+				'total' => $wp_query->max_num_pages,
+				'prev_text' => __('« Previous'),
+				'next_text' => __('Next »'),
+				//'show_all' => true,
 			) );
 		}
 	endif;
 
+<<<<<<< Updated upstream
+=======
+	function pegasus_modify_home_category_query( $query ) {
+
+		// Only apply to the main loop on the frontend.
+		if ( is_admin() || ! $query->is_main_query() ) {
+			return false;
+		}
+		// Check we're on a posts or category page.
+		if ( $query->is_home() || $query->is_category() ) {
+			$query->set( 'posts_per_page', 10 );
+		}
+	}
+	add_action( 'pre_get_posts', 'pegasus_modify_home_category_query' );
+
+	/* page laguage attributes function for header */
+	function pegasus_language_attributes() {
+		$output = '';
+
+		$chk_for_lang = get_language_attributes();
+		//$lang_attr = language_attributes();
+		$default_output = 'lang="en-US"';
+		//$default_output = '';
+
+		if ( $chk_for_lang ) {
+			$output = $chk_for_lang;
+		}
+
+		// if ( $lang_attr ) {
+		// 	$output = $lang_attr;
+		// }
+
+		if ( '' === $output || null === $output ) {
+			$output = $default_output;
+		}
+
+		return ' ' . $output . ' ';
+	}
+>>>>>>> Stashed changes
 
 
 
