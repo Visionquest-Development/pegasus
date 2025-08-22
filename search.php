@@ -69,7 +69,7 @@
 		}
 	?>
 
-	<div class="<?php echo $final_container_class; ?>">
+	<div class="<?php echo esc_attr( $final_container_class ); ?>">
 		<!-- Example row of columns -->
 		<div class="row">
 			<?php
@@ -80,7 +80,7 @@
 			}
 			?>
 
-			<div class="<?php echo $page_body_content_class; ?>">
+			<div class="<?php echo esc_attr( $page_body_content_class ); ?>">
 				<div class="inner-content">
 					<?php
 						if ( class_exists( 'SWP_Query' ) ) {
@@ -88,7 +88,7 @@
 							if ( ! empty( $swp_query->posts ) ) {
 								foreach( $swp_query->posts as $post ) : setup_postdata( $post ); ?>
 									<div class="search-result">
-										<h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
+										<h3><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></h3>
 										<?php the_excerpt(); ?>
 									</div>
 								<?php endforeach; wp_reset_postdata();

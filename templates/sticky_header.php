@@ -60,10 +60,10 @@
 	<?php
 		if ( "header-one" === $header_choice ) {
 	?>
-		<div class="<?php echo $header_one_top_logo_container; ?>">
-			<div class="site-branding <?php echo $centerLogo; ?>">
+		<div class="<?php echo esc_attr( $header_one_top_logo_container ); ?>">
+			<div class="site-branding <?php echo esc_attr( $centerLogo ); ?>">
 				<?php if( ! empty( $logo ) ) : ?>
-					<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" alt=""/></a>
+					<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo esc_url( $logo ); ?>" alt=""/></a>
 				<?php else: ?>
 					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="" ><?php bloginfo( 'name' ); ?></a></h1>
 				<?php endif; ?>
@@ -72,10 +72,10 @@
 	<?php
 		}
 	?>
-	<div class="<?php echo $header_container_check; ?>">
-		<nav class="navbar <?php echo $bootstrap_navbar_expand_class; ?> the-default-nav <?php echo $bootstrap_color_scheme; ?> <?php echo $bootstrap_color_utility; ?> " role="navigation">
+	<div class="<?php echo esc_attr( $header_container_check ); ?>">
+		<nav class="navbar <?php echo esc_attr( $bootstrap_navbar_expand_class ); ?> the-default-nav <?php echo esc_attr( $bootstrap_color_scheme ); ?> <?php echo esc_attr( $bootstrap_color_utility ); ?> " role="navigation">
 			<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) & 'container' !== $header_container_check ) : ?>
-			<div class="<?php echo $final_inner_container_class; ?>">
+			<div class="<?php echo esc_attr( $final_inner_container_class ); ?>">
 				<?php endif; ?>
 				<?php
 					$hide_logo = '';
@@ -84,9 +84,9 @@
 						$logo = null;
 					}
 				?>
-				<a class="navbar-brand <?php echo $centerLogo; ?> <?php echo $hide_logo; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<a class="navbar-brand <?php echo esc_attr( $centerLogo ); ?> <?php echo esc_attr( $hide_logo ); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 					<?php if( ! empty( $logo ) ) : ?>
-						<img id="logo" src="<?php echo $logo; ?>" alt=""/>
+						<img id="logo" src="<?php echo esc_url( $logo ); ?>" alt=""/>
 					<?php else: ?>
 						<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
 					<?php endif; ?>
@@ -96,7 +96,7 @@
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#pegasus_sticky_header" aria-controls="pegasus_sticky_header"  aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>" id="pegasus_sticky_header">
+				<div class="collapse navbar-collapse <?php echo esc_attr( $nav_menu_justify_check ); ?>" id="pegasus_sticky_header">
 					<?php
 					echo pegasus_get_menu( 'primary', $classes_for_nav_menu, 4, $fallback_menu );
 

@@ -88,7 +88,7 @@
 				if ( is_user_logged_in() ) {
 				?>
 				<li class="menu-item">
-					<a class="nav-link" href="<?php echo esc_url( home_url( '/' ) ); ?>wp-login.php?action=logout">Log Out <i class="fa fa-sign-out"></i></a>
+					<a class="nav-link" href="<?php echo esc_url( wp_logout_url( home_url( '/' ) ) ); ?>">Log Out <i class="fa fa-sign-out"></i></a>
 				</li>
 				<?php
 				}

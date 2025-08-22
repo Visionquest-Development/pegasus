@@ -588,8 +588,8 @@ the_query="showposts=100&post_type=post"
 		foreach ($plugin_submenus as $plugin_path => $submenu) {
 			if (is_plugin_active($plugin_path)) {
 				echo '<p><a href="' .
-				admin_url('admin.php?page=' . 'pegasus-plugins-' . sanitize_title($submenu['title']))
-				. '">' . $submenu['title'] . '</a></p>';
+				esc_url( admin_url('admin.php?page=' . 'pegasus-plugins-' . sanitize_title($submenu['title'])) )
+				. '">' . esc_html( $submenu['title'] ) . '</a></p>';
 			}
 		}
 
