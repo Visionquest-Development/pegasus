@@ -1,0 +1,49 @@
+# Copyright (C) 2024 Pegasus Theme
+# This file is distributed under the same license as the Pegasus package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Pegasus 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-14 12:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#. Theme Name of the plugin/theme
+msgid "Pegasus"
+msgstr ""
+
+#. Theme Description of the plugin/theme
+msgid "A responsive Bootstrap-based WordPress theme with flexible navigation options, customizable headers, and modern design features."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Jim O'Brien"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://visionquestdevelopment.com/"
+msgstr ""
+
+#: functions.php:205
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:206
+msgid "Social Icon Menu"
+msgstr ""
+
+#: searchform.php:23
+msgctxt "label"
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:32
+msgctxt "placeholder"
+msgid "Search …"
+msgstr ""

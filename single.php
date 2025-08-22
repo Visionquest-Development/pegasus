@@ -106,7 +106,7 @@
 							wp_bootstrap_edit_post_link(
 								sprintf(
 									/* translators: %s: Name of current post */
-									__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
+									__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'pegasus' ),
 									get_the_title()
 								),
 								'<span class="edit-link">',
@@ -116,11 +116,11 @@
 						if ( function_exists( 'wp_bootstrap_post_navigation' ) ) {
 							// Previous/next post navigation.
 							wp_bootstrap_post_navigation( array(
-								'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next: ', 'pegasus-bootstrap' ) . '</span> ' .
-									'<span class="screen-reader-text">' . __( 'Next post:', 'pegasus-bootstrap' ) . '</span> ' .
+								'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next: ', 'pegasus' ) . '</span> ' .
+									'<span class="screen-reader-text">' . __( 'Next post:', 'pegasus' ) . '</span> ' .
 									'<span class="post-title">%title</span>',
-								'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous: ', 'pegasus-bootstrap' ) . '</span> ' .
-									'<span class="screen-reader-text">' . __( 'Previous post:', 'pegasus-bootstrap' ) . '</span> ' .
+								'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous: ', 'pegasus' ) . '</span> ' .
+									'<span class="screen-reader-text">' . __( 'Previous post:', 'pegasus' ) . '</span> ' .
 									'<span class="post-title">%title</span>'
 							) );
 						}

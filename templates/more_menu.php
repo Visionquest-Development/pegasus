@@ -1,7 +1,7 @@
 <?php
 
 	$home_url = esc_url( home_url( '/' ) ) ? esc_url( home_url( '/' ) ) : '#';
-	$fallback_menu = '<ul id="" class="navbar-nav"><li class="nav-item active current-menu-item"><a class="nav-link" href="' . $home_url . '">Home <span class="sr-only">(current)</span></a></li></ul>';
+	$fallback_menu = '<ul id="" class="navbar-nav"><li class="nav-item active current-menu-item"><a class="nav-link" href="' . $home_url . '">Home <span class="visually-hidden">(current)</span></a></li></ul>';
 
 	$mega_menu_widget_choice = absint( pegasus_get_option( 'more_menu_widget_areas' ) );
 	$more_menu_widgets = $mega_menu_widget_choice ? $mega_menu_widget_choice : 1;

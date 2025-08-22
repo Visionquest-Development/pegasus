@@ -71,12 +71,12 @@
 															if ( has_post_thumbnail() ) {
 																$thumb_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full', false, '' );
 																?>
-																<img src="<?php echo ($thumb_url[0]); ?>">
+																<img src="<?php echo esc_url( $thumb_url[0] ); ?>">
 															<?php
 															}else{
 
 																$thumb_default_url = get_template_directory_uri() . "/images/on-tap-default.jpg"; ?>
-																<img src="<?php echo ($thumb_default_url); ?>">
+																<img src="<?php echo esc_url( $thumb_default_url ); ?>">
 														<?php
 															}
 														?>
@@ -102,7 +102,7 @@
 																$octane_content = get_the_content();
 																$temporary = substr(strip_tags($octane_content), 0, 230); ?>
 																<p>
-																	<?php echo $temporary; ?>
+																	<?php echo esc_html( $temporary ); ?>
 																</p>
 
 													</div>
@@ -122,9 +122,9 @@
 								<?php
 									// Previous/next page navigation.
 									wp_bootstrap_posts_pagination( array(
-										'prev_text'          => __( 'Previous page', 'textdomain' ),
-										'next_text'          => __( 'Next page', 'textdomain' ),
-										'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'textdomain' ) . ' </span>'
+										'prev_text'          => __( 'Previous page', 'pegasus' ),
+										'next_text'          => __( 'Next page', 'pegasus' ),
+										'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus' ) . ' </span>'
 									) );
 								?>
 

@@ -3,49 +3,58 @@ Theme Name: Pegasus
 Theme URI: http://visionquestdevelopment.com
 Author: Jim O'Brien
 Author URI: http://visionquestdevelopment.com/
-Description: This theme was developed for VISIONQUEST DEVELOPMENT. It's a theme that will have bootstrap elements that can be built with SiteOrginBuilder modules.
+Description: A responsive Bootstrap-based WordPress theme with flexible navigation options, customizable headers, and modern design features.
 Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: top bar, (fixed, scroll, and normal) navigation, small header and large header options, boxed layout,
-Text Domain: Bootstrap
+Tags: responsive-layout, custom-header, custom-menu, bootstrap, flexible-header, full-width-template
+Text Domain: Pegasus
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
 
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~VQDEV CUSTOM CSS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	/*==================================================================
+						PEGASUS THEME CUSTOM STYLES
+	==================================================================*/
 
 
 	/*==========================
-		TEMPORARY
-	==========================
+		PAGE LAYOUT OVERRIDES
+	==========================*/
+	/* Uncomment if needed for page builder compatibility
 	#page-wrap .panel-grid { margin: 0 !important; }
 	#page-wrap .panel-grid .panel-grid-cell { padding: 0 !important; }
+	*/
+
+
+	/*==========================
+		ADMIN BAR ADJUSTMENTS
 	==========================*/
-
-
-	/* move admin bar so I can see what im doing and editing
-	.admin-bar .navbar-fixed-top, .admin-bar #mega-menu, .admin-bar a.mobile-menu-close {	margin-top: 32px;  }
+	/* Admin bar spacing adjustments (commented out - use if needed)
+	.admin-bar .navbar-fixed-top, .admin-bar #mega-menu, .admin-bar a.mobile-menu-close {
+		margin-top: 32px;
+	}
 	@media screen and ( max-width: 782px ) {
 		body { padding-top: 46px !important; }
 	}
 	@media screen and ( min-width: 782px ) {
-	html { margin-top: 32px !important; }
-	* html body { margin-top: 32px !important; }
+		html { margin-top: 32px !important; }
+		* html body { margin-top: 32px !important; }
 	}
 	*/
-	/* move admin bar so I can see what im doing and editing
-	.admin-bar .navbar-fixed-top, .admin-bar #mega-menu, .admin-bar a.mobile-menu-close {	margin-top: 30px;  } */
+	/* Alternative admin bar adjustment
+	.admin-bar .navbar-fixed-top, .admin-bar #mega-menu, .admin-bar a.mobile-menu-close {
+		margin-top: 30px;
+	}
+	*/
 
-  .admin-bar #header.fixed-top {
-      top: 32px;
-  }
+	.admin-bar #header.fixed-top {
+		top: 32px;
+	}
 
 
 
-  /*
+	/*
 	body.admin-bar { margin-top: 32px; }
 
 	@media screen and (max-width: 782px) {
@@ -54,9 +63,9 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	}
 	*/
 
-  .admin-bar.navbar-fixed-top-is-active #page-wrap {
-    margin-top: var(--pegasus-header-fixed-menu-height);
-}
+	.admin-bar.navbar-fixed-top-is-active #page-wrap {
+		margin-top: var(--pegasus-header-fixed-menu-height);
+	}
 
   /* DESKTOP ONLY */
   @media screen and (min-width: 783px) {
@@ -122,7 +131,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	img.wp-smiley, img.emoji { font-size: 2rem; }
 
 	.js .tmce-active .wp-editor-area { color: black; }
-	
+
 	#commentform textarea { overflow: hidden;  }
 
   /* body color */
@@ -158,6 +167,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
       /* NAVIGATION COLORS */
   /* ================================== */
   .the-default-nav .nav-link,
+  .navbar-nav .nav-link.show,
   .the-default-second-nav .nav-link,
   .the-default-third-nav .nav-link,
   .the-default-fourth-nav .nav-link,
@@ -197,7 +207,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
   /* MOBILE  */
   @media only screen and (max-width : 768px) {
-    .dropdown { display: block; }
+    /* .dropdown { display: block; } */
 
     .dropdown a,
     .dropdown-item
@@ -208,16 +218,105 @@ Use it to make something cool, have fun, and share what you've learned with othe
       color: var(--pegasus-nav-item-hover-color) !important;
     }
 
+    /* Mobile submenu styling for standard dropdown behavior */
+    .dropdown-menu {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      margin-top: 0 !important;
+    }
+
+    .dropdown-item {
+      background-color: transparent !important;
+      color: var(--pegasus-nav-item-color) !important;
+      padding: 0.5rem 1rem !important;
+      border: none !important;
+    }
+
+    .dropdown-item:hover,
+    .dropdown-item:focus,
+    .dropdown-item:active {
+      background-color: transparent !important;
+      color: var(--pegasus-nav-item-hover-color) !important;
+    }
+
+    .dropdown-item.active {
+      background-color: transparent !important;
+      color: var(--pegasus-current-item-color) !important;
+      font-weight: bold !important;
+    }
+
+    /* Style submenu items with proper indentation */
+    .sub-menu .dropdown-item,
+    .dropdown-menu .dropdown-item {
+      padding-left: 2rem !important;
+      color: var(--pegasus-nav-item-color) !important;
+    }
+
+    .sub-menu .dropdown-item:hover,
+    .sub-menu .dropdown-item:focus,
+    .dropdown-menu .dropdown-item:hover,
+    .dropdown-menu .dropdown-item:focus {
+      background-color: transparent !important;
+      color: var(--pegasus-nav-item-hover-color) !important;
+    }
+
+    .sub-menu .current-menu-item .dropdown-item,
+    .dropdown-menu .current-menu-item .dropdown-item {
+      color: var(--pegasus-current-item-color) !important;
+      font-weight: bold !important;
+    }
+
+    /* Nested submenu indentation */
+    .dropdown-menu .dropdown-menu .dropdown-item {
+      padding-left: 3rem !important;
+    }
+
+    /* Remove height restrictions that cause scrollbars */
+    .dropdown-menu:not(.is-hierarchical),
+    .dropdown-menu {
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
   }
 
-  .nav-link:hover
+
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus
   {
     color: var(--pegasus-nav-item-hover-color) !important;
   }
 
-  .current-menu-item > a {
+  /* Override Bootstrap hover states for active items */
+  .navbar-nav .nav-link.active:hover,
+  .navbar-nav .nav-link.active:focus,
+  .navbar-nav .nav-link.show:hover,
+  .navbar-nav .nav-link.show:focus {
+    color: var(--pegasus-nav-item-hover-color) !important;
+  }
+
+  .current-menu-item > a
+  {
     color: var(--pegasus-current-item-color) !important;
   }
+
+  /* Override Bootstrap active states with higher specificity */
+  .navbar-nav .nav-link.active,
+  .navbar-nav .nav-link.show.active {
+    color: var(--pegasus-current-item-color) !important;
+  }
+
+  .navbar-nav .nav-link.show {
+    color: var(--pegasus-nav-item-color) !important;
+  }
+
+  .sub-menu .current-menu-item .dropdown-item.dropdown-item.active,
+  .dropdown-item.active {
+    color: var(--pegasus-current-item-color) !important;
+  }
+
+
 
   .pegasus-header-content {
     color: var(--pegasus-page-header-wysiwyg-color);
@@ -553,7 +652,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 		/*#header { padding: 0 20px; }*/
 
         .dropdown-menu {
-            background-color: transparent;
+            background-color: transparent !important;
         }
 
 		.the-nav-cart .sub-menu {  left: 0; }

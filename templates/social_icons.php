@@ -16,7 +16,7 @@ if ( has_nav_menu( 'social-icons' ) ) :
 	$final_social_menu = ( null !== $social_menu_check ) ? $social_menu_check : $fallback_social_menu;
 ?>
 <ul class="ms-auto pegasus-social">
-	<?php echo $final_social_menu; ?>
+	<?php echo wp_kses_post( $final_social_menu ); ?>
 </ul>
 
 

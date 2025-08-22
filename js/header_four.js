@@ -7,7 +7,7 @@ const getHeaderFourHeight = (headerId, cssVar) => {
       const headerHeight = header.offsetHeight;
       document.documentElement.style.setProperty(`${cssVar}`, `${headerHeight}px`);
     } else {
-      console.log(`Element matching selector "${selector}" not found.`);
+      // console.log(`Element matching selector "${selector}" not found.`);
     }
 
 }

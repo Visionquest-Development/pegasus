@@ -24,8 +24,8 @@ $bootstrap_config = array(
 		'comment_text_container' => '<div class="%s">%s</div>',
 		'comment_text_container_class' => 'py-3 my-0',
 		// Content
-		'align_left_class' => 'float-left',
-		'align_right_class' => 'float-right',
+		'align_left_class' => 'float-start',
+		'align_right_class' => 'float-end',
 		'align_center_class' => 'mx-auto',
 		'img_class' => 'img-fluid',
 		'img_caption_tag' => 'figure',
@@ -87,8 +87,8 @@ $bootstrap_config = array(
 		'post_nav_item_class' => 'page-item',
 		'post_nav_item_tag' => 'li',
 		'post_nav_link_class' => 'page-link',
-		'next_posts_link_class' => 'btn btn-outline-secondary float-right',
-		'previous_posts_link_class' => 'btn btn-outline-secondary float-left',
+		'next_posts_link_class' => 'btn btn-outline-secondary float-end',
+		'previous_posts_link_class' => 'btn btn-outline-secondary float-start',
 		// Deprecated
 		'paginated_class' => 'pagination',
 		'paginated_tag' => 'ul',

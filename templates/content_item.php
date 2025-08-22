@@ -33,7 +33,7 @@ endif;
 			?>
 				<em>
 					<p class="content-item-date-time">
-						<?php echo $the_time;?>
+						<?php echo esc_html( $the_time );?>
 					</p>
 				</em>
 			<?php
@@ -52,7 +52,7 @@ endif;
 						<?php
 						$temporary_excerpt = substr( strip_tags( $pegasus_excerpt ), 0, 300 );
 						$final_excerpt = ( $pegasus_excerpt !== $temporary_excerpt ) ? ( $temporary_excerpt . '...') : $pegasus_excerpt;
-						echo $final_excerpt;
+						echo esc_html( $final_excerpt );
 						?>
 					</p>
 				<?php } else {
@@ -71,18 +71,20 @@ endif;
 		</div>
 
 		<?php
+
 		if ( function_exists( 'wp_bootstrap_edit_post_link' ) ) {
 			// Edit post link
 			wp_bootstrap_edit_post_link(
 				sprintf(
 					/* translators: %s: Name of current post */
-					__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
+					__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'pegasus' ),
 					get_the_title()
 				),
 				'<span class="edit-link">',
 				'</span>'
 			);
 		}
+
 		?>
 
 	</article>

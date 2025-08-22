@@ -12,16 +12,16 @@
 			============================*/
 
 			$portfolio_labels = array(
-				'name' => _x('Portfolios', 'post type general name', 'pegasus-bootstrap'),
-				'singular_name' => _x('Portfolio', 'post type singular name', 'pegasus-bootstrap'),
-				'add_new' => _x('Add New', 'portfolio', 'pegasus-bootstrap'),
-				'add_new_item' => __('Add New Portfolio', 'pegasus-bootstrap'),
-				'edit_item' => __('Edit Portfolio', 'pegasus-bootstrap'),
-				'new_item' => __('New Portfolio', 'pegasus-bootstrap'),
-				'view_item' => __('View Portfolio', 'pegasus-bootstrap'),
-				'search_items' => __('Search Portfolio', 'pegasus-bootstrap'),
-				'not_found' =>  __('No portfolio found', 'pegasus-bootstrap'),
-				'not_found_in_trash' => __('No portfolio found in Trash', 'pegasus-bootstrap'),
+				'name' => _x('Portfolios', 'post type general name', 'pegasus'),
+				'singular_name' => _x('Portfolio', 'post type singular name', 'pegasus'),
+				'add_new' => _x('Add New', 'portfolio', 'pegasus'),
+				'add_new_item' => __('Add New Portfolio', 'pegasus'),
+				'edit_item' => __('Edit Portfolio', 'pegasus'),
+				'new_item' => __('New Portfolio', 'pegasus'),
+				'view_item' => __('View Portfolio', 'pegasus'),
+				'search_items' => __('Search Portfolio', 'pegasus'),
+				'not_found' =>  __('No portfolio found', 'pegasus'),
+				'not_found_in_trash' => __('No portfolio found in Trash', 'pegasus'),
 				'parent_item_colon' => '',
 				'menu_name' => 'Pegasus Portfolio'
 			);
@@ -56,29 +56,29 @@
 
 			// Initialize Taxonomy Labels
 			$tags_labels = array(
-				'name' => _x( 'Tags', 'taxonomy general name', 'pegasus-bootstrap' ),
-				'singular_name' => _x( 'Tag', 'taxonomy singular name' , 'pegasus-bootstrap'),
-				'search_items' =>  __( 'Search Types' , 'pegasus-bootstrap'),
-				'all_items' => __( 'All Tags' , 'pegasus-bootstrap'),
-				'parent_item' => __( 'Parent Tags', 'pegasus-bootstrap' ),
-				'parent_item_colon' => __( 'Parent Tags:' , 'pegasus-bootstrap'),
-				'edit_item' => __( 'Edit Tags', 'pegasus-bootstrap' ),
-				'update_item' => __( 'Update Tags' , 'pegasus-bootstrap'),
-				'add_new_item' => __( 'Add New Tags', 'pegasus-bootstrap' ),
-				'new_item_name' => __( 'New Tags Name' , 'pegasus-bootstrap'),
+				'name' => _x( 'Tags', 'taxonomy general name', 'pegasus' ),
+				'singular_name' => _x( 'Tag', 'taxonomy singular name' , 'pegasus'),
+				'search_items' =>  __( 'Search Types' , 'pegasus'),
+				'all_items' => __( 'All Tags' , 'pegasus'),
+				'parent_item' => __( 'Parent Tags', 'pegasus' ),
+				'parent_item_colon' => __( 'Parent Tags:' , 'pegasus'),
+				'edit_item' => __( 'Edit Tags', 'pegasus' ),
+				'update_item' => __( 'Update Tags' , 'pegasus'),
+				'add_new_item' => __( 'Add New Tags', 'pegasus' ),
+				'new_item_name' => __( 'New Tags Name' , 'pegasus'),
 			);
 
 			$cats_labels = array(
-				'name' => _x( 'Categories', 'taxonomy general name', 'pegasus-bootstrap' ),
-				'singular_name' => _x( 'Cat', 'taxonomy singular name' , 'pegasus-bootstrap'),
-				'search_items' =>  __( 'Search Types' , 'pegasus-bootstrap'),
-				'all_items' => __( 'All Cats' , 'pegasus-bootstrap'),
-				'parent_item' => __( 'Parent Cats', 'pegasus-bootstrap' ),
-				'parent_item_colon' => __( 'Parent Cats:' , 'pegasus-bootstrap'),
-				'edit_item' => __( 'Edit Cats', 'pegasus-bootstrap' ),
-				'update_item' => __( 'Update Cats' , 'pegasus-bootstrap'),
-				'add_new_item' => __( 'Add New Cats', 'pegasus-bootstrap' ),
-				'new_item_name' => __( 'New Cats Name' , 'pegasus-bootstrap'),
+				'name' => _x( 'Categories', 'taxonomy general name', 'pegasus' ),
+				'singular_name' => _x( 'Cat', 'taxonomy singular name' , 'pegasus'),
+				'search_items' =>  __( 'Search Types' , 'pegasus'),
+				'all_items' => __( 'All Cats' , 'pegasus'),
+				'parent_item' => __( 'Parent Cats', 'pegasus' ),
+				'parent_item_colon' => __( 'Parent Cats:' , 'pegasus'),
+				'edit_item' => __( 'Edit Cats', 'pegasus' ),
+				'update_item' => __( 'Update Cats' , 'pegasus'),
+				'add_new_item' => __( 'Add New Cats', 'pegasus' ),
+				'new_item_name' => __( 'New Cats Name' , 'pegasus'),
 			);
 
 			// Register Custom Taxonomy - Tags
@@ -109,16 +109,16 @@
 			============================*/
 
 			$staff_labels = array(
-				'name' => _x('Staff', 'post type general name', 'pegasus-bootstrap'),
-				'singular_name' => _x('Staff', 'post type singular name', 'pegasus-bootstrap'),
-				'add_new' => _x('Add New', 'staff', 'pegasus-bootstrap'),
-				'add_new_item' => __('Add New Staff', 'pegasus-bootstrap'),
-				'edit_item' => __('Edit Staff', 'pegasus-bootstrap'),
-				'new_item' => __('New Staff', 'pegasus-bootstrap'),
-				'view_item' => __('View Staff', 'pegasus-bootstrap'),
-				'search_items' => __('Search Staff', 'pegasus-bootstrap'),
-				'not_found' =>  __('No staff found', 'pegasus-bootstrap'),
-				'not_found_in_trash' => __('No staff found in Trash', 'pegasus-bootstrap'),
+				'name' => _x('Staff', 'post type general name', 'pegasus'),
+				'singular_name' => _x('Staff', 'post type singular name', 'pegasus'),
+				'add_new' => _x('Add New', 'staff', 'pegasus'),
+				'add_new_item' => __('Add New Staff', 'pegasus'),
+				'edit_item' => __('Edit Staff', 'pegasus'),
+				'new_item' => __('New Staff', 'pegasus'),
+				'view_item' => __('View Staff', 'pegasus'),
+				'search_items' => __('Search Staff', 'pegasus'),
+				'not_found' =>  __('No staff found', 'pegasus'),
+				'not_found_in_trash' => __('No staff found in Trash', 'pegasus'),
 				'parent_item_colon' => '',
 				'menu_name' => 'Pegasus Staff'
 			);
@@ -165,16 +165,16 @@
 			================================*/
 
 			$review_labels = array(
-				'name' => _x('Testimonials', 'post type general name', 'pegasus-bootstrap'),
-				'singular_name' => _x('Testimonials', 'post type singular name', 'pegasus-bootstrap'),
-				'add_new' => _x('Add New', 'testimonial', 'pegasus-bootstrap'),
-				'add_new_item' => __('Add New Testimonials', 'pegasus-bootstrap'),
-				'edit_item' => __('Edit Testimonial', 'pegasus-bootstrap'),
-				'new_item' => __('New Testimonial', 'pegasus-bootstrap'),
-				'view_item' => __('View Testimonials', 'pegasus-bootstrap'),
-				'search_items' => __('Search Testimonials', 'pegasus-bootstrap'),
-				'not_found' =>  __('No testimonial found', 'pegasus-bootstrap'),
-				'not_found_in_trash' => __('No testimonial found in Trash', 'pegasus-bootstrap'),
+				'name' => _x('Testimonials', 'post type general name', 'pegasus'),
+				'singular_name' => _x('Testimonials', 'post type singular name', 'pegasus'),
+				'add_new' => _x('Add New', 'testimonial', 'pegasus'),
+				'add_new_item' => __('Add New Testimonials', 'pegasus'),
+				'edit_item' => __('Edit Testimonial', 'pegasus'),
+				'new_item' => __('New Testimonial', 'pegasus'),
+				'view_item' => __('View Testimonials', 'pegasus'),
+				'search_items' => __('Search Testimonials', 'pegasus'),
+				'not_found' =>  __('No testimonial found', 'pegasus'),
+				'not_found_in_trash' => __('No testimonial found in Trash', 'pegasus'),
 				'parent_item_colon' => '',
 				'menu_name' => 'Pegasus Testimonial'
 			);
@@ -218,7 +218,7 @@
 				$testimonial_metabox = new_cmb2_box(
 					array(
 						'id'           => $prefix . 'content',
-						'title'        => __( 'Testimonial Slider Slides', 'pegasus-bootstrap' ),
+						'title'        => __( 'Testimonial Slider Slides', 'pegasus' ),
 						'object_types' => array( 'pegasus_testimonial' ),
 						'priority'     => 'high',
 					)
@@ -356,16 +356,16 @@
 			============================*/
 
 			$logo_slider_labels = array(
-				'name' => _x('Logos', 'logo slider general name', 'pegasus-bootstrap'),
-				'singular_name' => _x('Logo', 'logo slider singular name', 'pegasus-bootstrap'),
-				'add_new' => _x('Add New', 'logo', 'pegasus-bootstrap'),
-				'add_new_item' => __('Add New Slider', 'pegasus-bootstrap'),
-				'edit_item' => __('Edit Logo', 'pegasus-bootstrap'),
-				'new_item' => __('New Logo', 'pegasus-bootstrap'),
-				'view_item' => __('View Logo', 'pegasus-bootstrap'),
-				'search_items' => __('Search Logo', 'pegasus-bootstrap'),
-				'not_found' =>  __('No logo found', 'pegasus-bootstrap'),
-				'not_found_in_trash' => __('No logo found in Trash', 'pegasus-bootstrap'),
+				'name' => _x('Logos', 'logo slider general name', 'pegasus'),
+				'singular_name' => _x('Logo', 'logo slider singular name', 'pegasus'),
+				'add_new' => _x('Add New', 'logo', 'pegasus'),
+				'add_new_item' => __('Add New Slider', 'pegasus'),
+				'edit_item' => __('Edit Logo', 'pegasus'),
+				'new_item' => __('New Logo', 'pegasus'),
+				'view_item' => __('View Logo', 'pegasus'),
+				'search_items' => __('Search Logo', 'pegasus'),
+				'not_found' =>  __('No logo found', 'pegasus'),
+				'not_found_in_trash' => __('No logo found in Trash', 'pegasus'),
 				'parent_item_colon' => '',
 				'menu_name' => 'Pegasus Logo Slider'
 			);
@@ -409,7 +409,7 @@
 				$logo_slider_metabox = new_cmb2_box(
 					array(
 						'id'           => $prefix . 'content',
-						'title'        => __( 'Logo Slider Slides', 'pegasus-bootstrap' ),
+						'title'        => __( 'Logo Slider Slides', 'pegasus' ),
 						'object_types' => array( 'pegasus_logo_slider' ),
 						'priority'     => 'high',
 					)
@@ -717,7 +717,7 @@
 			}//end while
 			wp_reset_postdata();
 		} else {
-			echo '<p>No posts found.</p>';
+			echo '<p>' . esc_html__( 'No posts found.', 'pegasus' ) . '</p>';
 		}
 		//wp_reset_postdata();
 		wp_reset_query();
@@ -900,7 +900,7 @@
 			}//end while
 			wp_reset_postdata();
 		} else {
-			echo '<p>No posts found.</p>';
+			echo '<p>' . esc_html__( 'No posts found.', 'pegasus' ) . '</p>';
 		}
 
 		//wp_reset_postdata();
