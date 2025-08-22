@@ -1,6 +1,10 @@
 <?php
 
 	$json_data = '{
+		"pegasus-accordion/pegasus-accordions.php": {
+			"title": "Accordion Usage",
+			"callback": "pegasus_accordion_submenu_page"
+		},
 		"pegasus-blog/pegasus-blog.php": {
 			"title": "Blog Usage",
 			"callback": "pegasus_blog_submenu_page"
@@ -123,6 +127,7 @@
 	}
 
 	$allowed_plugins = array(
+		'pegasus-accordion',
 		'pegasus-blog',
 		'pegasus-callout',
 		'pegasus-carousel',
@@ -191,6 +196,17 @@
 				echo '<pre>' . esc_html($shortcode) . '</pre>';
 				break;
 		}
+	}
+
+	function pegasus_accordion_submenu_page() {
+		?>
+		<div class="pegasus-wrap">
+			<h1>Accordion Usage</h1>
+			<?php output_shortcode_pre('[accordions][accordion class="first" title="Home"]Vivamus suscipit tortor eget felis porttitor volutpat. [/accordion][accordion class="second" title="Profile"]Pellentesque in ipsum id orci porta dapibus. [/accordion][/accordions]'); ?>
+			<?php output_shortcode_pre('[accordions][accordion class="first" title="Home"]Vivamus suscipit tortor eget felis porttitor volutpat. [/accordion][accordion class="second" title="Profile"]Pellentesque in ipsum id orci porta dapibus. [/accordion][/accordions]', 'wp'); ?>
+			<?php echo do_shortcode('[pegasus_settings_table plugin_slug="pegasus-accordion"]'); ?>
+		</div>
+		<?php
 	}
 
 	// Callback function for submenu page content for Blog Usage

@@ -87,6 +87,7 @@
 							<?php
 							endif;
 							*/
+
 							echo pegasus_get_menu( 'primary', $classes_for_nav_menu, 4, $fallback_menu );
 							if( 'on' === $moremenuchk ) {
 								get_template_part( 'templates/more_menu', 'header' );

@@ -117,6 +117,16 @@
 				'required'  => false,
 			),
 
+			//WP Bootstrap Hooks
+			/*
+			array(
+				'name'      => 'WP Bootstrap Hooks',
+				'slug'      => 'WP_Bootstrap_Hooks',
+				'source'    => 'https://github.com/benignware/wp-bootstrap-hooks/archive/master.zip',
+				'required'  => true,
+				'force_activation'   => true,
+			),*/
+
 			//CMB2 Colorpicker
 			// array(
 			// 	'name'      => 'WP-Colorpicker-alpha',
@@ -1341,6 +1351,7 @@
 
 		// Check if the plugin slug is in the allowed array
 		$allowed_plugins = array(
+			'pegasus-accordion',
 			'pegasus-blog',
 			'pegasus-callout',
 			'pegasus-carousel',
