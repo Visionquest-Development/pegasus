@@ -24,7 +24,7 @@
 			$final_container_class = $page_vs_global_check ? $page_vs_global_check : 'container';
 		?>
 
-		<div class="<?php echo $final_container_class; ?>">
+		<div class="<?php echo esc_attr( $final_container_class ); ?>">
 			<!-- Example row of columns -->
 			<div class="row">
 				<?php

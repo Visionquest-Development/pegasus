@@ -18,7 +18,7 @@ get_header();
 		}
 	?>
 
-	<div class="<?php echo ( 'on' === pegasus_get_option('full_container_chk' ) ) ? 'container-fluid' : 'container'; ?>">
+	<div class="<?php echo esc_attr( ( 'on' === pegasus_get_option('full_container_chk' ) ) ? 'container-fluid' : 'container' ); ?>">
 		<div class="row">
 			<?php
 				$left_align_sidebar_chk = pegasus_get_option( 'sidebar_left_chk' ) ?? 'off';

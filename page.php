@@ -57,7 +57,7 @@
 
 		?>
 
-		<div class="<?php echo $final_container_class; ?>">
+		<div class="<?php echo esc_attr( $final_container_class ); ?>">
 			<!-- Example row of columns -->
 			<div class="row">
 				<?php
@@ -68,7 +68,7 @@
 					}
 				?>
 
-				<div class="<?php echo $page_body_content_class; ?>">
+				<div class="<?php echo esc_attr( $page_body_content_class ); ?>">
 					<div class="inner-content">
 						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 							<?php if( 'off' === $final_page_header_option ) { ?>

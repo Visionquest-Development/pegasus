@@ -43,7 +43,7 @@
 			}
 		?>
 
-		<div class="<?php echo $final_container_class; ?>">
+		<div class="<?php echo esc_attr( $final_container_class ); ?>">
 			<!-- Example row of columns -->
 			<div class="row">
 				<?php
@@ -54,7 +54,7 @@
 					}
 				?>
 
-				<div class="<?php echo $page_body_content_class; ?>">
+				<div class="<?php echo esc_attr( $page_body_content_class ); ?>">
 					<div class="inner-content">
 						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 							<?php
@@ -72,7 +72,7 @@
 									?>
 									<p><em>
 										By <?php the_author(); ?>
-										on <?php echo the_time('l, F, jS, Y');?>
+										on <?php echo esc_html( the_time('l, F, jS, Y');  ?>
 										in <?php the_category( ',' ); ?>.
 										<a href="<?php comments_link(); ?>"><?php comments_number(); ?></a>
 									</em></p>
@@ -82,7 +82,7 @@
 								<div class="">
 									<p><em>
 										By <?php the_author(); ?>
-										on <?php echo the_time('l, F, jS, Y');?>
+										on <?php echo esc_html( the_time('l, F, jS, Y');  ?>
 										in <?php the_category( ',' ); ?>.
 										<a href="<?php comments_link(); ?>"><?php comments_number(); ?></a>
 									</em></p>

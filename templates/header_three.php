@@ -64,7 +64,7 @@
 
 	<div id="header" >
 
-		<div class="header-container <?php echo $fixed_header_choice; ?> fixed-top">
+		<div class="header-container <?php echo esc_attr( $fixed_header_choice ); ?> fixed-top">
 			<div class="header header-sticky primary-menu the-default-third-nav icons-no default-skin ">
 				<?php
 					if($top_header_choice === 'on' ) {
@@ -72,7 +72,7 @@
 					}
 				?>
 				<nav id="mega-menu" class="navbar navbar-expand-md fixed-top ">
-					<div class="container <?php echo $header_container_check; ?>">
+					<div class="container <?php echo esc_attr( $header_container_check ); ?>">
 
 
 
