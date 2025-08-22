@@ -72,7 +72,7 @@
 									?>
 									<p><em>
 										By <?php the_author(); ?>
-										on <?php echo esc_html( the_time('l, F, jS, Y');  ?>
+										on <?php echo esc_html( the_time('l, F, jS, Y') ); ?>
 										in <?php the_category( ',' ); ?>.
 										<a href="<?php comments_link(); ?>"><?php comments_number(); ?></a>
 									</em></p>
@@ -82,7 +82,7 @@
 								<div class="">
 									<p><em>
 										By <?php the_author(); ?>
-										on <?php echo esc_html( the_time('l, F, jS, Y');  ?>
+										on <?php echo esc_html( the_time('l, F, jS, Y') ); ?>
 										in <?php the_category( ',' ); ?>.
 										<a href="<?php comments_link(); ?>"><?php comments_number(); ?></a>
 									</em></p>
