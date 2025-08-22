@@ -34,7 +34,7 @@
 	$shop_page_url = get_permalink( get_option( 'woocommerce_shop_page_id' ) );
 ?>
 
-<ul class="the-nav-cart pl-md-3 ms-auto">
+<ul class="the-nav-cart pl-md-3 ">
 	<?php if( 'on' !== $shop_link_choice ) : ?>
 		<li class="menu-item">
 			<a class="shop-link" href="<?php echo $shop_page_url; ?>">Shop</a>
@@ -43,8 +43,8 @@
 
 	<?php if ( 'on' !== $user_menu_choice ) : ?>
 	<li class="woo-item user-menu-container menu-item">
-		<a class="user-menu " href="#" ><?php echo $user_menu_logged_in_out; ?></a>
-		<ul class="sub-menu">
+		<a class="user-menu dropdown" href="#" ><?php echo $user_menu_logged_in_out; ?></a>
+		<ul class="sub-menu dropdown-menu">
 			<li class="menu-item">
 				<?php
 					if ( is_user_logged_in() ) {

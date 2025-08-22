@@ -160,9 +160,10 @@ Use it to make something cool, have fun, and share what you've learned with othe
   .the-default-nav .nav-link,
   .the-default-second-nav .nav-link,
   .the-default-third-nav .nav-link,
-  .the-default-fourth-nav .nav-link
+  .the-default-fourth-nav .nav-link,
+  .the-nav-cart li a i
   {
-    color: var(--pegasus-nav-item-color) !important;
+    color: var(--pegasus-nav-item-color);
   }
 
   .nav-item {

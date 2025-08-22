@@ -4,7 +4,7 @@
 	==================*/
 	$fixed_header_choice = ( 'on' === pegasus_get_option( 'header_fixed_checkbox' ) ) ? 'fixed-top' : '';
 	$sticky_header_choice = ( 'on' === pegasus_get_option( 'header_sticky_checkbox' ) ) ? 'sticky-top' : '';
-	$right_align_nav_items = ( 'on' === pegasus_get_option('nav_right') ) ? 'ml-auto' : 'mr-auto';
+	$right_align_nav_items = ( 'on' === pegasus_get_option('nav_right') ) ? 'ms-auto' : 'mr-auto';
 
 	$bootstrap_color_scheme = pegasus_get_option('nav_color_scheme') ? pegasus_get_option('nav_color_scheme') : '';
 	$bootstrap_color_utility = pegasus_get_option('nav_color_utility') ? pegasus_get_option('nav_color_utility') : 'bg-light';
@@ -87,6 +87,7 @@
 							<?php
 							endif;
 							*/
+
 							echo pegasus_get_menu( 'primary', $classes_for_nav_menu, 4, $fallback_menu );
 							if( 'on' === $moremenuchk ) {
 								get_template_part( 'templates/more_menu', 'header' );
