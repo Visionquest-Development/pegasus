@@ -1,4 +1,4 @@
-<form role="search" method="get" class="searchform search-form form-inilne ms-auto me-0" action="<?php echo home_url( '/' ); ?>">
+<form role="search" method="get" class="searchform search-form form-inilne ms-auto me-0" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 	<label class="screen-reader-text search-label" for="header_s"><?php echo _x('Search for:', 'label', 'pegasus') ?></label>
 	<div class="form-group mb-0">
 		<div class="input-group">

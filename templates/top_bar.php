@@ -27,11 +27,11 @@
 		$top_column_class = ( 2 === $top_column_option ) ? 'col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6' : 'col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4';
 	}
 ?>
-<div class="<?php echo $top_outer_container_class; ?>">
+<div class="<?php echo esc_attr( $top_outer_container_class ); ?>">
 	<div id="top-bar" class="">
-		<div class="<?php echo $final_container_class; ?>">
+		<div class="<?php echo esc_attr( $final_container_class ); ?>">
 			<div class="row">
-				<div class="<?php echo $top_column_class; ?> left">
+				<div class="<?php echo esc_attr( $top_column_class ); ?> left">
 					<div class="text">
 						<?php
 							echo do_shortcode( $top_header_left );
@@ -39,7 +39,7 @@
 					</div>
 				</div>
 				<?php if( 3 === $top_column_option ) : ?>
-					<div class="<?php echo $top_column_class; ?> center">
+					<div class="<?php echo esc_attr( $top_column_class ); ?> center">
 						<div class="text">
 							<?php
 								echo do_shortcode( $top_header_center );
@@ -47,7 +47,7 @@
 						</div>
 					</div>
 				<?php endif; ?>
-				<div class="<?php echo $top_column_class; ?> right">
+				<div class="<?php echo esc_attr( $top_column_class ); ?> right">
 					<nav class="navbar" role="navigation">
 						<?php
 							if ( 'on' === $woo_check ) {

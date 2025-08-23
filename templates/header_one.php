@@ -58,25 +58,25 @@
 
 ?>
 
-<div id="header" class="header-container <?php echo $fixed_header_choice; ?> ">
+<div id="header" class="header-container <?php echo esc_attr( $fixed_header_choice ); ?> ">
 	<?php
 		if( 'on' === $top_header_choice ) {
 			get_template_part( 'templates/top_bar', 'header' );
 		}
 	?>
-	<div class="<?php echo $header_one_top_logo_container; ?>">
-		<div class="site-branding <?php echo $centerLogo; ?>">
+	<div class="<?php echo esc_attr( $header_one_top_logo_container ); ?>">
+		<div class="site-branding <?php echo esc_attr( $centerLogo ); ?>">
 			<?php if( ! empty( $logo ) ) : ?>
-				<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo $logo; ?>" alt=""/></a>
+				<a class="logo-container" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img id="logo" src="<?php echo esc_url( $logo ); ?>" alt=""/></a>
 			<?php else: ?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="" ><?php bloginfo( 'name' ); ?></a></h1>
 			<?php endif; ?>
 		</div><!-- .site-branding -->
 	</div><!-- container -->
-	<div class="<?php echo $header_container_check; ?>">
-		<nav class="navbar <?php echo $bootstrap_navbar_expand_class; ?> the-default-nav <?php echo $bootstrap_color_scheme; ?> <?php echo $bootstrap_color_utility; ?>" >
+	<div class="<?php echo esc_attr( $header_container_check ); ?>">
+		<nav class="navbar <?php echo esc_attr( $bootstrap_navbar_expand_class ); ?> the-default-nav <?php echo esc_attr( $bootstrap_color_scheme ); ?> <?php echo esc_attr( $bootstrap_color_utility ); ?>" >
 			<?php if( 'on' !== pegasus_get_option( 'full_container_chk' ) & 'container' !== $header_container_check ) : ?>
-				<div class="<?php echo $final_inner_container_class; ?>">
+				<div class="<?php echo esc_attr( $final_inner_container_class ); ?>">
 			<?php endif; ?>
 				<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 					<?php bloginfo( 'name' ); ?>
@@ -93,7 +93,7 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div
-					class="collapse navbar-collapse <?php echo $nav_menu_justify_check; ?>"
+					class="collapse navbar-collapse <?php echo esc_attr( $nav_menu_justify_check ); ?>"
 					id="pegasus_header_one"
 				>
 					<?php

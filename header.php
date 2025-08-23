@@ -10,9 +10,9 @@
 		<?php
 			$favicon = pegasus_get_option( 'favicon' );
 			if ( $favicon ) {
-				echo '<link rel="icon" href="' . $favicon . '">';
+				echo '<link rel="icon" href="' . esc_url( $favicon ) . '">';
 			} else {
-				echo '<link rel="icon" href="' . get_template_directory_uri() . '/images/favicon.ico">';
+				echo '<link rel="icon" href="' . esc_url( get_template_directory_uri() . '/images/favicon.ico' ) . '">';
 			}
 		?>
 
@@ -121,7 +121,7 @@
 					} else { ?>
 						<!-- Header custom code for banner, CTA, etc. -->
 						<section class="pegasus-custom-header">
-							<div class="<?php echo $global_full_container_option; ?>">
+							<div class="<?php echo esc_attr( $global_full_container_option ); ?>">
 								<div class="">
 									<?php echo do_shortcode( $custom_top_textareacode ); ?>
 								</div>

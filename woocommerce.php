@@ -37,7 +37,7 @@
 
 		?>
 
-		<div class="<?php echo $final_container_class; ?>">
+		<div class="<?php echo esc_attr( $final_container_class ); ?>">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xg-9">
 					<div class="inner-content">

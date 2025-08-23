@@ -98,7 +98,7 @@
 												echo wp_kses_post( $custom_footer );
 											} else {
 										?>
-											<p class="copyright">&copy; <?php echo date('Y');?> <?php bloginfo('name'); ?></p>
+											<p class="copyright">&copy; <?php echo esc_html( date('Y') ); ?> <?php bloginfo('name'); ?></p>
 										<?php
 											}//end else
 										?>
