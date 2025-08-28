@@ -602,7 +602,7 @@
 		//$the_query = preg_replace('~&#0*([0-9]+);~e', 'chr(\\1)', $the_query);
 
 		$the_query = preg_replace_callback('~&#x0*([0-9a-f]+);~', function($matches){
-			return chr( dechex( $matches[1] ) );
+			return chr( hexdec( $matches[1] ) );
 		}, $the_query);
 
 		$the_query = preg_replace_callback('~&#0*([0-9]+);~', function($matches){
@@ -656,7 +656,7 @@
 				$the_id = get_the_ID();
 				$temp_title = get_the_title($post->ID);
 				$temp_link = get_permalink($post->ID);
-				$temp_date = get_the_date($post->ID);
+				$temp_date = get_the_date('', $post->ID);
 				$temp_pic = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
 				$temp_excerpt = wp_trim_words( get_the_excerpt(), 150 );
 				$temp_content = wp_trim_words( get_the_content(), 300 );
@@ -736,12 +736,37 @@
 	add_shortcode("pegasus_logo_slider", "pegasus_logo_slider_query_shortcode");
 
 
+	/*
+		Shortcode: [pegasus_testimonial_slider]
+		Parameters:
+		- type (string): Visual style classes and/or aspect ratio tokens.
+		  - Visual style classes: any string is appended to the wrapper element (e.g., 'simple', 'bubble').
+		  - Aspect ratio (IMG mode only): include one of '16x9'/'16/9' (default) or '4x3'/'4/3' to set image ratio.
+		- class (string): Additional CSS classes appended to the wrapper element.
+		  - Recognized: 'circle' enforces a circular image (1:1) in both IMG and BG modes.
+		- image_mode (string): 'img' (default) or 'bg'.
+		  - 'img': Renders an <img> with ratio helper class; uses attachment ID when available to output responsive markup.
+		  - 'bg' : Renders a <div class="post-img-feat-bg"> with background-image, background-size: cover, centered; ignores ratio helpers to avoid stretching.
+		- the_query (string): Optional WP_Query arg string to filter testimonials. Defaults to 'post_type=pegasus_testimonial&showposts=100'.
+
+		Data source:
+		- All slide content comes from CMB2 group fields on the 'pegasus_testimonial' CPT:
+		  title, link, slide_image (URL) or slide_image_id (ID), alt_text, caption.
+		- Slides without an image are skipped.
+
+		Examples:
+		- [pegasus_testimonial_slider]
+		- [pegasus_testimonial_slider type="bubble 4x3"]
+		- [pegasus_testimonial_slider class="circle"]
+		- [pegasus_testimonial_slider image_mode="bg" type="4/3"]
+		- [pegasus_testimonial_slider the_query="post_type=pegasus_testimonial&posts_per_page=5"]
+	*/
 	function pegasus_testimonial_slider_query_shortcode($atts) {
 
 		$a = shortcode_atts( array(
-			"image" => '',
-			"type" => '',
-			"class" => ''
+			"type" => '', // '16x9' or '4x3' or '16/9' or '4/3'
+			"class" => '', // 'circle'
+			"image_mode" => 'img' // 'img' or 'bg'
 		), $atts );
 
 		// Defaults
@@ -754,7 +779,7 @@
 		//$the_query = preg_replace('~&#0*([0-9]+);~e', 'chr(\\1)', $the_query);
 
 		$the_query = preg_replace_callback('~&#x0*([0-9a-f]+);~', function($matches){
-			return chr( dechex( $matches[1] ) );
+			return chr( hexdec( $matches[1] ) );
 		}, $the_query);
 
 		$the_query = preg_replace_callback('~&#0*([0-9]+);~', function($matches){
@@ -762,7 +787,7 @@
 		}, $the_query);
 
 		if ( '' === $the_query || null === $the_query || empty( $the_query ) ) {
-			$the_query = 'post_type=testimonial&showposts=100';
+			$the_query = 'post_type=pegasus_testimonial&showposts=100';
 		}
 
 		$query_args = array(
@@ -786,16 +811,18 @@
 		// var_dump( $query_args );
 		// echo '</pre>';
 		// Create a new WP_Query instance
-		$query = new WP_Query( $query_args );
+		$query = new WP_Query( $the_query );
+		//$query = new WP_Query( $query_args );
 
-		// echo '<pre>';
-		// var_dump( $query->posts );
-		// echo '</pre>';
+		//echo '<pre>';
+		//var_dump( $query->posts );
+		//echo '</pre>';
 		global $post;
 
-		$img_attr_val = "{$a['image']}";
+		//$img_attr_val = "{$a['image']}";
 		$type = "{$a['type']}";
 		$class = "{$a['class']}";
+		$image_mode = isset( $a['image_mode'] ) ? strtolower( $a['image_mode'] ) : 'img';
 
 
 		// Reset and setup variables
@@ -822,7 +849,7 @@
 
 				$temp_title = get_the_title($post->ID);
 				$temp_link = get_permalink($post->ID);
-				$temp_date = get_the_date($post->ID);
+				$temp_date = get_the_date('', $post->ID);
 				$temp_pic = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
 				$temp_excerpt = wp_trim_words( get_the_excerpt(), 150 );
 				$temp_content = wp_trim_words( get_the_content(), 300 );
@@ -849,53 +876,92 @@
 					foreach ( (array) $slides as $key => $slide ) {
 						$prefix = 'pegasus_testimonial_';
 
-						$slide_title = isset( $slide[$prefix . 'title'] ) ? sanitize_title( $slide[$prefix . 'title'] ) : '';
+						$slide_title = isset( $slide[$prefix . 'title'] ) ? sanitize_text_field( $slide[$prefix . 'title'] ) : '';
 						$slide_link = isset( $slide[$prefix . 'link'] ) ? esc_url( $slide[$prefix . 'link'] ) : '';
-						$slide_img_id = isset( $slide[$prefix . 'slide_image_id'] ) ? absint ( $slide[$prefix . 'slide_image_id'] ) : '';
+						$slide_img_id = isset( $slide[$prefix . 'slide_image_id'] ) ? absint ( $slide[$prefix . 'slide_image_id'] ) : 0;
 						$slide_slide_img = isset( $slide[$prefix . 'slide_image'] ) ? esc_url( $slide[$prefix . 'slide_image'] ) : '';
 						$slide_alt_text = isset( $slide[$prefix . 'alt_text'] ) ? $slide[$prefix . 'alt_text'] : '';
 						$slide_caption = isset( $slide[$prefix . 'caption'] ) ? $slide[$prefix . 'caption'] : '';
 
-						// output all findings - CUSTOMIZE TO YOUR LIKING
-						$output .= "<article class='post-$the_id' >";
+						// Resolve image URL from either URL or attachment ID
+						$image_url = $slide_slide_img;
+						if ( empty( $image_url ) && $slide_img_id ) {
+							$image_url = wp_get_attachment_url( $slide_img_id, 'medium' );
+						}
+						// Prioritize image: skip slide if no image
+						if ( empty( $image_url ) ) {
+							continue;
+						}
 
-							if($temp_pic && 'yes' == $img_attr_val || 'circle' == $img_attr_val ) {
-								$output .= "<div class='testimonial-image'>";
-								if ( 'circle' == $img_attr_val ) {
-									$output .= "<img class='post-img-feat circle' src='$temp_pic'>";
-								} else {
-									$output .= "<img class='post-img-feat' src='$temp_pic'>";
-								}
-								$output .= "</div>";
+						$output .= "<article class='post-$the_id' >";
+						$output .= '<div class="slick-slider-item">';
+
+							// Determine aspect ratio class from shortcode `type` (default 16/9)
+							$ratio_class = '';
+							if ( false !== strpos( strtolower( $type ), '4/3' ) || false !== strpos( strtolower( $type ), '4x3' ) ) {
+								$ratio_class = 'ratio-4x3';
+							} elseif ( false !== strpos( strtolower( $type ), '16/9' ) || false !== strpos( strtolower( $type ), '16x9' ) ) {
+								$ratio_class = 'ratio-16x9';
 							}
 
+							// Compose image class list
+							$img_class_list = 'post-img-feat ' . $ratio_class;
+							if ( false !== strpos( strtolower( $class ), 'circle' ) ) {
+								$img_class_list .= ' circle';
+							}
 
+							// Build image HTML (prefer attachment ID to get sized image and srcset)
+							if ( $slide_img_id ) {
+								$img_html = wp_get_attachment_image( $slide_img_id, 'medium', false, array( 'class' => $img_class_list, 'alt' => $slide_alt_text ) );
+							} else {
+								$img_html = "<img class='" . esc_attr( $img_class_list ) . "' src='" . esc_url( $image_url ) . "' alt='" . esc_attr( $slide_alt_text ) . "'>";
+							}
+
+						$output .= "<div class='testimonial-image'>";
+							if ( $image_mode === 'bg' ) {
+								// Background mode container; cover and center via CSS. Do not use ratio classes here.
+								$bg_class_list = 'post-img-feat-bg ' . $ratio_class;
+								if ( false !== strpos( strtolower( $class ), 'circle' ) ) {
+									$bg_class_list .= ' circle';
+								}
+								$bg_div = "<div class='" . esc_attr( $bg_class_list ) . "' style='background-image:url(" . esc_url( $image_url ) . ");'></div>";
+								if ( ! empty( $slide_link ) ) {
+									$output .= '<a href="' . $slide_link . '">' . $bg_div . '</a>';
+								} else {
+									$output .= $bg_div;
+								}
+							} else {
+								if ( ! empty( $slide_link ) ) {
+									$output .= '<a href="' . $slide_link . '">' . $img_html . '</a>';
+								} else {
+									$output .= $img_html;
+								}
+							}
+						$output .= "</div>";
 
 							$output .= "<div class='{$type} {$class}'><blockquote>";
 							$output .= "<p class='post-content'>";
-							if(isset($temp_excerpt)) {
-								//$temporary_excerpt = substr(strip_tags($temp_excerpt), 0, 150);
-								//if($temporary_excerpt){
-										//$output .= $temporary_excerpt;
-										//$output .= '...';
-								//}
-								$output .= $temp_excerpt;
-							}else{
-								//$more = 0;
-								//$temporary = substr(strip_tags($temp_content), 0, 300);
-								//if($temporary){ $output .= $temporary; $output .= '...'; }
-								$output .= $temp_content;
+							if ( ! empty( $slide_caption ) ) {
+								$output .= esc_html( $slide_caption );
 							}
 							$output .= "</p>";
 
-							$output .= '<cite>'.$temp_title.'<br />';
-								$output .= '<span class="">' . $temp_title . '</span>';
-							$output .= '</cite>';
+							$cite_text = ! empty( $slide_title ) ? esc_html( $slide_title ) : '';
+							if ( ! empty( $cite_text ) ) {
+								if ( ! empty( $slide_link ) ) {
+									$output .= '<cite><a href="' . $slide_link . '">' . $cite_text . '</a></cite>';
+								} else {
+									$output .= '<cite>' . $cite_text . '</cite>';
+								}
+							}
 							$output .= '</blockquote></div>';
 
+						$output .= '</div>';
 						$output .= "</article>";
 
 					} // End foreach().
+				} else {
+					// No slides found: do not render post-based fallback, as only CMB2 fields are allowed
 				}
 			}//end while
 			wp_reset_postdata();
@@ -910,12 +976,12 @@
 		wp_enqueue_style( 'slick-theme-css' );
 		wp_enqueue_script( 'slick-js' );
 		wp_enqueue_script( 'match-height-js' );
-		wp_enqueue_script( 'pegasus-carousel-plugin-js' );
+		wp_enqueue_script( 'pegasus-carousel-plugin' );
 
-		return '<section role="complementary" class="simple white-back testimonial-slider quotes no-fouc">' . $output . '</section>';
+		return '<section role="complementary" class="simple white-back testimonial-slider quotes ">' . $output . '</section>';
 
 	}
-	add_shortcode("pegasus_testimonial_slider", "testimonial_slider_query_shortcode");
+	add_shortcode("pegasus_testimonial_slider", "pegasus_testimonial_slider_query_shortcode");
 
 
 
