@@ -736,7 +736,187 @@
 	add_shortcode("pegasus_logo_slider", "pegasus_logo_slider_query_shortcode");
 
 
-	pegasus_testimonial_slider_query_shortcode
+	function pegasus_testimonial_slider_query_shortcode($atts) {
+
+		$a = shortcode_atts( array(
+			"image" => '',
+			"type" => '',
+			"class" => ''
+		), $atts );
+
+		// Defaults
+		extract(shortcode_atts(array(
+			"the_query" => '',
+		), $atts));
+
+		// de-funkify query
+		//$the_query = preg_replace('~&#x0*([0-9a-f]+);~ei', 'chr(hexdec("\\1"))', $the_query);
+		//$the_query = preg_replace('~&#0*([0-9]+);~e', 'chr(\\1)', $the_query);
+
+		$the_query = preg_replace_callback('~&#x0*([0-9a-f]+);~', function($matches){
+			return chr( dechex( $matches[1] ) );
+		}, $the_query);
+
+		$the_query = preg_replace_callback('~&#0*([0-9]+);~', function($matches){
+			return chr( $matches[1] );
+		}, $the_query);
+
+		if ( '' === $the_query || null === $the_query || empty( $the_query ) ) {
+			$the_query = 'post_type=testimonial&showposts=100';
+		}
+
+		$query_args = array(
+			'post_type' => 'pegasus_testimonial', // Ensure you are querying the correct post type
+			'posts_per_page' => -1, // Set the number of posts to retrieve
+			//'post_status' => 'publish', // Ensure only published posts are retrieved
+			//'category_name' => 'your-category-slug', // Optional: Filter by category
+			//'orderby' => 'date', // Optional: Order by date
+			//'order' => 'DESC' // Optional: Order descending
+		);
+
+		// echo '<pre>';
+		// var_dump( $the_query );
+		// echo '</pre>';
+		// echo '<pre>';
+		// var_dump( $query_args );
+		// echo '</pre>';
+		// Convert query string into array for WP_Query
+		//parse_str( $the_query, $query_args );
+		// echo '<pre>';
+		// var_dump( $query_args );
+		// echo '</pre>';
+		// Create a new WP_Query instance
+		$query = new WP_Query( $query_args );
+
+		// echo '<pre>';
+		// var_dump( $query->posts );
+		// echo '</pre>';
+		global $post;
+
+		$img_attr_val = "{$a['image']}";
+		$type = "{$a['type']}";
+		$class = "{$a['class']}";
+
+
+		// Reset and setup variables
+		$output = '';
+		$temp_title = '';
+		$temp_link = '';
+		$temp_date = '';
+		$temp_pic = '';
+		$temp_content = '';
+		$the_id = '';
+
+
+		if ($query->have_posts()) {
+			while ($query->have_posts()) {
+				$query->the_post();
+
+
+
+				//$color_chk = "{$a['bkg_color']}";
+				//if ($color_chk) { $output .= "<li style='background: {$a['bkg_color']}; '>"; }else{ $output .= "<li>"; }
+
+				// the loop
+				//if (have_posts()) : while (have_posts()) : the_post();
+
+				$temp_title = get_the_title($post->ID);
+				$temp_link = get_permalink($post->ID);
+				$temp_date = get_the_date($post->ID);
+				$temp_pic = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
+				$temp_excerpt = wp_trim_words( get_the_excerpt(), 150 );
+				$temp_content = wp_trim_words( get_the_content(), 300 );
+				$the_id = get_the_ID();
+
+				$position = get_post_meta($post->ID, '_position', TRUE);
+				$company_name = get_post_meta($post->ID, '_company_name', TRUE);
+				$company_url = get_post_meta($post->ID, '_company_url', TRUE);
+
+
+				// $the_id    = get_the_ID();
+				// $temp_title = get_the_title();
+				// $temp_link  = get_permalink();
+				// $temp_pic = has_post_thumbnail() ? get_the_post_thumbnail_url($the_id, 'medium') : plugin_dir_url(__FILE__) . '/images/not-available.png';
+				// $categories = get_the_category();
+				// $temp_excerpt   = wp_trim_words( get_the_excerpt(), 150 );
+				// $temp_content   = wp_trim_words( get_the_content(), 300 );
+
+
+
+				$slides = get_post_meta( $the_id, 'pegasus_testimonial_slides', true );
+
+				if ( ! empty( $slides ) ) {
+					foreach ( (array) $slides as $key => $slide ) {
+						$prefix = 'pegasus_testimonial_';
+
+						$slide_title = isset( $slide[$prefix . 'title'] ) ? sanitize_title( $slide[$prefix . 'title'] ) : '';
+						$slide_link = isset( $slide[$prefix . 'link'] ) ? esc_url( $slide[$prefix . 'link'] ) : '';
+						$slide_img_id = isset( $slide[$prefix . 'slide_image_id'] ) ? absint ( $slide[$prefix . 'slide_image_id'] ) : '';
+						$slide_slide_img = isset( $slide[$prefix . 'slide_image'] ) ? esc_url( $slide[$prefix . 'slide_image'] ) : '';
+						$slide_alt_text = isset( $slide[$prefix . 'alt_text'] ) ? $slide[$prefix . 'alt_text'] : '';
+						$slide_caption = isset( $slide[$prefix . 'caption'] ) ? $slide[$prefix . 'caption'] : '';
+
+						// output all findings - CUSTOMIZE TO YOUR LIKING
+						$output .= "<article class='post-$the_id' >";
+
+							if($temp_pic && 'yes' == $img_attr_val || 'circle' == $img_attr_val ) {
+								$output .= "<div class='testimonial-image'>";
+								if ( 'circle' == $img_attr_val ) {
+									$output .= "<img class='post-img-feat circle' src='$temp_pic'>";
+								} else {
+									$output .= "<img class='post-img-feat' src='$temp_pic'>";
+								}
+								$output .= "</div>";
+							}
+
+
+
+							$output .= "<div class='{$type} {$class}'><blockquote>";
+							$output .= "<p class='post-content'>";
+							if(isset($temp_excerpt)) {
+								//$temporary_excerpt = substr(strip_tags($temp_excerpt), 0, 150);
+								//if($temporary_excerpt){
+										//$output .= $temporary_excerpt;
+										//$output .= '...';
+								//}
+								$output .= $temp_excerpt;
+							}else{
+								//$more = 0;
+								//$temporary = substr(strip_tags($temp_content), 0, 300);
+								//if($temporary){ $output .= $temporary; $output .= '...'; }
+								$output .= $temp_content;
+							}
+							$output .= "</p>";
+
+							$output .= '<cite>'.$temp_title.'<br />';
+								$output .= '<span class="">' . $temp_title . '</span>';
+							$output .= '</cite>';
+							$output .= '</blockquote></div>';
+
+						$output .= "</article>";
+
+					} // End foreach().
+				}
+			}//end while
+			wp_reset_postdata();
+		} else {
+			echo '<p>' . esc_html__( 'No posts found.', 'pegasus' ) . '</p>';
+		}
+
+		//wp_reset_postdata();
+		wp_reset_query();
+
+		wp_enqueue_style( 'slick-css' );
+		wp_enqueue_style( 'slick-theme-css' );
+		wp_enqueue_script( 'slick-js' );
+		wp_enqueue_script( 'match-height-js' );
+		wp_enqueue_script( 'pegasus-carousel-plugin-js' );
+
+		return '<section role="complementary" class="simple white-back testimonial-slider quotes no-fouc">' . $output . '</section>';
+
+	}
+	add_shortcode("pegasus_testimonial_slider", "testimonial_slider_query_shortcode");
+
 
 
 
