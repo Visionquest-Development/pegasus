@@ -67,7 +67,8 @@
 
 
   .the-nav-cart li { display: inline-block;     position: relative; }
-  .the-nav-cart li a i { padding: 14px 10px; }
+  /* .the-nav-cart li a i { padding: 14px 10px; } */
+  .the-nav-cart li.user-menu-container .sub-menu li { display: block; }
   .the-nav-cart .woo-item:hover .sub-menu { display: block; }
   .the-nav-cart li.header-cart-item .sub-menu a:before { display: none; }
   .the-nav-cart li.header-cart-item .sub-menu .cart_list a { padding: 0 !important; }
