@@ -1,7 +1,8 @@
 <?php
-	global $post;
-	$postid = $post->ID;
-	$unique_id = uniqid( $postid );
+	//global $post;
+	//$postid = $post->ID;
+	//$unique_id = uniqid( $postid );
+	$unique_id = wp_unique_id( 'search-form-' );
 
 	/*$is_page_template = is_page_template( 'sidebar-left.php' );
 	$page_template_slug = get_page_template_slug( $post->ID );
