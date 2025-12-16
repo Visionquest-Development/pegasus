@@ -12,15 +12,17 @@
 		get_template_part( 'templates/top_bar', 'header' );
 	}
 ?>
-<nav class="navbar navbar-inverse navbar-fixed-top keegans-nav">
+<nav class="navbar navbar-inverse d-none">
 	<div class="container">
 		<div class="navbar-header">
+			<?php /*
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 				<span class="visually-hidden">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
+			*/ ?>
 			<?php
 			$logo =  pegasus_get_option( 'logo' );
 			if( ! empty( $logo ) ) : ?>
@@ -35,7 +37,7 @@
 					'container'		=> false,
 					//'menu' 			=> 'primary-menu',
 					'theme_location'  => 'primary',
-					'menu_class'	=> ' keegans-header-menu',
+					'menu_class'	=> ' header-five-menu',
 					//'menu_class'	=> 'nav navbar-nav primary-navigation-bar',
 					//'menu_id' => false
 					//'items_wrap'      => '<ul id="%1$s" class="%2$s nav navbar-nav">%3$s</ul>',
@@ -56,7 +58,7 @@
 
 
 	<!-- Logo Area -->
-	<div class="keegans-logo">
+	<div class="header-five-logo">
 		<!-- Heading -->
 		<?php
 		$logo =  pegasus_get_option( 'logo' );
@@ -88,7 +90,7 @@
 			wp_nav_menu( $args );
 		?>
 	</div>
-	<div class="">
+	<div class="w-100 text-center">
 	<?php
 		/*
 		$woo_check =  pegasus_get_option( 'woo_chk' );
