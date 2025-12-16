@@ -19,7 +19,7 @@
 		margin: 0;
 		padding: 0;
 		margin-left: 280px;
-		background: #fff;
+		/* background: #fff; */
 	}
 	.mainbar .container {
 		width: 97%;
@@ -45,18 +45,7 @@
 	/*~~~~~~~~~~~~~~~~~~~~~
 	~~~~~~~~ HEADER ~~~~~~
 	~~~~~~~~~~~~~~~~~~~~~*/
-	.keegans-nav {
-    display: none;
-    border-color: #9a1f27;
-    background: #9a1f27;
-  }
-
-
-  .keegans-header-menu li .nav-link.active{
-    font-weight: bold;
-    font-size: 20px;
-  }
-
+	
 
 	/*~~~~~~~~~~~~~~~~~~~~~
 	~~~~~~ NAVIGATION ~~~~~
@@ -74,50 +63,24 @@
 
 	.fa-bars:before { color: black;  }
 
-	.keegans-header-menu { list-style-type: none; }
 
 	/*~~~~~~~~~~~~~~~~~~~~~~
 	~~~~~~~SIDEBAR NAV~~~~~~~
 	~~~~~~~~~~~~~~~~~~~~~~*/
 
-	.keegans-logo {
-		/* margin-top: 30px;
-		padding-bottom: 15px; */
 
-		text-align: center;
-	}
-
-  body.admin-bar .keegans-logo {
+  body.admin-bar .header-five-logo {
     margin-top: var(--pegasus-admin-bar-height);
   }
 
 
-	.keegans-logo h1 {
-    margin: 0 0 0 auto;
-    font-size: 1.8rem;
-    font-weight: 700;
-    width: 85%;
-    padding: 5px;
-	}
-
-	.keegans-logo hr {
-		max-width: 180px;
-		margin: 5px auto;
-		border-top: 4px double #fff;
-	}
-
-	.keegans-logo span {
-		display: block;
-		margin-top: 5px;
-	}
-
 	#header {
 		position: fixed;
 		z-index: 1024;
-		background: #9A1F27;
+		/*background: #9A1F27;*/
 		width: 280px;
 		height: 100%;
-
+		padding: 20px;
 		min-height: 1000px;
 		left: 0;
 		top:0;
@@ -141,7 +104,7 @@
 		line-height: 40px;
 		text-align: center;
 		font-size: 24px;
-		color: #fff;
+		/* color: #fff; */
 		box-shadow: 1px 1px 3px rgba(0,0,0,0.25);
 	}
 
@@ -161,7 +124,7 @@
 		
 		font-size: 15px;
 		line-height: 18px;
-		color: #fff;
+		/* color: #fff; */
 		text-align: right;
 			transition: all 0.5s ease;
 	}
