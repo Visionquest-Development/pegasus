@@ -220,7 +220,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
     /* Mobile submenu styling for standard dropdown behavior */
     .dropdown-menu {
-      background-color: transparent !important;
+      /* background-color: transparent !important; */
       border: none !important;
       box-shadow: none !important;
       margin-top: 0 !important;
@@ -651,9 +651,9 @@ Use it to make something cool, have fun, and share what you've learned with othe
 		/*.the-default-nav #navbar { overflow-y: visible; max-height: none !important; }*/
 		/*#header { padding: 0 20px; }*/
 
-        .dropdown-menu {
+        /*.dropdown-menu {
             background-color: transparent !important;
-        }
+        }*/
 
 		.the-nav-cart .sub-menu {  left: 0; }
 
