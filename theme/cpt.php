@@ -728,7 +728,7 @@
 		wp_enqueue_style( 'slick-theme-css' );
 		wp_enqueue_script( 'slick-js' );
 		wp_enqueue_script( 'match-height-js' );
-		wp_enqueue_script( 'pegasus-carousel-plugin-js' );
+		wp_enqueue_script( 'pegasus-carousel-plugin' );
 
 		return '<div class="center logo-slider slider">' . $output . '</div>';
 
