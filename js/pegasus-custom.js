@@ -39,7 +39,7 @@
         }
 
         var scrollDiv = jQuery(this);
-        jQuery(window).trigger( 'scroll', function () {
+        jQuery(window).on( 'scroll', function () {
             if ('0' === jQuery(window).scrollTop()) {
                 jQuery(scrollDiv).fadeOut('slow');
             } else {
