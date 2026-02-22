@@ -35,7 +35,7 @@
 			//check theme option for page header before page option
 			$final_page_header_option = ( 'on' === $global_disable_page_header_option ) ? $global_disable_page_header_option : $post_disable_page_header_choice;
 		?>
-		
+
 		<div class="<?php echo esc_attr( $final_container_class ); ?>">
 			<!-- Example row of columns -->
 			<div class="row">
@@ -78,7 +78,7 @@
 							<?php
 								get_template_part( 'templates/content_item', 'content-item' );
 							?>
-						
+
 						<?php endwhile; else: ?>
 							<?php /* kinda a 404 of sorts when not working */ ?>
 							<div class="page-header">
@@ -88,11 +88,13 @@
 						<?php endif; ?>
 
 						<?php
-						wp_bootstrap_posts_pagination( array(
-							'prev_text'          => __( 'Previous page', 'pegasus' ),
-							'next_text'          => __( 'Next page', 'pegasus' ),
-							'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus' ) . ' </span>'
-						) );
+						if ( function_exists( 'wp_bootstrap_posts_pagination' ) ) {
+							wp_bootstrap_posts_pagination( array(
+								'prev_text'          => __( 'Previous page', 'pegasus' ),
+								'next_text'          => __( 'Next page', 'pegasus' ),
+								'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus' ) . ' </span>'
+							) );
+						}
 						?>
 					</div><!--end inner content-->
 				</div>

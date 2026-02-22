@@ -66,12 +66,13 @@ get_header();
 					<?php endif; ?>
 
 					<?php
-
-					wp_bootstrap_posts_pagination( array(
-						'prev_text'          => __( 'Previous page', 'pegasus' ),
-						'next_text'          => __( 'Next page', 'pegasus' ),
-						'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus' ) . ' </span>'
-					) );
+						if ( function_exists( 'wp_bootstrap_posts_pagination' ) ) {
+							wp_bootstrap_posts_pagination( array(
+								'prev_text'          => __( 'Previous page', 'pegasus' ),
+								'next_text'          => __( 'Next page', 'pegasus' ),
+								'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'pegasus' ) . ' </span>'
+							) );
+						}
 					?>
 				</div><!--end inner content-->
 			</div>
