@@ -73,6 +73,14 @@
 				'lrg-header'     => __( 'Large Header - Full Width and Height', 'pegasus' ),
 			),
 		) );
+		$cmb_demo->add_field( array(
+			'name'       => __( 'Large Header Slider Shortcode', 'pegasus' ),
+			'desc'       => __( 'Only used when Additional Header is set to Large Header. Save once after selecting Large Header if this field is not visible immediately.', 'pegasus' ),
+			'id'         => $prefix . '_add_header_slider_shortcode',
+			'type'       => 'textarea_small',
+			'sanitization_cb' => 'pegasus_sanitize_large_header_slider_shortcode',
+			'show_on_cb' => 'pegasus_show_page_large_header_slider_shortcode_field',
+		) );
 
 		$cmb_demo->add_field( array(
 			'name'    => __( 'Overlay color', 'pegasus' ),
@@ -202,6 +210,41 @@
 			'type'    => 'rgba_colorpicker',
 			'default' => '#fff'
 		) );
+	}
+
+	if ( ! function_exists( 'pegasus_show_page_large_header_slider_shortcode_field' ) ) {
+		/**
+		 * Show page-level large header slider shortcode field only for large header.
+		 *
+		 * @return bool
+		 */
+		function pegasus_show_page_large_header_slider_shortcode_field() {
+			$post_id = 0;
+
+			if ( isset( $_GET['post'] ) ) {
+				$post_id = absint( $_GET['post'] );
+			} elseif ( isset( $_POST['post_ID'] ) ) {
+				$post_id = absint( $_POST['post_ID'] );
+			}
+
+			if ( ! $post_id ) {
+				return false;
+			}
+
+			return 'lrg-header' === get_post_meta( $post_id, 'pegasus_page_header_select', true );
+		}
+	}
+
+	if ( ! function_exists( 'pegasus_sanitize_large_header_slider_shortcode' ) ) {
+		/**
+		 * Allow safe HTML inside slider shortcode content (e.g. <img> tags).
+		 *
+		 * @param string $value Raw field value.
+		 * @return string
+		 */
+		function pegasus_sanitize_large_header_slider_shortcode( $value ) {
+			return wp_kses_post( $value );
+		}
 	}
 
 

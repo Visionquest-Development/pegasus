@@ -17,10 +17,13 @@
 	$post_the_header_content = get_post_meta( get_the_ID(), 'pegasus_page_header_wysiwyg', true );
 
 	$the_header_content = ! empty ( $post_the_header_content ) ? $post_the_header_content : $global_the_header_content;
-	
+	$post_large_header_slider_shortcode = trim( (string) get_post_meta( get_the_ID(), 'pegasus_add_header_slider_shortcode', true ) );
+	$post_large_header_slider_shortcode = html_entity_decode( $post_large_header_slider_shortcode, ENT_QUOTES, get_bloginfo( 'charset' ) );
+	$has_large_header_slider_shortcode = ! empty( $post_large_header_slider_shortcode );
+
 	$global_additional_header_overlay_disable = ( "on" === pegasus_get_option( 'global_add_header_disable_overlay_chk' ) ) ? true : false;
 	$post_additional_header_overlay_disable = ( "on" === get_post_meta( get_the_ID(), 'pegasus_add_header_disable_overlay_chk', true ) ) ? true : false;
-	
+
 	$additional_header_overlay_disable = 'overlay';
 	if ( true === $post_additional_header_overlay_disable ) {
 		$additional_header_overlay_disable = '';
@@ -28,7 +31,7 @@
 	if ( true === $global_additional_header_overlay_disable ) {
 		$additional_header_overlay_disable = '';
 	}
-	
+
 	switch ( $additional_header_choice ) {
 		case "no-header":
 			break;
@@ -57,9 +60,18 @@
 			/*==================================
 			============ LARGE HEADER ==========
 			===================================*/
+			$has_large_header_slider_shortcode = $has_large_header_slider_shortcode ? 'large-header-has-slider' : '';
 			?>
-			<section id="large-header" class="large-header parallax-image" >
-				<canvas id="demo-canvas"></canvas>
+
+			<section
+			    id="large-header"
+			    class="large-header parallax-image <?php echo $has_large_header_slider_shortcode; ?> "
+			>
+				<?php if ( ! $has_large_header_slider_shortcode ) : ?>
+					<canvas id="demo-canvas"></canvas>
+				<?php else : ?>
+					<?php echo do_shortcode( $post_large_header_slider_shortcode ); ?>
+				<?php endif; ?>
 				<div class="pegasus-header-content container">
 					<?php echo $the_header_content; ?>
 				</div>

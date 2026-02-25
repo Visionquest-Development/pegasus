@@ -1242,5 +1242,6 @@ function pegasus_get_option( $key = '', $default = false ) {
 	}
 	return $val;
 }
+
 // Get it started
 pegasus_admin();
