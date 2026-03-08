@@ -242,19 +242,9 @@
 
 				$testimonial_metabox->add_group_field(
 					$testimonial_group_fields, array(
-						'name'             => 'Title',
-						'id'               => $prefix . 'title',
+						'name'             => 'Author',
+						'id'               => $prefix . 'author',
 						'type'             => 'text',
-						'allow_custom_url' => true,
-					)
-				);
-
-				$testimonial_metabox->add_group_field(
-					$testimonial_group_fields, array(
-						'name'             => 'Link',
-						'id'               => $prefix . 'link',
-						'type'             => 'text',
-						'allow_custom_url' => true,
 					)
 				);
 
@@ -276,9 +266,34 @@
 
 				$testimonial_metabox->add_group_field(
 					$testimonial_group_fields, array(
-						'name'              => 'Caption',
-						'id'                => $prefix . 'caption',
+						'name'              => 'Testimonial Text',
+						'id'                => $prefix . 'testimonial_text',
+						'type'              => 'wysiwyg',
+					)
+				);
+
+				$testimonial_metabox->add_group_field(
+					$testimonial_group_fields, array(
+						'name'              => 'Testimonial Author Position',
+						'id'                => $prefix . 'author_position',
 						'type'              => 'text',
+					)
+				);
+
+				$testimonial_metabox->add_group_field(
+					$testimonial_group_fields, array(
+						'name'              => 'Testimonial Author Business',
+						'id'                => $prefix . 'author_business',
+						'type'              => 'text',
+					)
+				);
+
+				$testimonial_metabox->add_group_field(
+					$testimonial_group_fields, array(
+						'name'              => 'Testimonial Author Business Website',
+						'id'                => $prefix . 'author_business_website',
+						'type'              => 'url',
+						'allow_custom_url' => true,
 					)
 				);
 
@@ -847,18 +862,17 @@
 				// the loop
 				//if (have_posts()) : while (have_posts()) : the_post();
 
-				$temp_title = get_the_title($post->ID);
-				$temp_link = get_permalink($post->ID);
-				$temp_date = get_the_date('', $post->ID);
-				$temp_pic = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
-				$temp_excerpt = wp_trim_words( get_the_excerpt(), 150 );
-				$temp_content = wp_trim_words( get_the_content(), 300 );
+				//$temp_title = get_the_title($post->ID);
+				//$temp_link = get_permalink($post->ID);
+				//$temp_date = get_the_date('', $post->ID);
+				//$temp_pic = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
+				//$temp_excerpt = wp_trim_words( get_the_excerpt(), 150 );
+				//$temp_content = wp_trim_words( get_the_content(), 300 );
 				$the_id = get_the_ID();
 
-				$position = get_post_meta($post->ID, '_position', TRUE);
-				$company_name = get_post_meta($post->ID, '_company_name', TRUE);
-				$company_url = get_post_meta($post->ID, '_company_url', TRUE);
-
+				// $position = get_post_meta($post->ID, '_position', TRUE);
+				// $company_name = get_post_meta($post->ID, '_company_name', TRUE);
+				// $company_url = get_post_meta($post->ID, '_company_url', TRUE);
 
 				// $the_id    = get_the_ID();
 				// $temp_title = get_the_title();
@@ -876,12 +890,14 @@
 					foreach ( (array) $slides as $key => $slide ) {
 						$prefix = 'pegasus_testimonial_';
 
-						$slide_title = isset( $slide[$prefix . 'title'] ) ? sanitize_text_field( $slide[$prefix . 'title'] ) : '';
-						$slide_link = isset( $slide[$prefix . 'link'] ) ? esc_url( $slide[$prefix . 'link'] ) : '';
+						$slide_author = isset( $slide[$prefix . 'author'] ) ? sanitize_text_field( $slide[$prefix . 'author'] ) : '';
 						$slide_img_id = isset( $slide[$prefix . 'slide_image_id'] ) ? absint ( $slide[$prefix . 'slide_image_id'] ) : 0;
 						$slide_slide_img = isset( $slide[$prefix . 'slide_image'] ) ? esc_url( $slide[$prefix . 'slide_image'] ) : '';
 						$slide_alt_text = isset( $slide[$prefix . 'alt_text'] ) ? $slide[$prefix . 'alt_text'] : '';
-						$slide_caption = isset( $slide[$prefix . 'caption'] ) ? $slide[$prefix . 'caption'] : '';
+						$slide_testimonial_text = isset( $slide[$prefix . 'testimonial_text'] ) ? $slide[$prefix . 'testimonial_text'] : '';
+						$slide_author_position = isset( $slide[$prefix . 'author_position'] ) ? $slide[$prefix . 'author_position'] : '';
+						$slide_author_business = isset( $slide[$prefix . 'author_business'] ) ? $slide[$prefix . 'author_business'] : '';
+						$slide_author_business_website = isset( $slide[$prefix . 'author_business_website'] ) ? $slide[$prefix . 'author_business_website'] : '';
 
 						// Resolve image URL from either URL or attachment ID
 						$image_url = $slide_slide_img;
@@ -913,43 +929,53 @@
 								$img_html = "<img class='" . esc_attr( $img_class_list ) . "' src='" . esc_url( $image_url ) . "' alt='" . esc_attr( $slide_alt_text ) . "'>";
 							}
 
-						$output .= "<div class='testimonial-image'>";
-							if ( $image_mode === 'bg' ) {
-								// Background mode container; cover and center via CSS. Do not use ratio classes here.
-								$bg_class_list = 'post-img-feat-bg ' . $ratio_class;
-								if ( false !== strpos( strtolower( $class ), 'circle' ) ) {
-									$bg_class_list .= ' circle';
-								}
-								$bg_div = "<div class='" . esc_attr( $bg_class_list ) . "' style='background-image:url(" . esc_url( $image_url ) . ");'></div>";
-								if ( ! empty( $slide_link ) ) {
-									$output .= '<a href="' . $slide_link . '">' . $bg_div . '</a>';
+							$output .= "<div class='testimonial-image'>";
+								if ( $image_mode === 'bg' ) {
+									// Background mode container; cover and center via CSS. Do not use ratio classes here.
+									$bg_class_list = 'post-img-feat-bg ' . $ratio_class;
+									if ( false !== strpos( strtolower( $class ), 'circle' ) ) {
+										$bg_class_list .= ' circle';
+									}
+									$bg_div = "<div class='" . esc_attr( $bg_class_list ) . "' style='background-image:url(" . esc_url( $image_url ) . ");'></div>";
+									if ( ! empty( $slide_link ) ) {
+										$output .= '<a href="' . $slide_link . '">' . $bg_div . '</a>';
+									} else {
+										$output .= $bg_div;
+									}
 								} else {
-									$output .= $bg_div;
+									if ( ! empty( $slide_link ) ) {
+										$output .= '<a href="' . $slide_link . '">' . $img_html . '</a>';
+									} else {
+										$output .= $img_html;
+									}
 								}
-							} else {
-								if ( ! empty( $slide_link ) ) {
-									$output .= '<a href="' . $slide_link . '">' . $img_html . '</a>';
-								} else {
-									$output .= $img_html;
-								}
-							}
-						$output .= "</div>";
+							$output .= "</div>";
 
 							$output .= "<div class='{$type} {$class}'><blockquote>";
 							$output .= "<p class='post-content'>";
-							if ( ! empty( $slide_caption ) ) {
-								$output .= esc_html( $slide_caption );
+							if ( ! empty( $slide_testimonial_text ) ) {
+								$output .= esc_html( $slide_testimonial_text );
+							} else {
+								$output .= esc_html( $slide_author );
 							}
 							$output .= "</p>";
 
-							$cite_text = ! empty( $slide_title ) ? esc_html( $slide_title ) : '';
+							$cite_text = ! empty( $slide_author ) ? esc_html( $slide_author ) : '';
 							if ( ! empty( $cite_text ) ) {
-								if ( ! empty( $slide_link ) ) {
-									$output .= '<cite><a href="' . $slide_link . '">' . $cite_text . '</a></cite>';
-								} else {
-									$output .= '<cite>' . $cite_text . '</cite>';
+								$output .= '<cite>';
+								$output .= '<div class="cite-text">' . $cite_text . '</div>';
+								if ( ! empty($slide_author_position) ) {
+									$output .= '<div class="cite-position">' . $slide_author_position . '</div>';
 								}
+								if ( ! empty($slide_author_business_website) ) {
+									$output .= '<div class="cite-business">' . $slide_author_business . '</div>';
+								} else {
+									$output .= '<div class="cite-business-website"><a href="' . $slide_author_business_website . '">' . $slide_author_business . '</a></div>';
+								}
+								$output .= '</cite>';
 							}
+
+
 							$output .= '</blockquote></div>';
 
 						$output .= '</div>';
