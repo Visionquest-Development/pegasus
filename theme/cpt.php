@@ -888,10 +888,6 @@
 						if ( empty( $image_url ) && $slide_img_id ) {
 							$image_url = wp_get_attachment_url( $slide_img_id, 'medium' );
 						}
-						// Prioritize image: skip slide if no image
-						if ( empty( $image_url ) ) {
-							continue;
-						}
 
 						$output .= "<article class='post-$the_id' >";
 						$output .= '<div class="slick-slider-item">';
