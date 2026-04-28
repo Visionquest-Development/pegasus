@@ -644,6 +644,24 @@ class Pegasus_Admin {
 			'id'   => 'nav_inner_container_checkbox',
 			'type' => 'checkbox',
 		) );
+		$cmb->add_field( array(
+			'name' => 'Nav CTA Button Text',
+			'desc' => 'Text for the CTA button in the navigation. Leave blank to hide the button.',
+			'id'   => 'nav_cta_text',
+			'type' => 'text',
+		) );
+		$cmb->add_field( array(
+			'name' => 'Nav CTA Button Link',
+			'desc' => 'URL the CTA button links to.',
+			'id'   => 'nav_cta_link',
+			'type' => 'text_url',
+		) );
+		$cmb->add_field( array(
+			'name' => 'Nav CTA Button Classes',
+			'desc' => 'Additional CSS classes to add to the CTA button (space-separated). Added alongside the default btn and vqdev-contact-button classes.',
+			'id'   => 'nav_cta_classes',
+			'type' => 'text',
+		) );
 
 
 		/*============================
