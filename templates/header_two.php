@@ -29,6 +29,9 @@
 	$logo = pegasus_get_option( 'logo' );
 	$centerLogo = ( 'on' === pegasus_get_option( 'logo_centered' ) ) ? 'center' : '';
 	$nav_menu_justify_check = ( 'on' === pegasus_get_option( 'nav_justify' ) ) ? 'mx-auto' : '';
+	if ( 'mx-auto' === $nav_menu_justify_check ) {
+		$right_align_nav_items = 'mx-auto';
+	}
 	$moremenuchk = pegasus_get_option( 'header_more_chk' );
 	$woo_check =  pegasus_get_option( 'woo_chk' );
 	$nav_social_check =  pegasus_get_option( 'nav_social_chk' );
