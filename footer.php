@@ -112,6 +112,13 @@
 			</div><!--mainbar end-->
 
 		</div><!--end-page-wrapper-->
+		<?php
+			// Pegasus Botify chatbot — injected site-wide when enabled in Pegasus Options.
+			// shortcode_exists() guards against the plugin being inactive so nothing breaks.
+			if ( 'on' === pegasus_get_option( 'pegasus_botify_enable' ) && shortcode_exists( 'pegasus_botify' ) ) {
+				echo do_shortcode( '[pegasus_botify]' );
+			}
+		?>
 		<?php wp_footer(); ?>
 
 	</body>

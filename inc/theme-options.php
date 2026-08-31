@@ -1176,6 +1176,32 @@ class Pegasus_Admin {
 			'type' => 'checkbox',
 		) );
 
+		/*============================
+			PEGASUS BOTIFY (CHATBOT)
+			Only shown when the pegasus-botify plugin is active — no dead toggle
+			on sites without the add-on.
+		=============================*/
+		if ( ! function_exists( 'is_plugin_active' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		$pegasus_botify_active = ( function_exists( 'is_plugin_active' ) && is_plugin_active( 'pegasus-botify/pegasus-botify.php' ) )
+			|| defined( 'PEGASUS_BOTIFY_VERSION' );
+
+		if ( $pegasus_botify_active ) {
+			$cmb->add_field( array(
+				'name' => 'Pegasus Botify (Chatbot)',
+				'desc' => 'When enabled, the chat widget is added to the footer of every front-end page.',
+				'type' => 'title',
+				'id'   => 'pegasus_botify_title',
+			) );
+			$cmb->add_field( array(
+				'name' => 'Enable Pegasus Botify Chatbot Site-wide',
+				'desc' => 'Outputs the [pegasus_botify] shortcode in the footer on all pages. To place the chatbot on a single page instead, leave this off and add the [pegasus_botify] shortcode to that page.',
+				'id'   => 'pegasus_botify_enable',
+				'type' => 'checkbox',
+			) );
+		}
+
 	}
 
 
