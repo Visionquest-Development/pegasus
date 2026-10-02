@@ -69,6 +69,15 @@
 	}
 
 	/**
+	 * Theme options Import / Export (JSON) — adds a submenu under Pegasus Options.
+	 */
+	$pegasus_io_file = get_template_directory() . '/inc/class-pegasus-io.php';
+	if ( file_exists( $pegasus_io_file ) ) {
+		require_once $pegasus_io_file;
+		Pegasus_IO::init();
+	}
+
+	/**
 	 * Load WP_BOOTSTRAP_HOOKS
 	 * https://github.com/benignware/wp-bootstrap-hooks
 	 */
