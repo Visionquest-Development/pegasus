@@ -711,16 +711,16 @@
 							//$output .= '<a href="' . $slide_link  . '" >';
 						}
 							if( $slide_slide_img ) {
-								$output .= '<img class="post-img-feat" src="' . $slide_slide_img . '" alt="' . $slide_alt_text . '">';
+								$output .= '<img class="post-img-feat" src="' . esc_url( $slide_slide_img ) . '" alt="' . esc_attr( $slide_alt_text ) . '">';
 							}
 						if( true === $slide_link ) {
 							$output .= '</a>';
 						}
 							if( $slide_title && $display_caption ) {
-								$output .= '<p class="slick-p">' . $slide_title . '</p>';
+								$output .= '<p class="slick-p">' . esc_html( $slide_title ) . '</p>';
 							}
 							if( $slide_caption && $display_caption ) {
-								$output .= '<p class="slick-p">' . $slide_caption . '</p>';
+								$output .= '<p class="slick-p">' . esc_html( $slide_caption ) . '</p>';
 							}
 
 						$output .= '</div>';
@@ -951,7 +951,7 @@
 								}
 							$output .= "</div>";
 
-							$output .= "<div class='{$type} {$class}'><blockquote>";
+							$output .= "<div class='" . esc_attr( $type ) . ' ' . esc_attr( $class ) . "'><blockquote>";
 							$output .= "<p class='post-content'>";
 							if ( ! empty( $slide_testimonial_text ) ) {
 								$output .= esc_html( $slide_testimonial_text );
@@ -964,13 +964,13 @@
 							if ( ! empty( $cite_text ) ) {
 								$output .= '<cite>';
 								$output .= '<div class="cite-text">' . $cite_text . '</div>';
-								if ( ! empty($slide_author_position) ) {
-									$output .= '<div class="cite-position">' . $slide_author_position . '</div>';
+								if ( ! empty( $slide_author_position ) ) {
+									$output .= '<div class="cite-position">' . esc_html( $slide_author_position ) . '</div>';
 								}
-								if ( ! empty($slide_author_business_website) ) {
-									$output .= '<div class="cite-business">' . $slide_author_business . '</div>';
-								} else {
-									$output .= '<div class="cite-business-website"><a href="' . $slide_author_business_website . '">' . $slide_author_business . '</a></div>';
+								if ( ! empty( $slide_author_business_website ) ) {
+									$output .= '<div class="cite-business-website"><a href="' . esc_url( $slide_author_business_website ) . '">' . esc_html( $slide_author_business ) . '</a></div>';
+								} elseif ( ! empty( $slide_author_business ) ) {
+									$output .= '<div class="cite-business">' . esc_html( $slide_author_business ) . '</div>';
 								}
 								$output .= '</cite>';
 							}
