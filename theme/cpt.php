@@ -150,7 +150,9 @@
 			// Register Custom Taxonomy - Categories
 			register_taxonomy('department',array('staff'), array(
 				'hierarchical' => true, // define whether to use a system like tags or categories
-				'labels' => $cats_labels,
+				// $cats_labels is only defined when the Portfolio CPT block runs; fall back so the
+				// Staff department taxonomy doesn't throw an "undefined variable" warning when Portfolio is off.
+				'labels' => ( isset( $cats_labels ) ? $cats_labels : array() ),
 				'show_ui' => true,
 				'show_admin_column'     => true,
 				'query_var' => true,
