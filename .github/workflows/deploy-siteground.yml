@@ -119,6 +119,7 @@ jobs:
           script_stop: false
           script: |
             # Runs on the SiteGround server. All inputs arrive as env vars (validated in the plan job); nothing is templated in.
+            # SKIP (exit 0) only for: not installed, no .git, detached HEAD, a different branch checked out. Any git error -> FAIL (exit 1).
             BASE="${DEPLOY_WP_CONTENT}/${DEPLOY_KIND}s"
             DIR=""
             for f in $DEPLOY_FOLDERS; do
@@ -126,10 +127,16 @@ jobs:
             done
             if [ -z "$DIR" ]; then echo "SKIP: $DEPLOY_REPO is not installed under $BASE"; exit 0; fi
             cd "$DIR" || { echo "FAIL: cannot cd to $DIR"; exit 1; }
-            if [ ! -d .git ]; then echo "SKIP: $DIR is not a git checkout (clone it first, see DEPLOY-SITEGROUND.md)"; exit 0; fi
-            CUR="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
-            if [ "$CUR" != "$DEPLOY_BRANCH" ]; then echo "SKIP: $DIR is on '$CUR', expected '$DEPLOY_BRANCH'"; exit 0; fi
-            if [ -n "$(git status --porcelain --untracked-files=no 2>/dev/null)" ]; then echo "FAIL: $DIR has local modifications on the server"; git status --short; exit 1; fi
+            if [ ! -e .git ]; then echo "SKIP: $DIR is not a git checkout (clone it first, see DEPLOY-SITEGROUND.md)"; exit 0; fi
+            ERR="$(mktemp)" || { echo "FAIL: mktemp failed"; exit 1; }
+            CUR="$(git rev-parse --abbrev-ref HEAD 2>"$ERR")"; RC=$?
+            if [ $RC -ne 0 ] || [ -z "$CUR" ]; then echo "FAIL: git rev-parse failed in $DIR (exit $RC):"; cat "$ERR"; rm -f "$ERR"; exit 1; fi
+            if [ "$CUR" = "HEAD" ]; then echo "SKIP: $DIR is in detached HEAD state, expected branch '$DEPLOY_BRANCH'"; rm -f "$ERR"; exit 0; fi
+            if [ "$CUR" != "$DEPLOY_BRANCH" ]; then echo "SKIP: $DIR is on '$CUR', expected '$DEPLOY_BRANCH'"; rm -f "$ERR"; exit 0; fi
+            ST="$(git status --porcelain --untracked-files=no 2>"$ERR")"; RC=$?
+            if [ $RC -ne 0 ]; then echo "FAIL: git status failed in $DIR (exit $RC):"; cat "$ERR"; rm -f "$ERR"; exit 1; fi
+            rm -f "$ERR"
+            if [ -n "$ST" ]; then echo "FAIL: $DIR has local modifications on the server"; echo "$ST"; exit 1; fi
             git fetch --prune origin || { echo "FAIL: git fetch failed in $DIR"; exit 1; }
             git pull --ff-only origin "$DEPLOY_BRANCH" || { echo "FAIL: git pull --ff-only failed in $DIR"; exit 1; }
             echo "DEPLOYED $DEPLOY_SITE: $(git log -1 --format='%h %s')"
