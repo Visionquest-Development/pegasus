@@ -1,0 +1,98 @@
+# Auto-deploy to SiteGround (shared by pegasus, pegasus-child and every pegasus-* plugin repo).
+# Source of truth: vagrant-local/sync/sites.json -> build-deploy-registry.py -> pegasus-child@master:deploy/sites.json
+# Docs: vagrant-local/DEPLOY-SITEGROUND.md
+name: Deploy to SiteGround
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      only_site:
+        description: "Optional: deploy only this registry key (e.g. mabellas)"
+        required: false
+        default: ""
+
+concurrency:
+  group: siteground-${{ github.repository }}-${{ github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  REGISTRY_URL: https://raw.githubusercontent.com/Visionquest-Development/pegasus-child/master/deploy/sites.json
+
+jobs:
+  plan:
+    name: Plan deploy targets
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      count: ${{ steps.plan.outputs.count }}
+    steps:
+      - name: Build site matrix from registry
+        id: plan
+        env:
+          HAS_KEY: ${{ secrets.SITEGROUND_SSH_KEY != '' }}
+          REPO: ${{ github.event.repository.name }}
+          REF: ${{ github.ref_name }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          ONLY_SITE: ${{ github.event.inputs.only_site }}
+        run: |
+          set -euo pipefail
+          none() { echo "::notice title=SiteGround deploy skipped::$1"; echo 'matrix={"include":[]}' >> "$GITHUB_OUTPUT"; echo "count=0" >> "$GITHUB_OUTPUT"; echo "Skipped: $1" >> "$GITHUB_STEP_SUMMARY"; exit 0; }
+          [ "$HAS_KEY" = "true" ] || none "secret SITEGROUND_SSH_KEY is not set for this repo/org."
+          curl -fsSL "$REGISTRY_URL" -o sites.json || none "could not download registry $REGISTRY_URL"
+          if [ "$REPO" = "pegasus-child" ]; then
+            FILTER='select(.value.child_branch == $ref)'
+          else
+            [ "$REF" = "$DEFAULT_BRANCH" ] || none "push to $REF (not $DEFAULT_BRANCH); only the default branch deploys."
+            # Sites whose plugin list includes this repo, or whose plugin list is unknown (null): the remote step skips if not installed.
+            FILTER='select(($repo == "pegasus") or (.value.plugins == null) or ((.value.plugins // []) | index($repo)))'
+          fi
+          jq -c --arg repo "$REPO" --arg ref "$REF" --arg only "$ONLY_SITE" '
+            .components[$repo] as $c
+            | [ .sites | to_entries[] | '"$FILTER"'
+                | select($only == "" or .key == $only)
+                | {key: .key, domain: .value.domain, environment: (.value.environment // "live"), enabled: .value.enabled,
+                   host: .value.ssh_host, user: .value.ssh_user, port: (.value.ssh_port // 18765),
+                   wp_content: .value.wp_content, kind: ($c.type // "plugin"),
+                   folders: (($c.folders // [$repo]) | join(" ")),
+                   branch: (if $repo == "pegasus-child" then $ref else ($c.branch // "master") end)} ]
+            | {include: .}' sites.json > matrix.json
+          jq -r '.include[] | select(.enabled != true) | "::notice title=Skipped \(.key)::no SSH host/user/path in registry"' matrix.json
+          jq -c '{include: [.include[] | select(.enabled == true)]}' matrix.json > m.json
+          n=$(jq '.include | length' m.json)
+          [ "$n" -gt 0 ] || none "no registry sites map to $REPO@$REF."
+          echo "matrix=$(cat m.json)" >> "$GITHUB_OUTPUT"; echo "count=$n" >> "$GITHUB_OUTPUT"
+          { echo "### Deploy plan for $REPO@$REF"; jq -r '.include[] | "- \(.key) (\(.environment)) -> \(.host):\(.wp_content)"' m.json; } >> "$GITHUB_STEP_SUMMARY"
+
+  deploy:
+    name: ${{ matrix.key }} (${{ matrix.environment }})
+    needs: plan
+    if: needs.plan.outputs.count != '0'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - name: git pull --ff-only on server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ matrix.host }}
+          username: ${{ matrix.user }}
+          key: ${{ secrets.SITEGROUND_SSH_KEY }}
+          passphrase: ${{ secrets.SITEGROUND_SSH_PASSPHRASE }}
+          port: ${{ secrets.SITEGROUND_SSH_PORT || matrix.port }}
+          script_stop: true
+          script: |
+            set -u
+            BASE="${{ matrix.wp_content }}/${{ matrix.kind }}s"
+            DIR=""
+            for f in ${{ matrix.folders }}; do [ -d "$BASE/$f" ] && DIR="$BASE/$f" && break; done
+            if [ -z "$DIR" ]; then echo "SKIP: ${{ github.event.repository.name }} not installed under $BASE"; exit 0; fi
+            cd "$DIR"
+            if [ ! -d .git ]; then echo "SKIP: $DIR is not a git checkout (clone it first, see DEPLOY-SITEGROUND.md)"; exit 0; fi
+            CUR=$(git rev-parse --abbrev-ref HEAD)
+            if [ "$CUR" != "${{ matrix.branch }}" ]; then echo "SKIP: $DIR is on '$CUR', expected '${{ matrix.branch }}'"; exit 0; fi
+            if [ -n "$(git status --porcelain --untracked-files=no)" ]; then echo "FAIL: $DIR has local modifications on the server"; git status --short; exit 1; fi
+            git fetch --prune origin
+            git pull --ff-only origin "${{ matrix.branch }}"
+            echo "DEPLOYED ${{ matrix.key }}: $(git log -1 --format='%h %s')"
