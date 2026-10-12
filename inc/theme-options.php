@@ -662,6 +662,12 @@ class Pegasus_Admin {
 			'id'   => 'nav_cta_classes',
 			'type' => 'text',
 		) );
+		$cmb->add_field( array(
+			'name' => 'Nav CTA Button is External Link',
+			'desc' => 'Check if this link points to an external site. Opens in a new tab and appends a Font Awesome external-link icon.',
+			'id'   => 'nav_cta_external',
+			'type' => 'checkbox',
+		) );
 
 
 		/*============================

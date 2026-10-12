@@ -110,12 +110,13 @@
 							if( 'on' === $nav_social_check ){
 								get_template_part( 'templates/social_icons', 'header' );
 							}
-							$nav_cta_text    = pegasus_get_option( 'nav_cta_text' );
-							$nav_cta_link    = pegasus_get_option( 'nav_cta_link' );
-							$nav_cta_classes = trim( (string) pegasus_get_option( 'nav_cta_classes' ) );
+							$nav_cta_text     = pegasus_get_option( 'nav_cta_text' );
+							$nav_cta_link     = pegasus_get_option( 'nav_cta_link' );
+							$nav_cta_classes  = trim( (string) pegasus_get_option( 'nav_cta_classes' ) );
+							$nav_cta_external = ( 'on' === pegasus_get_option( 'nav_cta_external' ) );
 							if ( $nav_cta_text && $nav_cta_link ) : ?>
 							<div class="contact-button-container">
-								<a href="<?php echo esc_url( $nav_cta_link ); ?>" class=" <?php echo $nav_cta_classes ? ' ' . esc_attr( $nav_cta_classes ) : ''; ?>" data-wow-delay="0.3s"><?php echo esc_html( $nav_cta_text ); ?></a>
+								<a href="<?php echo esc_url( $nav_cta_link ); ?>" class=" <?php echo $nav_cta_classes ? ' ' . esc_attr( $nav_cta_classes ) : ''; ?>"<?php echo $nav_cta_external ? ' target="_blank" rel="noopener noreferrer"' : ''; ?> data-wow-delay="0.3s"><?php echo esc_html( $nav_cta_text ); ?><?php if ( $nav_cta_external ) : ?> <i class="fa fa-external-link" aria-hidden="true"></i><?php endif; ?></a>
 							</div>
 							<?php endif; ?>
 						</div>
