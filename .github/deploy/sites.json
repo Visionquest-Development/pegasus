@@ -17,7 +17,8 @@
       "folders": [
         "pegasus-child"
       ],
-      "branch": "per-site"
+      "branch": "per-site",
+      "default_branch": "master"
     },
     "pegasus-accordion": {
       "type": "plugin",
