@@ -681,7 +681,7 @@
       "ssh_host": "gvam1254.siteground.biz",
       "ssh_user": "u2742-urgzibllpjue",
       "ssh_port": 18765,
-      "wp_content": "/home/u2742-urgzibllpjue/www/renecatherinedesign.com/public_html/wp-content",
+      "wp_content": "/home/u2742-urgzibllpjue/www/renecatherinedesigns.com/public_html/wp-content",
       "child_branch": "renecdesign_theme",
       "plugins": [
         "pegasus-carousel",

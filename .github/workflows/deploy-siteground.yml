@@ -74,7 +74,7 @@ jobs:
               and (.kind == "theme" or .kind == "plugin")
               and (.environment == "live" or .environment == "staging")
               and ((.folders | split(" ")) | all(test("^[A-Za-z0-9._-]+$")));
-            {include: [.[] | select(.enabled == true) | select(ok) | . + {gh_env: (if .environment == "staging" then "staging" else "production" end)}]}' all.json > m.json
+            {include: [.[] | select(.enabled == true) | select(ok)]}' all.json > m.json
           jq -r '.[] | select(.enabled != true) | "::notice title=Skipped \(.key)::no SSH host/user/path in registry"' all.json
           jq -r --slurpfile m m.json '.[] | select(.enabled == true) | .key as $k | select(([$m[0].include[].key] | index($k)) == null) | "::warning title=Invalid registry entry \(.key)::dropped: a field failed validation"' all.json
           n=$(jq '.include | length' m.json)
@@ -87,7 +87,6 @@ jobs:
     needs: plan
     if: needs.plan.outputs.count != '0'
     runs-on: ubuntu-latest
-    environment: ${{ matrix.gh_env }}
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
@@ -98,7 +97,7 @@ jobs:
           HAS_KEY: ${{ secrets.SITEGROUND_SSH_KEY != '' }}
         run: |
           if [ "$HAS_KEY" = "true" ]; then echo "ok=true" >> "$GITHUB_OUTPUT"
-          else echo "::notice title=SiteGround deploy skipped::SITEGROUND_SSH_KEY is not available to this repo/environment"; echo "ok=false" >> "$GITHUB_OUTPUT"; fi
+          else echo "::notice title=SiteGround deploy skipped::SITEGROUND_SSH_KEY is not available to this repo (org secret not shared with it?)"; echo "ok=false" >> "$GITHUB_OUTPUT"; fi
       - name: git pull --ff-only on server
         if: steps.secrets.outputs.ok == 'true'
         uses: appleboy/ssh-action@029f5b4aeeeb58fdfe1410a5d17f967dacf36262 # v1.0.3
