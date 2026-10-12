@@ -110,14 +110,13 @@ jobs:
           DEPLOY_BRANCH: ${{ matrix.branch }}
           DEPLOY_REPO: ${{ github.event.repository.name }}
           # theme/plugin repos may switch a clean server copy from master to main after a default-branch rename
-          DEPLOY_ALLOW_RENAME: ${{ github.event.repository.name == 'pegasus-child' && 'no' || 'yes' }}
         with:
           host: ${{ matrix.host }}
           username: ${{ matrix.user }}
           key: ${{ secrets.SITEGROUND_SSH_KEY }}
           passphrase: ${{ secrets.SITEGROUND_SSH_PASSPHRASE }}
           port: ${{ secrets.SITEGROUND_SSH_PORT || matrix.port }}
-          envs: DEPLOY_SITE,DEPLOY_WP_CONTENT,DEPLOY_KIND,DEPLOY_FOLDERS,DEPLOY_BRANCH,DEPLOY_REPO,DEPLOY_ALLOW_RENAME
+          envs: DEPLOY_SITE,DEPLOY_WP_CONTENT,DEPLOY_KIND,DEPLOY_FOLDERS,DEPLOY_BRANCH,DEPLOY_REPO
           # script_stop stays off: it rewrites the script line by line, which breaks if/for blocks. Errors are handled explicitly.
           script_stop: false
           script: |
@@ -140,20 +139,12 @@ jobs:
             if [ $RC -ne 0 ]; then echo "FAIL: git status failed in $DIR (exit $RC):"; cat "$ERR"; rm -f "$ERR"; exit 1; fi
             rm -f "$ERR"
             if [ "$CUR" != "$DEPLOY_BRANCH" ]; then
-              # master<->main rename (theme/plugin repos only): switch ONLY if the copy is clean, the new default exists on origin
-              # and the old branch is gone from origin (i.e. GitHub renamed it). Anything else is a SKIP so nothing is lost.
-              case "$CUR:$DEPLOY_BRANCH" in master:main|main:master) RENAME=yes ;; *) RENAME=no ;; esac
-              if [ "${DEPLOY_ALLOW_RENAME:-no}" != "yes" ] || [ "$RENAME" != "yes" ]; then echo "SKIP: $DIR is on '$CUR', expected '$DEPLOY_BRANCH'"; exit 0; fi
-              if [ -n "$ST" ]; then echo "SKIP: $DIR is on '$CUR' (default is now '$DEPLOY_BRANCH') but has local modifications - run sync/migrate-default-branch-to-main.sh after cleaning up"; exit 0; fi
-              git fetch --prune origin || { echo "FAIL: git fetch failed in $DIR"; exit 1; }
-              if ! git show-ref --verify --quiet "refs/remotes/origin/$DEPLOY_BRANCH"; then echo "FAIL: origin/$DEPLOY_BRANCH not found in $DIR after fetch"; exit 1; fi
-              if git show-ref --verify --quiet "refs/remotes/origin/$CUR"; then echo "SKIP: $DIR is on '$CUR' and origin still has '$CUR' as well as '$DEPLOY_BRANCH' - not switching automatically; run sync/migrate-default-branch-to-main.sh"; exit 0; fi
-              if ! git merge-base --is-ancestor HEAD "origin/$DEPLOY_BRANCH"; then echo "SKIP: $DIR '$CUR' has commits not in origin/$DEPLOY_BRANCH - not switching automatically"; exit 0; fi
-              git checkout -q -B "$DEPLOY_BRANCH" "origin/$DEPLOY_BRANCH" || { echo "FAIL: could not switch $DIR to $DEPLOY_BRANCH"; exit 1; }
-              git branch -q -u "origin/$DEPLOY_BRANCH" || { echo "FAIL: could not set upstream in $DIR"; exit 1; }
-              git remote set-head origin -a >/dev/null 2>&1 || true
-              git branch -q -D "$CUR" >/dev/null 2>&1 || true
-              echo "SWITCHED $DIR from '$CUR' to '$DEPLOY_BRANCH' (origin default renamed)"
+              # Never switch branches on the server automatically (no checkout -B / branch -D here).
+              case "$CUR:$DEPLOY_BRANCH" in
+                master:main|main:master) echo "SKIP: $DIR server on $CUR, default is $DEPLOY_BRANCH: run sync/migrate-default-branch-to-main.sh --servers or switch manually" ;;
+                *) echo "SKIP: $DIR is on '$CUR', expected '$DEPLOY_BRANCH'" ;;
+              esac
+              exit 0
             fi
             if [ -n "$ST" ]; then echo "FAIL: $DIR has local modifications on the server"; echo "$ST"; exit 1; fi
             git fetch --prune origin || { echo "FAIL: git fetch failed in $DIR"; exit 1; }
