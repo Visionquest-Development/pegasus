@@ -18,7 +18,9 @@
 
 	$the_header_content = ! empty ( $post_the_header_content ) ? $post_the_header_content : $global_the_header_content;
 	$post_large_header_slider_shortcode = trim( (string) get_post_meta( get_the_ID(), 'pegasus_add_header_slider_shortcode', true ) );
+	// Re-kses after decode so stored HTML entities cannot bypass save-time sanitization.
 	$post_large_header_slider_shortcode = html_entity_decode( $post_large_header_slider_shortcode, ENT_QUOTES, get_bloginfo( 'charset' ) );
+	$post_large_header_slider_shortcode = wp_kses_post( $post_large_header_slider_shortcode );
 	$has_large_header_slider_shortcode = ! empty( $post_large_header_slider_shortcode );
 
 	$global_additional_header_overlay_disable = ( "on" === pegasus_get_option( 'global_add_header_disable_overlay_chk' ) ) ? true : false;
