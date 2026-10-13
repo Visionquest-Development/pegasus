@@ -163,7 +163,8 @@
         "pegasus-carousel",
         "pegasus-slider",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:bR46ng0sT9R/QIx0e1EP5fYe7fZLBLLJ8+iazbuAUoQ"
     },
     "vqdev": {
       "domain": "visionquestdev.com",
@@ -178,7 +179,8 @@
         "pegasus-carousel",
         "pegasus-slider",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": ""
     },
     "avena": {
       "domain": "avenafamilyphotos.com",
@@ -193,7 +195,8 @@
         "pegasus-carousel",
         "pegasus-slider",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:vLTQlodnRivRTkuqLTyRf6bSUbHdVn3QwSxEkHGZZck"
     },
     "meowweretalkin": {
       "domain": "meowweretalkin.com",
@@ -207,7 +210,8 @@
       "plugins": [
         "pegasus-carousel",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:WigUzQuFQuUdqxxhStjqL+lUM02Nyf+PklbI7vkwru8"
     },
     "pegasustheme": {
       "domain": "pegasustheme.com",
@@ -236,7 +240,8 @@
         "pegasus-toggleslide",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:WigUzQuFQuUdqxxhStjqL+lUM02Nyf+PklbI7vkwru8"
     },
     "vqgoods": {
       "domain": "visionquestgoods.com",
@@ -247,7 +252,8 @@
       "ssh_port": 18765,
       "wp_content": "/home/u1448-xyecwpzvlm05/www/visionquestgoods.com/public_html/wp-content",
       "child_branch": "vqgoods_theme",
-      "plugins": []
+      "plugins": [],
+      "ssh_fingerprint": "SHA256:d3Q8XMVDoggNPIMDyXivcacguOWzRZc4Bh6VupcSSAA"
     },
     "vqdevcom": {
       "domain": "vqdev.com",
@@ -258,7 +264,8 @@
       "ssh_port": 18765,
       "wp_content": "",
       "child_branch": "",
-      "plugins": null
+      "plugins": null,
+      "ssh_fingerprint": ""
     },
     "sagescnc": {
       "domain": "sagescnc.com",
@@ -274,7 +281,8 @@
         "pegasus-carousel",
         "pegasus-tabs",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:YBBGO0OUHkduSjInSjPfABMw8CFzrunz7iyDyIuKjSQ"
     },
     "chrishixson": {
       "domain": "chrishixson.com",
@@ -289,7 +297,8 @@
         "pegasus-carousel",
         "pegasus-slider",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:pmVFaaaKZL1ukGIHMdlSYKQPA276kfP0KU7oJSWcoaI"
     },
     "qbiqcamp": {
       "domain": "qbiqcamp.com",
@@ -305,7 +314,8 @@
         "pegasus-onepage",
         "pegasus-packery",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:WqFNTjNHQ2KJE6SSFwk9lZGACcQ0yvuYyeE2dFCE0f4"
     },
     "qbiqsystem": {
       "domain": "qbiqsystem.com",
@@ -321,7 +331,8 @@
         "pegasus-slider",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:BK6KSAM6sMI4Jp90dltTuDdS6+T+QNu4zlN1Hs+Awqc"
     },
     "qbroundtable": {
       "domain": "qbroundtable.com",
@@ -335,7 +346,8 @@
       "plugins": [
         "pegasus-carousel",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:FAbK9QzOWa3X00Z/jUNw9HJ6Q6Jv1XMpcE8HZ7+zQKc"
     },
     "quarterbackuniverse": {
       "domain": "quarterbackuniverse.com",
@@ -346,7 +358,8 @@
       "ssh_port": 18765,
       "wp_content": "",
       "child_branch": "",
-      "plugins": null
+      "plugins": null,
+      "ssh_fingerprint": ""
     },
     "advcompany": {
       "domain": "theadvcompany.com",
@@ -361,7 +374,8 @@
         "pegasus-carousel",
         "pegasus-slider",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:BK6KSAM6sMI4Jp90dltTuDdS6+T+QNu4zlN1Hs+Awqc"
     },
     "theshootout": {
       "domain": "theshootout.camp",
@@ -376,7 +390,8 @@
         "pegasus-carousel",
         "pegasus-slider",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:Icj1Vcwx5Y/qEpbrsnh10T/cR6UjajjTfLFbBA2aYQA"
     },
     "vineandvision": {
       "domain": "vineandvisionconsulting.com",
@@ -391,7 +406,8 @@
         "pegasus-callout",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:WqfkFokOeFZaXCW8AOgi35utMpgtm2KtM33TWe5f670"
     },
     "qbtv": {
       "domain": "qb-tv.com",
@@ -402,7 +418,8 @@
       "ssh_port": 18765,
       "wp_content": "",
       "child_branch": "",
-      "plugins": null
+      "plugins": null,
+      "ssh_fingerprint": ""
     },
     "34oak": {
       "domain": "34oakcontracting.com",
@@ -420,7 +437,8 @@
         "pegasus-slider",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:dqv7KcvC5JkhCd8W8cCluJrGJyN0sZ/OCTZWSdtNnyA"
     },
     "top100proday": {
       "domain": "top100proday.com",
@@ -435,7 +453,8 @@
         "pegasus-carousel",
         "pegasus-slider",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:oQhd3Rwa5v8Ea658j3ZrY10eh1CMbRfzhsKDGZlNVZ4"
     },
     "ulg": {
       "domain": "uptownlifegroup.com",
@@ -453,7 +472,8 @@
         "pegasus-toggleslide",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:ZqRNEaacTEen73KwpkG4ckwtwMeYwiQyU8mvcQolnjU"
     },
     "ulg-events": {
       "domain": "events.uptownlifegroup.com",
@@ -469,7 +489,8 @@
         "pegasus-slider",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:ZqRNEaacTEen73KwpkG4ckwtwMeYwiQyU8mvcQolnjU"
     },
     "theloft": {
       "domain": "theloft.com",
@@ -487,7 +508,8 @@
         "pegasus-wow",
         "vqdev-toast",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:ZqRNEaacTEen73KwpkG4ckwtwMeYwiQyU8mvcQolnjU"
     },
     "mabellas": {
       "domain": "mabellas.com",
@@ -504,7 +526,8 @@
         "pegasus-wow",
         "vqdev-toast",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:ZqRNEaacTEen73KwpkG4ckwtwMeYwiQyU8mvcQolnjU"
     },
     "saltcellar": {
       "domain": "saltcellar.com",
@@ -522,7 +545,8 @@
         "pegasus-wow",
         "vqdev-toast",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:TQNuAuMXdUXncItVaUlN5uLEq7fg5glXjXVEp0X/svA"
     },
     "mixmarket": {
       "domain": "themixmarket.com",
@@ -539,7 +563,8 @@
         "pegasus-wow",
         "vqdev-toast",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:TQNuAuMXdUXncItVaUlN5uLEq7fg5glXjXVEp0X/svA"
     },
     "tommygs": {
       "domain": "tommygs.com",
@@ -556,7 +581,8 @@
         "pegasus-wow",
         "vqdev-toast",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:TQNuAuMXdUXncItVaUlN5uLEq7fg5glXjXVEp0X/svA"
     },
     "russelcontracting": {
       "domain": "russellcontracting.org",
@@ -573,7 +599,8 @@
         "pegasus-slider",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:M+9n5qeZ3MHbG2SqlJ4ekoxmMaJszKd52TxAZXMk4Eg"
     },
     "righthandrenovations": {
       "domain": "righthandrenovations.com",
@@ -584,7 +611,8 @@
       "ssh_port": 18765,
       "wp_content": "",
       "child_branch": "righthandrenovations",
-      "plugins": null
+      "plugins": null,
+      "ssh_fingerprint": ""
     },
     "organizepluscleaning": {
       "domain": "organizepluscleaning.com",
@@ -598,7 +626,8 @@
       "plugins": [
         "pegasus-carousel",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": ""
     },
     "ricecapital": {
       "domain": "ricecapitalfund.com",
@@ -611,7 +640,8 @@
       "child_branch": "ricecapital_theme",
       "plugins": [
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:3Q9eYEw+iK8po32aX/yHqT4SGWGkcv5dd0qzELcEOiQ"
     },
     "sugarpeddler": {
       "domain": "sugarpeddler.com",
@@ -628,7 +658,8 @@
         "pegasus-wow",
         "vqdev-toast",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:ViD2f7mktfNDSpnwox4kq+bHJ/jcOc3QFHPQqZgM54s"
     },
     "mamakay": {
       "domain": "mamakayscheesecakes.com",
@@ -644,7 +675,8 @@
         "pegasus-slider",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": ""
     },
     "gentwo": {
       "domain": "gen2automation.com",
@@ -660,7 +692,8 @@
         "pegasus-slider",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:iwm9Nhf5WC15a3CKmZTwgfA41/KjE1z8W7geJaPBwgc"
     },
     "osps26": {
       "domain": "osps26.com",
@@ -673,7 +706,8 @@
       "child_branch": "osps26_theme",
       "plugins": [
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:NZtEg9WE1AtR085Rd9IfWfWoiA2wKntj+NbCKtq7+xE"
     },
     "renecatherinedesign": {
       "domain": "renecatherinedesigns.com",
@@ -689,7 +723,8 @@
         "pegasus-slider",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:QUxeSh1pIXHnMZj3D3pu8eEqyhJK90tkO2NiSU/nU20"
     },
     "networkingnorth": {
       "domain": "networkingnorth.com",
@@ -700,7 +735,8 @@
       "ssh_port": 18765,
       "wp_content": "",
       "child_branch": "",
-      "plugins": null
+      "plugins": null,
+      "ssh_fingerprint": ""
     },
     "valorcare": {
       "domain": "valorcarega.com",
@@ -716,7 +752,8 @@
         "pegasus-slider",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:RITm/OkJDZqvc0Q06FxTedR/mtSpCGU5e1gRH5ErkaI"
     },
     "cadence-group": {
       "domain": "cadence-group.com",
@@ -734,7 +771,8 @@
         "pegasus-slider",
         "pegasus-tabs",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": ""
     },
     "qbiqsystem-staging": {
       "domain": "qbiqsystem.com/test (staged at chrishixson.com/test)",
@@ -750,7 +788,8 @@
         "pegasus-slider",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": "SHA256:pmVFaaaKZL1ukGIHMdlSYKQPA276kfP0KU7oJSWcoaI"
     },
     "hfhs-staging": {
       "domain": "visionquestdev.com/hfhs",
@@ -767,7 +806,8 @@
         "pegasus-slider",
         "pegasus-wow",
         "wp-bootstrap-hooks"
-      ]
+      ],
+      "ssh_fingerprint": ""
     }
   }
 }

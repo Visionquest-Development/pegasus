@@ -65,6 +65,7 @@ jobs:
                    host: .value.ssh_host, user: .value.ssh_user, port: ((.value.ssh_port // 18765) | tostring),
                    wp_content: .value.wp_content, kind: ($c.type // "plugin"),
                    folders: (($c.folders // [$repo]) | join(" ")),
+                   fingerprint: (.value.ssh_fingerprint // ""),
                    branch: (if $repo == $child then $ref else $default end)} ]' "$REG" > all.json
           # Drop disabled entries and anything that fails strict validation before it reaches the matrix.
           jq -c '
@@ -75,13 +76,16 @@ jobs:
               and (.kind == "theme" or .kind == "plugin")
               and (.environment == "live" or .environment == "staging")
               and ((.folders | split(" ")) | all(test("^[A-Za-z0-9._-]+$")));
-            {include: [.[] | select(.enabled == true) | select(ok)]}' all.json > m.json
+            def pinned: (.fingerprint | test("^SHA256:[A-Za-z0-9+/]{43}=?$"));
+            {include: [.[] | select(.enabled == true) | select(ok) | select(pinned)]}' all.json > m.json
           jq -r '.[] | select(.enabled != true) | "::notice title=Skipped \(.key)::no SSH host/user/path in registry"' all.json
-          jq -r --slurpfile m m.json '.[] | select(.enabled == true) | .key as $k | select(([$m[0].include[].key] | index($k)) == null) | "::warning title=Invalid registry entry \(.key)::dropped: a field failed validation"' all.json
+          jq -r --slurpfile m m.json '.[] | select(.enabled == true) | select(.fingerprint | test("^SHA256:[A-Za-z0-9+/]{43}=?$")) | .key as $k | select(([$m[0].include[].key] | index($k)) == null) | "::warning title=Invalid registry entry \(.key)::dropped: a field failed validation"' all.json
+          # Host key pinning: never connect to a host without a valid pinned SHA256 fingerprint (ssh_fingerprint in the registry).
+          jq -r '.[] | select(.enabled == true) | select((.fingerprint | test("^SHA256:[A-Za-z0-9+/]{43}=?$")) | not) | "::notice title=Skipped \(.key)::no pinned SSH host key fingerprint in registry (see DEPLOY-SITEGROUND.md)"' all.json
           n=$(jq '.include | length' m.json)
           [ "$n" -gt 0 ] || none "no valid registry sites map to $REPO@$REF."
           echo "matrix=$(cat m.json)" >> "$GITHUB_OUTPUT"; echo "count=$n" >> "$GITHUB_OUTPUT"
-          { echo "### Deploy plan for $REPO@$REF"; jq -r '.include[] | "- \(.key) (\(.environment)) -> \(.host):\(.wp_content)"' m.json; } >> "$GITHUB_STEP_SUMMARY"
+          { echo "### Deploy plan for $REPO@$REF"; jq -r '.include[] | "- \(.key) (\(.environment))"' m.json; } >> "$GITHUB_STEP_SUMMARY"
 
   deploy:
     name: ${{ matrix.key }} (${{ matrix.environment }})
@@ -96,12 +100,18 @@ jobs:
         id: secrets
         env:
           HAS_KEY: ${{ secrets.SITEGROUND_SSH_KEY != '' }}
+          M_HOST: ${{ matrix.host }}
+          M_USER: ${{ matrix.user }}
+          M_PATH: ${{ matrix.wp_content }}
         run: |
+          # Mask host/user/path so they don't appear in the public log (incl. the ssh step's with:/env: header).
+          for v in "$M_HOST" "$M_USER" "$M_PATH"; do echo "::add-mask::$v"; done
           if [ "$HAS_KEY" = "true" ]; then echo "ok=true" >> "$GITHUB_OUTPUT"
           else echo "::notice title=SiteGround deploy skipped::SITEGROUND_SSH_KEY is not available to this repo (org secret not shared with it?)"; echo "ok=false" >> "$GITHUB_OUTPUT"; fi
       - name: git pull --ff-only on server
         if: steps.secrets.outputs.ok == 'true'
-        uses: appleboy/ssh-action@029f5b4aeeeb58fdfe1410a5d17f967dacf36262 # v1.0.3
+        # v1.2.5: echoes the script only when debug is on (v1.0.3 always printed it); fingerprint = SHA256 host key pin
+        uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1.2.5
         env:
           DEPLOY_SITE: ${{ matrix.key }}
           DEPLOY_WP_CONTENT: ${{ matrix.wp_content }}
@@ -109,44 +119,46 @@ jobs:
           DEPLOY_FOLDERS: ${{ matrix.folders }}
           DEPLOY_BRANCH: ${{ matrix.branch }}
           DEPLOY_REPO: ${{ github.event.repository.name }}
-          # theme/plugin repos may switch a clean server copy from master to main after a default-branch rename
         with:
           host: ${{ matrix.host }}
           username: ${{ matrix.user }}
           key: ${{ secrets.SITEGROUND_SSH_KEY }}
           passphrase: ${{ secrets.SITEGROUND_SSH_PASSPHRASE }}
           port: ${{ secrets.SITEGROUND_SSH_PORT || matrix.port }}
+          fingerprint: ${{ matrix.fingerprint }}
+          debug: false
           envs: DEPLOY_SITE,DEPLOY_WP_CONTENT,DEPLOY_KIND,DEPLOY_FOLDERS,DEPLOY_BRANCH,DEPLOY_REPO
           # script_stop stays off: it rewrites the script line by line, which breaks if/for blocks. Errors are handled explicitly.
           script_stop: false
           script: |
             # Runs on the SiteGround server. All inputs arrive as env vars (validated in the plan job); nothing is templated in.
-            # SKIP (exit 0) only for: not installed, no .git, detached HEAD, a different branch checked out (master<->main is
-            # switched automatically for theme/plugin repos when safe, see DEPLOY-SITEGROUND.md 'Moving to main'). Any git error -> FAIL (exit 1).
+            # Output is public (Actions log): one line per site, "<site>: DEPLOYED <sha> | SKIP <category> | FAIL <category>".
+            # No paths, hostnames, file names, commit subjects or raw git output are printed. Git's own output is discarded.
+            # SKIP (exit 0): not installed, no .git, detached HEAD, other branch checked out (incl. master/main after a rename:
+            # never switched here, see DEPLOY-SITEGROUND.md 'Moving to main'). Any git error -> FAIL (exit 1).
+            S="$DEPLOY_SITE"
+            skip() { echo "$S: SKIP $1"; exit 0; }
+            fail() { echo "$S: FAIL $1"; exit 1; }
             BASE="${DEPLOY_WP_CONTENT}/${DEPLOY_KIND}s"
             DIR=""
             for f in $DEPLOY_FOLDERS; do
               if [ -d "$BASE/$f" ]; then DIR="$BASE/$f"; break; fi
             done
-            if [ -z "$DIR" ]; then echo "SKIP: $DEPLOY_REPO is not installed under $BASE"; exit 0; fi
-            cd "$DIR" || { echo "FAIL: cannot cd to $DIR"; exit 1; }
-            if [ ! -e .git ]; then echo "SKIP: $DIR is not a git checkout (clone it first, see DEPLOY-SITEGROUND.md)"; exit 0; fi
-            ERR="$(mktemp)" || { echo "FAIL: mktemp failed"; exit 1; }
-            CUR="$(git rev-parse --abbrev-ref HEAD 2>"$ERR")"; RC=$?
-            if [ $RC -ne 0 ] || [ -z "$CUR" ]; then echo "FAIL: git rev-parse failed in $DIR (exit $RC):"; cat "$ERR"; rm -f "$ERR"; exit 1; fi
-            if [ "$CUR" = "HEAD" ]; then echo "SKIP: $DIR is in detached HEAD state, expected branch '$DEPLOY_BRANCH'"; rm -f "$ERR"; exit 0; fi
-            ST="$(git status --porcelain --untracked-files=no 2>"$ERR")"; RC=$?
-            if [ $RC -ne 0 ]; then echo "FAIL: git status failed in $DIR (exit $RC):"; cat "$ERR"; rm -f "$ERR"; exit 1; fi
-            rm -f "$ERR"
+            [ -n "$DIR" ] || skip "not installed ($DEPLOY_KIND $DEPLOY_REPO)"
+            cd "$DIR" >/dev/null 2>&1 || fail "cannot enter install folder"
+            [ -e .git ] || skip "not a git checkout"
+            CUR="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" || fail "git rev-parse error"
+            [ -n "$CUR" ] || fail "git rev-parse error"
+            [ "$CUR" != "HEAD" ] || skip "detached HEAD"
+            ST="$(git status --porcelain --untracked-files=no 2>/dev/null)" || fail "git status error"
             if [ "$CUR" != "$DEPLOY_BRANCH" ]; then
               # Never switch branches on the server automatically (no checkout -B / branch -D here).
               case "$CUR:$DEPLOY_BRANCH" in
-                master:main|main:master) echo "SKIP: $DIR server on $CUR, default is $DEPLOY_BRANCH: run sync/migrate-default-branch-to-main.sh --servers or switch manually" ;;
-                *) echo "SKIP: $DIR is on '$CUR', expected '$DEPLOY_BRANCH'" ;;
+                master:main|main:master) skip "server on $CUR, default is $DEPLOY_BRANCH: run sync/migrate-default-branch-to-main.sh --servers or switch manually" ;;
+                *) skip "wrong branch checked out (expected $DEPLOY_BRANCH)" ;;
               esac
-              exit 0
             fi
-            if [ -n "$ST" ]; then echo "FAIL: $DIR has local modifications on the server"; echo "$ST"; exit 1; fi
-            git fetch --prune origin || { echo "FAIL: git fetch failed in $DIR"; exit 1; }
-            git pull --ff-only origin "$DEPLOY_BRANCH" || { echo "FAIL: git pull --ff-only failed in $DIR"; exit 1; }
-            echo "DEPLOYED $DEPLOY_SITE: $(git log -1 --format='%h %s')"
+            [ -z "$ST" ] || fail "dirty working tree ($(printf '%s\n' "$ST" | wc -l | tr -d ' ') files)"
+            git fetch -q --prune origin >/dev/null 2>&1 || fail "git fetch error"
+            git pull -q --ff-only origin "$DEPLOY_BRANCH" >/dev/null 2>&1 || fail "git pull --ff-only error (diverged or conflict)"
+            echo "$S: DEPLOYED $(git rev-parse --short HEAD 2>/dev/null)"
