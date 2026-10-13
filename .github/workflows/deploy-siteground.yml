@@ -128,8 +128,6 @@ jobs:
           fingerprint: ${{ matrix.fingerprint }}
           debug: false
           envs: DEPLOY_SITE,DEPLOY_WP_CONTENT,DEPLOY_KIND,DEPLOY_FOLDERS,DEPLOY_BRANCH,DEPLOY_REPO
-          # script_stop stays off: it rewrites the script line by line, which breaks if/for blocks. Errors are handled explicitly.
-          script_stop: false
           script: |
             # Runs on the SiteGround server. All inputs arrive as env vars (validated in the plan job); nothing is templated in.
             # Output is public (Actions log): one line per site, "<site>: DEPLOYED <sha> | SKIP <category> | FAIL <category>".
